@@ -17,13 +17,13 @@
 
     {{-- User menu toggler --}}
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-        @if(config('adminlte.usermenu_image'))
-            <img src="{{ Auth::user()->adminlte_image() }}"
-                 class="user-image img-circle elevation-2"
-                 alt="{{ Auth::user()->name }}">
+        @if (auth()->user()->photo === 'nopp.png')
+            <img src="{{ asset('images/' . auth()->user()->photo) }}" alt="" class="user-image img-circle elevation-2">            
+        @else
+            <img src="{{ asset('storage/profile/' .auth()->user()->photo) }}" alt="" class="user-image img-circle elevation-2">
         @endif
         <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-            {{ Auth::user()->name }}
+            {{ Auth::user()->nama_lengkap }}
         </span>
     </a>
 

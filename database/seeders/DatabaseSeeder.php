@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Skema;
 use Illuminate\Database\Seeder;
 
 
@@ -30,5 +31,8 @@ class DatabaseSeeder extends Seeder
             'no_telpon' => '089611330331',
             'password' => '12345678',
         ]);
+
+        Skema::factory(10)->create();
+        
     }
 }
