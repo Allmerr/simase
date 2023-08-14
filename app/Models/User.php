@@ -44,4 +44,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function satker()
+    {
+        return $this->belongsTo(Satker::class, 'id_satker', 'id_satker');
+    }
+
+    public function pangkat()
+    {
+        return $this->belongsTo(Pangkat::class, 'id_pangkat', 'id_pangkat');
+    }
+
+    public function pendidikan_terakhir()
+    {
+        return $this->belongsTo(Pendidikan_Terakhir::class, 'id_pendidikan_terakhir', 'id_pendidikan_terakhir');
+    }
 }

@@ -5,6 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Skema;
+use App\Models\Satker;
+use App\Models\Pangkat;
+use App\Models\PendidikanKepolisian;
 use Illuminate\Database\Seeder;
 
 
@@ -16,6 +19,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
+
+        Skema::factory(20)->create();
+        Satker::factory(10)->create();
+        Pangkat::factory(10)->create();
+        PendidikanKepolisian::factory(5)->create();
 
         User::create([
             'nama_lengkap' => 'Admin',
@@ -29,10 +37,9 @@ class DatabaseSeeder extends Seeder
             'nama_lengkap' => 'peserta',
             'email' => 'peserta@example.com',
             'no_telpon' => '089611330331',
+            'id_satker' => '1',
             'password' => '12345678',
         ]);
 
-        Skema::factory(10)->create();
-        
     }
 }
