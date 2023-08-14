@@ -12,7 +12,9 @@ class PendidikanKepolisianController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pendidikan_kepolisian.index', [
+            'pendidikan_kepolisians' => PendidikanKepolisian::all(),
+        ]);
     }
 
     /**
@@ -20,7 +22,7 @@ class PendidikanKepolisianController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pendidikan_kepolisian.create');
     }
 
     /**
@@ -28,13 +30,24 @@ class PendidikanKepolisianController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $rules = [
+            'nama' => 'required|string',
+        ];
 
+        $validatedData = $request->validate($rules);
+
+        $pendidikan_kepolisian = new PendidikanKepolisian();
+
+        $pendidikan_kepolisian->nama = $validatedData['nama'];
+
+        $pendidikan_kepolisian->save();
+
+        return redirect()->route('pendidikan-kepolisian.index')->with('success', 'A Profile Has Been Updated Successful!');
+    }
     /**
      * Display the specified resource.
      */
-    public function show(PendidikanKepolisian $pendidikanKepolisian)
+    public function show(PendidikanKepolisian $pendidikan_kepolisian)
     {
         //
     }
@@ -42,24 +55,36 @@ class PendidikanKepolisianController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PendidikanKepolisian $pendidikanKepolisian)
+    public function edit(PendidikanKepolisian $pendidikan_kepolisian)
     {
-        //
+        return view('admin.pendidikan_kepolisian.edit', [
+            'pendidikan_kepolisian' => $pendidikan_kepolisian,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PendidikanKepolisian $pendidikanKepolisian)
+    public function update(Request $request, PendidikanKepolisian $pendidikan_kepolisian)
     {
-        //
+        $rules = [
+            'nama' => 'required|string',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        PendidikanKepolisian::where('id_pendidikan_kepolisian', $pendidikan_kepolisian->id_pendidikan_kepolisian)->update($validatedData);
+
+        return redirect()->route('pendidikan-kepolisian.index', $pendidikan_kepolisian->id_pendidikan_kepolisian)->with('success', 'A Profile Has Been Updated Successful!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PendidikanKepolisian $pendidikanKepolisian)
+    public function destroy(PendidikanKepolisian $pendidikan_kepolisian)
     {
-        //
+        PendidikanKepolisian::destroy($pendidikan_kepolisian->id_pendidikan_kepolisian);
+
+        return redirect()->route('pendidikan-kepolisian.index')->with('success_message', 'Data telah terhapus');
     }
 }

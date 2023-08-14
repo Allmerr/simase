@@ -5,6 +5,8 @@ use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SkemaController;
 use App\Http\Controllers\SatkerController;
+use App\Http\Controllers\PangkatController;
+use App\Http\Controllers\PendidikanKepolisianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
     Route::resource('/admin/skema', SkemaController::class);
     Route::resource('/admin/satker', SatkerController::class);
-
+    Route::resource('/admin/pangkat', PangkatController::class);
+    Route::resource('/admin/pendidikan-kepolisian', PendidikanKepolisianController::class);
     
 });

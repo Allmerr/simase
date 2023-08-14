@@ -290,6 +290,26 @@ return [
     */
 
     'menu' => [
+        'PESERTA SETTINGS',
+        [
+            'text' => 'Profile',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Satker',
+                    'route' => 'satker.index',
+                ],        
+                [
+                    'text' => 'Pangkat',
+                    'route' => 'pangkat.index',
+                ],        
+                [
+                    'text' => 'Pendidikan Kepolisian',
+                    'route' => 'pendidikan-kepolisian.index',
+                ],        
+            ]
+        ],
+        'SKEMA',
         [
             'text' => 'Skema',
             'route' => 'skema.index',

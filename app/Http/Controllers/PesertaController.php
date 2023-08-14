@@ -46,7 +46,7 @@ class PesertaController extends Controller
             'id_pendidikan_kepolisian' => 'required',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
-        
+
         if($request->email !== $user->email){
             $rules['email'] = 'required|email|unique:users';
         }

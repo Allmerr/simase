@@ -224,7 +224,7 @@
                             <label for="satker" class="form-label">Satuan Kerja</label>
                             <select class="form-select" name="id_satker" >
                                 @foreach ($satkers as $satker)
-                                    <option value="{{ $satker->id_satker }}" @if(auth()->user()->satker ? auth()->user()->satker->nama : '' == $satker->nama || old('satker')==$satker->nama ) selected @endif>{{ $satker->nama }}</option>
+                                    <option value="{{ $satker->id_satker }}" @if((auth()->user()->satker ? auth()->user()->satker->nama : '') == $satker->nama || old('satker')==$satker->nama ) selected @endif>{{ $satker->nama }}</option>
                                 @endforeach
                             </select>
                             @error('satker')
@@ -237,7 +237,7 @@
                             <label for="pangkat" class="form-label">Pangkat</label>
                             <select class="form-select" name="id_pangkat" >
                                 @foreach ($pangkats as $pangkat)
-                                    <option value="{{ $pangkat->id_pangkat }}" @if(auth()->user()->pangkat ? auth()->user()->pangkat->nama : '' == $pangkat->nama || old('pangkat')==$pangkat->nama ) selected @endif>{{ $pangkat->nama }}</option>
+                                    <option value="{{ $pangkat->id_pangkat }}" @if((auth()->user()->pangkat ? auth()->user()->pangkat->nama : '') == $pangkat->nama || old('pangkat')==$pangkat->nama ) selected @endif>{{ $pangkat->nama }}</option>
                                 @endforeach
                             </select>
                             @error('pangkat')
@@ -250,7 +250,7 @@
                             <label for="pendidikan_kepolisian" class="form-label">Pendidikan Kepolisian</label>
                             <select class="form-select" name="id_pendidikan_kepolisian" >
                                 @foreach ($pendidikan_kepolisians as $pendidikan_kepolisian)
-                                    <option value="{{ $pendidikan_kepolisian->id_pendidikan_kepolisian }}" @if(auth()->user()->pendidikan_kepolisian ? auth()->user()->pendidikan_kepolisian->nama : '' == $pendidikan_kepolisian->nama || old('pendidikan_kepolisian')==$pendidikan_kepolisian->nama ) selected @endif>{{ $pendidikan_kepolisian->nama }}</option>
+                                    <option value="{{ $pendidikan_kepolisian->id_pendidikan_kepolisian }}" @if((auth()->user()->pendidikan_kepolisian ? auth()->user()->pendidikan_kepolisian->nama : '') == $pendidikan_kepolisian->nama || old('pendidikan_kepolisian')==$pendidikan_kepolisian->nama ) selected @endif>{{ $pendidikan_kepolisian->nama }}</option>
                                 @endforeach
                             </select>
                             @error('pendidikan_kepolisian')

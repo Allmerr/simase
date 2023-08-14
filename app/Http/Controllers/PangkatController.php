@@ -12,7 +12,9 @@ class PangkatController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pangkat.index', [
+            'pangkats' => Pangkat::all(),
+        ]);
     }
 
     /**
@@ -20,7 +22,7 @@ class PangkatController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pangkat.create');
     }
 
     /**
@@ -28,9 +30,20 @@ class PangkatController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $rules = [
+            'nama' => 'required|string',
+        ];
 
+        $validatedData = $request->validate($rules);
+
+        $pangkat = new Pangkat();
+
+        $pangkat->nama = $validatedData['nama'];
+
+        $pangkat->save();
+
+        return redirect()->route('pangkat.index')->with('success', 'A Profile Has Been Updated Successful!');
+    }
     /**
      * Display the specified resource.
      */
@@ -44,7 +57,9 @@ class PangkatController extends Controller
      */
     public function edit(Pangkat $pangkat)
     {
-        //
+        return view('admin.pangkat.edit', [
+            'pangkat' => $pangkat,
+        ]);
     }
 
     /**
@@ -52,7 +67,15 @@ class PangkatController extends Controller
      */
     public function update(Request $request, Pangkat $pangkat)
     {
-        //
+        $rules = [
+            'nama' => 'required|string',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        Pangkat::where('id_pangkat', $pangkat->id_pangkat)->update($validatedData);
+
+        return redirect()->route('pangkat.index', $pangkat->id_pangkat)->with('success', 'A Profile Has Been Updated Successful!');
     }
 
     /**
@@ -60,6 +83,8 @@ class PangkatController extends Controller
      */
     public function destroy(Pangkat $pangkat)
     {
-        //
+        Pangkat::destroy($pangkat->id_pangkat);
+
+        return redirect()->route('pangkat.index')->with('success_message', 'Data telah terhapus');
     }
 }
