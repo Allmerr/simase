@@ -20,8 +20,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Kode Skema</th>
-                                    <th>Nama</th>
-                                    <th>Persyaratan</th>
+                                    <th>Nama Skema</th>
                                     <th>Photo</th>
                                     <th>Opsi</th>
                                 </tr>
@@ -32,7 +31,6 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$skema->kode}}</td>
                                     <td>{{$skema->nama}}</td>
-                                    <td>{{$skema->persyaratan}}</td>
                                     <td id={{$key+1}}>
                                         @if ($skema->photo === 'noskema.png')
                                             <a href="{{ asset('/images/'. $skema->photo) }}" target="_blank">Lihat Dokumen</a>
@@ -41,7 +39,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-success btn-xs"><i class="fa fa-info"></i></a>
+                                        <a href="{{ route('skema.show', $skema->id_skema) }}" class="btn btn-success btn-xs"><i class="fa fa-info"></i></a>
                                         <a href="{{ route('skema.edit' , $skema->id_skema) }}" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('skema.destroy' , $skema->id_skema) }}" onclick="notificationBeforeDelete(event, this, <?php echo $key+1; ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                     </td>

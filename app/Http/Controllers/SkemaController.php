@@ -33,6 +33,7 @@ class SkemaController extends Controller
      */
     public function store(Request $request)
     {
+        echo $request->input('content');
         $rules = [
             'kode' => 'required|string|max:6',
             'nama' => 'required|string',
@@ -48,23 +49,18 @@ class SkemaController extends Controller
 
         // dd($validatedData);
 
+        // dd('test');
+
         $skema = new Skema();
 
         $skema->kode = $validatedData['kode'];
         $skema->nama = $validatedData['nama'];
         $skema->persyaratan = $validatedData['persyaratan'];
-        $skema->photo = $validatedData['photo'];
+        if($request->file('photo')){
+            $skema->photo = $validatedData['photo'];
+        }
 
         $skema->save();
-
-        // Skema::create([
-        //     // 'photo' => $validatedData['photo'],
-        //     'kode' => $validatedData['kode'],
-        //     'nama' => $validatedData['nama'],
-        //     'persyaratan' => $validatedData['persyaratan'],
-        // ]);
-
-        // $username = User::firstWhere('id_users', $user->id)->email;
 
         return redirect()->route('skema.index')->with('success', 'A Profile Has Been Updated Successful!');
     }
@@ -74,7 +70,9 @@ class SkemaController extends Controller
      */
     public function show(Skema $skema)
     {
-        //
+        return view('admin.skema.show', [
+            'skema' => $skema,
+        ]);
     }
 
     /**
@@ -128,4 +126,31 @@ class SkemaController extends Controller
 
         return redirect()->route('skema.index')->with('success_message', 'Data telah terhapus');
     }
+
+    public function upload(Request $request)
+    {
+        if($request->hasFile('file')) {
+            //get filename with extension
+            $filenamewithextension = $request->file('file')->getClientOriginalName();
+
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('file')->getClientOriginalExtension();
+
+            //filename to store
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+
+            //Upload File
+            $request->file('file')->storeAs('public/uploads', $filenametostore);
+
+            // you can save image path below in database
+            $path = asset('storage/uploads/'.$filenametostore);
+
+            echo $path;
+            exit;
+        }
+    }
+
 }

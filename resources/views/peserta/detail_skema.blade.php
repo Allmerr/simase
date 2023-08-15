@@ -124,42 +124,18 @@ html body .base {
     }
 }
 </style>
-<div class="container">
-    <h1 class="text-center">Skema</h1>
-            @if ($skemas->count())
-                <div class="my-big-card">
-                    <div class="left">
-                        <h3>{{ $skemas[0]->nama }}</h3>
-                        <a class="border border-secondary p-1 rounded text-dark" href=" {{ route('peserta.detailSkema' , $skemas[0]->id_skema) }}">See More</a>
-                    </div>
-                    <div class="right">
-                        @if ($skemas[0]->photo == 'noskema.png')
-                        <img src="{{ asset('/images/' . $skemas[0]->photo) }}" alt="">
-                        @else
-                        <img src="{{ asset('/storage/skema/' . $skemas[0]->photo) }}" alt="">
-                        @endif
-                    </div>
-                </div>
-                {{-- akhir header --}}
-                {{-- body --}}
-                <div class="my-card-container mt-5 pb-5">
-                    @foreach ($skemas->skip(1) as $skema)
-                        <div class="card" style="">
-                            @if ($skema->photo == 'noskema.png')
-                            <img src="{{ asset('/images/' . $skema->photo) }}" alt="">
-                            @else
-                            <img src="{{ asset('/storage/skema/' . $skema->photo) }}" alt="">
-                            @endif
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $skema->nama }}</h5>
-                                <a class="border border-secondary p-1 rounded text-dark" href=" {{ route('peserta.detailSkema' , $skema->id_skema) }}">See More</a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                {{-- akhir body --}}
-            @else
-                <div class="alert alert-secondary">Posts No Found</div>
-            @endif
+<div class="container my-5">
+    <div class="blog-content">
+
+        <h6 style="color:#696969">Create at {{ $skema->created_at }}</h6>
+        <h1>{{ $skema->nama }}</h1>
+        @if ($skema->photo == 'noskema.png')
+        <img src="{{ asset('/images/' . $skema->photo) }}" alt="">
+        @else
+        <img src="{{ asset('/storage/skema/' . $skema->photo) }}" alt="">
+        @endif
+        {!! $skema->persyaratan !!}
+        <br>
+    </div>
 </div>
 @endsection

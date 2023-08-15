@@ -3,6 +3,8 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('/css/trix.css') }}">
     <h1 class="m-0 text-dark">Edit Skema</h1>
 @stop
 
@@ -29,7 +31,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="persyaratan" class="form-label">Persyaratan</label>
-                        <input type="name" class="form-control" id="persyaratan" aria-describedby="persyaratan" value="{{ old('persyaratan', $skema->persyaratan) }}" name="persyaratan">
+                        <input id="x" type="hidden" name="persyaratan" value="{{ $skema->persyaratan }}" />
+                        <trix-editor input="x" class="trix-content"></trix-editor>
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Skema photo</label>
@@ -63,6 +66,8 @@
 @stop
 
 @push('js')
+<script src="{{ asset('/js/trix.umd.min.js') }}"></script>
+<script src="{{ asset('/js/attachments.js') }}"></script>
 <script>
 function previewphoto(){
     const photo = document.querySelector('#photo');

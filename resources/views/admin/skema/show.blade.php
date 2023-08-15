@@ -10,7 +10,7 @@
 
 @section('content')
 <style>
-    form img{
+    form img.img-preview{
         width: 200px;
     }
 </style>
@@ -18,27 +18,32 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('skema.store') }}" method="post" enctype="multipart/form-data">
+                <form action="" method="post" >
                     @csrf
                     <div class="mb-3">
                         <label for="kode" class="form-label">Kode Skema</label>
-                        <input type="name" class="form-control" id="kode" aria-describedby="kode" value="{{ old('kode') }}" name="kode">
+                        <input type="name" class="form-control" id="kode" aria-describedby="kode" value="{{ old('kode', $skema->kode) }}" name="kode" disabled>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama') }}" name="nama">
+                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $skema->nama) }}" name="nama" disabled>
                     </div>
                     <div class="mb-3">
                         <label for="persyaratan" class="form-label">Persyaratan</label>
-                        <input id="x" type="hidden" name="persyaratan" value="" />
-                        <trix-editor input="x" class="trix-content"></trix-editor>
+                        {!! $skema->persyaratan !!}
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Skema photo</label>
-
+            
+                        @if ($skema->photo === 'noskema.png')
+                        <img class="img-preview img-fluid mb-3 d-block" src="{{ asset('images/' . $skema->photo) }}">
+                        @elseif($skema->photo)
+                        <img class="img-preview img-fluid mb-3 d-block" src="{{ asset('storage/skema/' . $skema->photo) }}">
+                        @else
                         <img class="img-preview img-fluid mb-3">
-
-                        <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo" onchange="previewphoto()">
+                        @endif
+            
+                        <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo" onchange="previewphoto()" disabled>
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -48,7 +53,7 @@
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Ubah</button>
+                            <a href="{{ route('skema.index') }}" class="btn btn-primary w-100">Kembali</a>
                         </div>
                     </div>
                 </form>

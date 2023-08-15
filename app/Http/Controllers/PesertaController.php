@@ -98,4 +98,11 @@ class PesertaController extends Controller
             'skemas' => Skema::all(),
         ]);
     }
+
+    public function detailSkema(Request $request, $skema){
+        $skema = Skema::find($skema);
+        return view('peserta.detail_skema', [
+            'skema' => $skema,
+        ]);
+    }
 }

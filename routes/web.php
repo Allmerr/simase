@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     // peserta
     Route::get('/peserta', [PesertaController::class, 'index'])->name('peserta.index')->middleware('isPeserta');
     Route::get('/peserta/skema', [PesertaController::class, 'showSkema'])->name('peserta.showSkema')->middleware('isPeserta');
+    Route::get('/peserta/skema/{id_skema}', [PesertaController::class, 'detailSkema'])->name('peserta.detailSkema')->middleware('isPeserta');
     Route::get('/peserta/profile', [PesertaController::class, 'profile'])->name('peserta.profile');
     Route::post('/peserta/profile', [PesertaController::class, 'updateProfile'])->name('peserta.updateProfile');
     Route::get('/peserta/change-password', [PesertaController::class, 'changePassword'])->name('peserta.changePassword');
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // admin 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
+    Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');
     Route::resource('/admin/skema', SkemaController::class);
     Route::resource('/admin/satker', SatkerController::class);
     Route::resource('/admin/pangkat', PangkatController::class);
