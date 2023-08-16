@@ -33,7 +33,6 @@ class SkemaController extends Controller
      */
     public function store(Request $request)
     {
-        echo $request->input('content');
         $rules = [
             'kode' => 'required|string|max:6',
             'nama' => 'required|string',

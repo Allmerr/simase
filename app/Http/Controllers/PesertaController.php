@@ -11,6 +11,8 @@ use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifikasiPesertaMail;
 
 class PesertaController extends Controller
 {
@@ -20,7 +22,7 @@ class PesertaController extends Controller
 
     public function profile(){
         return view('peserta.profile', [
-            'satkers' => Satker::all(),
+            'satkers' => Satker::all(), 
             'pangkats' => Pangkat::all(),
             'pendidikan_kepolisians' => PendidikanKepolisian::all(),
         ]); 
@@ -122,6 +124,12 @@ class PesertaController extends Controller
         if(!$isUserValid){
             return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Data Diri Anda Belum Lengkapi. Lengkapi data diri anda!');
         }
+        
+        $isUserAlreadySignSkema = $this->hCheckIfUserAlreadySignSkema();
+        if(!$isUserValid){
+            return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Anda sudah melakukan pendaftaran pada skema, lihat status skema anda untuk info lebih lanjut');
+        }
+
 
         $validatedData = $request->validate([
             'dokumen_persyaratan' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx',
@@ -130,7 +138,6 @@ class PesertaController extends Controller
         $validatedData['id_users'] = auth()->user()->id_users;
         $validatedData['id_skema'] = $skema->id_skema;
 
-
         $pengajuan = new Pengajuan();
         $pengajuan->dokumen_persyaratan = $validatedData['dokumen_persyaratan'] = str_replace('public/dokumen_persyaratan/', '', $request->file('dokumen_persyaratan')->store('public/dokumen_persyaratan'));
         $pengajuan->id_users = $validatedData['id_users'];
@@ -138,9 +145,19 @@ class PesertaController extends Controller
         $pengajuan->is_disetujui = 'pending';
 
         $pengajuan->save();
+        $this->sendEmail($validatedData['id_users'], $validatedData['id_skema']);
         return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
     }
 
+    public function hCheckIfUserAlreadySignSkema($id_skema){
+        $user = auth()->user();
+        $skema = Skema::find($skema);
+
+        if($skema->id_users === $user->id_users){
+            return true;
+        }
+    }
+    
     public function hCheckUser(){
         $user = auth()->user();
 
@@ -172,5 +189,14 @@ class PesertaController extends Controller
         }
     
         return true;
+    }
+
+    public function sendEmail($id_users, $id_skema){
+        // Mail::to('kevinalmer4@gmail.com')->send(new NotifikasiPesertaMail());
+        $user = User::find($id_users);
+        $skema = Skema::find($id_skema);
+
+        Mail::send(new NotifikasiPesertaMail(['user_email' => $user->email,'skema_name' =>  $skema->nama]));
+        return 'berhasil';
     }
 }

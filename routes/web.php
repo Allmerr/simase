@@ -48,7 +48,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/peserta/change-password', [PesertaController::class, 'changePassword'])->name('peserta.changePassword');
     Route::post('/peserta/change-password', [PesertaController::class, 'saveChangePassword'])->name('peserta.saveChangePassword');
 
-
     // admin 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
     Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');
