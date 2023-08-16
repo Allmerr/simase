@@ -7,6 +7,7 @@ use App\Models\Skema;
 use App\Models\Satker;
 use App\Models\Pangkat;
 use App\Models\PendidikanKepolisian;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -104,5 +105,72 @@ class PesertaController extends Controller
         return view('peserta.detail_skema', [
             'skema' => $skema,
         ]);
+    }
+
+    public function daftarSkema(Request $request, $skema){
+        $skema = Skema::find($skema);
+        return view('peserta.daftar_skema', [
+            'skema' => $skema,
+        ]);
+
+    }
+    
+    public function saveDaftarSkema(Request $request, $skema){
+        $skema = Skema::find($skema);
+ 
+        $isUserValid = $this->hCheckUser();
+        if(!$isUserValid){
+            return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Data Diri Anda Belum Lengkapi. Lengkapi data diri anda!');
+        }
+
+        $validatedData = $request->validate([
+            'dokumen_persyaratan' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx',
+        ]);
+
+        $validatedData['id_users'] = auth()->user()->id_users;
+        $validatedData['id_skema'] = $skema->id_skema;
+
+
+        $pengajuan = new Pengajuan();
+        $pengajuan->dokumen_persyaratan = $validatedData['dokumen_persyaratan'] = str_replace('public/dokumen_persyaratan/', '', $request->file('dokumen_persyaratan')->store('public/dokumen_persyaratan'));
+        $pengajuan->id_users = $validatedData['id_users'];
+        $pengajuan->id_skema = $validatedData['id_skema'];
+        $pengajuan->is_disetujui = 'pending';
+
+        $pengajuan->save();
+        return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
+    }
+
+    public function hCheckUser(){
+        $user = auth()->user();
+
+
+        if (!$user->jenis_kelamin) {
+            return false;
+        } elseif (!$user->nip) {
+            return false;
+        } elseif (!$user->jabatan) {
+            return false;
+        } elseif (!$user->tempat_lahir) {
+            return false;
+        } elseif (!$user->tanggal_lahir) {
+            return false;
+        } elseif (!$user->alamat) {
+            return false;
+        } elseif (!$user->kota) {
+            return false;
+        } elseif (!$user->provinsi) {
+            return false;
+        } elseif (!$user->pendidikan_terakhir) {
+            return false;
+        } elseif (!$user->id_satker) {
+            return false;
+        } elseif (!$user->id_pangkat) {
+            return false;
+        } elseif (!$user->id_pendidikan_kepolisian) {
+            return false;
+        }
+    
+        return true;
     }
 }

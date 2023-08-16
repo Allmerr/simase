@@ -81,7 +81,7 @@ html body .base {
 
 .blog-content img {
     width: 100%;
-    margin: 50px 0;
+    margin: 30px 0;
 }
 
 .card-content {
@@ -129,6 +129,7 @@ html body .base {
 
         <h6 style="color:#696969">Create at {{ $skema->created_at }}</h6>
         <h1>{{ $skema->nama }}</h1>
+        <a href="{{ route('peserta.daftarSkema', $skema->id_skema) }}" class="btn btn-outline-secondary">Daftar Skema</a>
         @if ($skema->photo == 'noskema.png')
         <img src="{{ asset('/images/' . $skema->photo) }}" alt="">
         @else
