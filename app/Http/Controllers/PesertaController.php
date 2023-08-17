@@ -8,6 +8,7 @@ use App\Models\Satker;
 use App\Models\Pangkat;
 use App\Models\PendidikanKepolisian;
 use App\Models\Pengajuan;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -125,11 +126,11 @@ class PesertaController extends Controller
             return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Data Diri Anda Belum Lengkapi. Lengkapi data diri anda!');
         }
         
-        $isUserAlreadySignSkema = $this->hCheckIfUserAlreadySignSkema();
-        if(!$isUserValid){
-            return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Anda sudah melakukan pendaftaran pada skema, lihat status skema anda untuk info lebih lanjut');
+        $hasPreviousSubmission = Pengajuan::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->exists();
+        
+        if ($hasPreviousSubmission) {
+            return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Anda sudah melakukan pengajuan pada skema ini sebelumnya.');
         }
-
 
         $validatedData = $request->validate([
             'dokumen_persyaratan' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx',
@@ -151,11 +152,16 @@ class PesertaController extends Controller
 
     public function hCheckIfUserAlreadySignSkema($id_skema){
         $user = auth()->user();
-        $skema = Skema::find($skema);
+        $pengajuan = Pengajuan::where('id_skema', $id_skema)->get();
+        
+        if(isset($pengajuan->id_users)){
+            return false;
+        }
 
-        if($skema->id_users === $user->id_users){
+        if($pengajuan->id_users === $user->id_users){
             return true;
         }
+        return false;
     }
     
     public function hCheckUser(){
@@ -198,5 +204,27 @@ class PesertaController extends Controller
 
         Mail::send(new NotifikasiPesertaMail(['user_email' => $user->email,'skema_name' =>  $skema->nama]));
         return 'berhasil';
+    }
+
+    public function notifikasi(){
+        return view('peserta.notifikasi', [
+            'notifikasis' => auth()->user()->notifikasi,
+        ]);
+    }
+
+    public function notifikasiDetail(Request $request, $id_notifikasi){
+        $notifikasi = Notifikasi::find($id_notifikasi);
+
+        if($notifikasi->id_users !== auth()->user()->id_users){
+            return abort(403);
+        }
+
+        $notifikasi->is_dibaca = 'true';
+
+        $notifikasi->update();
+
+        return view('peserta.notifikasi_detail', [
+            'notifikasi' => $notifikasi,
+        ]);
     }
 }

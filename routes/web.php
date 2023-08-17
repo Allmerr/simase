@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/peserta/profile', [PesertaController::class, 'updateProfile'])->name('peserta.updateProfile');
     Route::get('/peserta/change-password', [PesertaController::class, 'changePassword'])->name('peserta.changePassword');
     Route::post('/peserta/change-password', [PesertaController::class, 'saveChangePassword'])->name('peserta.saveChangePassword');
+    Route::get('/peserta/notifikasi', [PesertaController::class, 'notifikasi'])->name('peserta.notifikasi');
+    Route::get('/peserta/notifikasi/{id_notifikasi}/detail', [PesertaController::class, 'notifikasiDetail'])->name('peserta.notifikasiDetail');
 
     // admin 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');

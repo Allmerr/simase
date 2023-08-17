@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(PendidikanKepolisian::class, 'id_pendidikan_kepolisian', 'id_pendidikan_kepolisian');
     }
+
+    public function notifikasi()
+    {
+        return $this->hasMany(Notifikasi::class, 'id_users', 'id_users');
+    }
 }
