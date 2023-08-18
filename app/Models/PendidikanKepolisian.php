@@ -10,6 +10,8 @@ class PendidikanKepolisian extends Model
     use HasFactory;
 
     protected $guarded = 'id_pendidikan_kepolisian';
+
     protected $table = 'pendidikan_kepolisian';
+
     protected $primaryKey = 'id_pendidikan_kepolisian';
 }

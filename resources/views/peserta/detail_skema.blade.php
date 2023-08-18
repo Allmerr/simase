@@ -123,6 +123,13 @@ html body .base {
         margin: 10px 0;
     }
 }
+
+.blog-content .main img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
 </style>
 <div class="container my-5">
     <div class="blog-content">
@@ -135,7 +142,9 @@ html body .base {
         @else
         <img src="{{ asset('/storage/skema/' . $skema->photo) }}" alt="">
         @endif
-        {!! $skema->persyaratan !!}
+        <div class="main">
+            {!! $skema->persyaratan !!}
+        </div>
         <br>
     </div>
 </div>

@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SkemaController;
-use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\PangkatController;
 use App\Http\Controllers\PendidikanKepolisianController;
+use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\SatkerController;
+use App\Http\Controllers\SkemaController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,17 +27,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
-    
+
     // home
-    Route::get('/home', function(){
-        if (auth()->user()->role === 'admin'){
+    Route::get('/home', function () {
+        if (auth()->user()->role === 'admin') {
             return redirect()->route('admin.index');
-        }else if (auth()->user()->role === 'peserta'){
+        } elseif (auth()->user()->role === 'peserta') {
             return redirect()->route('peserta.index');
         }
+
         return redirect('/');
     });
-    
+
     // peserta
     Route::get('/peserta', [PesertaController::class, 'index'])->name('peserta.index')->middleware('isPeserta');
     Route::get('/peserta/skema', [PesertaController::class, 'showSkema'])->name('peserta.showSkema')->middleware('isPeserta');
@@ -50,12 +52,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/peserta/notifikasi', [PesertaController::class, 'notifikasi'])->name('peserta.notifikasi');
     Route::get('/peserta/notifikasi/{id_notifikasi}/detail', [PesertaController::class, 'notifikasiDetail'])->name('peserta.notifikasiDetail');
 
-    // admin 
+    // admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
     Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');
+    Route::get('/admin/skema/{id_skema}/peserta', [SkemaController::class, 'pesertaSkema'])->name('skema.pesertaSkema')->middleware('isAdmin');
     Route::resource('/admin/skema', SkemaController::class);
     Route::resource('/admin/satker', SatkerController::class);
     Route::resource('/admin/pangkat', PangkatController::class);
     Route::resource('/admin/pendidikan-kepolisian', PendidikanKepolisianController::class);
-    
+    Route::get('/admin/pengajuan/{id_pengajuan}/terima', [PengajuanController::class, 'terima'])->name('pengajuan.terima');
+    Route::post('/admin/pengajuan/{id_pengajuan}/terima', [PengajuanController::class, 'saveTerima'])->name('pengajuan.saveTerima');
+    Route::resource('/admin/pengajuan', PengajuanController::class);
 });

@@ -44,6 +44,7 @@ class SatkerController extends Controller
 
         return redirect()->route('satker.index')->with('success', 'A Profile Has Been Updated Successful!');
     }
+
     /**
      * Display the specified resource.
      */

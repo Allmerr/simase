@@ -44,6 +44,7 @@ class PangkatController extends Controller
 
         return redirect()->route('pangkat.index')->with('success', 'A Profile Has Been Updated Successful!');
     }
+
     /**
      * Display the specified resource.
      */

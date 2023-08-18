@@ -10,6 +10,8 @@ class Pangkat extends Model
     use HasFactory;
 
     protected $guarded = 'id_pangkat';
+
     protected $table = 'pangkat';
+
     protected $primaryKey = 'id_pangkat';
 }

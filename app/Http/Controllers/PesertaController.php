@@ -2,36 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Skema;
-use App\Models\Satker;
+use App\Mail\NotifikasiPesertaMail;
+use App\Models\Notifikasi;
 use App\Models\Pangkat;
 use App\Models\PendidikanKepolisian;
 use App\Models\Pengajuan;
-use App\Models\Notifikasi;
+use App\Models\Satker;
+use App\Models\Skema;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\NotifikasiPesertaMail;
+use Illuminate\Support\Facades\Storage;
 
 class PesertaController extends Controller
 {
-    public function index(){
-        return view('peserta.index'); 
+    public function index()
+    {
+        return view('peserta.index');
     }
 
-    public function profile(){
+    public function profile()
+    {
         return view('peserta.profile', [
-            'satkers' => Satker::all(), 
+            'satkers' => Satker::all(),
             'pangkats' => Pangkat::all(),
             'pendidikan_kepolisians' => PendidikanKepolisian::all(),
-        ]); 
+        ]);
     }
 
-    public function updateProfile(Request $request){
+    public function updateProfile(Request $request)
+    {
         $user = auth()->user();
-        
+
         $rules = [
             'nama_lengkap' => 'required|string|max:255',
             'no_telpon' => 'required|numeric',
@@ -51,13 +54,13 @@ class PesertaController extends Controller
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
 
-        if($request->email !== $user->email){
+        if ($request->email !== $user->email) {
             $rules['email'] = 'required|email|unique:users';
         }
         $validatedData = $request->validate($rules);
 
-        if($request->file('photo')){
-            if($user->photo !== 'nopp.jpg'){
+        if ($request->file('photo')) {
+            if ($user->photo !== 'nopp.jpg') {
                 Storage::delete($user->photo);
             }
 
@@ -68,7 +71,7 @@ class PesertaController extends Controller
 
         // $username = User::firstWhere('id_users', $user->id)->email;
 
-        return redirect("/peserta/profile")->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect('/peserta/profile')->with('success', 'A Profile Has Been Updated Successful!');
     }
 
     public function changePassword(Request $request)
@@ -76,7 +79,8 @@ class PesertaController extends Controller
         return view('peserta.change_password');
     }
 
-    public function saveChangePassword(Request $request){
+    public function saveChangePassword(Request $request)
+    {
         $request->validate([
             'old_password' => 'required',
             'password' => 'required|string|confirmed',
@@ -97,37 +101,43 @@ class PesertaController extends Controller
         return redirect()->route('peserta.changePassword')->with('success', 'Password changed successfully.');
     }
 
-    public function showSkema(){
+    public function showSkema()
+    {
         return view('peserta.skema', [
             'skemas' => Skema::all(),
         ]);
     }
 
-    public function detailSkema(Request $request, $skema){
+    public function detailSkema(Request $request, $skema)
+    {
         $skema = Skema::find($skema);
+
         return view('peserta.detail_skema', [
             'skema' => $skema,
         ]);
     }
 
-    public function daftarSkema(Request $request, $skema){
+    public function daftarSkema(Request $request, $skema)
+    {
         $skema = Skema::find($skema);
+
         return view('peserta.daftar_skema', [
             'skema' => $skema,
         ]);
 
     }
-    
-    public function saveDaftarSkema(Request $request, $skema){
+
+    public function saveDaftarSkema(Request $request, $skema)
+    {
         $skema = Skema::find($skema);
- 
+
         $isUserValid = $this->hCheckUser();
-        if(!$isUserValid){
+        if (! $isUserValid) {
             return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Data Diri Anda Belum Lengkapi. Lengkapi data diri anda!');
         }
-        
+
         $hasPreviousSubmission = Pengajuan::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->exists();
-        
+
         if ($hasPreviousSubmission) {
             return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Anda sudah melakukan pengajuan pada skema ini sebelumnya.');
         }
@@ -147,75 +157,82 @@ class PesertaController extends Controller
 
         $pengajuan->save();
         $this->sendEmail($validatedData['id_users'], $validatedData['id_skema']);
+
         return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
     }
 
-    public function hCheckIfUserAlreadySignSkema($id_skema){
+    public function hCheckIfUserAlreadySignSkema($id_skema)
+    {
         $user = auth()->user();
         $pengajuan = Pengajuan::where('id_skema', $id_skema)->get();
-        
-        if(isset($pengajuan->id_users)){
+
+        if (isset($pengajuan->id_users)) {
             return false;
         }
 
-        if($pengajuan->id_users === $user->id_users){
+        if ($pengajuan->id_users === $user->id_users) {
             return true;
         }
+
         return false;
     }
-    
-    public function hCheckUser(){
+
+    public function hCheckUser()
+    {
         $user = auth()->user();
 
-
-        if (!$user->jenis_kelamin) {
+        if (! $user->jenis_kelamin) {
             return false;
-        } elseif (!$user->nip) {
+        } elseif (! $user->nip) {
             return false;
-        } elseif (!$user->jabatan) {
+        } elseif (! $user->jabatan) {
             return false;
-        } elseif (!$user->tempat_lahir) {
+        } elseif (! $user->tempat_lahir) {
             return false;
-        } elseif (!$user->tanggal_lahir) {
+        } elseif (! $user->tanggal_lahir) {
             return false;
-        } elseif (!$user->alamat) {
+        } elseif (! $user->alamat) {
             return false;
-        } elseif (!$user->kota) {
+        } elseif (! $user->kota) {
             return false;
-        } elseif (!$user->provinsi) {
+        } elseif (! $user->provinsi) {
             return false;
-        } elseif (!$user->pendidikan_terakhir) {
+        } elseif (! $user->pendidikan_terakhir) {
             return false;
-        } elseif (!$user->id_satker) {
+        } elseif (! $user->id_satker) {
             return false;
-        } elseif (!$user->id_pangkat) {
+        } elseif (! $user->id_pangkat) {
             return false;
-        } elseif (!$user->id_pendidikan_kepolisian) {
+        } elseif (! $user->id_pendidikan_kepolisian) {
             return false;
         }
-    
+
         return true;
     }
 
-    public function sendEmail($id_users, $id_skema){
+    public function sendEmail($id_users, $id_skema)
+    {
         // Mail::to('kevinalmer4@gmail.com')->send(new NotifikasiPesertaMail());
         $user = User::find($id_users);
         $skema = Skema::find($id_skema);
 
-        Mail::send(new NotifikasiPesertaMail(['user_email' => $user->email,'skema_name' =>  $skema->nama]));
+        Mail::send(new NotifikasiPesertaMail(['user_email' => $user->email, 'skema_name' => $skema->nama]));
+
         return 'berhasil';
     }
 
-    public function notifikasi(){
+    public function notifikasi()
+    {
         return view('peserta.notifikasi', [
             'notifikasis' => auth()->user()->notifikasi,
         ]);
     }
 
-    public function notifikasiDetail(Request $request, $id_notifikasi){
+    public function notifikasiDetail(Request $request, $id_notifikasi)
+    {
         $notifikasi = Notifikasi::find($id_notifikasi);
 
-        if($notifikasi->id_users !== auth()->user()->id_users){
+        if ($notifikasi->id_users !== auth()->user()->id_users) {
             return abort(403);
         }
 

@@ -42,20 +42,16 @@ class SkemaController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if($request->file('photo')){
+        if ($request->file('photo')) {
             $validatedData['photo'] = str_replace('public/skema/', '', $request->file('photo')->store('public/skema'));
         }
-
-        // dd($validatedData);
-
-        // dd('test');
 
         $skema = new Skema();
 
         $skema->kode = $validatedData['kode'];
         $skema->nama = $validatedData['nama'];
         $skema->persyaratan = $validatedData['persyaratan'];
-        if($request->file('photo')){
+        if ($request->file('photo')) {
             $skema->photo = $validatedData['photo'];
         }
 
@@ -98,8 +94,8 @@ class SkemaController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if($request->file('photo')){
-            if($skema->photo !== 'noskema.jpg'){
+        if ($request->file('photo')) {
+            if ($skema->photo !== 'noskema.jpg') {
                 Storage::delete($skema->photo);
             }
 
@@ -107,7 +103,6 @@ class SkemaController extends Controller
         }
 
         // dd($validatedData);
-
 
         Skema::where('id_skema', $skema->id_skema)->update($validatedData);
 
@@ -128,7 +123,7 @@ class SkemaController extends Controller
 
     public function upload(Request $request)
     {
-        if($request->hasFile('file')) {
+        if ($request->hasFile('file')) {
             //get filename with extension
             $filenamewithextension = $request->file('file')->getClientOriginalName();
 
@@ -152,4 +147,12 @@ class SkemaController extends Controller
         }
     }
 
+    public function pesertaSkema(Request $request, $id_skema)
+    {
+        $skema = Skema::find($id_skema);
+
+        return view('admin.skema.peserta', [
+            'skema' => $skema,
+        ]);
+    }
 }

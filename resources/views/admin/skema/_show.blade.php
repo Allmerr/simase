@@ -3,27 +3,20 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <style>
-        form .persyaratan-rich-text img{
-            height: 100%;
-            width: 100%;
-            object-fit: contain;
-        }
-    </style>
-    <h1 class="m-0 text-dark">{{ $skema->nama }}</h1>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('/css/trix.css') }}">
+    <h1 class="m-0 text-dark">Create Skema</h1>
 @stop
 
 @section('content')
-
+<style>
+    form img.img-preview{
+        width: 200px;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="{{ route('skema.show', $skema->id_skema) }}">Detail</a></li>
-                    <li class="nav-item"><a class="nav-link " href="{{ route('skema.pesertaSkema', $skema->id_skema) }}" >Peserta</a></li>
-                </ul>
-            </div>
             <div class="card-body">
                 <form action="" method="post" >
                     @csrf
@@ -35,9 +28,8 @@
                         <label for="nama" class="form-label">Nama</label>
                         <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $skema->nama) }}" name="nama" disabled>
                     </div>
-                    <div class="mb-3 persyaratan-rich-text">
+                    <div class="mb-3">
                         <label for="persyaratan" class="form-label">Persyaratan</label>
-                        <br>
                         {!! $skema->persyaratan !!}
                     </div>
                     <div class="mb-3">
@@ -51,6 +43,7 @@
                         <img class="img-preview img-fluid mb-3">
                         @endif
             
+                        <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo" onchange="previewphoto()" disabled>
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -69,3 +62,23 @@
     </div>
 </div>
 @stop
+
+@push('js')
+<script src="{{ asset('/js/trix.umd.min.js') }}"></script>
+<script src="{{ asset('/js/attachments.js') }}"></script>
+<script>
+function previewphoto(){
+    const photo = document.querySelector('#photo');
+    const imgPreview = document.querySelector('.img-preview');
+
+    imgPreview.style.display = 'block';
+
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(photo.files[0]);
+
+    oFReader.onload = function (oFREvent) {
+        imgPreview.src = oFREvent.target.result;
+    }
+}  
+</script> 
+@endpush

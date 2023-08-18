@@ -12,7 +12,9 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pengajuan.index', [
+            'pengajuans' => Pengajuan::all(),
+        ]);
     }
 
     /**
@@ -61,5 +63,23 @@ class PengajuanController extends Controller
     public function destroy(Pengajuan $pengajuan)
     {
         //
+    }
+
+    public function terima(Request $request, $id_pengajuan)
+    {
+        $pengajuan = Pengajuan::find($id_pengajuan);
+
+        return view('admin.pengajuan.terima', [
+            'pengajuan' => $pengajuan,
+        ]);
+    }
+
+    public function saveTerima(Request $request, $id_pengajuan)
+    {
+        Pengajuan::where('id_pengajuan', $id_pengajuan)->update([
+            'is_disetujui' => true,
+        ]);
+
+        return redirect()->route('pengajuan.index')->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
     }
 }

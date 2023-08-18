@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id_notifikasi');
             $table->string('judul');
             $table->text('pesan');
-            $table->enum('is_dibaca', ['true', 'false',]);
+            $table->enum('is_dibaca', ['dibaca', 'tidak_dibaca']);
 
             $table->unsignedInteger('id_users')->nullable();
             $table->foreign('id_users')->references('id_users')->on('users')->onDelete('cascade');

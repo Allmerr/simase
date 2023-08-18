@@ -44,6 +44,7 @@ class PendidikanKepolisianController extends Controller
 
         return redirect()->route('pendidikan-kepolisian.index')->with('success', 'A Profile Has Been Updated Successful!');
     }
+
     /**
      * Display the specified resource.
      */

@@ -298,22 +298,27 @@ return [
                 [
                     'text' => 'Satker',
                     'route' => 'satker.index',
-                ],        
+                ],
                 [
                     'text' => 'Pangkat',
                     'route' => 'pangkat.index',
-                ],        
+                ],
                 [
                     'text' => 'Pendidikan Kepolisian',
                     'route' => 'pendidikan-kepolisian.index',
-                ],        
-            ]
+                ],
+            ],
         ],
-        'SKEMA',
+        'ADMIN',
         [
             'text' => 'Skema',
             'route' => 'skema.index',
             'icon' => 'fas fa-fw fa-certificate',
+        ],
+        [
+            'text' => 'Pengajuan',
+            'route' => 'pengajuan.index',
+            'icon' => 'far fa-check-square',
         ],
     ],
 

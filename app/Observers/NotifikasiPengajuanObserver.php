@@ -2,9 +2,8 @@
 
 namespace App\Observers;
 
+use App\Models\Notifikasi;
 use App\Models\Pengajuan;
-use App\Models\Notifikasi;  
-
 
 class NotifikasiPengajuanObserver
 {
@@ -15,8 +14,8 @@ class NotifikasiPengajuanObserver
     {
         $notifikasi = new Notifikasi();
 
-        $notifikasi->judul = 'Pendaftaraan anda, pada skema ' . $pengajuan->skema->nama;
-        $notifikasi->pesan = 'Pendaftaraan anda, pada skema ' . $pengajuan->skema->nama . ' sudah berhasil direkam, dan sedang dalam pemerikasaan admin, nantikan notifikasi terbaru.';
+        $notifikasi->judul = 'Pendaftaraan anda, pada skema '.$pengajuan->skema->nama;
+        $notifikasi->pesan = 'Pendaftaraan anda, pada skema '.$pengajuan->skema->nama.' sudah berhasil direkam, dan sedang dalam pemerikasaan admin, nantikan notifikasi terbaru.';
         $notifikasi->is_dibaca = 'false';
         $notifikasi->id_users = $pengajuan->id_users;
 

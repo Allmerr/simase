@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id_pengajuan');
 
             $table->string('dokumen_persyaratan');
-            $table->enum('is_disetujui', ['true', 'false', 'pending', 'revision']);
+            $table->enum('is_disetujui', ['disetujui', 'tidak_disetujui', 'pending', 'revision']);
             $table->text('catatan')->nullable();
 
             $table->unsignedInteger('id_users')->nullable();
