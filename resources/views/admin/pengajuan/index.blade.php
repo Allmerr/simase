@@ -32,6 +32,7 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$pengajuan->user->nama_lengkap}}</td>
                                     <td>{{$pengajuan->user->satker->nama}}</td>
+                                    <td>{{$pengajuan->status }}</td>
                                     <td>{{$pengajuan->skema->nama}}</td>
                                     <td></td>
                                     <td>
