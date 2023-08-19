@@ -236,7 +236,7 @@ class PesertaController extends Controller
             return abort(403);
         }
 
-        $notifikasi->is_dibaca = 'true';
+        $notifikasi->is_dibaca = 'dibaca';
 
         $notifikasi->update();
 

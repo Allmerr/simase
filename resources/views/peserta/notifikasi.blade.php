@@ -175,7 +175,7 @@
                 <div class="col-md-12 col-lg-12 col-xl-12">
                     <ul class="mail_list list-group list-unstyled">
                         @foreach ($notifikasis as $notifikasi)
-                        <li class="list-group-item @if($notifikasi->is_dibaca === 'false') unread @endif">
+                        <li class="list-group-item @if($notifikasi->is_dibaca === 'tidak_dibaca') unread @endif">
                             <div class="media">
                                 <div class="pull-left">                                
                                     <div class="controls">

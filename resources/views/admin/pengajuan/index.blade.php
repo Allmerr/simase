@@ -13,7 +13,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('pengajuan.create') }}" class="btn btn-primary mb-2">Tambah</a>
+                    @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    {{-- <a href="{{ route('pengajuan.create') }}" class="btn btn-primary mb-2">Tambah</a> --}}
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-stripped" id="example2">
                             <thead>
@@ -23,6 +28,7 @@
                                     <th>Satuan Kerja</th>
                                     <th>Nama Skema</th>
                                     <th>Status</th>
+                                    <th>Cek</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -32,14 +38,21 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$pengajuan->user->nama_lengkap}}</td>
                                     <td>{{$pengajuan->user->satker->nama}}</td>
-                                    <td>{{$pengajuan->status }}</td>
-                                    <td>{{$pengajuan->skema->nama}}</td>
-                                    <td></td>
+                                    <td>{{$pengajuan->skema->nama }}</td>
+                                    <td>{{$pengajuan->is_disetujui}}</td>
                                     <td>
-                                        <a href="{{ route('pengajuan.terima', $pengajuan->id_pengajuan) }}" class="btn btn-success"><i class="fas fa-check"></i> Terima</a>
-                                        <a href="#" class="btn btn-warning"><i class="fas fa-redo"></i> Revisi</a>
-                                        <a href="#" class="btn btn-danger"><i class="fas fa-times"></i> Tolak</a>
+                                        <a href="{{ route('pengajuan.show', $pengajuan->id_pengajuan) }}" class="badge btn-primary"><i class="far fa-file-alt"></i> Detail</a>
                                     </td>
+                                    <td>
+                                        @if ($pengajuan->is_disetujui === 'pending')
+                                            <a href="{{ route('pengajuan.terima', $pengajuan->id_pengajuan) }}" class="badge btn-success"><i class="fas fa-check"></i> Terima</a>
+                                            <a href="{{ route('pengajuan.revisi', $pengajuan->id_pengajuan) }}" class="badge btn-warning"><i class="fas fa-redo"></i> Revisi</a>
+                                            <a href="{{ route('pengajuan.tolak', $pengajuan->id_pengajuan) }}" class="badge btn-danger"><i class="fas fa-times"></i> Tolak</a>
+                                        @else
+                                            <a href="#">Lihat Status Peserta ini</a>
+                                        @endif
+                                        </td> 
+
                                 </tr>
                                 @endforeach
                             </tbody>

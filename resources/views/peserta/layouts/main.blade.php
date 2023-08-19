@@ -38,8 +38,8 @@
                             @endif
                         </a>
                         <ul class="dropdown-menu text-small">
-                            @if (auth()->user()->notifikasi()->where('is_dibaca', 'false')->count() > 0)
-                            <li><a class="dropdown-item" href="{{ route('peserta.notifikasi') }}">Notifikasi <span class="badge rounded-pill badge-notification bg-secondary">{{ auth()->user()->notifikasi()->where('is_dibaca', 'false')->count() }}</span></a></li>
+                            @if (auth()->user()->notifikasi()->where('is_dibaca', 'tidak_dibaca')->count() > 0)
+                            <li><a class="dropdown-item" href="{{ route('peserta.notifikasi') }}">Notifikasi <span class="badge rounded-pill badge-notification bg-secondary">{{ auth()->user()->notifikasi()->where('is_dibaca', 'tidak_dibaca')->count() }}</span></a></li>
                             @else
                             <li><a class="dropdown-item" href="{{ route('peserta.notifikasi') }}">Notifikasi</a></li>
                             @endif

@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/admin/pangkat', PangkatController::class);
     Route::resource('/admin/pendidikan-kepolisian', PendidikanKepolisianController::class);
     Route::get('/admin/pengajuan/{id_pengajuan}/terima', [PengajuanController::class, 'terima'])->name('pengajuan.terima');
-    Route::post('/admin/pengajuan/{id_pengajuan}/terima', [PengajuanController::class, 'saveTerima'])->name('pengajuan.saveTerima');
+    Route::get('/admin/pengajuan/{id_pengajuan}/tolak', [PengajuanController::class, 'tolak'])->name('pengajuan.tolak');
+    Route::get('/admin/pengajuan/{id_pengajuan}/revisi', [PengajuanController::class, 'revisi'])->name('pengajuan.revisi');
     Route::resource('/admin/pengajuan', PengajuanController::class);
 });

@@ -3,12 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NotifikasiPesertaMail extends Mailable
+class NotifikasiPesertaAccPengajuanMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -24,6 +25,7 @@ class NotifikasiPesertaMail extends Mailable
         $this->mailData = $mailData;
         $this->userEmail = $mailData['user_email'];
         $this->skemaName = $mailData['skema_name'];
+        $this->statusAcc = $mailData['status_acc'];
     }
 
     /**
@@ -32,7 +34,7 @@ class NotifikasiPesertaMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Berhasil Mendaftar Skema '.$this->skemaName,
+            subject: 'Penerimaan pengajuan pada pendaftaran skema' . $this->skemaName,
         );
     }
 
@@ -42,10 +44,11 @@ class NotifikasiPesertaMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'layouts.mail',
+            view: 'layouts.mail_acc_pengajuan',
             with: [
                 'skemaName' => $this->skemaName,
                 'userEmail' => $this->userEmail,
+                'statusAcc' => $this->statusAcc,
             ]
         );
     }
