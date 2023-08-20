@@ -17,10 +17,17 @@ class SkemaFactory extends Factory
      */
     public function definition(): array
     {
+        $possibleValues = ['file_syarat_ktp', 'file_syarat_kk', 'file_syarat_npwp'];
+        $combinationLength = fake()->numberBetween(1, count($possibleValues));
+
+        $randomCombination = fake()->randomElements($possibleValues, $combinationLength);
+        $randomCombination = implode(',', $randomCombination);
+
         return [
             'kode' => strtoupper(Str::random(6)), // Generate a random scheme code
             'nama' => fake()->words(3, true), // Generate a random scheme name
             'persyaratan' => fake()->paragraph(3),
+            'file_syarat' => $randomCombination,
         ];
     }
 }

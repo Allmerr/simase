@@ -4,17 +4,6 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">Skema</h1>
-    <style>
-        /* .daftar-skema{
-            margin: 0 20%;
-        }
-
-        @media (max-width: 768px) {
-            .daftar-skema {
-                margin: 0;
-            }
-        } */
-    </style>
 @stop
 
 @section('content')
@@ -36,16 +25,46 @@
                 <form action="{{ route('peserta.saveDaftarSkema', $skema->id_skema) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <h1 class="text-center">{{ $skema->nama }}</h1>
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_ktp'))
                     <div class="mb-3">
-                        <label for="dokumen_persyaratan" class="form-label">Dokumen Persyaratan</label>
+                        <label for="file_syarat_ktp" class="form-label">Dokumen Persyaratan KTP</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control @error('dokumen_persyaratan') is-invalid @enderror" id="dokumen_persyaratan" value="{{ old('dokumen_persyaratan') }}" name="dokumen_persyaratan">
-                        @error('dokumen_persyaratan')
+                        <input type="file" class="form-control @error('file_syarat_ktp') is-invalid @enderror" id="file_syarat_ktp" value="{{ old('file_syarat_ktp') }}" name="file_syarat_ktp">
+                        @error('file_syarat_ktp')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_kk'))
+                    <div class="mb-3">
+                        <label for="file_syarat_kk" class="form-label">Dokumen Persyaratan KK</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_kk') is-invalid @enderror" id="file_syarat_kk" value="{{ old('file_syarat_kk') }}" name="file_syarat_kk">
+                        @error('file_syarat_kk')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_npwp'))
+                    <div class="mb-3">
+                        <label for="file_syarat_npwp" class="form-label">Dokumen Persyaratan NPWP</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_npwp') is-invalid @enderror" id="file_syarat_npwp" value="{{ old('file_syarat_npwp') }}" name="file_syarat_npwp">
+                        @error('file_syarat_npwp')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+                    
                     <button type="submit" class="btn btn-outline-secondary">Daftar</button>
                 </form>
             </div>

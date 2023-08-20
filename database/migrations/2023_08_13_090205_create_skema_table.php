@@ -15,8 +15,8 @@ return new class extends Migration
             $table->increments('id_skema');
             $table->string('kode');
             $table->string('nama');
-            $table->text('persyaratan');
             $table->string('photo')->default('noskema.png');
+            $table->string('file_syarat');
             $table->timestamps();
         });
     }

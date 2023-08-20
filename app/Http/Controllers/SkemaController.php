@@ -40,6 +40,22 @@ class SkemaController extends Controller
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
 
+        $fileSyarat = '';
+        
+        if(isset($request->file_syarat_ktp)){
+            $fileSyarat .= ',file_syarat_ktp';
+        }
+        if(isset($request->file_syarat_kk)){
+            $fileSyarat .= ',file_syarat_kk';
+        }
+        if(isset($request->file_syarat_npwp)){
+            $fileSyarat .= ',file_syarat_npwp';
+        }
+        
+        if($fileSyarat !== ''){
+            $fileSyarat = substr($fileSyarat, 1);
+        }
+
         $validatedData = $request->validate($rules);
 
         if ($request->file('photo')) {
@@ -51,6 +67,8 @@ class SkemaController extends Controller
         $skema->kode = $validatedData['kode'];
         $skema->nama = $validatedData['nama'];
         $skema->persyaratan = $validatedData['persyaratan'];
+        $skema->file_syarat = $fileSyarat;
+        
         if ($request->file('photo')) {
             $skema->photo = $validatedData['photo'];
         }
