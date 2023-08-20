@@ -291,7 +291,7 @@ return [
 
     'menu' => [    
         [
-            'text' => 'Menu',
+            'text' => 'Menu Peserta',
             'icon' => 'fas fa-fw fa-user',
             'can' => 'isPeserta', 
             'submenu' => [
@@ -302,7 +302,7 @@ return [
             ]
         ],
         [
-            'text' => 'PESERTA SETTINGS',
+            'text' => 'MASTER',
             'icon' => 'fas fa-fw fa-user',
             'can' => 'isAdmin', 
             'submenu' => [
