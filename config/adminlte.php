@@ -289,11 +289,22 @@ return [
     |
     */
 
-    'menu' => [
-        'PESERTA SETTINGS',
+    'menu' => [    
         [
-            'text' => 'Profile',
+            'text' => 'Menu',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'isPeserta', 
+            'submenu' => [
+                [
+                    'text' => 'Skema',
+                    'route' => 'peserta.showSkema',
+                ],
+            ]
+        ],
+        [
+            'text' => 'PESERTA SETTINGS',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'isAdmin', 
             'submenu' => [
                 [
                     'text' => 'Satker',
@@ -309,16 +320,22 @@ return [
                 ],
             ],
         ],
-        'ADMIN',
         [
-            'text' => 'Skema',
-            'route' => 'skema.index',
-            'icon' => 'fas fa-fw fa-certificate',
-        ],
-        [
-            'text' => 'Pengajuan',
-            'route' => 'pengajuan.index',
-            'icon' => 'far fa-check-square',
+            'text' => 'ADMIN',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'isAdmin', 
+            'submenu' => [
+                [
+                    'text' => 'Skema',
+                    'route' => 'skema.index',
+                    'icon' => 'fas fa-fw fa-certificate',
+                ],
+                [
+                    'text' => 'Pengajuan',
+                    'route' => 'pengajuan.index',
+                    'icon' => 'far fa-check-square',
+                ],
+            ],
         ],
     ],
 
