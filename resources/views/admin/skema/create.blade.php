@@ -45,6 +45,32 @@
                         </div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="file_syarat" class="form-label">File Syarat</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_ktp" id="file_syarat_ktp" name="file_syarat_ktp">
+                            <label class="form-check-label" for="file_syarat_ktp">
+                              KTP
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_kk" id="file_syarat_kk" name="file_syarat_kk">
+                            <label class="form-check-label" for="file_syarat_kk">
+                              KK
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_npwp" id="file_syarat_npwp" name="file_syarat_npwp">
+                            <label class="form-check-label" for="file_syarat_npwp">
+                              NPWP
+                            </label>
+                        </div>
+                        @error('file_syarat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2">

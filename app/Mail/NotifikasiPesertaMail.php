@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -32,7 +33,7 @@ class NotifikasiPesertaMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Berhasil Mendaftar Skema '.$this->skemaName,
+            subject: 'Berhasil Mendaftar Skema ' . $this->skemaName,
         );
     }
 
@@ -60,11 +61,10 @@ class NotifikasiPesertaMail extends Mailable
         return [];
     }
 
-    public function build()
-    {
+    public function build(){
         // return $this->view('layouts.mail');
         return $this->to($this->userEmail)
-            ->subject($this->skemaName)
-            ->view('layouts.mail');
+        ->subject($this->skemaName)
+        ->view('layouts.mail');
     }
 }

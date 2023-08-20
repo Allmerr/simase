@@ -14,9 +14,17 @@ return new class extends Migration
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->increments('id_pengajuan');
 
-            $table->string('dokumen_persyaratan');
             $table->enum('is_disetujui', ['disetujui', 'tidak_disetujui', 'pending', 'revisi']);
             $table->text('catatan')->nullable();
+
+            $table->string('file_syarat_ktp')->nullable();
+            $table->enum('status_file_syarat_ktp', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+
+            $table->string('file_syarat_kk')->nullable();
+            $table->enum('status_file_syarat_kk', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+
+            $table->string('file_syarat_npwp')->nullable();
+            $table->enum('status_file_syarat_npwp', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
             $table->unsignedInteger('id_users')->nullable();
             $table->foreign('id_users')->references('id_users')->on('users')->onDelete('cascade');

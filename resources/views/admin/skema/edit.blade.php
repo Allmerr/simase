@@ -52,6 +52,32 @@
                         </div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="file_syarat" class="form-label">File Syarat</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_ktp" id="file_syarat_ktp" name="file_syarat_ktp" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_ktp')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_ktp">
+                              KTP
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_kk" id="file_syarat_kk" name="file_syarat_kk"  @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_kk')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_kk">
+                              KK
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_npwp" id="file_syarat_npwp" name="file_syarat_npwp"  @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_npwp')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_npwp">
+                              NPWP
+                            </label>
+                        </div>
+                        @error('file_syarat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2">

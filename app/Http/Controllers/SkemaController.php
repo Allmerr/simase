@@ -36,9 +36,24 @@ class SkemaController extends Controller
         $rules = [
             'kode' => 'required|string|max:6',
             'nama' => 'required|string',
-            'persyaratan' => 'required|string',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
+
+        $fileSyarat = '';
+        
+        if(isset($request->file_syarat_ktp)){
+            $fileSyarat .= ',file_syarat_ktp';
+        }
+        if(isset($request->file_syarat_kk)){
+            $fileSyarat .= ',file_syarat_kk';
+        }
+        if(isset($request->file_syarat_npwp)){
+            $fileSyarat .= ',file_syarat_npwp';
+        }
+        
+        if($fileSyarat !== ''){
+            $fileSyarat = substr($fileSyarat, 1);
+        }
 
         $validatedData = $request->validate($rules);
 
@@ -51,6 +66,8 @@ class SkemaController extends Controller
         $skema->kode = $validatedData['kode'];
         $skema->nama = $validatedData['nama'];
         $skema->persyaratan = $validatedData['persyaratan'];
+        $skema->file_syarat = $fileSyarat;
+        
         if ($request->file('photo')) {
             $skema->photo = $validatedData['photo'];
         }
@@ -88,9 +105,24 @@ class SkemaController extends Controller
         $rules = [
             'kode' => 'required|string|max:6',
             'nama' => 'required|string',
-            'persyaratan' => 'required|string',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
+
+        $fileSyarat = '';
+        
+        if(isset($request->file_syarat_ktp)){
+            $fileSyarat .= ',file_syarat_ktp';
+        }
+        if(isset($request->file_syarat_kk)){
+            $fileSyarat .= ',file_syarat_kk';
+        }
+        if(isset($request->file_syarat_npwp)){
+            $fileSyarat .= ',file_syarat_npwp';
+        }
+        
+        if($fileSyarat !== ''){
+            $fileSyarat = substr($fileSyarat, 1);
+        }
 
         $validatedData = $request->validate($rules);
 
@@ -102,11 +134,9 @@ class SkemaController extends Controller
             $validatedData['photo'] = str_replace('public/skema/', '', $request->file('photo')->store('public/skema'));
         }
 
-        // dd($validatedData);
+        $validatedData['file_syarat'] = $fileSyarat;
 
         Skema::where('id_skema', $skema->id_skema)->update($validatedData);
-
-        // $username = User::firstWhere('id_users', $user->id)->email;
 
         return redirect()->route('skema.edit', $skema->id_skema)->with('success', 'A Profile Has Been Updated Successful!');
     }

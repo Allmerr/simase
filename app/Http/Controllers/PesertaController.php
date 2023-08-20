@@ -142,15 +142,23 @@ class PesertaController extends Controller
             return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Anda sudah melakukan pengajuan pada skema ini sebelumnya.');
         }
 
-        $validatedData = $request->validate([
-            'dokumen_persyaratan' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx',
-        ]);
-
         $validatedData['id_users'] = auth()->user()->id_users;
         $validatedData['id_skema'] = $skema->id_skema;
 
         $pengajuan = new Pengajuan();
-        $pengajuan->dokumen_persyaratan = $validatedData['dokumen_persyaratan'] = str_replace('public/dokumen_persyaratan/', '', $request->file('dokumen_persyaratan')->store('public/dokumen_persyaratan'));
+
+        if($request->file('file_syarat_ktp')){
+            $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/dokumen_persyaratan/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
+        }
+
+        if($request->file('file_syarat_kk')){
+            $pengajuan->file_syarat_kk = $validatedData['file_syarat_kk'] = str_replace('public/dokumen_persyaratan/', '', $request->file('file_syarat_kk')->store('public/file_syarat'));
+        }
+        
+        if($request->file('file_syarat_npwp')){
+            $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/dokumen_persyaratan/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
+        }
+
         $pengajuan->id_users = $validatedData['id_users'];
         $pengajuan->id_skema = $validatedData['id_skema'];
         $pengajuan->is_disetujui = 'pending';
