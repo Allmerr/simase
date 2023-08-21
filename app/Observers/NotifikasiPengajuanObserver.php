@@ -28,14 +28,6 @@ class NotifikasiPengajuanObserver
     public function updated(Pengajuan $pengajuan): void
     {
 
-        $notifikasi = new Notifikasi();
-
-        $notifikasi->judul = 'Pendaftaraan anda, pada skema '.$pengajuan->skema->nama;
-        $notifikasi->pesan = 'Pendaftaran anda, pada skema ' . $pengajuan->skema->nama . 'telah ' . $pengajuan->is_disetujui . 'oleh admin, nantikan notifikasi terbaru.';
-        $notifikasi->is_dibaca = 'tidak_dibaca';
-        $notifikasi->id_users = $pengajuan->id_users;
-
-        $notifikasi->save();
     }
 
     /**

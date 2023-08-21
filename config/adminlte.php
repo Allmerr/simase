@@ -289,7 +289,8 @@ return [
     |
     */
 
-    'menu' => [    
+    'menu' => [ 
+        // peserta   
         [
             'text' => 'Menu Peserta',
             'icon' => 'fas fa-fw fa-user',
@@ -299,8 +300,13 @@ return [
                     'text' => 'Skema',
                     'route' => 'peserta.showSkema',
                 ],
+                [
+                    'text' => 'Status Pengajuan',
+                    'route' => 'peserta.statusPengajuan',
+                ],
             ]
         ],
+        // admin
         [
             'text' => 'MASTER',
             'icon' => 'fas fa-fw fa-user',

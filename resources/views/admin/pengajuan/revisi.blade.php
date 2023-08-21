@@ -17,26 +17,27 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form action="" method="post">
+                <form action="{{ route('pengajuan.saveRevisi', $pengajuan->id_pengajuan) }}" method="post">
+                    @csrf
                     <div class="mb-3">
                         <label for="kode" class="form-label">Kode Skema</label>
-                        <input type="name" class="form-control" id="kode" aria-describedby="kode" value="{{  $pengajuan->skema->kode }}" name="kode" disabled>
+                        <input type="name" class="form-control" id="kode" aria-describedby="kode" value="{{  $pengajuan->skema->kode }}" disabled>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Skema</label>
                         <a href="#">
-                            <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ $pengajuan->skema->nama }}" name="nama" disabled>
+                            <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ $pengajuan->skema->nama }}" disabled>
                         </a>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Peserta</label>
                         <a href="#">
-                            <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ $pengajuan->user->nama_lengkap }}" name="nama" disabled>
+                            <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ $pengajuan->user->nama_lengkap }}" disabled>
                         </a>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Satuan Kerja</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ $pengajuan->user->satker->nama }}" name="nama" disabled>
+                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ $pengajuan->user->satker->nama }}" disabled>
                     </div>
                     <div class="mb-3">
                         <table class="table">
@@ -44,6 +45,12 @@
                                 <tr>
                                     <td rowspan="2"><b> Peryaratan </b></td>
                                     <td rowspan="2"><b> Unduh </b></td>
+                                    <td colspan="2"><b> ADA </b></td>
+                                    <td rowspan="2"><b> Tidak ADA </b></td>
+                                </tr>
+                                <tr>
+                                    <td><b> Memenuhi </b></td>
+                                    <td><b> Tidak Memenuhi </b></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,6 +58,9 @@
                                 <tr>
                                     <td>KTP</td>                                     
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_ktp) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_ktp" name="file_syarat_ktp"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_ktp" name="file_syarat_ktp"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_ktp" name="file_syarat_ktp" checked></td>
                                 </tr>
                                 @endif
 
@@ -58,6 +68,9 @@
                                 <tr>
                                     <td>KK</td>                                     
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_kk) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_kk" name="file_syarat_kk"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_kk" name="file_syarat_kk"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_kk" name="file_syarat_kk" checked></td>
                                 </tr>
                                 @endif
 
@@ -65,11 +78,19 @@
                                 <tr>
                                     <td>NPWP</td>                                     
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_npwp) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_npwp" name="file_syarat_npwp"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_npwp" name="file_syarat_npwp"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_npwp" name="file_syarat_npwp" checked></td>
                                 </tr>
                                 @endif
                             </tbody>
                         </table>
                     </div>
+                    <div class="mb-3">
+                        <label for="catatan" class="form-label">Catatan Revisi</label>
+                        <input type="name" class="form-control" id="catatan" aria-describedby="catatan" placeholder="Photo KTP tidak terlihat jelas!" name="catatan" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning"><b>Revisi</b></button>
                 </form>
             </div>
         </div>
