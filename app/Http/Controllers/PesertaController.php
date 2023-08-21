@@ -127,6 +127,16 @@ class PesertaController extends Controller
 
     }
 
+    public function revisiSkema(Request $request, $id_skema){
+        $skema = Skema::find($id_skema);
+        $pengajuan = Pengajuan::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->get()[0];
+
+        return view('peserta.revisi_skema', [
+            'skema' => $skema,
+            'pengajuan' => $pengajuan,
+        ]);
+    }
+
     public function saveDaftarSkema(Request $request, $skema)
     {
         $skema = Skema::find($skema);
@@ -148,15 +158,15 @@ class PesertaController extends Controller
         $pengajuan = new Pengajuan();
 
         if($request->file('file_syarat_ktp')){
-            $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/dokumen_persyaratan/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
+            $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
         }
 
         if($request->file('file_syarat_kk')){
-            $pengajuan->file_syarat_kk = $validatedData['file_syarat_kk'] = str_replace('public/dokumen_persyaratan/', '', $request->file('file_syarat_kk')->store('public/file_syarat'));
+            $pengajuan->file_syarat_kk = $validatedData['file_syarat_kk'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_kk')->store('public/file_syarat'));
         }
         
         if($request->file('file_syarat_npwp')){
-            $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/dokumen_persyaratan/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
+            $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
         }
 
         $pengajuan->id_users = $validatedData['id_users'];
@@ -250,6 +260,13 @@ class PesertaController extends Controller
 
         return view('peserta.notifikasi_detail', [
             'notifikasi' => $notifikasi,
+        ]);
+    }
+
+    public function statusPengajuan(){
+        $pengajuans = Pengajuan::where('id_users', auth()->user()->id_users)->get();
+        return view('peserta.status_pengajuan', [
+            'pengajuans' => $pengajuans,
         ]);
     }
 }
