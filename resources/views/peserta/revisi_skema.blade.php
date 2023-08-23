@@ -23,13 +23,20 @@
                 </div>   
                 @endif
                 
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('peserta.revisiSkema', $pengajuan->id_skema) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <h1 class="text-center">{{ $skema->nama }}</h1>
+                    <h1 class="text-center">Revisi {{ $skema->nama }}</h1>
+
+                    <div class="mb-3">
+                        <label for="catatan" class="form-label">Catatan</label>
+                        <input type="text" class="form-control" value="{{ $pengajuan->catatan }}" disabled>
+                    </div>
 
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_ktp'))
                     <div class="mb-3">
                         <label for="file_syarat_ktp" class="form-label">Dokumen Persyaratan KTP</label>
+                        <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_ktp) }}" target="_blank">{{ $pengajuan->file_syarat_ktp }}</a></p>
+                        <p>Status Pengajuan KTP : <b>{{ $pengajuan->status_file_syarat_ktp }}</b></p>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_ktp') is-invalid @enderror" id="file_syarat_ktp" value="{{ old('file_syarat_ktp') }}" name="file_syarat_ktp">
                         @error('file_syarat_ktp')
@@ -44,6 +51,7 @@
                     <div class="mb-3">
                         <label for="file_syarat_kk" class="form-label">Dokumen Persyaratan KK</label>
                         <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_kk) }}" target="_blank">{{ $pengajuan->file_syarat_kk }}</a></p>
+                        <p>Status Pengajuan KK : <b>{{ $pengajuan->status_file_syarat_kk }}</b></p>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_kk') is-invalid @enderror" id="file_syarat_kk" value="{{ old('file_syarat_kk') }}" name="file_syarat_kk">
                         @error('file_syarat_kk')
@@ -57,6 +65,8 @@
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_npwp'))
                     <div class="mb-3">
                         <label for="file_syarat_npwp" class="form-label">Dokumen Persyaratan NPWP</label>
+                        <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_npwp) }}" target="_blank">{{ $pengajuan->file_syarat_npwp }}</a></p>
+                        <p>Status Pengajuan NPWP : <b>{{ $pengajuan->status_file_syarat_npwp }}</b></p>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_npwp') is-invalid @enderror" id="file_syarat_npwp" value="{{ old('file_syarat_npwp') }}" name="file_syarat_npwp">
                         @error('file_syarat_npwp')

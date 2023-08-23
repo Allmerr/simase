@@ -44,7 +44,7 @@
                                         <a href="{{ route('pengajuan.show', $pengajuan->id_pengajuan) }}" class="badge btn-primary"><i class="far fa-file-alt"></i> Detail</a>
                                     </td>
                                     <td>
-                                        @if ($pengajuan->is_disetujui === 'pending')
+                                        @if ($pengajuan->is_disetujui === 'pending' || $pengajuan->is_disetujui === 'pending_revisi')
                                             <a href="{{ route('pengajuan.terima', $pengajuan->id_pengajuan) }}" class="badge btn-success"><i class="fas fa-check"></i> Terima</a>
                                             <a href="{{ route('pengajuan.revisi', $pengajuan->id_pengajuan) }}" class="badge btn-warning"><i class="fas fa-redo"></i> Revisi</a>
                                             <a href="{{ route('pengajuan.tolak', $pengajuan->id_pengajuan) }}" class="badge btn-danger"><i class="fas fa-times"></i> Tolak</a>

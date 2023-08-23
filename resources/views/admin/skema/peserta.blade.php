@@ -24,21 +24,14 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Nama Lengkap</th>
-                                    <th>Dokumen Persyaratan</th>
-                                    <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{-- @dd($skema->pengajuan) --}}
-                                @foreach ($skema->pengajuan as $key => $pengajuan)
+                                @foreach ($pengajuans as $key => $pengajuan)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $pengajuan->user->nama_lengkap }}</td>
-                                        <td> <a href="{{ asset('/storage/dokumen_persyaratan/' . $pengajuan->dokumen_persyaratan) }}">Lihat Dokumen</a></td>
-                                        <td>
-                                            <a href="#" class="btn btn-success"><i class="fas fa-check"></i> Terima</a>
-                                            <a href="#" class="btn btn-danger"><i class="fas fa-redo"></i> Revisi</a>
-                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -50,3 +43,17 @@
     </div>
 </div>
 @stop
+
+
+@push('js')
+<form action="" id="delete-form" method="post">
+    @method('delete')
+    @csrf
+</form>
+<script>
+$('#example2').DataTable({
+    "responsive": true,
+});
+
+</script>
+@endpush

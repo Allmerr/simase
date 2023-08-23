@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\NotifikasiPesertaMail;
+use App\Mail\NotifikasiPesertaAccPengajuanMail;
 use App\Models\Notifikasi;
 use App\Models\Pangkat;
 use App\Models\PendidikanKepolisian;
@@ -71,7 +72,7 @@ class PesertaController extends Controller
 
         // $username = User::firstWhere('id_users', $user->id)->email;
 
-        return redirect('/peserta/profile')->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('peserta.profile')->with('success', 'A Profile Has Been Updated Successful!');
     }
 
     public function changePassword(Request $request)
@@ -98,7 +99,7 @@ class PesertaController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
 
-        return redirect()->route('peserta.changePassword')->with('success', 'Password changed successfully.');
+        return redirect()->route('peserta.profile')->with('success', 'Password changed successfully.');
     }
 
     public function showSkema()
@@ -135,6 +136,35 @@ class PesertaController extends Controller
             'skema' => $skema,
             'pengajuan' => $pengajuan,
         ]);
+    }
+
+    public function saveRevisiSkema(Request $request, $id_skema){
+        $skema = Skema::find($id_skema);
+        $pengajuan = Pengajuan::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->get()[0];
+
+        $validatedData['id_users'] = auth()->user()->id_users;
+        $validatedData['id_skema'] = $skema->id_skema;
+
+        if($request->file('file_syarat_ktp')){
+            $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
+        }
+
+        if($request->file('file_syarat_kk')){
+            $pengajuan->file_syarat_kk = $validatedData['file_syarat_kk'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_kk')->store('public/file_syarat'));
+        }
+        
+        if($request->file('file_syarat_npwp')){
+            $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
+        }
+
+        $pengajuan->id_users = $validatedData['id_users'];
+        $pengajuan->id_skema = $validatedData['id_skema'];
+        $pengajuan->is_disetujui = 'pending_revisi';
+
+        $pengajuan->update();
+        $this->sendEmailAcc($validatedData['id_users'], $validatedData['id_skema']);
+
+        return redirect()->route('peserta.status-pengajuan')->with('success', 'Berhasil melakukan revisi skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
     }
 
     public function saveDaftarSkema(Request $request, $skema)
@@ -176,7 +206,7 @@ class PesertaController extends Controller
         $pengajuan->save();
         $this->sendEmail($validatedData['id_users'], $validatedData['id_skema']);
 
-        return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
+        return redirect()->route('peserta.showSkema')->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
     }
 
     public function hCheckIfUserAlreadySignSkema($id_skema)
@@ -230,11 +260,20 @@ class PesertaController extends Controller
 
     public function sendEmail($id_users, $id_skema)
     {
-        // Mail::to('kevinalmer4@gmail.com')->send(new NotifikasiPesertaMail());
         $user = User::find($id_users);
         $skema = Skema::find($id_skema);
 
         Mail::send(new NotifikasiPesertaMail(['user_email' => $user->email, 'skema_name' => $skema->nama]));
+
+        return 'berhasil';
+    }
+
+    public function sendEmailAcc($id_users, $id_skema)
+    {
+        $user = User::find($id_users);
+        $skema = Skema::find($id_skema);
+
+        Mail::send(new NotifikasiPesertaAccPengajuanMail(['user_email' => $user->email, 'skema_name' => $skema->nama, 'status_acc' => 'pending']));
 
         return 'berhasil';
     }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->increments('id_pengajuan');
 
-            $table->enum('is_disetujui', ['disetujui', 'tidak_disetujui', 'pending', 'revisi']);
+            $table->enum('is_disetujui', ['disetujui', 'tidak_disetujui', 'pending', 'revisi', 'pending_revisi'])->default('pending');
             $table->text('catatan')->nullable();
 
             $table->string('file_syarat_ktp')->nullable();
