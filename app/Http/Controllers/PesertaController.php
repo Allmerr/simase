@@ -7,6 +7,7 @@ use App\Mail\NotifikasiPesertaAccPengajuanMail;
 use App\Models\Notifikasi;
 use App\Models\Pangkat;
 use App\Models\PendidikanKepolisian;
+use App\Models\StatusPeserta;
 use App\Models\Pengajuan;
 use App\Models\Satker;
 use App\Models\Skema;
@@ -306,6 +307,13 @@ class PesertaController extends Controller
         $pengajuans = Pengajuan::where('id_users', auth()->user()->id_users)->get();
         return view('peserta.status_pengajuan', [
             'pengajuans' => $pengajuans,
+        ]);
+    }
+
+    public function sertifikat(){
+        $status_pesertas = StatusPeserta::where('id_users', auth()->user()->id_users)->where('status', 'lulus')->get();
+        return view('peserta.sertifikat', [
+            'status_pesertas' => $status_pesertas,
         ]);
     }
 }

@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/peserta/notifikasi', [PesertaController::class, 'notifikasi'])->name('peserta.notifikasi');
     Route::get('/peserta/notifikasi/{id_notifikasi}/detail', [PesertaController::class, 'notifikasiDetail'])->name('peserta.notifikasiDetail');
     Route::get('/peserta/status-pengajuan', [PesertaController::class, 'statusPengajuan'])->name('peserta.statusPengajuan');
+    Route::get('/peserta/sertifikat', [PesertaController::class, 'sertifikat'])->name('peserta.sertifikat');
 
     // admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');

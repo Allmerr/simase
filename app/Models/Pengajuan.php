@@ -24,4 +24,9 @@ class Pengajuan extends Model
     {
         return $this->belongsTo(Skema::class, 'id_skema', 'id_skema');
     }
+
+    public function status_peserta()
+    {
+        return $this->belongsTo(StatusPeserta::class, 'id_users', 'id_status_peserta');
+    }
 }
