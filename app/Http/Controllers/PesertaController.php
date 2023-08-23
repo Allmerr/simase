@@ -27,6 +27,7 @@ class PesertaController extends Controller
     public function profile()
     {
         return view('peserta.profile', [
+            'user' => auth()->user(),
             'satkers' => Satker::all(),
             'pangkats' => Pangkat::all(),
             'pendidikan_kepolisians' => PendidikanKepolisian::all(),
@@ -40,9 +41,9 @@ class PesertaController extends Controller
         $rules = [
             'nama_lengkap' => 'required|string|max:255',
             'no_telpon' => 'required|numeric',
-            'email' => 'required|email',
             'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
             'nip' => 'required|string',
+            'nik' => 'required|string',
             'jabatan' => 'required|string',
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
@@ -56,9 +57,6 @@ class PesertaController extends Controller
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
 
-        if ($request->email !== $user->email) {
-            $rules['email'] = 'required|email|unique:users';
-        }
         $validatedData = $request->validate($rules);
 
         if ($request->file('photo')) {
@@ -70,8 +68,6 @@ class PesertaController extends Controller
         }
 
         User::where('id_users', $user->id_users)->update($validatedData);
-
-        // $username = User::firstWhere('id_users', $user->id)->email;
 
         return redirect()->route('peserta.profile')->with('success', 'A Profile Has Been Updated Successful!');
     }

@@ -1,7 +1,7 @@
 (function () {
     console.log('tes');
-    // var HOST = "http://127.0.0.1:8000/admin/skema/upload"; //pass the route
-    var HOST = "http://192.168.100.27:8000/admin/skema/upload"; //pass the route
+    var HOST = "http://127.0.0.1:8000/admin/skema/upload"; //pass the route
+    // var HOST = "http://192.168.100.27:8000/admin/skema/upload"; //pass the route
 
     addEventListener("trix-attachment-add", function (event) {
         if (event.attachment.file) {

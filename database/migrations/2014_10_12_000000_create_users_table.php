@@ -22,6 +22,7 @@ return new class extends Migration
 
             $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan'])->nullable();
             $table->string('nip')->nullable();
+            $table->string('nik')->nullable();
             $table->string('jabatan')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
