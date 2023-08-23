@@ -48,15 +48,15 @@
                                             @if($pengajuan->status !== 'lulus')
                                             <a href="{{ route('skema.pesertaSkemaLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" class="btn btn-success btn-xs">Lulus</a>
                                             @elseif($pengajuan->status === 'lulus'  && $pengajuan->file_sertifikat === null)
-                                            <a href="#" class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#exampleModal">Berikan Sertifikat</a>
+                                            <a href="#" class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $pengajuan->id_users }}">Berikan Sertifikat</a>
                                             @endif
                                         </td>
                                     </tr>
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{ $pengajuan->id_users }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form action="{{ route('skema.sertifikatLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ route('skema.sertifikatLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->user->id_users]) }}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Kirim File Sertifikat</h1>

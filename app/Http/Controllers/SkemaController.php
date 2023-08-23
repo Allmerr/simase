@@ -192,7 +192,6 @@ class SkemaController extends Controller
     }
 
     public function pesertaSkemaLulus(Request $request, $id_skema, $id_peserta){
-        
         StatusPeserta::where('id_skema', $id_skema)->where('id_users', $id_peserta)->update([
             'status' => 'lulus',
         ]);
