@@ -26,6 +26,7 @@ class SkemaFactory extends Factory
         return [
             'kode' => strtoupper(Str::random(6)), // Generate a random scheme code
             'nama' => fake()->words(3, true), // Generate a random scheme name
+            'persyaratan' => fake()->sentence(5),
             'file_syarat' => $randomCombination,
         ];
     }

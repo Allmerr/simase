@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skema;
+use App\Models\StatusPeserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,6 +37,7 @@ class SkemaController extends Controller
         $rules = [
             'kode' => 'required|string|max:6',
             'nama' => 'required|string',
+            'persyaratan' => 'required|string',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
 
@@ -105,6 +107,7 @@ class SkemaController extends Controller
         $rules = [
             'kode' => 'required|string|max:6',
             'nama' => 'required|string',
+            'persyaratan' => 'required|string',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
 
@@ -186,5 +189,22 @@ class SkemaController extends Controller
             'skema' => $skema,
             'pengajuans' => $pengajuans_diterima,
         ]);
+    }
+
+    public function pesertaSkemaLulus(Request $request, $id_skema, $id_peserta){
+        
+        StatusPeserta::where('id_skema', $id_skema)->where('id_users', $id_peserta)->update([
+            'status' => 'lulus',
+        ]);
+
+        return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Data telah terhapus');
+    }   
+
+    public function sertifikatLulus(Request $request, $id_skema, $id_peserta){
+        StatusPeserta::where('id_skema', $id_skema)->where('id_users', $id_peserta)->update([
+            'file_sertifikat' => str_replace('public/file_sertifikat/', '', $request->file('file_sertifikat')->store('public/file_sertifikat')),
+        ]);
+
+        return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Data telah terhapus');
     }
 }

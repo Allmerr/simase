@@ -9,6 +9,7 @@ use App\Models\Pengajuan;
 use App\Models\Skema;
 use App\Models\User;
 use App\Models\Notifikasi;
+use App\Models\StatusPeserta;
 use Illuminate\Http\Request;
 
 class PengajuanController extends Controller
@@ -83,6 +84,14 @@ class PengajuanController extends Controller
 
         $this->sendEmail($pengajuan->id_users, $pengajuan->id_skema, $pengajuan->is_disetujui);
         $this->sendNotifikasi($pengajuan);
+
+        $status_peserta = new StatusPeserta();
+
+        $status_peserta->status = 'diterima';
+        $status_peserta->id_skema = $pengajuan->id_skema;
+        $status_peserta->id_users = $pengajuan->id_users;
+
+        $status_peserta->save();
 
         return redirect()->route('pengajuan.index')->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
 
