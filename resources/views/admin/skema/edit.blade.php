@@ -30,6 +30,13 @@
                         <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $skema->nama) }}" name="nama">
                     </div>
                     <div class="mb-3">
+                        <label for="dokumen_persyaratan" class="form-label">Dokumen Persyaratan</label>
+                        <br>
+                        <a href="{{ asset('storage/skema/' . $skema->dokumen_persyaratan) }}">Lihat File Sebelumnya</a>
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
+                        <input class="form-control @error('dokuemen_persyaratn') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" type="file" id="dokumen_persyaratan" name="dokumen_persyaratan">
+                    </div>
+                    <div class="mb-3">
                         <label for="persyaratan" class="form-label">Persyaratan</label>
                         <input id="x" type="hidden" name="persyaratan" value="{{ $skema->persyaratan }}" />
                         <trix-editor input="x" class="trix-content"></trix-editor>
@@ -44,8 +51,8 @@
                         @else
                         <img class="img-preview img-fluid mb-3">
                         @endif
-            
-                        <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo" onchange="previewphoto()">
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png </small>
+                        <input class="form-control @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png," type="file"  id="photo" name="photo" onchange="previewphoto()">
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}

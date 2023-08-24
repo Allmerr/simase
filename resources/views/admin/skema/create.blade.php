@@ -34,11 +34,16 @@
                         <trix-editor input="x" class="trix-content"></trix-editor>
                     </div>
                     <div class="mb-3">
+                        <label for="dokumen_persyaratan" class="form-label">Dokumen Persyaratan</label>
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
+                        <input class="form-control @error('dokuemen_persyaratn') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" type="file" id="dokumen_persyaratan" name="dokumen_persyaratan">
+                    </div>
+                    <div class="mb-3">
                         <label for="photo" class="form-label">Skema photo</label>
 
                         <img class="img-preview img-fluid mb-3">
-
-                        <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo" onchange="previewphoto()">
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png </small>
+                        <input class="form-control @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png," type="file"  id="photo" name="photo" onchange="previewphoto()">
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}

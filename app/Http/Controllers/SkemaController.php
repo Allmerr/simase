@@ -38,6 +38,7 @@ class SkemaController extends Controller
             'kode' => 'required|string|max:6',
             'nama' => 'required|string',
             'persyaratan' => 'required|string',
+            'dokumen_persyaratan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
 
@@ -63,6 +64,10 @@ class SkemaController extends Controller
             $validatedData['photo'] = str_replace('public/skema/', '', $request->file('photo')->store('public/skema'));
         }
 
+        if ($request->file('dokumen_persyaratan')) {
+            $validatedData['dokumen_persyaratan'] = str_replace('public/skema/', '', $request->file('dokumen_persyaratan')->store('public/skema'));
+        }
+
         $skema = new Skema();
 
         $skema->kode = $validatedData['kode'];
@@ -72,6 +77,10 @@ class SkemaController extends Controller
         
         if ($request->file('photo')) {
             $skema->photo = $validatedData['photo'];
+        }
+
+        if ($request->file('dokumen_persyaratan')) {
+            $skema->dokumen_persyaratan = $validatedData['dokumen_persyaratan'];
         }
 
         $skema->save();
@@ -108,6 +117,7 @@ class SkemaController extends Controller
             'kode' => 'required|string|max:6',
             'nama' => 'required|string',
             'persyaratan' => 'required|string',
+            'dokumen_persyaratan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
 
@@ -135,6 +145,13 @@ class SkemaController extends Controller
             }
 
             $validatedData['photo'] = str_replace('public/skema/', '', $request->file('photo')->store('public/skema'));
+        }
+        if ($request->file('dokumen_persyaratan')) {
+            if ($skema->dokumen_persyaratan !== 'noskema.jpg') {
+                Storage::delete($skema->dokumen_persyaratan);
+            }
+
+            $validatedData['dokumen_persyaratan'] = str_replace('public/skema/', '', $request->file('dokumen_persyaratan')->store('public/skema'));
         }
 
         $validatedData['file_syarat'] = $fileSyarat;

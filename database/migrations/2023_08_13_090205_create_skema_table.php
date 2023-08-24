@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('kode');
             $table->string('nama');
             $table->string('photo')->default('noskema.png');
+            $table->string('dokumen_persyaratan')->default('noskema.png');
             $table->text('persyaratan');
             $table->string('file_syarat');
             $table->timestamps();

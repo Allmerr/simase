@@ -24,7 +24,7 @@
                 @endif
                 <form action="{{ route('peserta.saveDaftarSkema', $skema->id_skema) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <h1 class="text-center">{{ $skema->nama }}</h1>
+                    <h1 class="text-center">Pendaftaran Skema : {{ $skema->nama }}</h1>
 
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_ktp'))
                     <div class="mb-3">

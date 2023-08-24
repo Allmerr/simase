@@ -22,6 +22,8 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if($skemas->count() != 0)
+
                             @foreach($status_pesertas as $key => $status_peserta)
                             <tr>
                                 <td>{{$key+1}}</td>
@@ -32,6 +34,9 @@
                                 </td>
                             </tr>
                             @endforeach
+
+                            @endif
+
                         </tbody>
                     </table>
                 </div>

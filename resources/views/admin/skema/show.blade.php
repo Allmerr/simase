@@ -35,6 +35,11 @@
                         <label for="nama" class="form-label">Nama</label>
                         <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $skema->nama) }}" name="nama" disabled>
                     </div>
+                    <div class="mb-3">
+                        <label for="dokumen_persyaratan" class="form-label">Dokumen Persyaratan</label>
+                        <br>
+                        <a href="{{ asset('/storage/skema/' . $skema->dokumen_persyaratan) }}">Lihat File</a>
+                    </div>
                     <div class="mb-3 persyaratan-rich-text">
                         <label for="persyaratan" class="form-label">Persyaratan</label>
                         <br>
