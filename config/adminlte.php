@@ -294,19 +294,25 @@ return [
         [
             'text' => 'Skema',
             'route' => 'peserta.showSkema',
-            'icon' => 'fas fa-fw fa-certificate',
+            'icon' => 'fas fa-file',
             'can' => 'isPeserta',
         ],
         [
             'text' => 'Status Pengajuan',
             'route' => 'peserta.statusPengajuan',
-            'icon' => 'far fa-check-square',
+            'icon' => 'fas fa-check-square',
+            'can' => 'isPeserta',
+        ],
+        [
+            'text' => 'Sertifikat',
+            'route' => 'peserta.sertifikat',
+            'icon' => 'fas fa-certificate',
             'can' => 'isPeserta',
         ],
         // admin
         [
             'text' => 'MASTER',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-user',
             'can' => 'isAdmin', 
             'submenu' => [
                 [
@@ -326,13 +332,19 @@ return [
         [
             'text' => 'Skema',
             'route' => 'skema.index',
-            'icon' => 'fas fa-fw fa-certificate',
+            'icon' => 'fas fa-file',
             'can' => 'isAdmin', 
         ],
         [
             'text' => 'Pengajuan',
             'route' => 'pengajuan.index',
-            'icon' => 'far fa-check-square',
+            'icon' => 'fas fa-check-square',
+            'can' => 'isAdmin', 
+        ],
+        [
+            'text' => 'Sertifikat',
+            'route' => 'admin.sertifikat',
+            'icon' => 'fas fa-certificate',
             'can' => 'isAdmin', 
         ],
     ],

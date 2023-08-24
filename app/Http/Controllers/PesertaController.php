@@ -39,7 +39,6 @@ class PesertaController extends Controller
         $user = auth()->user();
 
         $rules = [
-            'nama_lengkap' => 'required|string|max:255',
             'no_telpon' => 'required|numeric',
             'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
             'nip' => 'required|string',
@@ -176,11 +175,33 @@ class PesertaController extends Controller
             return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Data Diri Anda Belum Lengkapi. Lengkapi data diri anda!');
         }
 
-        $hasPreviousSubmission = Pengajuan::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->exists();
+        $hasPreviousSubmission = Pengajuan::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->get();
+        $hasBeenLulus = StatusPeserta::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->get();
 
-        if ($hasPreviousSubmission) {
-            return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Anda sudah melakukan pengajuan pada skema ini sebelumnya.');
+        $rules = [
+            'file_syarat_ktp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_kk'=> 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_npwp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+        ];
+
+        // sudah pernah pernah daftar
+        if ($hasPreviousSubmission->count() > 0) {
+            // sudah lulus dan sudah disetujui
+            if($hasBeenLulus->count() > 0){
+                if($hasPreviousSubmission[0]->is_disetujui === 'disetujui' && $hasBeenLulus[0]->status === 'lulus'){
+                    $rules['file_syarat_logbook'] = 'required|mimes:jpeg,png,jpg,pdf,doc,docx';
+                }
+            }
+            else if($hasPreviousSubmission[0]->disetujui === 'tidak_disutujui'){
+                // tidak melakukan apapa
+            }
+            // belum disetujui
+            else if( $hasPreviousSubmission[0]->is_disetujui !== 'disetujui' ){
+                return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Anda sudah melakukan pengajuan pada skema ini sebelumnya.');
+            }
         }
+
+        $validatedData = $request->validate($rules);
 
         $validatedData['id_users'] = auth()->user()->id_users;
         $validatedData['id_skema'] = $skema->id_skema;
@@ -197,6 +218,10 @@ class PesertaController extends Controller
         
         if($request->file('file_syarat_npwp')){
             $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
+        }
+
+        if($request->file('file_syarat_logbook')){
+            $pengajuan->file_syarat_logbook = $validatedData['file_syarat_logbook'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_logbook')->store('public/file_syarat'));
         }
 
         $pengajuan->id_users = $validatedData['id_users'];

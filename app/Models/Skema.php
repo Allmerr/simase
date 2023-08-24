@@ -31,6 +31,11 @@ class Skema extends Model
 
     public function sudahDaftar($id_users, $id_skema)
     {
-        return $this->pengajuan()->where('id_users', $id_users)->where('id_skema', $id_skema)->exists();
+        return $this->pengajuan()->where('id_users', $id_users)->where('id_skema', $id_skema)->where('is_disetujui', '=' , 'pending')->orWhere('is_disetujui', '=' , 'pending_revisi')->exists();
+    }
+
+    public function sudahLulus($id_users, $id_skema)
+    {
+        return $this->status_peserta()->where('id_users', $id_users)->where('id_skema', $id_skema)->where('status', 'lulus')->exists();
     }
 }

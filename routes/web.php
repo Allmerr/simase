@@ -71,4 +71,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/pengajuan/{id_pengajuan}/revisi', [PengajuanController::class, 'revisi'])->name('pengajuan.revisi');
     Route::post('/admin/pengajuan/{id_pengajuan}/revisi', [PengajuanController::class, 'saveRevisi'])->name('pengajuan.saveRevisi');
     Route::resource('/admin/pengajuan', PengajuanController::class);
+    Route::get('/admin/sertifikat', [AdminController::class, 'sertifikat'])->name('admin.sertifikat');
 });

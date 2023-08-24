@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('file_syarat_npwp')->nullable();
             $table->enum('status_file_syarat_npwp', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
+            $table->string('file_syarat_logbook')->nullable();
+            $table->enum('status_file_syarat_logbook', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+
             $table->unsignedInteger('id_users')->nullable();
             $table->foreign('id_users')->references('id_users')->on('users')->onDelete('cascade');
             $table->unsignedInteger('id_skema')->nullable();

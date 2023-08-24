@@ -16,8 +16,10 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Nama Peserta</th>
                                 <th>Kode Skema</th>
                                 <th>Nama Skema</th>
+                                <th>Status</th>
                                 <th>File Sertifikat</th>
                             </tr>
                         </thead>
@@ -27,8 +29,10 @@
                             @foreach($status_pesertas as $key => $status_peserta)
                             <tr>
                                 <td>{{$key+1}}</td>
+                                <td>{{ $status_peserta->user->nama_lengkap }}</td>
                                 <td>{{ $status_peserta->skema->kode }}</td>
                                 <td>{{ $status_peserta->skema->nama }}</td>
+                                <td>{{ $status_peserta->status }}</td>
                                 <td>
                                     <a href="{{ asset('/storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}">Lihat Sertifikat</a>
                                 </td>

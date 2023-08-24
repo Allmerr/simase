@@ -65,6 +65,20 @@
                     </div>
                     @endif
                     
+                    @if($skema->status_peserta->where('id_users', Auth::user()->id_users)->first() !== null)
+                        @if($skema->status_peserta->where('id_users', Auth::user()->id_users)->first()->status == 'lulus')
+                        <div class="mb-3">
+                            <label for="file_syarat_logbook" class="form-label">File Logbook</label>
+                            <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                            <input type="file" class="form-control @error('file_syarat_logbook') is-invalid @enderror" accept=".jpeg, .jpg, .png, .pdf, .docx," id="file_syarat_logbook" value="{{ old('file_syarat_logbook') }}" name="file_syarat_logbook">
+                            @error('file_syarat_logbook')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>  
+                        @endif
+                    @endif
                     <button type="submit" class="btn btn-outline-secondary">Daftar</button>
                 </form>
             </div>
