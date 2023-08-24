@@ -164,6 +164,21 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="dikbangspes" class="form-label">Pendidikan Pengembangan Spesialis (DIKBANGSPES)</label>
+                                        <div class="form-input"> : {{ $user->dikbangspes }}</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pelatihan_diikuti" class="form-label">Pelatihan Yang Pernah Diikuti</label>
+                                        <div class="form-input"> : {{ $user->pelatihan_diikuti }}</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="keterampilan_khusus" class="form-label">Keterampilan Khusus</label>
+                                        <div class="form-input"> : {{ $user->keterampilan_khusus }}</div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="satker" class="form-label">Satuan Kerja</label>
                                         <div class="form-input"> : {{ $user->satker ? $user->satker->nama : '' }}</div>
                                     </div>
@@ -261,7 +276,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                        <input type="name" class="form-control @error('jabatan') is-invalid @enderror" id="tempat_lahir" aria-describedby="tempat_lahir" value="{{ $user->tempat_lahir }}" name="tempat_lahir">
+                        <input type="name" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" aria-describedby="tempat_lahir" value="{{ $user->tempat_lahir }}" name="tempat_lahir">
                         @error('tempat_lahir')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -279,7 +294,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <input type="name" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="alamat" aria-describedby="alamat" value="{{ $user->alamat }}" name="alamat">
+                        <input type="name" class="form-control @error('alamat') is-invalid @enderror" id="alamat" aria-describedby="alamat" value="{{ $user->alamat }}" name="alamat">
                         @error('alamat')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -311,6 +326,33 @@
                             <option value="Sarjana" @if($user->pendidikan_terakhir == 'Sarjana' || old('pendidikan_terakhir')=='Sarjana' ) selected @endif>Sarjana</option>
                             <option value="Magister" @if($user->pendidikan_terakhir == 'Magister' || old('pendidikan_terakhir')=='Magister' ) selected @endif>Magister</option>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dikbangspes" class="form-label">Pendidikan Pengembangan Spesialis (DIKBANGSPES)</label>
+                        <textarea class="form-control" name="dikbangspes" id="dikbangspes" cols="15" rows="3">{{ $user->dikbangspes }}</textarea>
+                        @error('dikbangspes')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="pelatihan_diikuti" class="form-label">Pelatihan Yang Pernah Diikuti</label>
+                        <textarea class="form-control" name="pelatihan_diikuti" id="pelatihan_diikuti" cols="15" rows="3">{{ $user->pelatihan_diikuti }}</textarea>
+                        @error('pelatihan_diikuti')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="keterampilan_khusus" class="form-label">Keterampilan Khusus</label>
+                        <textarea class="form-control" name="keterampilan_khusus" id="keterampilan_khusus" cols="15" rows="3">{{ $user->keterampilan_khusus }}</textarea>
+                        @error('keterampilan_khusus')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="satker" class="form-label">Satuan Kerja</label>

@@ -51,6 +51,9 @@ class PesertaController extends Controller
             'kota' => 'required|string',
             'provinsi' => 'required|string',
             'pendidikan_terakhir' => 'required|string',
+            'dikbangspes' => 'required|string',
+            'pelatihan_diikuti' => 'required|string',
+            'keterampilan_khusus' => 'required|string',
             'id_satker' => 'required',
             'id_pangkat' => 'required',
             'id_pendidikan_kepolisian' => 'required',
@@ -228,6 +231,14 @@ class PesertaController extends Controller
 
         if (! $user->jenis_kelamin) {
             return false;
+        } elseif (! $user->nik) {
+            return false;
+        } elseif (! $user->dikbangspes){
+            return false;
+        } elseif (! $user->pelatihan_diikuti){
+            return false;
+        } elseif (! $user->keterampilan_khusus){
+            return false;
         } elseif (! $user->nip) {
             return false;
         } elseif (! $user->jabatan) {
@@ -306,7 +317,8 @@ class PesertaController extends Controller
         ]);
     }
 
-    public function sertifikat(){
+    public function sertifikat()
+    {
         $status_pesertas = StatusPeserta::where('id_users', auth()->user()->id_users)->where('status', 'lulus')->get();
         return view('peserta.sertifikat', [
             'status_pesertas' => $status_pesertas,
