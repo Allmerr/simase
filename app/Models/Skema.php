@@ -29,13 +29,48 @@ class Skema extends Model
         return $this->hasMany(StatusPeserta::class, 'id_skema', 'id_skema');
     }
 
-    public function sudahDaftar($id_users, $id_skema)
+    public function hasPendingApplication()
     {
-        return $this->pengajuan()->where('id_users', $id_users)->where('id_skema', $id_skema)->where('is_disetujui', '=' , 'pending')->orWhere('is_disetujui', '=' , 'pending_revisi')->exists();
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'pending')->exists();
     }
 
-    public function sudahLulus($id_users, $id_skema)
+    public function hasRejectedApplication()
     {
-        return $this->status_peserta()->where('id_users', $id_users)->where('id_skema', $id_skema)->where('status', 'lulus')->exists();
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'tidak_disetujui')->exists();
     }
+
+    public function hasPendingRevisionApplication(){
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'pending_revisi')->exists();
+    }
+
+    public function hasRevisionApplication()
+    {
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'revisi')->exists();
+    }
+
+    public function hasApprovedAndPassed()
+    {
+        return $this->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'lulus')->exists();
+    }
+
+    public function hasApprovedAndNotPassedYet(){
+        return $this->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'diterima')->exists();
+    }
+
+    public function getLastApplicationStatus()
+    {
+        $lastApplication = auth()->user()->pengajuan()
+            ->where('id_skema', $this->id_skema)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+
+        if (!$lastApplication) {
+            return null; // No application found
+        }
+
+        return $lastApplication->is_disetujui;
+    }
+
+
 }
