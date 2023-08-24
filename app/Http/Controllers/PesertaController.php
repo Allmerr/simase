@@ -163,7 +163,7 @@ class PesertaController extends Controller
         $pengajuan->update();
         $this->sendEmailAcc($validatedData['id_users'], $validatedData['id_skema']);
 
-        return redirect()->route('peserta.status-pengajuan')->with('success', 'Berhasil melakukan revisi skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
+        return redirect()->route('peserta.statusPengajuan')->with('success', 'Berhasil melakukan revisi skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
     }
 
     public function saveDaftarSkema(Request $request, $skema)

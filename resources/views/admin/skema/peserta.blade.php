@@ -30,6 +30,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($pengajuans->count() > 0)
                                 @foreach ($pengajuans[0]->skema->status_peserta as $key => $pengajuan)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
@@ -77,6 +78,7 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

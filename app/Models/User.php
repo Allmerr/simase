@@ -66,4 +66,8 @@ class User extends Authenticatable
         return $this->hasMany(Notifikasi::class, 'id_users', 'id_users');
     }
 
+    public function pengajuan(){
+        return $this->hasMany(Pengajuan::class, 'id_users', 'id_users');
+    }
+
 }

@@ -30,7 +30,7 @@
                     <div class="mb-3">
                         <label for="file_syarat_ktp" class="form-label">Dokumen Persyaratan KTP</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control @error('file_syarat_ktp') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_ktp" value="{{ old('file_syarat_ktp') }}" name="file_syarat_ktp">
+                        <input type="file" class="form-control @error('file_syarat_ktp') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_ktp" value="{{ old('file_syarat_ktp') }}" name="file_syarat_ktp" required>
                         @error('file_syarat_ktp')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -43,7 +43,7 @@
                     <div class="mb-3">
                         <label for="file_syarat_kk" class="form-label">Dokumen Persyaratan KK</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control @error('file_syarat_kk') is-invalid @enderror" id="file_syarat_kk" value="{{ old('file_syarat_kk') }}" name="file_syarat_kk">
+                        <input type="file" class="form-control @error('file_syarat_kk') is-invalid @enderror" id="file_syarat_kk" value="{{ old('file_syarat_kk') }}" name="file_syarat_kk" required>
                         @error('file_syarat_kk')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -56,7 +56,7 @@
                     <div class="mb-3">
                         <label for="file_syarat_npwp" class="form-label">Dokumen Persyaratan NPWP</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control @error('file_syarat_npwp') is-invalid @enderror" id="file_syarat_npwp" value="{{ old('file_syarat_npwp') }}" name="file_syarat_npwp">
+                        <input type="file" class="form-control @error('file_syarat_npwp') is-invalid @enderror" id="file_syarat_npwp" value="{{ old('file_syarat_npwp') }}" name="file_syarat_npwp" required>
                         @error('file_syarat_npwp')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -70,7 +70,7 @@
                         <div class="mb-3">
                             <label for="file_syarat_logbook" class="form-label">File Logbook</label>
                             <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                            <input type="file" class="form-control @error('file_syarat_logbook') is-invalid @enderror" accept=".jpeg, .jpg, .png, .pdf, .docx," id="file_syarat_logbook" value="{{ old('file_syarat_logbook') }}" name="file_syarat_logbook">
+                            <input type="file" class="form-control @error('file_syarat_logbook') is-invalid @enderror" accept=".jpeg, .jpg, .png, .pdf, .docx," id="file_syarat_logbook" value="{{ old('file_syarat_logbook') }}" name="file_syarat_logbook" required>
                             @error('file_syarat_logbook')
                             <div class="invalid-feedback">
                                 {{ $message }}

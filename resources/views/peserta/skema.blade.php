@@ -35,14 +35,29 @@
                                 </td>
                                 <td>{{ $skema->kode }}</td>
                                 <td>{{ $skema->nama }}</td>
-                                <td>
+                                {{-- <td>
                                     <a href="{{ route('peserta.detailSkema' , $skema->id_skema) }}" class="badge bg-primary">Detail</a>
                                     @if(!$skema->sudahDaftar(auth()->user()->id_users,$skema->id_skema))
                                     <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar</a>
-                                    @elseif($skema->sudahLulus(auth()->user()->id_users,$skema->id_skema) && !$skema->sudahDaftar(auth()->user()->id_users,$skema->id_skema))
+                                    @elseif($skema->status_peserta()->where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->where('status', 'lulus')->exists())
                                     <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar Kembali</a>
                                     @else
                                     <a href="{{ route('peserta.statusPengajuan') }}" class="badge bg-warning">Status Pengajuan</a>
+                                    @endif
+                                </td> --}}
+                                
+                                <td>
+
+                                    {{ $skema->getLastApplicationStatus() }}
+                                    <a href="{{ route('peserta.detailSkema' , $skema->id_skema) }}" class="badge bg-primary">Detail</a>
+                                    @if($skema->hasRejectedApplication())
+                                    <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar</a>
+                                    @elseif($skema->hasApprovedAndPassed() && !$skema->hasPendingApplication()) {{-- disetujui dan lulus dan tidak sedang mendafar  --}}
+                                    <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar Kembali</a>
+                                    @elseif($skema->hasPendingApplication() || $skema->hasRevisionApplication() || $skema->hasPendingRevisionApplication() || $skema->has || $skema->hasApprovedAndNotPassedYet())
+                                    <a href="{{ route('peserta.statusPengajuan') }}" class="badge bg-warning">Status Pengajuan</a>
+                                    @else
+                                    <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar</a>
                                     @endif
                                 </td>
                             </tr>
