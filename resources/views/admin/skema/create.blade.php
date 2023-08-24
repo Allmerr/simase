@@ -43,7 +43,7 @@
 
                         <img class="img-preview img-fluid mb-3">
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png </small>
-                        <input class="form-control @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png," type="file"  id="photo" name="photo" onchange="previewphoto()">
+                        <input class="form-control @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png" type="file"  id="photo" name="photo" onchange="previewphoto()">
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}

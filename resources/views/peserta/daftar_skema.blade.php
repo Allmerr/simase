@@ -30,7 +30,7 @@
                     <div class="mb-3">
                         <label for="file_syarat_ktp" class="form-label">Dokumen Persyaratan KTP</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control @error('file_syarat_ktp') is-invalid @enderror" id="file_syarat_ktp" value="{{ old('file_syarat_ktp') }}" name="file_syarat_ktp">
+                        <input type="file" class="form-control @error('file_syarat_ktp') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_ktp" value="{{ old('file_syarat_ktp') }}" name="file_syarat_ktp">
                         @error('file_syarat_ktp')
                         <div class="invalid-feedback">
                             {{ $message }}

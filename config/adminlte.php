@@ -292,19 +292,16 @@ return [
     'menu' => [ 
         // peserta   
         [
-            'text' => 'Menu Peserta',
-            'icon' => 'fas fa-fw fa-user',
-            'can' => 'isPeserta', 
-            'submenu' => [
-                [
-                    'text' => 'Skema',
-                    'route' => 'peserta.showSkema',
-                ],
-                [
-                    'text' => 'Status Pengajuan',
-                    'route' => 'peserta.statusPengajuan',
-                ],
-            ]
+            'text' => 'Skema',
+            'route' => 'peserta.showSkema',
+            'icon' => 'fas fa-fw fa-certificate',
+            'can' => 'isPeserta',
+        ],
+        [
+            'text' => 'Status Pengajuan',
+            'route' => 'peserta.statusPengajuan',
+            'icon' => 'far fa-check-square',
+            'can' => 'isPeserta',
         ],
         // admin
         [
@@ -327,21 +324,16 @@ return [
             ],
         ],
         [
-            'text' => 'ADMIN',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Skema',
+            'route' => 'skema.index',
+            'icon' => 'fas fa-fw fa-certificate',
             'can' => 'isAdmin', 
-            'submenu' => [
-                [
-                    'text' => 'Skema',
-                    'route' => 'skema.index',
-                    'icon' => 'fas fa-fw fa-certificate',
-                ],
-                [
-                    'text' => 'Pengajuan',
-                    'route' => 'pengajuan.index',
-                    'icon' => 'far fa-check-square',
-                ],
-            ],
+        ],
+        [
+            'text' => 'Pengajuan',
+            'route' => 'pengajuan.index',
+            'icon' => 'far fa-check-square',
+            'can' => 'isAdmin', 
         ],
     ],
 

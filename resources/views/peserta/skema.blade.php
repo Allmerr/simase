@@ -40,6 +40,7 @@
                                     @if(!$skema->sudahDaftar(auth()->user()->id_users,$skema->id_skema))
                                     <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar</a>
                                     @else
+                                    <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar Kembali</a>
                                     <a href="{{ route('peserta.statusPengajuan') }}" class="badge bg-warning">Status Pengajuan</a>
                                     @endif
                                 </td>
