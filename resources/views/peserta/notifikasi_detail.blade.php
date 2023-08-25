@@ -22,6 +22,14 @@
                     <a href="{{ route('peserta.notifikasi') }}" class="btn btn-outline-secondary">Back</a>
                     <h1 class="mt-5">{{ $notifikasi->judul }}</h1>
                     {!! $notifikasi->pesan !!}
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-9"></div>
+                        <div class="col-md-3">
+                            <a href="{{ route('peserta.statusPengajuan') }}" class="btn btn-primary w-100">Lihat Status Pengajuan</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

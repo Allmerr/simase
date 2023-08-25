@@ -79,10 +79,29 @@
                         </div>  
                         @endif
                     @endif
-                    <button type="submit" class="btn btn-outline-secondary">Daftar</button>
+                    <button type="submit" class="btn btn-outline-secondary" id="my-alert">Daftar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 @stop
+@push('js')
+<script>
+    $(document).ready(function () {
+      // Trigger a custom SweetAlert2 with custom buttons
+        $('#my-alert').on('click', function () {
+            const skema = "{{ $skema->nama }}";
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: `Apakah anda yakin ingin mendaftar pada ${skema}?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yakin!'
+            })
+        });
+    });
+</script>   
+@endpush

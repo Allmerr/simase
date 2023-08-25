@@ -78,6 +78,15 @@
 $('#example2').DataTable({
     "responsive": true,
 });
+
+@if(session()->has('success'))
+    console.log('tes');
+    Swal.fire({
+        title: 'Berhasil Mendaftar!',
+        text: 'Nantikan Notifikasi Selajutnya!.',
+        icon: 'success'
+    });
+@endif
 </script>
 @endpush
 

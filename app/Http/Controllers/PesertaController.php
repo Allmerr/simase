@@ -127,7 +127,8 @@ class PesertaController extends Controller
 
     }
 
-    public function revisiSkema(Request $request, $id_skema){
+    public function revisiSkema(Request $request, $id_skema)
+    {
         $skema = Skema::find($id_skema);
         $pengajuan = Pengajuan::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->get()->last();
 
