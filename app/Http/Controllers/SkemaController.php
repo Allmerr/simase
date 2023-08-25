@@ -85,7 +85,7 @@ class SkemaController extends Controller
 
         $skema->save();
 
-        return redirect()->route('skema.index')->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('skema.index')->with('success', 'Data telah ditambahkan');
     }
 
     /**
@@ -119,6 +119,7 @@ class SkemaController extends Controller
             'persyaratan' => 'required|string',
             'dokumen_persyaratan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'photo' => 'image|mimes:jpeg,png,jpg',
+            'status' => 'required'
         ];
 
         $fileSyarat = '';
@@ -158,7 +159,7 @@ class SkemaController extends Controller
 
         Skema::where('id_skema', $skema->id_skema)->update($validatedData);
 
-        return redirect()->route('skema.edit', $skema->id_skema)->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('skema.index')->with('success', 'Data telah diubah');
     }
 
     /**
@@ -168,7 +169,7 @@ class SkemaController extends Controller
     {
         Skema::destroy($skema->id_skema);
 
-        return redirect()->route('skema.index')->with('success_message', 'Data telah terhapus');
+        return redirect()->route('skema.index')->with('success', 'Data telah terhapus');
     }
 
     public function upload(Request $request)
@@ -222,5 +223,15 @@ class SkemaController extends Controller
         ]);
 
         return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Data telah terhapus');
+    }
+
+    public function sertifikatSkema(Request $request, $id_skema){
+        $skema = Skema::find($id_skema);
+        $sertifikats = StatusPeserta::where('id_skema', $id_skema)->where('status', 'lulus')->get();
+
+        return view('admin.skema.sertifikat', [
+            'skema' => $skema,
+            'sertifikats' => $sertifikats,
+        ]);
     }
 }

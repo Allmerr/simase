@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('dokumen_persyaratan')->default('noskema.png');
             $table->text('persyaratan');
             $table->string('file_syarat');
+            $table->enum('status', ['aktif', 'tidak aktif'])->default('aktif');
             $table->timestamps();
         });
     }

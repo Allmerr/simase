@@ -85,6 +85,21 @@
                         </div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">status</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="aktif" id="status_aktif" name="status" @if($skema->status === 'aktif') checked @endif>
+                            <label class="form-check-label" for="status_aktif">
+                              Aktif
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="tidak aktif" id="status_tidak_aktif" name="status" @if($skema->status === 'tidak aktif') checked @endif>
+                            <label class="form-check-label" for="status_tidak_aktif">
+                              Tidak Aktif
+                            </label>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2">

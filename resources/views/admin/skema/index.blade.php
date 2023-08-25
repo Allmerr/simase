@@ -19,9 +19,8 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Skema</th>
                                     <th>Nama Skema</th>
-                                    <th>Photo</th>
+                                    <th>Status Skema</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
@@ -29,15 +28,8 @@
                                 @foreach($skemas as $key => $skema)
                                 <tr>
                                     <td>{{$key+1}}</td>
-                                    <td>{{$skema->kode}}</td>
                                     <td>{{$skema->nama}}</td>
-                                    <td id={{$key+1}}>
-                                        @if ($skema->photo === 'noskema.png')
-                                            <a href="{{ asset('/images/'. $skema->photo) }}" target="_blank">Lihat Dokumen</a>
-                                        @else
-                                            <a href="{{ asset('/storage/skema/'. $skema->photo) }}" target="_blank">Lihat Dokumen</a>
-                                        @endif
-                                    </td>
+                                    <td>{{$skema->status}}</td>
                                     <td>
                                         <a href="{{ route('skema.show', $skema->id_skema) }}" class="btn btn-success btn-xs"><i class="fa fa-info"></i></a>
                                         <a href="{{ route('skema.edit' , $skema->id_skema) }}" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>
@@ -64,6 +56,13 @@ $('#example2').DataTable({
     "responsive": true,
 });
 
+@if(session()->has('success'))
+    Swal.fire({
+        title: 'Berhasil Mendaftar!',
+        text: '{{  session('success') }}',
+        icon: 'success'
+    });
+@endif
 </script>
 @endpush
 

@@ -4,9 +4,9 @@
 
 @section('content_header')
     <style>
-        form .persyaratan-rich-text img{
-            height: 100%;
-            width: 100%;
+        img{
+            height: 30%;
+            width: 30%;
             object-fit: contain;
         }
     </style>
@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="{{ route('skema.show', $skema->id_skema) }}">Detail</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ route('skema.show', $skema->id_skema) }}">Deskripsi</a></li>
                     <li class="nav-item"><a class="nav-link " href="{{ route('skema.pesertaSkema', $skema->id_skema) }}" >Peserta</a></li>
                 </ul>
             </div>
@@ -28,12 +28,10 @@
                 <form action="" method="post" >
                     @csrf
                     <div class="mb-3">
-                        <label for="kode" class="form-label">Kode Skema</label>
-                        <input type="name" class="form-control" id="kode" aria-describedby="kode" value="{{ old('kode', $skema->kode) }}" name="kode" disabled>
+                        <label for="kode" class="form-label">Kode : {{ $skema->kode }}</label>
                     </div>
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $skema->nama) }}" name="nama" disabled>
+                        <label for="nama" class="form-label">Nama : {{ $skema->nama }}</label>
                     </div>
                     <div class="mb-3">
                         <label for="dokumen_persyaratan" class="form-label">Dokumen Persyaratan</label>

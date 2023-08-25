@@ -50,11 +50,11 @@ class Skema extends Model
 
     public function hasApprovedAndPassed()
     {
-        return $this->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'lulus')->exists();
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'lulus')->exists();
     }
 
     public function hasApprovedAndNotPassedYet(){
-        return $this->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'diterima')->exists();
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'diterima')->exists();
     }
 
     public function getLastApplicationStatus()
