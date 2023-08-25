@@ -136,6 +136,9 @@ class PengajuanController extends Controller
         if(isset($request->file_syarat_npwp)){
             $revisi['status_file_syarat_npwp'] = $request->file_syarat_npwp;
         }
+        if(isset($request->file_syarat_logbook)){
+            $revisi['status_file_syarat_logbook'] = $request->file_syarat_logbook;
+        }
 
         Pengajuan::where('id_pengajuan', $id_pengajuan)->update($revisi);
 

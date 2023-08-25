@@ -83,12 +83,24 @@
                                     <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_npwp" name="file_syarat_npwp" checked></td>
                                 </tr>
                                 @endif
+
+                                @if($pengajuan->status_peserta()->exists())
+                                @if($pengajuan->status_peserta->where('id_skema', $pengajuan->id_skema)->exists())
+                                    <tr>
+                                        <td>Logbook</td>                                     
+                                        <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_logbook) }}">Lihat File</a></td>
+                                        <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_logbook" name="file_syarat_logbook"></td>
+                                        <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_logbook" name="file_syarat_logbook"></td>
+                                        <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_logbook" name="file_syarat_logbook" checked></td>
+                                    </tr>
+                                @endif
+                                @endif
                             </tbody>
                         </table>
                     </div>
                     <div class="mb-3">
                         <label for="catatan" class="form-label">Catatan Revisi</label>
-                        <input type="name" class="form-control" id="catatan" aria-describedby="catatan" placeholder="Photo KTP tidak terlihat jelas!" name="catatan" required>
+                        <input type="name" class="form-control" id="catatan" aria-describedby="catatan" placeholder="Photo KTP tidak terlihat jelas!" name="catatan" value="{{ old('catatan', $pengajuan->catatan) }}" required>
                     </div>
                     <button type="submit" class="btn btn-warning"><b>Revisi</b></button>
                 </form>

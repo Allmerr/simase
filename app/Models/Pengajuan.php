@@ -27,6 +27,6 @@ class Pengajuan extends Model
 
     public function status_peserta()
     {
-        return $this->belongsTo(StatusPeserta::class, 'id_users', 'id_status_peserta');
+        return $this->belongsTo(StatusPeserta::class, 'id_users', 'id_users');
     }
 }

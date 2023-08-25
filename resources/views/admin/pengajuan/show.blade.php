@@ -67,6 +67,13 @@
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_npwp) }}">Lihat File</a></td>
                                 </tr>
                                 @endif
+
+                                @if($pengajuan->file_syarat_logbook !== null)
+                                <tr>
+                                    <td>Logbook</td>                                     
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_logbook) }}">Lihat File</a></td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
