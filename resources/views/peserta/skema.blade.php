@@ -51,6 +51,8 @@
                                         @else
                                             <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar</a>
                                         @endif
+                                    @else
+                                        <a href="#" class="badge bg-secondary">Sertifikat Non-aktif</a>
                                     @endif
                                 </td>
                             </tr>

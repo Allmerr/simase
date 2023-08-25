@@ -14,8 +14,8 @@
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link" href="{{ route('skema.show', $skema->id_skema) }}">Deskripsi</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ route('skema.pesertaSkema', $skema->id_skema) }}" >Peserta</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ route('skema.pesertaSertifikat', $skema->id_skema) }}" >Peserta Lulus</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('skema.pesertaSkema', $skema->id_skema) }}" >Peserta</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ route('skema.sertifikatSkema', $skema->id_skema) }}" >Peserta Lulus</a></li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -26,10 +26,60 @@
                                     <th>No.</th>
                                     <th>Nama Lengkap</th>
                                     <th>File Sertifikat</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @if($pengajuans->count() > 0)
+                                @foreach ($pengajuans[0]->skema->status_peserta as $key => $pengajuan)
+                                    @if($pengajuan->status === 'lulus')
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $pengajuan->user->nama_lengkap }}</td>
+                                        <td>
+                                            @if($pengajuan->status !== 'lulus')
+                                            <b>Belum Dinyatakan Lulus</b>
+                                            @elseif($pengajuan->status === 'lulus'  && $pengajuan->file_sertifikat !== null)
+                                            <a href="{{ asset('/storage/file_sertifikat/' . $pengajuan->file_sertifikat) }}">Lihat Sertifikat</a>
+                                            @else
+                                            <b>Data Sertifikat Belum Diberikan</b>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($pengajuan->status !== 'lulus')
+                                            <a href="{{ route('skema.pesertaSkemaLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" class="btn btn-success btn-xs">Lulus</a>
+                                            @elseif($pengajuan->status === 'lulus'  && $pengajuan->file_sertifikat === null)
+                                            <a href="#" class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $pengajuan->id_users }}">Berikan Sertifikat</a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal{{ $pengajuan->id_users }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="{{ route('skema.sertifikatLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->user->id_users]) }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Kirim File Sertifikat</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label for="file_sertifikat" class="form-label">File Sertifikat</label>
+                                                            <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

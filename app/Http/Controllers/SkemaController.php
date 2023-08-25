@@ -222,16 +222,16 @@ class SkemaController extends Controller
             'file_sertifikat' => str_replace('public/file_sertifikat/', '', $request->file('file_sertifikat')->store('public/file_sertifikat')),
         ]);
 
-        return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Data telah terhapus');
+        return redirect()->route('skema.sertifikat', $id_skema)->with('success_message', 'Data telah terhapus');
     }
 
     public function sertifikatSkema(Request $request, $id_skema){
         $skema = Skema::find($id_skema);
-        $sertifikats = StatusPeserta::where('id_skema', $id_skema)->where('status', 'lulus')->get();
+        $pengajuans_diterima = Skema::find($id_skema)->pengajuan()->where('is_disetujui', 'disetujui')->get();
 
         return view('admin.skema.sertifikat', [
             'skema' => $skema,
-            'sertifikats' => $sertifikats,
+            'pengajuans' => $pengajuans_diterima,
         ]);
     }
 }

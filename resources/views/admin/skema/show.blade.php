@@ -22,6 +22,7 @@
                 <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link active" href="{{ route('skema.show', $skema->id_skema) }}">Deskripsi</a></li>
                     <li class="nav-item"><a class="nav-link " href="{{ route('skema.pesertaSkema', $skema->id_skema) }}" >Peserta</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('skema.sertifikatSkema', $skema->id_skema) }}" >Peserta Lulus</a></li>
                 </ul>
             </div>
             <div class="card-body">
