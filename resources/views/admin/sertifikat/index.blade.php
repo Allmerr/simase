@@ -17,26 +17,35 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama Peserta</th>
-                                <th>Kode Skema</th>
+                                <th>Nomor Blanko</th>
                                 <th>Nama Skema</th>
-                                <th>Status</th>
+                                <th>Berlaku Sampai Dengan</th>
                                 <th>File Sertifikat</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if($status_pesertas->count() != 0)
 
                             @foreach($status_pesertas as $key => $status_peserta)
+                            @if($status_peserta->file_sertifikat !== null)
+
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>{{ $status_peserta->user->nama_lengkap }}</td>
-                                <td>{{ $status_peserta->skema->kode }}</td>
+                                <td>{{ $status_peserta->nomor_blanko }}</td>
                                 <td>{{ $status_peserta->skema->nama }}</td>
-                                <td>{{ $status_peserta->status }}</td>
+                                <td>{{ $status_peserta->tanggal_expired }}</td>
                                 <td>
                                     <a href="{{ asset('/storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}">Lihat Sertifikat</a>
                                 </td>
+                                <td>
+                                    <a href="#" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>
+                                    <a href="#" onclick="notificationBeforeDelete(event, this, <?php echo $key+1; ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a> 
+                                </td>
                             </tr>
+
+                            @endif
                             @endforeach
 
                             @endif
