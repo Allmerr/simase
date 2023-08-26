@@ -34,7 +34,7 @@ class NotifikasiPesertaAccPengajuanMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Hasil pengajuan pada pendaftaran skema' . $this->skemaName,
+            subject: 'Hasil pengajuan pada pendaftaran skema ' . $this->skemaName,
         );
     }
 
