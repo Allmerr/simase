@@ -65,6 +65,18 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
+                                                            <label for="nomor_blanko" class="form-label">Nomor Blanko</label>
+                                                            <input type="text" class="form-control" id="nomor_blanko" aria-describedby="nomor_blanko" name="nomor_blanko" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="nomor_registrasi" class="form-label">Nomor Registrasi</label>
+                                                            <input type="text" class="form-control" id="nomor_registrasi" aria-describedby="nomor_registrasi" name="nomor_registrasi" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="tanggal_penetapan" class="form-label">Tanggal Penetapan</label>
+                                                            <input type="date" class="form-control" id="tanggal_penetapan" aria-describedby="tanggal_penetapan" name="tanggal_penetapan" required>
+                                                        </div>
+                                                        <div class="mb-3">
                                                             <label for="file_sertifikat" class="form-label">File Sertifikat</label>
                                                             <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" required>
                                                         </div>

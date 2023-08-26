@@ -17,6 +17,13 @@ return new class extends Migration
             $table->enum('status', ['diterima', 'lulus', 'expired'])->default('diterima');
             $table->string('file_sertifikat')->nullable();
 
+            $table->string('nomor_blanko')->nullable();
+            $table->string('nomor_registrasi')->nullable();
+            $table->date('tanggal_penetapan')->nullable();
+            $table->date('tanggal_surveilan')->nullable();
+            $table->date('tanggal_notif_expired')->nullable();
+            $table->date('tanggal_expired')->nullable();
+
             $table->unsignedInteger('id_skema')->nullable();
             $table->foreign('id_skema')->references('id_skema')->on('skema')->onDelete('cascade');
             $table->unsignedInteger('id_users')->nullable();

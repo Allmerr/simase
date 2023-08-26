@@ -145,6 +145,15 @@ class PengajuanController extends Controller
         
         $pengajuan = Pengajuan::find($id_pengajuan);
 
+        $status_peserta = new StatusPeserta();
+
+        $status_peserta->status = 'diterima';
+        $status_peserta->id_skema = $pengajuan->id_skema;
+        $status_peserta->id_users = $pengajuan->id_users;
+
+        $status_peserta->save();
+
+
         $this->sendEmail($pengajuan->id_users, $pengajuan->id_skema, $pengajuan->is_disetujui);
         $this->sendNotifikasi($pengajuan);
 

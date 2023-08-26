@@ -24,4 +24,9 @@ class StatusPeserta extends Model
     {
         return $this->belongsTo(User::class, 'id_users', 'id_users');
     }
+
+    public function setTanggalExpiredAttribute($value)
+    {
+        $this->attributes['tanggal_expired'] = \Carbon\Carbon::parse($value)->addYears(3);
+    }
 }

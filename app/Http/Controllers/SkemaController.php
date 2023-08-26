@@ -6,6 +6,7 @@ use App\Models\Skema;
 use App\Models\StatusPeserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class SkemaController extends Controller
 {
@@ -219,10 +220,16 @@ class SkemaController extends Controller
 
     public function sertifikatLulus(Request $request, $id_skema, $id_peserta){
         StatusPeserta::where('id_skema', $id_skema)->where('id_users', $id_peserta)->update([
+            'nomor_blanko' => $request->nomor_blanko,
+            'nomor_registrasi' => $request->nomor_registrasi,
+            'tanggal_penetapan' => $request->tanggal_penetapan,
+            'tanggal_surveilan' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addYears(1) ,
+            'tanggal_notif_expired' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addMonths(33) ,
+            'tanggal_expired' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addYears(3) ,
             'file_sertifikat' => str_replace('public/file_sertifikat/', '', $request->file('file_sertifikat')->store('public/file_sertifikat')),
         ]);
 
-        return redirect()->route('skema.sertifikat', $id_skema)->with('success_message', 'Data telah terhapus');
+        return redirect()->route('skema.sertifikatSkema', $id_skema)->with('success_message', 'Data telah terhapus');
     }
 
     public function sertifikatSkema(Request $request, $id_skema){
