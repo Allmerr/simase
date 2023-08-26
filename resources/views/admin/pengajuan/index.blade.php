@@ -28,7 +28,6 @@
                                     <th>Satuan Kerja</th>
                                     <th>Nama Skema</th>
                                     <th>Status</th>
-                                    <th>Cek</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -41,18 +40,8 @@
                                     <td>{{$pengajuan->skema->nama }}</td>
                                     <td>{{$pengajuan->is_disetujui}}</td>
                                     <td>
-                                        <a href="{{ route('pengajuan.show', $pengajuan->id_pengajuan) }}" class="badge btn-primary"><i class="far fa-file-alt"></i> Detail</a>
+                                        <a href="{{ route('pengajuan.show', $pengajuan->id_pengajuan) }}" class="badge btn-primary"><i class="far fa-file-alt"></i> Check</a>
                                     </td>
-                                    <td>
-                                        @if ($pengajuan->is_disetujui === 'pending' || $pengajuan->is_disetujui === 'pending_revisi')
-                                            <a href="{{ route('pengajuan.terima', $pengajuan->id_pengajuan) }}" class="badge btn-success"><i class="fas fa-check"></i> Terima</a>
-                                            <a href="{{ route('pengajuan.revisi', $pengajuan->id_pengajuan) }}" class="badge btn-warning"><i class="fas fa-redo"></i> Revisi</a>
-                                            <a href="{{ route('pengajuan.tolak', $pengajuan->id_pengajuan) }}" class="badge btn-danger"><i class="fas fa-times"></i> Tolak</a>
-                                        @else
-                                            <a href="#">Lihat Status Peserta ini</a>
-                                        @endif
-                                        </td> 
-
                                 </tr>
                                 @endforeach
                             </tbody>

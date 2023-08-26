@@ -125,6 +125,7 @@ class PengajuanController extends Controller
         $revisi = [
             'is_disetujui' => 'revisi',
             'catatan' => $request->catatan,
+            'is_disetujui' => $request->is_disetujui,
         ];
         
         if(isset($request->file_syarat_ktp)){
@@ -141,7 +142,6 @@ class PengajuanController extends Controller
         }
 
         Pengajuan::where('id_pengajuan', $id_pengajuan)->update($revisi);
-
         
         $pengajuan = Pengajuan::find($id_pengajuan);
 
