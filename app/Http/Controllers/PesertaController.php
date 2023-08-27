@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\NotifikasiPesertaMail;
 use App\Mail\NotifikasiPesertaAccPengajuanMail;
+use App\Mail\NotifikasiPesertaMail;
 use App\Models\Notifikasi;
 use App\Models\Pangkat;
 use App\Models\PendidikanKepolisian;
-use App\Models\StatusPeserta;
 use App\Models\Pengajuan;
 use App\Models\Satker;
 use App\Models\Skema;
+use App\Models\StatusPeserta;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -146,19 +146,19 @@ class PesertaController extends Controller
         $validatedData['id_users'] = auth()->user()->id_users;
         $validatedData['id_skema'] = $skema->id_skema;
 
-        if($request->file('file_syarat_ktp')){
+        if ($request->file('file_syarat_ktp')) {
             $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
         }
 
-        if($request->file('file_syarat_kk')){
+        if ($request->file('file_syarat_kk')) {
             $pengajuan->file_syarat_kk = $validatedData['file_syarat_kk'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_kk')->store('public/file_syarat'));
         }
-        
-        if($request->file('file_syarat_npwp')){
+
+        if ($request->file('file_syarat_npwp')) {
             $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
         }
 
-        if($request->file('file_syarat_logbook')){
+        if ($request->file('file_syarat_logbook')) {
             $pengajuan->file_syarat_logbook = $validatedData['file_syarat_logbook'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_logbook')->store('public/file_syarat'));
         }
 
@@ -186,23 +186,22 @@ class PesertaController extends Controller
 
         $rules = [
             'file_syarat_ktp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
-            'file_syarat_kk'=> 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_kk' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_npwp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
         ];
 
         // sudah pernah pernah daftar
         if ($hasPreviousSubmission->count() > 0) {
             // sudah lulus dan sudah disetujui
-            if($hasBeenLulus->count() > 0){
-                if($hasPreviousSubmission->last()->is_disetujui === 'disetujui' && $hasBeenLulus->last()->status === 'lulus'){
+            if ($hasBeenLulus->count() > 0) {
+                if ($hasPreviousSubmission->last()->is_disetujui === 'disetujui' && $hasBeenLulus->last()->status === 'lulus') {
                     $rules['file_syarat_logbook'] = 'required|mimes:jpeg,png,jpg,pdf,doc,docx';
                 }
-            }
-            else if($hasPreviousSubmission->last()->is_disetujui === 'tidak_disetujui'){
+            } elseif ($hasPreviousSubmission->last()->is_disetujui === 'tidak_disetujui') {
                 // tidak melakukan apapa
             }
             // belum disetujui
-            else if( $hasPreviousSubmission->last()->is_disetujui !== 'disetujui' ){
+            elseif ($hasPreviousSubmission->last()->is_disetujui !== 'disetujui') {
                 return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Anda sudah melakukan pengajuan pada skema ini sebelumnya.');
             }
         }
@@ -214,19 +213,19 @@ class PesertaController extends Controller
 
         $pengajuan = new Pengajuan();
 
-        if($request->file('file_syarat_ktp')){
+        if ($request->file('file_syarat_ktp')) {
             $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
         }
 
-        if($request->file('file_syarat_kk')){
+        if ($request->file('file_syarat_kk')) {
             $pengajuan->file_syarat_kk = $validatedData['file_syarat_kk'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_kk')->store('public/file_syarat'));
         }
-        
-        if($request->file('file_syarat_npwp')){
+
+        if ($request->file('file_syarat_npwp')) {
             $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
         }
 
-        if($request->file('file_syarat_logbook')){
+        if ($request->file('file_syarat_logbook')) {
             $pengajuan->file_syarat_logbook = $validatedData['file_syarat_logbook'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_logbook')->store('public/file_syarat'));
         }
 
@@ -264,11 +263,11 @@ class PesertaController extends Controller
             return false;
         } elseif (! $user->nik) {
             return false;
-        } elseif (! $user->dikbangspes){
+        } elseif (! $user->dikbangspes) {
             return false;
-        } elseif (! $user->pelatihan_diikuti){
+        } elseif (! $user->pelatihan_diikuti) {
             return false;
-        } elseif (! $user->keterampilan_khusus){
+        } elseif (! $user->keterampilan_khusus) {
             return false;
         } elseif (! $user->nip) {
             return false;
@@ -341,8 +340,10 @@ class PesertaController extends Controller
         ]);
     }
 
-    public function statusPengajuan(){
+    public function statusPengajuan()
+    {
         $pengajuans = Pengajuan::where('id_users', auth()->user()->id_users)->get();
+
         return view('peserta.status_pengajuan', [
             'pengajuans' => $pengajuans,
         ]);
@@ -351,6 +352,7 @@ class PesertaController extends Controller
     public function sertifikat()
     {
         $status_pesertas = StatusPeserta::where('id_users', auth()->user()->id_users)->where('status', 'lulus')->get();
+
         return view('peserta.sertifikat', [
             'status_pesertas' => $status_pesertas,
         ]);

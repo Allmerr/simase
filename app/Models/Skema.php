@@ -25,7 +25,8 @@ class Skema extends Model
         return $this->hasManyThrough(User::class, Pengajuan::class, 'id_skema', 'id_users');
     }
 
-    public function status_peserta(){
+    public function status_peserta()
+    {
         return $this->hasMany(StatusPeserta::class, 'id_skema', 'id_skema');
     }
 
@@ -39,7 +40,8 @@ class Skema extends Model
         return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'tidak_disetujui')->exists();
     }
 
-    public function hasPendingRevisionApplication(){
+    public function hasPendingRevisionApplication()
+    {
         return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'pending_revisi')->exists();
     }
 
@@ -53,7 +55,8 @@ class Skema extends Model
         return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'lulus')->exists();
     }
 
-    public function hasApprovedAndNotPassedYet(){
+    public function hasApprovedAndNotPassedYet()
+    {
         return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'diterima')->exists();
     }
 
@@ -64,13 +67,10 @@ class Skema extends Model
             ->orderBy('created_at', 'desc')
             ->first();
 
-
-        if (!$lastApplication) {
+        if (! $lastApplication) {
             return null; // No application found
         }
 
         return $lastApplication->is_disetujui;
     }
-
-
 }

@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -14,7 +13,9 @@ class NotifikasiPesertaAccPengajuanMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $mailData;
+
     protected $userEmail;
+
     protected $skemaName;
 
     /**
@@ -34,7 +35,7 @@ class NotifikasiPesertaAccPengajuanMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Hasil pengajuan pada pendaftaran skema ' . $this->skemaName,
+            subject: 'Hasil pengajuan pada pendaftaran skema '.$this->skemaName,
         );
     }
 

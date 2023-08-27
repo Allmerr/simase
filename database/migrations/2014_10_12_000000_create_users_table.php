@@ -35,7 +35,6 @@ return new class extends Migration
             $table->text('pelatihan_diikuti')->nullable();
             $table->text('keterampilan_khusus')->nullable();
 
-
             $table->unsignedInteger('id_satker')->nullable();
             $table->foreign('id_satker')->references('id_satker')->on('satker')->onDelete('cascade');
             $table->unsignedInteger('id_pangkat')->nullable();

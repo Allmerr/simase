@@ -289,8 +289,8 @@ return [
     |
     */
 
-    'menu' => [ 
-        // peserta   
+    'menu' => [
+        // peserta
         [
             'text' => 'Skema',
             'route' => 'peserta.showSkema',
@@ -313,7 +313,7 @@ return [
         [
             'text' => 'MASTER',
             'icon' => 'fas fa-user',
-            'can' => 'isAdmin', 
+            'can' => 'isAdmin',
             'submenu' => [
                 [
                     'text' => 'Satker',
@@ -333,19 +333,19 @@ return [
             'text' => 'Skema',
             'route' => 'skema.index',
             'icon' => 'fas fa-file',
-            'can' => 'isAdmin', 
+            'can' => 'isAdmin',
         ],
         [
             'text' => 'Pengajuan',
             'route' => 'pengajuan.index',
             'icon' => 'fas fa-check-square',
-            'can' => 'isAdmin', 
+            'can' => 'isAdmin',
         ],
         [
             'text' => 'Sertifikat',
-            'route' => 'admin.sertifikat',
+            'route' => 'sertifikat.index',
             'icon' => 'fas fa-certificate',
-            'can' => 'isAdmin', 
+            'can' => 'isAdmin',
         ],
     ],
 

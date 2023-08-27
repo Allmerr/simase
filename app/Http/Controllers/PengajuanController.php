@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifikasiPesertaAccPengajuanMail;
-
+use App\Models\Notifikasi;
 use App\Models\Pengajuan;
 use App\Models\Skema;
-use App\Models\User;
-use App\Models\Notifikasi;
 use App\Models\StatusPeserta;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PengajuanController extends Controller
 {
@@ -121,28 +120,29 @@ class PengajuanController extends Controller
         ]);
     }
 
-    public function saveRevisi(Request $request, $id_pengajuan){
+    public function saveRevisi(Request $request, $id_pengajuan)
+    {
         $revisi = [
             'is_disetujui' => 'revisi',
             'catatan' => $request->catatan,
             'is_disetujui' => $request->is_disetujui,
         ];
-        
-        if(isset($request->file_syarat_ktp)){
+
+        if (isset($request->file_syarat_ktp)) {
             $revisi['status_file_syarat_ktp'] = $request->file_syarat_ktp;
         }
-        if(isset($request->file_syarat_kk)){
+        if (isset($request->file_syarat_kk)) {
             $revisi['status_file_syarat_kk'] = $request->file_syarat_kk;
         }
-        if(isset($request->file_syarat_npwp)){
+        if (isset($request->file_syarat_npwp)) {
             $revisi['status_file_syarat_npwp'] = $request->file_syarat_npwp;
         }
-        if(isset($request->file_syarat_logbook)){
+        if (isset($request->file_syarat_logbook)) {
             $revisi['status_file_syarat_logbook'] = $request->file_syarat_logbook;
         }
 
         Pengajuan::where('id_pengajuan', $id_pengajuan)->update($revisi);
-        
+
         $pengajuan = Pengajuan::find($id_pengajuan);
 
         $status_peserta = new StatusPeserta();
@@ -152,7 +152,6 @@ class PengajuanController extends Controller
         $status_peserta->id_users = $pengajuan->id_users;
 
         $status_peserta->save();
-
 
         $this->sendEmail($pengajuan->id_users, $pengajuan->id_skema, $pengajuan->is_disetujui);
         $this->sendNotifikasi($pengajuan);
@@ -171,15 +170,15 @@ class PengajuanController extends Controller
         return 'berhasil';
     }
 
-    public function sendNotifikasi(Pengajuan $pengajuan){
+    public function sendNotifikasi(Pengajuan $pengajuan)
+    {
         $notifikasi = new Notifikasi();
 
         $notifikasi->judul = 'Pendaftaraan anda, pada skema '.$pengajuan->skema->nama;
-        $notifikasi->pesan = 'Pendaftaran anda, pada skema ' . $pengajuan->skema->nama . 'telah ' . $pengajuan->is_disetujui . 'oleh admin, nantikan notifikasi terbaru.';
+        $notifikasi->pesan = 'Pendaftaran anda, pada skema '.$pengajuan->skema->nama.'telah '.$pengajuan->is_disetujui.'oleh admin, nantikan notifikasi terbaru.';
         $notifikasi->is_dibaca = 'tidak_dibaca';
         $notifikasi->id_users = $pengajuan->id_users;
 
         $notifikasi->save();
     }
-
 }

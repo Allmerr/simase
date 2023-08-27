@@ -6,6 +6,7 @@ use App\Http\Controllers\PendidikanKepolisianController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\SatkerController;
+use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\SkemaController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,5 +73,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/pengajuan/{id_pengajuan}/revisi', [PengajuanController::class, 'revisi'])->name('pengajuan.revisi');
     Route::post('/admin/pengajuan/{id_pengajuan}/revisi', [PengajuanController::class, 'saveRevisi'])->name('pengajuan.saveRevisi');
     Route::resource('/admin/pengajuan', PengajuanController::class);
-    Route::get('/admin/sertifikat', [AdminController::class, 'sertifikat'])->name('admin.sertifikat');
+    Route::get('admin/sertifikat/get-users/{id_skema}', [SertifikatController::class, 'getUsersByScheme']);
+    Route::resource('/admin/sertifikat', SertifikatController::class);
 });

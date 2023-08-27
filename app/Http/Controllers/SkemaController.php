@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Skema;
 use App\Models\StatusPeserta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
 class SkemaController extends Controller
 {
@@ -44,18 +44,18 @@ class SkemaController extends Controller
         ];
 
         $fileSyarat = '';
-        
-        if(isset($request->file_syarat_ktp)){
+
+        if (isset($request->file_syarat_ktp)) {
             $fileSyarat .= ',file_syarat_ktp';
         }
-        if(isset($request->file_syarat_kk)){
+        if (isset($request->file_syarat_kk)) {
             $fileSyarat .= ',file_syarat_kk';
         }
-        if(isset($request->file_syarat_npwp)){
+        if (isset($request->file_syarat_npwp)) {
             $fileSyarat .= ',file_syarat_npwp';
         }
-        
-        if($fileSyarat !== ''){
+
+        if ($fileSyarat !== '') {
             $fileSyarat = substr($fileSyarat, 1);
         }
 
@@ -75,7 +75,7 @@ class SkemaController extends Controller
         $skema->nama = $validatedData['nama'];
         $skema->persyaratan = $validatedData['persyaratan'];
         $skema->file_syarat = $fileSyarat;
-        
+
         if ($request->file('photo')) {
             $skema->photo = $validatedData['photo'];
         }
@@ -120,22 +120,22 @@ class SkemaController extends Controller
             'persyaratan' => 'required|string',
             'dokumen_persyaratan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'photo' => 'image|mimes:jpeg,png,jpg',
-            'status' => 'required'
+            'status' => 'required',
         ];
 
         $fileSyarat = '';
-        
-        if(isset($request->file_syarat_ktp)){
+
+        if (isset($request->file_syarat_ktp)) {
             $fileSyarat .= ',file_syarat_ktp';
         }
-        if(isset($request->file_syarat_kk)){
+        if (isset($request->file_syarat_kk)) {
             $fileSyarat .= ',file_syarat_kk';
         }
-        if(isset($request->file_syarat_npwp)){
+        if (isset($request->file_syarat_npwp)) {
             $fileSyarat .= ',file_syarat_npwp';
         }
-        
-        if($fileSyarat !== ''){
+
+        if ($fileSyarat !== '') {
             $fileSyarat = substr($fileSyarat, 1);
         }
 
@@ -210,29 +210,32 @@ class SkemaController extends Controller
         ]);
     }
 
-    public function pesertaSkemaLulus(Request $request, $id_skema, $id_peserta){
+    public function pesertaSkemaLulus(Request $request, $id_skema, $id_peserta)
+    {
         StatusPeserta::where('id_skema', $id_skema)->where('id_users', $id_peserta)->update([
             'status' => 'lulus',
         ]);
 
         return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Data telah terhapus');
-    }   
+    }
 
-    public function sertifikatLulus(Request $request, $id_skema, $id_peserta){
+    public function sertifikatLulus(Request $request, $id_skema, $id_peserta)
+    {
         StatusPeserta::where('id_skema', $id_skema)->where('id_users', $id_peserta)->update([
             'nomor_blanko' => $request->nomor_blanko,
             'nomor_registrasi' => $request->nomor_registrasi,
             'tanggal_penetapan' => $request->tanggal_penetapan,
-            'tanggal_surveilan' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addYears(1) ,
-            'tanggal_notif_expired' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addMonths(33) ,
-            'tanggal_expired' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addYears(3) ,
+            'tanggal_surveilan' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addYears(1),
+            'tanggal_notif_expired' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addMonths(33),
+            'tanggal_expired' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addYears(3),
             'file_sertifikat' => str_replace('public/file_sertifikat/', '', $request->file('file_sertifikat')->store('public/file_sertifikat')),
         ]);
 
         return redirect()->route('skema.sertifikatSkema', $id_skema)->with('success_message', 'Data telah terhapus');
     }
 
-    public function sertifikatSkema(Request $request, $id_skema){
+    public function sertifikatSkema(Request $request, $id_skema)
+    {
         $skema = Skema::find($id_skema);
         $pengajuans_diterima = Skema::find($id_skema)->pengajuan()->where('is_disetujui', 'disetujui')->get();
 

@@ -12,6 +12,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
+                    <a href="{{ route('sertifikat.create') }}" class="btn btn-primary mb-2">Tambah</a>
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
                             <tr>
@@ -40,8 +41,8 @@
                                     <a href="{{ asset('/storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}">Lihat Sertifikat</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>
-                                    <a href="#" onclick="notificationBeforeDelete(event, this, <?php echo $key+1; ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a> 
+                                    <a href="{{ route('sertifikat.edit', $status_peserta->id_status_peserta) }}" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ route('sertifikat.destroy', $status_peserta->id_status_peserta) }}" onclick="notificationBeforeDelete(event, this, <?php echo $key+1; ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a> 
                                 </td>
                             </tr>
 
@@ -60,6 +61,10 @@
 @stop
 
 @push('js')
+<form action="" id="delete-form" method="post">
+    @method('delete')
+    @csrf
+</form>
 <script>
 $('#example2').DataTable({
     "responsive": true,
