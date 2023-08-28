@@ -32,8 +32,21 @@ class AdminController extends Controller
     }
 
     public function showPeserta(Request $request, $id_users){
+        $sertifikat_pesertas = StatusPeserta::where('id_users', $id_users)->where('status', 'lulus')->get();
+
+        $sertifikat = '';
+        if (count($sertifikat_pesertas) > 0) {
+            foreach ($sertifikat_pesertas as $key => $value) {
+                $sertifikat .= $value->skema->nama . ',';
+            }
+            substr_replace($sertifikat, "", -1);
+        }else{
+            $sertifikat = 'Belum pernah lulus dari skema apapun';
+        }
+        
         return view('admin.peserta.show', [
             'user' => User::where('role', 'peserta')->where('id_users', $id_users)->get()[0],
+            'skema_diempuh' => $sertifikat,
         ]);
     }
 

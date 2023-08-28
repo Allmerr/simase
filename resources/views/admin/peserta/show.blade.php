@@ -193,6 +193,11 @@
                                         <div class="form-input"> : {{ $user->pendidikan_kepolisian ? $user->pendidikan_kepolisian->nama : '' }}</div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Skema Yang Pernah Diambail</label>
+                                        <div class="form-input"> : {{ $skema_diempuh }}</div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
