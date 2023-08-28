@@ -347,6 +347,12 @@ return [
             'icon' => 'fas fa-certificate',
             'can' => 'isAdmin',
         ],
+        [
+            'text' => 'Peserta',
+            'route' => 'admin.peserta.index',
+            'icon' => 'fas fa-users',
+            'can' => 'isAdmin',
+        ],
     ],
 
     /*

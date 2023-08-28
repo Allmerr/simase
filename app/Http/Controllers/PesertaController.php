@@ -351,8 +351,8 @@ class PesertaController extends Controller
 
     public function sertifikat()
     {
-        $status_pesertas = StatusPeserta::where('id_users', auth()->user()->id_users)->where('status', 'lulus')->get();
-
+        $status_pesertas = StatusPeserta::where('id_users', auth()->user()->id_users)->where('status', 'lulus')->where('file_sertifikat', '!=', '')->get();
+        
         return view('peserta.sertifikat', [
             'status_pesertas' => $status_pesertas,
         ]);

@@ -36,11 +36,11 @@ return new class extends Migration
             $table->text('keterampilan_khusus')->nullable();
 
             $table->unsignedInteger('id_satker')->nullable();
-            $table->foreign('id_satker')->references('id_satker')->on('satker')->onDelete('cascade');
+            $table->foreign('id_satker')->references('id_satker')->on('satker');
             $table->unsignedInteger('id_pangkat')->nullable();
-            $table->foreign('id_pangkat')->references('id_pangkat')->on('pangkat')->onDelete('cascade');
+            $table->foreign('id_pangkat')->references('id_pangkat')->on('pangkat');
             $table->unsignedInteger('id_pendidikan_kepolisian')->nullable();
-            $table->foreign('id_pendidikan_kepolisian')->references('id_pendidikan_kepolisian')->on('pendidikan_kepolisian')->onDelete('cascade');
+            $table->foreign('id_pendidikan_kepolisian')->references('id_pendidikan_kepolisian')->on('pendidikan_kepolisian');
 
             $table->string('photo')->default('nopp.png');
 
