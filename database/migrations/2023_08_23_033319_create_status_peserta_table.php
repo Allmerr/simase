@@ -24,6 +24,8 @@ return new class extends Migration
             $table->date('tanggal_notif_expired')->nullable();
             $table->date('tanggal_expired')->nullable();
 
+            $table->enum('sudah_servey', ['sudah', 'belum'])->default('belum');
+
             $table->unsignedInteger('id_skema')->nullable();
             $table->foreign('id_skema')->references('id_skema')->on('skema')->onDelete('cascade');
             $table->unsignedInteger('id_users')->nullable();

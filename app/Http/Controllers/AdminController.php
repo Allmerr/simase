@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Satker;
 use App\Models\Pangkat;
 use App\Models\PendidikanKepolisian;
+use App\Models\Survey;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -251,6 +252,12 @@ class AdminController extends Controller
         User::destroy($id_users);
 
         return redirect()->route('admin.operator.index')->with('success', 'Data telah terhapus');              
+    }
+
+    public function indexSurvey(){
+        return view('admin.survey.index', [
+            'surveys' => Survey::all(),
+        ]);
     }
 
 }

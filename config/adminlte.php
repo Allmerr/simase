@@ -309,6 +309,12 @@ return [
             'icon' => 'fas fa-certificate',
             'can' => 'isPeserta',
         ],
+        [
+            'text' => 'Survey',
+            'route' => 'peserta.survey.index',
+            'icon' => 'fas fa-poll-h',
+            'can' => 'isPeserta',
+        ],
         // admin
         [
             'text' => 'MASTER',
@@ -326,6 +332,14 @@ return [
                 [
                     'text' => 'Pendidikan Kepolisian',
                     'route' => 'pendidikan-kepolisian.index',
+                ],
+                [
+                    'text' => 'Peserta',
+                    'route' => 'admin.peserta.index',
+                ],
+                [
+                    'text' => 'Operator',
+                    'route' => 'admin.operator.index',
                 ],
             ],
         ],
@@ -348,15 +362,9 @@ return [
             'can' => 'isAdmin',
         ],
         [
-            'text' => 'Peserta',
-            'route' => 'admin.peserta.index',
-            'icon' => 'fas fa-users',
-            'can' => 'isAdmin',
-        ],
-        [
-            'text' => 'Operator',
-            'route' => 'admin.operator.index',
-            'icon' => 'fas fa-users-cog',
+            'text' => 'Survey',
+            'route' => 'admin.survey.index',
+            'icon' => 'fas fa-poll-h',
             'can' => 'isAdmin',
         ],
     ],

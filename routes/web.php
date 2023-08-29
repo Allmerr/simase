@@ -8,6 +8,7 @@ use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\SkemaController;
+use App\Http\Controllers\SurveyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,6 +57,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/peserta/notifikasi/{id_notifikasi}/detail', [PesertaController::class, 'notifikasiDetail'])->name('peserta.notifikasiDetail');
     Route::get('/peserta/status-pengajuan', [PesertaController::class, 'statusPengajuan'])->name('peserta.statusPengajuan');
     Route::get('/peserta/sertifikat', [PesertaController::class, 'sertifikat'])->name('peserta.sertifikat');
+    Route::get('/peserta/survey', [SurveyController::class, 'index'])->name('peserta.survey.index');
+    Route::get('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'create'])->name('peserta.survey.create');
+    Route::post('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'store'])->name('peserta.survey.store');
 
     // admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
@@ -82,7 +86,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/peserta/{id_user}/edit', [AdminController::class, 'editPeserta'])->name('admin.peserta.edit');
     Route::put('/admin/peserta/{id_user}/edit', [AdminController::class, 'updatePeserta'])->name('admin.peserta.update');
     Route::delete('/admin/peserta/{id_user}', [AdminController::class, 'destroyPeserta'])->name('admin.peserta.destroy');
-
     Route::get('/admin/operator', [AdminController::class, 'indexOperator'])->name('admin.operator.index');
     Route::get('/admin/operator/create', [AdminController::class, 'createOperator'])->name('admin.operator.create');
     Route::post('/admin/operator', [AdminController::class, 'storeOperator'])->name('admin.operator.store');
@@ -90,4 +93,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/operator/{id_user}/edit', [AdminController::class, 'editOperator'])->name('admin.operator.edit');
     Route::put('/admin/operator/{id_user}/edit', [AdminController::class, 'updateOperator'])->name('admin.operator.update');
     Route::delete('/admin/operator/{id_user}', [AdminController::class, 'destroyOperator'])->name('admin.operator.destroy');
+    Route::get('/admin/survey', [AdminController::class, 'indexSurvey'])->name('admin.survey.index');
 });
