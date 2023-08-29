@@ -82,4 +82,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/peserta/{id_user}/edit', [AdminController::class, 'editPeserta'])->name('admin.peserta.edit');
     Route::put('/admin/peserta/{id_user}/edit', [AdminController::class, 'updatePeserta'])->name('admin.peserta.update');
     Route::delete('/admin/peserta/{id_user}', [AdminController::class, 'destroyPeserta'])->name('admin.peserta.destroy');
+
+    Route::get('/admin/operator', [AdminController::class, 'indexOperator'])->name('admin.operator.index');
+    Route::get('/admin/operator/create', [AdminController::class, 'createOperator'])->name('admin.operator.create');
+    Route::post('/admin/operator', [AdminController::class, 'storeOperator'])->name('admin.operator.store');
+    Route::get('/admin/operator/{id_user}', [AdminController::class, 'showOperator'])->name('admin.operator.show');
+    Route::get('/admin/operator/{id_user}/edit', [AdminController::class, 'editOperator'])->name('admin.operator.edit');
+    Route::put('/admin/operator/{id_user}/edit', [AdminController::class, 'updateOperator'])->name('admin.operator.update');
+    Route::delete('/admin/operator/{id_user}', [AdminController::class, 'destroyOperator'])->name('admin.operator.destroy');
 });

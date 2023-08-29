@@ -167,4 +167,90 @@ class AdminController extends Controller
 
         return redirect()->route('admin.peserta.index')->with('success', 'A Profile Has Been Updated Successful!');
     }
+
+    public function indexOperator(){
+        return view('admin.operator.index', [
+            'users' => User::where('role', 'admin')->get(),
+        ]);
+    }
+
+    public function showOperator(){
+        //
+    }
+
+    public function createOperator(){
+        return view('admin.operator.create');
+    }
+
+    public function storeOperator(Request $request){
+        $rules = [
+            'nama_lengkap' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'no_telpon' => 'numeric',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        // Simpan data pengguna (users)
+        $user = new User();
+        $user->nama_lengkap = $validatedData['nama_lengkap'];
+        $user->email = $validatedData['email'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->no_telpon = $validatedData['no_telpon'];
+        $user->role = 'admin';
+
+        $user->save();
+
+        return redirect()->route('admin.operator.index')->with('success', 'A Operator Has Been Added Successful!');
+    }
+
+    public function editOperator(Request $request, $id_users){
+        return view('admin.operator.edit', [
+            'user' => User::where('role', 'admin')->where('id_users', $id_users)->get()[0],
+        ]);
+    }
+
+    public function updateOperator(Request $request, $id_users){
+        $user = User::where('role', 'admin')->where('id_users', $id_users)->get()[0];
+
+        $rules = [
+            'nama_lengkap' => 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
+            'no_telpon' => 'numeric',
+        ];
+
+        if($request->email != $user->email){
+            $rules['email'] = 'required|string|email|max:255|unique:users';
+        }
+        
+        $validatedData = $request->validate($rules);
+        
+        if($request->email != $user->email){
+            User::where('id_users', $id_users)->update([
+                'nama_lengkap' => $validatedData['nama_lengkap'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+                'no_telpon' => $validatedData['no_telpon'],
+            ]);
+
+        }else{
+            
+            User::where('id_users', $id_users)->update([
+                'nama_lengkap' => $validatedData['nama_lengkap'],
+                'password' => Hash::make($validatedData['password']),
+                'no_telpon' => $validatedData['no_telpon'],
+            ]);
+
+        }
+
+        return redirect()->route('admin.operator.index')->with('success', 'A Operator Has Been Edited Successful!');
+    }
+
+    public function destroyOperator(Request $request, $id_users){
+        User::destroy($id_users);
+
+        return redirect()->route('admin.operator.index')->with('success', 'Data telah terhapus');              
+    }
+
 }

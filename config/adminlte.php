@@ -353,6 +353,12 @@ return [
             'icon' => 'fas fa-users',
             'can' => 'isAdmin',
         ],
+        [
+            'text' => 'Operator',
+            'route' => 'admin.operator.index',
+            'icon' => 'fas fa-users-cog',
+            'can' => 'isAdmin',
+        ],
     ],
 
     /*
