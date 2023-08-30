@@ -17,7 +17,8 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama Skema</th>
-                                <th>Kode Skema</th>
+                                <th>Tanggal Pengajuan</th>
+                                <th>Jenis Pengajuan</th>
                                 <th>Status Pengajuan</th>
                                 <th>Aksi</th>
                             </tr>
@@ -27,16 +28,16 @@
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>{{ $pengajuan->skema->nama }}</td>
-                                <td>{{ $pengajuan->skema->kode }}</td>
+                                <td>{{ \Carbon\Carbon::parse($pengajuan->created_at)->format('d M Y') }}</td>
+                                <td>{{ $pengajuan->jenis_pengajuan }}</td>
                                 <td><b>{{ $pengajuan->is_disetujui }}</b></td>
                                 <td>
                                     @if($pengajuan->is_disetujui === 'revisi')
                                         <a href="{{ route('peserta.revisiSkema', $pengajuan->id_skema) }}" class="badge bg-warning">Revisi Pengajuan</a>
                                     @elseif($pengajuan->is_disetujui === 'ditolak')
                                         <a href="#" class="badge bg-danger">Daftar Kembali</a>
-                                    @elseif($pengajuan->is_disetujui === 'disetujui')
-                                        <a href="#" class="badge bg-primary">Detail</a>
                                     @endif
+                                        <a href="{{ route('peserta.detailSkema', $pengajuan->skema->id_skema) }}" class="badge bg-primary">Detail Skema</a>
                                 </td>
                             </tr>
                             @endforeach

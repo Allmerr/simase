@@ -34,6 +34,8 @@ return new class extends Migration
             $table->unsignedInteger('id_skema')->nullable();
             $table->foreign('id_skema')->references('id_skema')->on('skema')->onDelete('cascade');
 
+            $table->enum('jenis_pengajuan', ['baru', 'perpanjang'])->default('baru');
+
             $table->timestamps();
         });
     }

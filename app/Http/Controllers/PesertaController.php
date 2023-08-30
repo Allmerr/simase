@@ -233,6 +233,10 @@ class PesertaController extends Controller
         $pengajuan->id_skema = $validatedData['id_skema'];
         $pengajuan->is_disetujui = 'pending';
 
+        if(isset($validatedData['file_syarat_logbook'])){
+            $pengajuan->jenis_pengajuan = 'perpanjang';
+        }
+
         $pengajuan->save();
         $this->sendEmail($validatedData['id_users'], $validatedData['id_skema']);
 
