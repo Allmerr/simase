@@ -29,6 +29,9 @@
                         <label for="nama" class="form-label">Satuan Kerja : {{ $pengajuan->user->satker->nama }}</label>
                     </div>
                     <div class="mb-3">
+                        <label for="id_tuk" class="form-label">Tempat Uji Kompetensi (TUK) : {{ $pengajuan->tuk->nama }}</label>
+                    </div>
+                    <div class="mb-3">
                         <table class="table">
                             <thead>
                                 <tr>

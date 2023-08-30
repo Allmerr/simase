@@ -29,4 +29,9 @@ class Pengajuan extends Model
     {
         return $this->belongsTo(StatusPeserta::class, 'id_users', 'id_users');
     }
+
+    public function tuk()
+    {
+        return $this->belongsTo(Tuk::class, 'id_tuk', 'id_tuk');
+    }
 }

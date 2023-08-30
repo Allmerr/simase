@@ -32,6 +32,21 @@
                         <input type="text" class="form-control" value="{{ $pengajuan->catatan }}" disabled>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="id_tuk" class="form-label">Tempat Uji Kompetensi (TUK)</label>
+                        <select class="form-select @error('id_tuk') is-invalid @enderror" name="id_tuk" >
+                            @foreach ($tuks as $tuk)
+                                <option value="{{ $tuk->id_tuk }}" @if($tuk->id_tuk === old('tuk')) selected @endif>{{ $tuk->nama }} - {{ $tuk->alamat }}</option>
+                            @endforeach
+                        </select>
+                        @error('id_tuk')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_ktp'))
                     <div class="mb-3">
                         <label for="file_syarat_ktp" class="form-label">Dokumen Persyaratan KTP</label>
@@ -91,7 +106,7 @@
                     </div>
                     @endif
 
-                    <button type="submit" class="btn btn-outline-secondary">Daftar</button>
+                    <button type="submit" class="btn btn-outline-secondary">Ajukan Revisi</button>
                 </form>
             </div>
         </div>

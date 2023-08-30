@@ -73,52 +73,6 @@ class PengajuanController extends Controller
         //
     }
 
-    public function terima(Request $request, $id_pengajuan)
-    {
-        Pengajuan::where('id_pengajuan', $id_pengajuan)->update([
-            'is_disetujui' => 'disetujui',
-        ]);
-
-        $pengajuan = Pengajuan::find($id_pengajuan);
-
-        $this->sendEmail($pengajuan->id_users, $pengajuan->id_skema, $pengajuan->is_disetujui);
-        $this->sendNotifikasi($pengajuan);
-
-        $status_peserta = new StatusPeserta();
-
-        $status_peserta->status = 'diterima';
-        $status_peserta->id_skema = $pengajuan->id_skema;
-        $status_peserta->id_users = $pengajuan->id_users;
-
-        $status_peserta->save();
-
-        return redirect()->route('pengajuan.index')->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
-
-    }
-
-    public function tolak(Request $request, $id_pengajuan)
-    {
-        Pengajuan::where('id_pengajuan', $id_pengajuan)->update([
-            'is_disetujui' => 'tidak_disetujui',
-        ]);
-
-        $pengajuan = Pengajuan::find($id_pengajuan);
-
-        $this->sendEmail($pengajuan->id_users, $pengajuan->id_skema, $pengajuan->is_disetujui);
-        $this->sendNotifikasi($pengajuan);
-
-        return redirect()->route('pengajuan.index')->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
-
-    }
-
-    public function revisi(Request $request, $id_pengajuan)
-    {
-        $pengajuan = Pengajuan::find($id_pengajuan);
-
-        return view('admin.pengajuan.revisi', [
-            'pengajuan' => $pengajuan,
-        ]);
-    }
 
     public function saveRevisi(Request $request, $id_pengajuan)
     {

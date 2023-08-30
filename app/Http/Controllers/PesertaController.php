@@ -12,6 +12,7 @@ use App\Models\Satker;
 use App\Models\Skema;
 use App\Models\StatusPeserta;
 use App\Models\User;
+use App\Models\Tuk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -123,6 +124,7 @@ class PesertaController extends Controller
 
         return view('peserta.daftar_skema', [
             'skema' => $skema,
+            'tuks' => Tuk::all(),
         ]);
 
     }
@@ -135,6 +137,7 @@ class PesertaController extends Controller
         return view('peserta.revisi_skema', [
             'skema' => $skema,
             'pengajuan' => $pengajuan,
+            'tuks' => Tuk::all(),
         ]);
     }
 
@@ -145,6 +148,7 @@ class PesertaController extends Controller
 
         $validatedData['id_users'] = auth()->user()->id_users;
         $validatedData['id_skema'] = $skema->id_skema;
+        $validatedData['id_tuk'] = $request->id_tuk;
 
         if ($request->file('file_syarat_ktp')) {
             $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
@@ -164,6 +168,7 @@ class PesertaController extends Controller
 
         $pengajuan->id_users = $validatedData['id_users'];
         $pengajuan->id_skema = $validatedData['id_skema'];
+        $pengajuan->id_tuk = $validatedData['id_tuk'];
         $pengajuan->is_disetujui = 'pending_revisi';
 
         $pengajuan->update();
@@ -188,6 +193,7 @@ class PesertaController extends Controller
             'file_syarat_ktp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_kk' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_npwp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'id_tuk' => 'required'
         ];
 
         // sudah pernah pernah daftar
@@ -231,6 +237,7 @@ class PesertaController extends Controller
 
         $pengajuan->id_users = $validatedData['id_users'];
         $pengajuan->id_skema = $validatedData['id_skema'];
+        $pengajuan->id_tuk = $validatedData['id_tuk'];
         $pengajuan->is_disetujui = 'pending';
 
         if(isset($validatedData['file_syarat_logbook'])){
