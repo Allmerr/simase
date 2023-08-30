@@ -30,9 +30,11 @@ return new class extends Migration
             $table->enum('status_file_syarat_logbook', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
             $table->unsignedInteger('id_users')->nullable();
-            $table->foreign('id_users')->references('id_users')->on('users')->onDelete('cascade');
+            $table->foreign('id_users')->references('id_users')->on('users');
             $table->unsignedInteger('id_skema')->nullable();
-            $table->foreign('id_skema')->references('id_skema')->on('skema')->onDelete('cascade');
+            $table->foreign('id_skema')->references('id_skema')->on('skema');
+            $table->unsignedInteger('id_tuk')->nullable();
+            $table->foreign('id_tuk')->references('id_tuk')->on('tuk');
 
             $table->enum('jenis_pengajuan', ['baru', 'perpanjang'])->default('baru');
 

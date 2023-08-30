@@ -9,6 +9,7 @@ use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\SkemaController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\TukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -94,4 +95,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/admin/operator/{id_user}/edit', [AdminController::class, 'updateOperator'])->name('admin.operator.update');
     Route::delete('/admin/operator/{id_user}', [AdminController::class, 'destroyOperator'])->name('admin.operator.destroy');
     Route::get('/admin/survey', [AdminController::class, 'indexSurvey'])->name('admin.survey.index');
+    Route::resource('/admin/tuk', TukController::class);
 });

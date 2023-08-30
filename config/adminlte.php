@@ -334,6 +334,10 @@ return [
                     'route' => 'pendidikan-kepolisian.index',
                 ],
                 [
+                    'text' => 'Tempat Uji Kompetensi',
+                    'route' => 'tuk.index',
+                ],
+                [
                     'text' => 'Peserta',
                     'route' => 'admin.peserta.index',
                 ],

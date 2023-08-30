@@ -8,6 +8,7 @@ use App\Models\PendidikanKepolisian;
 use App\Models\Satker;
 use App\Models\Skema;
 use App\Models\User;
+use App\Models\Tuk;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        Tuk::factory(10)->create();
         Skema::factory(20)->create();
         Satker::factory(10)->create();
         Pangkat::factory(10)->create();
