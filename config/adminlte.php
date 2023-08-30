@@ -334,6 +334,10 @@ return [
                     'route' => 'pendidikan-kepolisian.index',
                 ],
                 [
+                    'text' => 'Provinsi',
+                    'route' => 'provinsi.index',
+                ],
+                [
                     'text' => 'Tempat Uji Kompetensi',
                     'route' => 'tuk.index',
                 ],
