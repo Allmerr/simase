@@ -96,6 +96,21 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
+                            
+                            @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
+
+                            @foreach($errors->all() as $error)
+                                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                                    {{ $error }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endforeach
+
                             <div class="active tab-pane" id="data-pribadi">
                                 <div class="card-body">
                                     <div class="form-group">
@@ -219,7 +234,7 @@
                     @csrf
                     <div class="mb-2">
                         <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                        <input type="name" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" aria-describedby="nama_lengkap" value="{{ old('nama_lengkap', $user->nama_lengkap) }}" name="nama_lengkap">
+                        <input type="name" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" aria-describedby="nama_lengkap" value="{{ old('nama_lengkap', $user->nama_lengkap) }}" name="nama_lengkap" required>
                         @error('nama_lengkap')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -228,7 +243,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="no_telpon" class="form-label">No Telephone</label>
-                        <input type="name" class="form-control @error('no_telpon') is-invalid @enderror" id="no_telpon" aria-describedby="no_telpon" value="{{ old('no_telpon', $user->no_telpon) }}" name="no_telpon">
+                        <input type="name" class="form-control @error('no_telpon') is-invalid @enderror" id="no_telpon" aria-describedby="no_telpon" value="{{ old('no_telpon', $user->no_telpon) }}" name="no_telpon" required>
                         @error('no_telpon')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -249,7 +264,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="nip" class="form-label">Nip</label>
-                        <input type="name" class="form-control @error('nip') is-invalid @enderror" id="nip" aria-describedby="nip" value="{{ $user->nip }}" name="nip">
+                        <input type="name" class="form-control @error('nip') is-invalid @enderror" id="nip" aria-describedby="nip" value="{{ $user->nip }}" name="nip" >
                         @error('nip')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -258,7 +273,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="nik" class="form-label">nik</label>
-                        <input type="name" class="form-control @error('nik') is-invalid @enderror" id="nik" aria-describedby="nik" value="{{ $user->nik }}" name="nik">
+                        <input type="name" class="form-control @error('nik') is-invalid @enderror" id="nik" aria-describedby="nik" value="{{ $user->nik }}" name="nik" required>
                         @error('nik')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -267,7 +282,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="jabatan" class="form-label">Jabatan</label>
-                        <input type="name" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan" aria-describedby="jabatan" value="{{ $user->jabatan }}" name="jabatan">
+                        <input type="name" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan" aria-describedby="jabatan" value="{{ $user->jabatan }}" name="jabatan" required>
                         @error('jabatan')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -276,7 +291,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                        <input type="name" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" aria-describedby="tempat_lahir" value="{{ $user->tempat_lahir }}" name="tempat_lahir">
+                        <input type="name" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" aria-describedby="tempat_lahir" value="{{ $user->tempat_lahir }}" name="tempat_lahir" required>
                         @error('tempat_lahir')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -285,7 +300,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                        <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" aria-describedby="tanggal_lahir" value="{{ $user->tanggal_lahir }}" name="tanggal_lahir">
+                        <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" aria-describedby="tanggal_lahir" value="{{ $user->tanggal_lahir }}" name="tanggal_lahir" required>
                         @error('tanggal_lahir')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -294,7 +309,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <input type="name" class="form-control @error('alamat') is-invalid @enderror" id="alamat" aria-describedby="alamat" value="{{ $user->alamat }}" name="alamat">
+                        <input type="name" class="form-control @error('alamat') is-invalid @enderror" id="alamat" aria-describedby="alamat" value="{{ $user->alamat }}" name="alamat" required>
                         @error('alamat')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -329,7 +344,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="dikbangspes" class="form-label">Pendidikan Pengembangan Spesialis (DIKBANGSPES)</label>
-                        <textarea class="form-control" name="dikbangspes" id="dikbangspes" cols="15" rows="3">{{ $user->dikbangspes }}</textarea>
+                        <textarea class="form-control" name="dikbangspes" id="dikbangspes" cols="15" rows="3" required>{{ $user->dikbangspes }}</textarea>
                         @error('dikbangspes')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -338,7 +353,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="pelatihan_diikuti" class="form-label">Pelatihan Yang Pernah Diikuti</label>
-                        <textarea class="form-control" name="pelatihan_diikuti" id="pelatihan_diikuti" cols="15" rows="3">{{ $user->pelatihan_diikuti }}</textarea>
+                        <textarea class="form-control" name="pelatihan_diikuti" id="pelatihan_diikuti" cols="15" rows="3" required>{{ $user->pelatihan_diikuti }}</textarea>
                         @error('pelatihan_diikuti')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -347,7 +362,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="keterampilan_khusus" class="form-label">Keterampilan Khusus</label>
-                        <textarea class="form-control" name="keterampilan_khusus" id="keterampilan_khusus" cols="15" rows="3">{{ $user->keterampilan_khusus }}</textarea>
+                        <textarea class="form-control" name="keterampilan_khusus" id="keterampilan_khusus" cols="15" rows="3" required>{{ $user->keterampilan_khusus }}</textarea>
                         @error('keterampilan_khusus')
                         <div class="invalid-feedback">
                             {{ $message }}

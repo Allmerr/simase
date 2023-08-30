@@ -15,6 +15,13 @@
             object-fit: contain
             margin: 20px 0;
         }
+
+        @media(max-width: 768px) {
+            .blog-content img {
+                width: 100%;
+                height: 100%;
+            }
+        }
     </style>
 @stop
 
@@ -25,25 +32,35 @@
             <div class="card-body">
                 <div class="container my-5">
                     <div class="blog-content">
-                        <h6 style="color:#696969">Create at {{ $skema->created_at }}</h6>
-                        <h1>{{ $skema->nama }}</h1>
-                        <a href="{{ route('peserta.daftarSkema', $skema->id_skema) }}" class="btn btn-outline-secondary">Daftar Skema</a>
-                        <br>
-                        <br>
-                        <a href="{{ asset('storage/skema/' . $skema->dokumen_persyaratan) }}" class="btn btn-primary">Lihat File Persyaratan</a>
-                        <br>
-                        <br>
+
                         @if ($skema->photo == 'noskema.png')
-                        <img src="{{ asset('/images/' . $skema->photo) }}" alt="">
+                        <img src="{{ asset('/images/' . $skema->photo) }}" alt="" style="margin-top:-40px;">
                         @else
-                        <img src="{{ asset('/storage/skema/' . $skema->photo) }}" alt="">
+                        <img src="{{ asset('/storage/skema/' . $skema->photo) }}" alt="" style="margin-top:-40px;">
                         @endif
+
                         <br>
                         <br>
+
+                        <h4 style="color:#696969">Kode Skema : {{ $skema->kode }}</h4>
+                        <h1>{{ $skema->nama }}</h1>
+
                         <div class="main">
                             {!! $skema->persyaratan !!}
                         </div>
+
                         <br>
+                        @if ($skema->photo == 'noskema.png')
+                        <a href="{{ asset('/images/' . $skema->dokumen_persyaratan) }}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i> Lihat File Persyaratan</a>
+                        @else
+                        <a href="{{ asset('/storage/skema/' . $skema->dokumen_persyaratan) }}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i> Lihat File Persyaratan</a>
+                        @endif
+                        <br>
+
+                        <br>
+                        <a href="{{ route('peserta.daftarSkema', $skema->id_skema) }}" class="btn btn-primary">Daftar Skema</a>
+                        <br>
+                        
                     </div>
                 </div>
             </div>

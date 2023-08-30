@@ -167,23 +167,8 @@
                     <section class="content inbox border rounded p-2">
                         <div class="container-fluid">
                             <div class="row clearfix">
-                                <div class="col-lg-12">
-                                    <div class="card action_bar">
-                                        <div class="body">
-                                            <div class="row clearfix">
-                                                <div class="col-lg-5 col-md-4 col-6">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="button-addon2" autofocus>
-                                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
-                                                    </div>
-                                                </div>                                                     
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>           
-                            </div>        
-                            <div class="row clearfix">
                                 <div class="col-md-12 col-lg-12 col-xl-12">
+                                    @if($notifikasis->count() > 0)
                                     <ul class="mail_list list-group list-unstyled">
                                         @foreach ($notifikasis as $notifikasi)
                                         <li class="list-group-item @if($notifikasi->is_dibaca === 'tidak_dibaca') unread @endif">
@@ -208,17 +193,9 @@
                                         </li>
                                         @endforeach
                                     </ul>
-                                    {{-- <div class="card m-t-5">
-                                        <div class="body">
-                                            <ul class="pagination pagination-primary m-b-0">
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                                <li class="page-item active"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
+                                    @else
+                                    <h3>Belum ada notifikasi</h3>
+                                    @endif
                                 </div>
                             </div>
                         </div>
