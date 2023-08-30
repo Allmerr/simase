@@ -20,6 +20,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Nama Skema</th>
+                                    <th>Jumlah Peserta</th>
                                     <th>Status Skema</th>
                                     <th>Opsi</th>
                                 </tr>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$skema->nama}}</td>
+                                    <td>{{ $skema->pengajuan()->distinct('id_users')->count() }}</td>
                                     <td>{{$skema->status}}</td>
                                     <td>
                                         <a href="{{ route('skema.show', $skema->id_skema) }}" class="btn btn-success btn-xs"><i class="fa fa-info"></i></a>

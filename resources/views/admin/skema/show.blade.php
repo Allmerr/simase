@@ -21,7 +21,7 @@
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link active" href="{{ route('skema.show', $skema->id_skema) }}">Deskripsi</a></li>
-                    <li class="nav-item"><a class="nav-link " href="{{ route('skema.pesertaSkema', $skema->id_skema) }}" >Peserta</a></li>
+                    <li class="nav-item"><a class="nav-link " href="{{ route('skema.pesertaSkema', $skema->id_skema) }}" >Peserta Aktif</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('skema.sertifikatSkema', $skema->id_skema) }}" >Peserta Lulus</a></li>
                 </ul>
             </div>
@@ -43,6 +43,9 @@
                         <label for="persyaratan" class="form-label">Persyaratan</label>
                         <br>
                         {!! $skema->persyaratan !!}
+                    </div>
+                    <div class="mb-3">
+                        <label for="file_syarat" class="form-label">File persyaratan yang dibutuhkan : {{ $skema->file_syarat }}</label>
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Skema photo</label>

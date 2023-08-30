@@ -65,6 +65,7 @@
                                             </thead>
                                             <tbody>
                                                 @foreach($pengajuans as $key => $pengajuan)
+                                                @if($pengajuan->is_disetujui === 'pending' || $pengajuan->is_disetujui === 'revisi' || $pengajuan->is_disetujui === 'pending_revisi' )
                                                 <tr>
                                                     <td>{{$key+1}}</td>
                                                     <td>{{$pengajuan->user->nama_lengkap}}</td>
@@ -72,6 +73,7 @@
                                                     <td>{{$pengajuan->skema->nama }}</td>
                                                     <td>{{$pengajuan->is_disetujui}}</td>
                                                 </tr>
+                                                @endif
                                                 @endforeach
                                             </tbody>
                                         </table>

@@ -123,7 +123,6 @@ class PengajuanController extends Controller
     public function saveRevisi(Request $request, $id_pengajuan)
     {
         $revisi = [
-            'is_disetujui' => 'revisi',
             'catatan' => $request->catatan,
             'is_disetujui' => $request->is_disetujui,
         ];
@@ -144,14 +143,17 @@ class PengajuanController extends Controller
         Pengajuan::where('id_pengajuan', $id_pengajuan)->update($revisi);
 
         $pengajuan = Pengajuan::find($id_pengajuan);
+        
+        if($revisi['is_disetujui'] == 'disetujui'){
 
-        $status_peserta = new StatusPeserta();
-
-        $status_peserta->status = 'diterima';
-        $status_peserta->id_skema = $pengajuan->id_skema;
-        $status_peserta->id_users = $pengajuan->id_users;
-
-        $status_peserta->save();
+            $status_peserta = new StatusPeserta();
+    
+            $status_peserta->status = 'diterima';
+            $status_peserta->id_skema = $pengajuan->id_skema;
+            $status_peserta->id_users = $pengajuan->id_users;
+    
+            $status_peserta->save();
+        }
 
         $this->sendEmail($pengajuan->id_users, $pengajuan->id_skema, $pengajuan->is_disetujui);
         $this->sendNotifikasi($pengajuan);

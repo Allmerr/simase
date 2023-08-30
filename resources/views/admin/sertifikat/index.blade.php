@@ -38,7 +38,7 @@
                                 <td>{{ $status_peserta->skema->nama }}</td>
                                 <td>{{ $status_peserta->tanggal_expired }}</td>
                                 <td>
-                                    <a href="{{ asset('/storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}">Lihat Sertifikat</a>
+                                    <a href="{{ asset('/storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}" class="btn btn-primary btn-xs" target="_blank"><i class="fas fa-download"></i></a>
                                 </td>
                                 <td>
                                     <a href="{{ route('sertifikat.edit', $status_peserta->id_status_peserta) }}" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>

@@ -27,6 +27,7 @@
                                     <th>Nama Peserta</th>
                                     <th>Satuan Kerja</th>
                                     <th>Nama Skema</th>
+                                    <th>Tanggal Pengajuan</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -38,6 +39,7 @@
                                     <td>{{$pengajuan->user->nama_lengkap}}</td>
                                     <td>{{$pengajuan->user->satker->nama}}</td>
                                     <td>{{$pengajuan->skema->nama }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($pengajuan->created_at)->format('d M Y') }}</td>
                                     <td>{{$pengajuan->is_disetujui}}</td>
                                     <td>
                                         <a href="{{ route('pengajuan.show', $pengajuan->id_pengajuan) }}" class="badge btn-primary"><i class="far fa-file-alt"></i> Check</a>

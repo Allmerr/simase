@@ -78,8 +78,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Ubah</button>
+                        <div class="col-md-2 d-flex">
+                            <a href="{{ route('skema.index') }}" class="btn btn-danger mr-2">Kembali</a>
+                            <button type="submit" class="btn btn-primary w-100">Tambah</button>
                         </div>
                     </div>
                 </form>

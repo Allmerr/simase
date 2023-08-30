@@ -202,8 +202,7 @@ class SkemaController extends Controller
     public function pesertaSkema(Request $request, $id_skema)
     {
         $skema = Skema::find($id_skema);
-        $pengajuans_diterima = Skema::find($id_skema)->pengajuan()->where('is_disetujui', 'disetujui')->get();
-
+        $pengajuans_diterima = Skema::find($id_skema)->status_peserta()->where('status', 'diterima')->get();
         return view('admin.skema.peserta', [
             'skema' => $skema,
             'pengajuans' => $pengajuans_diterima,
