@@ -150,12 +150,20 @@
 
                                     <div class="form-group">
                                         <label for="kota" class="form-label">Kota/Kabupaten</label>
-                                        <div class="form-input"> : {{ $user->kota }}</div>
+                                        @if(isset($user->kota_kabupaten))
+                                        <div class="form-input"> : {{ $user->kota_kabupaten->kode_kota_kabupaten }} - {{ $user->kota_kabupaten->nama_kota_kabupaten }}</div>
+                                        @else
+                                        <div class="form-input"> : </div>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">
                                         <label for="provinsi" class="form-label">Provinsi</label>
-                                        <div class="form-input"> : {{ $user->provinsi }}</div>
+                                        @if(isset($user->provinsi))
+                                        <div class="form-input"> : {{ $user->provinsi->kode_provinsi }} - {{ $user->provinsi->nama_provinsi }}</div>
+                                        @else
+                                        <div class="form-input"> : </div>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">

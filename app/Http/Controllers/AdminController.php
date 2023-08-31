@@ -10,6 +10,8 @@ use App\Models\Satker;
 use App\Models\Pangkat;
 use App\Models\PendidikanKepolisian;
 use App\Models\Survey;
+use App\Models\Provinsi;
+use App\Models\KotaKabupaten;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -57,6 +59,8 @@ class AdminController extends Controller
             'pangkats' => Pangkat::all(),
             'pendidikan_kepolisians' => PendidikanKepolisian::all(),
             'user' => User::where('role', 'peserta')->where('id_users', $id_users)->get()[0],
+            'provinsis' => Provinsi::all(),
+            'kota_kabupatens' => KotaKabupaten::all(),
         ]);
     }
 
@@ -72,8 +76,8 @@ class AdminController extends Controller
             'tempat_lahir' => 'string',
             'tanggal_lahir' => 'date',
             'alamat' => 'string',
-            'kota' => 'string',
-            'provinsi' => 'string',
+            'kode_kota_kabupaten' => '',
+            'kode_provinsi' => '',
             'pendidikan_terakhir' => 'string',
             'dikbangspes' => 'string',
             'pelatihan_diikuti' => 'string',
@@ -110,6 +114,8 @@ class AdminController extends Controller
             'satkers' => Satker::all(),
             'pangkats' => Pangkat::all(),
             'pendidikan_kepolisians' => PendidikanKepolisian::all(),
+            'provinsis' => Provinsi::all(),
+            'kota_kabupatens' => KotaKabupaten::all(),
         ]);
     }
 
@@ -127,8 +133,8 @@ class AdminController extends Controller
             'tempat_lahir' => 'string',
             'tanggal_lahir' => 'date',
             'alamat' => 'string',
-            'kota' => 'string',
-            'provinsi' => 'string',
+            'kode_kota_kabupaten' => 'string',
+            'kode_provinsi' => 'string',
             'pendidikan_terakhir' => 'string',
             'dikbangspes' => 'string',
             'pelatihan_diikuti' => 'string',
@@ -153,8 +159,8 @@ class AdminController extends Controller
         $user->tempat_lahir = $validatedData['tempat_lahir'];
         $user->tanggal_lahir = $validatedData['tanggal_lahir'];
         $user->alamat = $validatedData['alamat'];
-        $user->kota = $validatedData['kota'];
-        $user->provinsi = $validatedData['provinsi'];
+        $user->kode_kota_kabupaten = $validatedData['kode_kota_kabupaten'];
+        $user->kode_provinsi = $validatedData['kode_provinsi'];
         $user->pendidikan_terakhir = $validatedData['pendidikan_terakhir'];
         $user->dikbangspes = $validatedData['dikbangspes'];
         $user->pelatihan_diikuti = $validatedData['pelatihan_diikuti'];
