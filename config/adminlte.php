@@ -346,6 +346,10 @@ return [
                     'route' => 'kota-kabupaten.index',
                 ],
                 [
+                    'text' => 'Pekerjaan',
+                    'route' => 'pekerjaan.index',
+                ],
+                [
                     'text' => 'Tempat Uji Kompetensi',
                     'route' => 'tuk.index',
                 ],

@@ -13,6 +13,7 @@ use App\Http\Controllers\TukController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\PendidikanController;
+use App\Http\Controllers\PekerjaanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -103,4 +104,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/admin/provinsi', ProvinsiController::class);
     Route::resource('/admin/kota-kabupaten', KotaKabupatenController::class);
     Route::resource('/admin/pendidikan', PendidikanController::class);
+    Route::resource('/admin/pekerjaan', PekerjaanController::class);
 });

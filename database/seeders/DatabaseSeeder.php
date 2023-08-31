@@ -12,6 +12,7 @@ use App\Models\Tuk;
 use App\Models\Provinsi;
 use App\Models\KotaKabupaten;
 use App\Models\Pendidikan;
+use App\Models\Pekerjaan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
         KotaKabupaten::factory(40)->create();
         PendidikanKepolisian::factory(5)->create();
         Pendidikan::factory(7)->create();
+        Pekerjaan::factory(30)->create();
 
         User::create([
             'nama_lengkap' => 'Admin',
