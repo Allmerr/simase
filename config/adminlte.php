@@ -338,6 +338,10 @@ return [
                     'route' => 'provinsi.index',
                 ],
                 [
+                    'text' => 'Kota/Kabupaten',
+                    'route' => 'kota-kabupaten.index',
+                ],
+                [
                     'text' => 'Tempat Uji Kompetensi',
                     'route' => 'tuk.index',
                 ],

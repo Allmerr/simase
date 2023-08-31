@@ -11,6 +11,7 @@ use App\Http\Controllers\SkemaController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TukController;
 use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\KotaKabupatenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,4 +99,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/survey', [AdminController::class, 'indexSurvey'])->name('admin.survey.index');
     Route::resource('/admin/tuk', TukController::class);
     Route::resource('/admin/provinsi', ProvinsiController::class);
+    Route::resource('/admin/kota-kabupaten', KotaKabupatenController::class);
 });

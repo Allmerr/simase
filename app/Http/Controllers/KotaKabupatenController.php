@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KotaKabupaten;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
 class KotaKabupatenController extends Controller
@@ -12,7 +13,9 @@ class KotaKabupatenController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.kota_kabupaten.index', [
+            'kota_kabupatens' => KotaKabupaten::all(),
+        ]);
     }
 
     /**
@@ -20,7 +23,9 @@ class KotaKabupatenController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kota_kabupaten.create', [
+            'provinsis' => Provinsi::all(),
+        ]);
     }
 
     /**
@@ -28,7 +33,23 @@ class KotaKabupatenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'kode_provinsi' => 'required',
+            'nama_kota_kabupaten' => 'required',
+            'kode_kota_kabupaten' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        $kotaKabupaten = new KotaKabupaten();
+
+        $kotaKabupaten->kode_provinsi = $validatedData['kode_provinsi'];
+        $kotaKabupaten->nama_kota_kabupaten = $validatedData['nama_kota_kabupaten'];
+        $kotaKabupaten->kode_kota_kabupaten = $validatedData['kode_kota_kabupaten'];
+
+        $kotaKabupaten->save();
+
+        return redirect()->route('kota-kabupaten.index')->with('success', 'A Profile Has Been Updated Successful!');
     }
 
     /**
@@ -44,7 +65,10 @@ class KotaKabupatenController extends Controller
      */
     public function edit(KotaKabupaten $kotaKabupaten)
     {
-        //
+        return view('admin.kota_kabupaten.edit', [
+            'kota_kabupaten' => $kotaKabupaten,
+            'provinsis' => Provinsi::all(),
+        ]);
     }
 
     /**
@@ -52,7 +76,17 @@ class KotaKabupatenController extends Controller
      */
     public function update(Request $request, KotaKabupaten $kotaKabupaten)
     {
-        //
+        $rules = [
+            'kode_provinsi' => 'required',
+            'nama_kota_kabupaten' => 'required',
+            'kode_kota_kabupaten' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        KotaKabupaten::where('id_kota_kabupaten', $kotaKabupaten->id_kota_kabupaten)->update($validatedData);
+
+        return redirect()->route('kota-kabupaten.index', $kotaKabupaten->id_kota_kabupaten)->with('success', 'A Profile Has Been Updated Successful!');
     }
 
     /**
@@ -60,6 +94,8 @@ class KotaKabupatenController extends Controller
      */
     public function destroy(KotaKabupaten $kotaKabupaten)
     {
-        //
+        KotaKabupaten::destroy($kotaKabupaten->id_kota_kabupaten);
+
+        return redirect()->route('kota-kabupaten.index')->with('success', 'Data telah terhapus');
     }
 }
