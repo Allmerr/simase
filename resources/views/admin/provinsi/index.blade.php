@@ -34,8 +34,8 @@
                                 @foreach($provinsis as $key => $provinsi)
                                 <tr>
                                     <td>{{$key+1}}</td>
-                                    <td>{{$provinsi->kode}}</td>
-                                    <td>{{$provinsi->nama}}</td>
+                                    <td>{{$provinsi->kode_provinsi}}</td>
+                                    <td>{{$provinsi->nama_provinsi}}</td>
                                     <td>
                                         <a href="{{ route('provinsi.edit', $provinsi->id_provinsi) }}" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('provinsi.destroy', $provinsi->id_provinsi) }}" onclick="notificationBeforeDelete(event, this, <?php echo $key+1; ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>

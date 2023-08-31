@@ -17,8 +17,8 @@ class ProvinsiFactory extends Factory
     public function definition(): array
     {
         return [
-            'kode' => fake()->randomNumber(2, true),
-            'nama' => fake()->state(),
+            'kode_provinsi' => fake()->randomNumber(2, true),
+            'nama_provinsi' => fake()->state(),
         ];
     }
 }

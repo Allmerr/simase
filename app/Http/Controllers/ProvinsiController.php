@@ -31,16 +31,16 @@ class ProvinsiController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'kode' => 'required|string',
-            'nama' => 'required|string',
+            'kode_provinsi' => 'required|string',
+            'nama_provinsi' => 'required|string',
         ];
 
         $validatedData = $request->validate($rules);
 
         $provinsi = new Provinsi();
 
-        $provinsi->kode = $validatedData['kode'];
-        $provinsi->nama = $validatedData['nama'];
+        $provinsi->kode = $validatedData['kode_provinsi'];
+        $provinsi->nama = $validatedData['nama_provinsi'];
 
         $provinsi->save();
 
@@ -71,8 +71,8 @@ class ProvinsiController extends Controller
     public function update(Request $request, Provinsi $provinsi)
     {
         $rules = [
-            'kode' => 'required|string',
-            'nama' => 'required|string',
+            'kode_provinsi' => 'required|string',
+            'nama_provinsi' => 'required|string',
         ];
 
         $validatedData = $request->validate($rules);
