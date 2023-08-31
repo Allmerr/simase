@@ -330,6 +330,10 @@ return [
                     'route' => 'pangkat.index',
                 ],
                 [
+                    'text' => 'Pendidikan',
+                    'route' => 'pendidikan.index',
+                ],
+                [
                     'text' => 'Pendidikan Kepolisian',
                     'route' => 'pendidikan-kepolisian.index',
                 ],

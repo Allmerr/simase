@@ -12,6 +12,7 @@ use App\Models\PendidikanKepolisian;
 use App\Models\Survey;
 use App\Models\Provinsi;
 use App\Models\KotaKabupaten;
+use App\Models\Pendidikan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -61,6 +62,7 @@ class AdminController extends Controller
             'user' => User::where('role', 'peserta')->where('id_users', $id_users)->get()[0],
             'provinsis' => Provinsi::all(),
             'kota_kabupatens' => KotaKabupaten::all(),
+            'pendidikans' => Pendidikan::all(),
         ]);
     }
 
@@ -78,7 +80,7 @@ class AdminController extends Controller
             'alamat' => 'string',
             'kode_kota_kabupaten' => '',
             'kode_provinsi' => '',
-            'pendidikan_terakhir' => 'string',
+            'kode_pendidikan' => 'string',
             'dikbangspes' => 'string',
             'pelatihan_diikuti' => 'string',
             'keterampilan_khusus' => 'string',
@@ -116,6 +118,7 @@ class AdminController extends Controller
             'pendidikan_kepolisians' => PendidikanKepolisian::all(),
             'provinsis' => Provinsi::all(),
             'kota_kabupatens' => KotaKabupaten::all(),
+            'pendidikans' => Pendidikan::all(),
         ]);
     }
 
@@ -135,7 +138,7 @@ class AdminController extends Controller
             'alamat' => 'string',
             'kode_kota_kabupaten' => 'string',
             'kode_provinsi' => 'string',
-            'pendidikan_terakhir' => 'string',
+            'kode_pendidikan' => 'string',
             'dikbangspes' => 'string',
             'pelatihan_diikuti' => 'string',
             'keterampilan_khusus' => 'string',
@@ -161,7 +164,7 @@ class AdminController extends Controller
         $user->alamat = $validatedData['alamat'];
         $user->kode_kota_kabupaten = $validatedData['kode_kota_kabupaten'];
         $user->kode_provinsi = $validatedData['kode_provinsi'];
-        $user->pendidikan_terakhir = $validatedData['pendidikan_terakhir'];
+        $user->kode_pendidikan = $validatedData['kode_pendidikan'];
         $user->dikbangspes = $validatedData['dikbangspes'];
         $user->pelatihan_diikuti = $validatedData['pelatihan_diikuti'];
         $user->keterampilan_khusus = $validatedData['keterampilan_khusus'];
@@ -170,7 +173,6 @@ class AdminController extends Controller
         $user->id_pendidikan_kepolisian = $validatedData['id_pendidikan_kepolisian'];
 
         $user->save();
-
 
         return redirect()->route('admin.peserta.index')->with('success', 'A Profile Has Been Updated Successful!');
     }

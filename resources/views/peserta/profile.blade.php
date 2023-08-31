@@ -182,8 +182,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir</label>
-                                        <div class="form-input"> : {{ $user->pendidikan_terakhir }}</div>
+                                        <label for="pendidikan" class="form-label">Pendidikan</label>
+                                        <div class="form-input"> : {{ $user->pendidikan->nama_pendidikan }}</div>
                                     </div>
 
                                     <div class="form-group">
@@ -342,10 +342,11 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir</label>
-                        <select class="form-select" name="pendidikan_terakhir" >
-                            <option value="Sarjana" @if($user->pendidikan_terakhir == 'Sarjana' || old('pendidikan_terakhir')=='Sarjana' ) selected @endif>Sarjana</option>
-                            <option value="Magister" @if($user->pendidikan_terakhir == 'Magister' || old('pendidikan_terakhir')=='Magister' ) selected @endif>Magister</option>
+                        <label for="kode_pendidikan" class="form-label">Pendidikan Terakhir</label>
+                        <select class="form-select" name="kode_pendidikan" >
+                            @foreach ($pendidikans as $pendidikan)
+                                <option value="{{ $pendidikan->kode_pendidikan }}" @if($user->kode_pendidikan == $pendidikan->kode_pendidikan || old('pendidikan') == $pendidikan->kode_pendidikan ) selected @endif>{{ $pendidikan->nama_pendidikan }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">

@@ -84,7 +84,7 @@
                         <label for="id_tuk" class="form-label">Tempat Uji Kompetensi (TUK)</label>
                         <select class="form-select @error('id_tuk') is-invalid @enderror" name="id_tuk" >
                             @foreach ($tuks as $tuk)
-                                <option value="{{ $tuk->id_tuk }}" @if($pengajuan->id_tuk === $tuk->id_tuk || $tuk->id_tuk === old('tuk')) selected @endif>{{ $tuk->nama }} - {{ $tuk->alamat }}</option>
+                                <option value="{{ $tuk->id_tuk }}" @if( $tuk->id_tuk === old('tuk')) selected @endif>{{ $tuk->nama }} - {{ $tuk->alamat }}</option>
                             @endforeach
                         </select>
                         @error('id_tuk')

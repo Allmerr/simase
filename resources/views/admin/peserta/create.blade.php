@@ -142,10 +142,11 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir</label>
-                        <select class="form-select" name="pendidikan_terakhir" >
-                            <option value="Sarjana" @if(old('pendidikan_terakhir')=='Sarjana' ) selected @endif>Sarjana</option>
-                            <option value="Magister" @if(old('pendidikan_terakhir')=='Magister' ) selected @endif>Magister</option>
+                        <label for="kode_pendidikan" class="form-label">Pendidikan Terakhir</label>
+                        <select class="form-select" name="kode_pendidikan" >
+                            @foreach ($pendidikans as $pendidikan)
+                                <option value="{{ $pendidikan->kode_pendidikan }}" @if( old('pendidikan') == $pendidikan->kode_pendidikan ) selected @endif>{{ $pendidikan->nama_pendidikan }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">

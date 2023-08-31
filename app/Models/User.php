@@ -85,4 +85,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(KotaKabupaten::class, 'kode_kota_kabupaten', 'kode_kota_kabupaten');
     }
+
+    public function pendidikan()
+    {
+        return $this->belongsTo(Pendidikan::class, 'kode_pendidikan', 'kode_pendidikan');
+    }
 }

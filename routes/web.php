@@ -12,6 +12,7 @@ use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TukController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\KotaKabupatenController;
+use App\Http\Controllers\PendidikanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'create'])->name('peserta.survey.create');
     Route::post('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'store'])->name('peserta.survey.store');
     Route::get('/peserta/kota-kabupaten/get-kota-kabupaten/{kode_provinsi}', [PesertaController::class, 'getKotaKabupaten'])->name('peserta.getKotaKabupaten');
+    
     // admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
     Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');
@@ -100,4 +102,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/admin/tuk', TukController::class);
     Route::resource('/admin/provinsi', ProvinsiController::class);
     Route::resource('/admin/kota-kabupaten', KotaKabupatenController::class);
+    Route::resource('/admin/pendidikan', PendidikanController::class);
 });

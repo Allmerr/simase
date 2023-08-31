@@ -32,8 +32,8 @@ return new class extends Migration
             $table->foreign('kode_provinsi')->references('kode_provinsi')->on('provinsi');
             $table->unsignedInteger('kode_kota_kabupaten')->nullable();
             $table->foreign('kode_kota_kabupaten')->references('kode_kota_kabupaten')->on('kota_kabupaten');
-
-            $table->string('pendidikan_terakhir')->nullable();
+            $table->unsignedInteger('kode_pendidikan')->nullable();
+            $table->foreign('kode_pendidikan')->references('kode_pendidikan')->on('pendidikan');
 
             $table->text('dikbangspes')->nullable();
             $table->text('pelatihan_diikuti')->nullable();

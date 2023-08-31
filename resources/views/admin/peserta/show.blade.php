@@ -167,8 +167,12 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir</label>
-                                        <div class="form-input"> : {{ $user->pendidikan_terakhir }}</div>
+                                        <label for="pendidikan" class="form-label">pendidikan</label>
+                                        @if(isset($user->pendidikan))
+                                        <div class="form-input"> : {{ $user->pendidikan->nama_pendidikan }}</div>
+                                        @else
+                                        <div class="form-input"> : </div>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">
