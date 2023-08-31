@@ -16,6 +16,7 @@ use App\Models\Tuk;
 use App\Models\Provinsi;
 use App\Models\KotaKabupaten;
 use App\Models\Pendidikan;
+use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -38,6 +39,7 @@ class PesertaController extends Controller
             'provinsis' => Provinsi::all(),
             'kota_kabupatens' => KotaKabupaten::all(),
             'pendidikans' => Pendidikan::all(),
+            'pekerjaans' => Pekerjaan::all(),
         ]);
     }
 
@@ -57,6 +59,7 @@ class PesertaController extends Controller
             'kode_kota_kabupaten' => 'required',
             'kode_provinsi' => 'required',
             'kode_pendidikan' => 'required',
+            'kode_pekerjaan' => 'required',
             'dikbangspes' => 'required|string',
             'pelatihan_diikuti' => 'required|string',
             'keterampilan_khusus' => 'required|string',
@@ -307,6 +310,8 @@ class PesertaController extends Controller
         } elseif (! $user->id_pangkat) {
             return false;
         } elseif (! $user->id_pendidikan_kepolisian) {
+            return false;
+        }elseif(! $user->kode_pekerjaan){
             return false;
         }
 

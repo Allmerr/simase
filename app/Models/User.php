@@ -90,4 +90,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Pendidikan::class, 'kode_pendidikan', 'kode_pendidikan');
     }
+
+    public function pekerjaan()
+    {
+        return $this->belongsTo(Pekerjaan::class, 'kode_pekerjaan', 'kode_pekerjaan');
+    }
 }

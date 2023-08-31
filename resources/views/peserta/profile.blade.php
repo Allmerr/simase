@@ -183,7 +183,20 @@
 
                                     <div class="form-group">
                                         <label for="pendidikan" class="form-label">Pendidikan</label>
+                                        @if($user->pendidikan)
                                         <div class="form-input"> : {{ $user->pendidikan->nama_pendidikan }}</div>
+                                        @else
+                                        <div class="form-input"> :</div>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pekerjaan" class="form-label">pekerjaan</label>
+                                        @if($user->pekerjaan)
+                                        <div class="form-input"> : {{ $user->pekerjaan->nama_pekerjaan }}</div>
+                                        @else
+                                        <div class="form-input"> :</div>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">
@@ -346,6 +359,14 @@
                         <select class="form-select" name="kode_pendidikan" >
                             @foreach ($pendidikans as $pendidikan)
                                 <option value="{{ $pendidikan->kode_pendidikan }}" @if($user->kode_pendidikan == $pendidikan->kode_pendidikan || old('pendidikan') == $pendidikan->kode_pendidikan ) selected @endif>{{ $pendidikan->nama_pendidikan }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kode_pekerjaan" class="form-label">Pekerjaan</label>
+                        <select class="form-select" name="kode_pekerjaan" >
+                            @foreach ($pekerjaans as $pekerjaan)
+                                <option value="{{ $pekerjaan->kode_pekerjaan }}" @if($user->kode_pekerjaan == $pekerjaan->kode_pekerjaan || old('pekerjaan') == $pekerjaan->kode_pekerjaan ) selected @endif>{{ $pekerjaan->nama_pekerjaan }}</option>
                             @endforeach
                         </select>
                     </div>

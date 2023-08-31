@@ -13,6 +13,7 @@ use App\Models\Survey;
 use App\Models\Provinsi;
 use App\Models\KotaKabupaten;
 use App\Models\Pendidikan;
+use App\Models\Pekerjaan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -63,6 +64,7 @@ class AdminController extends Controller
             'provinsis' => Provinsi::all(),
             'kota_kabupatens' => KotaKabupaten::all(),
             'pendidikans' => Pendidikan::all(),
+            'pekerjaans' => Pekerjaan::all(),
         ]);
     }
 
@@ -80,7 +82,8 @@ class AdminController extends Controller
             'alamat' => 'string',
             'kode_kota_kabupaten' => '',
             'kode_provinsi' => '',
-            'kode_pendidikan' => 'string',
+            'kode_pendidikan' => '',
+            'kode_pekerjaan' => '',
             'dikbangspes' => 'string',
             'pelatihan_diikuti' => 'string',
             'keterampilan_khusus' => 'string',
@@ -119,6 +122,7 @@ class AdminController extends Controller
             'provinsis' => Provinsi::all(),
             'kota_kabupatens' => KotaKabupaten::all(),
             'pendidikans' => Pendidikan::all(),
+            'pekerjaans' => Pekerjaan::all(),
         ]);
     }
 
@@ -139,6 +143,7 @@ class AdminController extends Controller
             'kode_kota_kabupaten' => 'string',
             'kode_provinsi' => 'string',
             'kode_pendidikan' => 'string',
+            'kode_pekerjaan' => 'string',
             'dikbangspes' => 'string',
             'pelatihan_diikuti' => 'string',
             'keterampilan_khusus' => 'string',
@@ -165,6 +170,7 @@ class AdminController extends Controller
         $user->kode_kota_kabupaten = $validatedData['kode_kota_kabupaten'];
         $user->kode_provinsi = $validatedData['kode_provinsi'];
         $user->kode_pendidikan = $validatedData['kode_pendidikan'];
+        $user->kode_pekerjaan = $validatedData['kode_pekerjaan'];
         $user->dikbangspes = $validatedData['dikbangspes'];
         $user->pelatihan_diikuti = $validatedData['pelatihan_diikuti'];
         $user->keterampilan_khusus = $validatedData['keterampilan_khusus'];

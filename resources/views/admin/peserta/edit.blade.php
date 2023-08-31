@@ -124,6 +124,14 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="kode_pekerjaan" class="form-label">Pekerjaan</label>
+                        <select class="form-select" name="kode_pekerjaan" >
+                            @foreach ($pekerjaans as $pekerjaan)
+                                <option value="{{ $pekerjaan->kode_pekerjaan }}" @if($user->kode_pekerjaan == $pekerjaan->kode_pekerjaan || old('pekerjaan') == $pekerjaan->kode_pekerjaan ) selected @endif>{{ $pekerjaan->nama_pekerjaan }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="dikbangspes" class="form-label">Pendidikan Pengembangan Spesialis (DIKBANGSPES)</label>
                         <textarea class="form-control" name="dikbangspes" id="dikbangspes" cols="15" rows="3">{{ $user->dikbangspes }}</textarea>
                         @error('dikbangspes')

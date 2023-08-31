@@ -34,6 +34,8 @@ return new class extends Migration
             $table->foreign('kode_kota_kabupaten')->references('kode_kota_kabupaten')->on('kota_kabupaten');
             $table->unsignedInteger('kode_pendidikan')->nullable();
             $table->foreign('kode_pendidikan')->references('kode_pendidikan')->on('pendidikan');
+            $table->unsignedInteger('kode_pekerjaan')->nullable();
+            $table->foreign('kode_pekerjaan')->references('kode_pekerjaan')->on('pekerjaan');
 
             $table->text('dikbangspes')->nullable();
             $table->text('pelatihan_diikuti')->nullable();

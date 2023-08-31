@@ -176,6 +176,15 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="pekerjaan" class="form-label">pekerjaan</label>
+                                        @if(isset($user->pekerjaan))
+                                        <div class="form-input"> : {{ $user->pekerjaan->nama_pekerjaan }}</div>
+                                        @else
+                                        <div class="form-input"> : </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="dikbangspes" class="form-label">Pendidikan Pengembangan Spesialis (DIKBANGSPES)</label>
                                         <div class="form-input"> : {{ $user->dikbangspes }}</div>
                                     </div>
