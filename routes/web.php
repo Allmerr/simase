@@ -63,7 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/peserta/survey', [SurveyController::class, 'index'])->name('peserta.survey.index');
     Route::get('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'create'])->name('peserta.survey.create');
     Route::post('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'store'])->name('peserta.survey.store');
-
+    Route::get('/peserta/kota-kabupaten/get-kota-kabupaten/{kode_provinsi}', [PesertaController::class, 'getKotaKabupaten'])->name('peserta.getKotaKabupaten');
     // admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
     Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');

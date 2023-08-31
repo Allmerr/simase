@@ -164,13 +164,21 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="kota" class="form-label">Kota/Kabupaten</label>
-                                        <div class="form-input"> : {{ $user->kota }}</div>
+                                        <label for="provinsi" class="form-label">Provinsi</label>
+                                        @if($user->provinsi)
+                                        <div class="form-input"> : {{ $user->provinsi->kode_provinsi }} - {{ $user->provinsi->nama_provinsi }} </div>
+                                        @else
+                                        <div class="form-input"> :</div>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="provinsi" class="form-label">Provinsi</label>
-                                        <div class="form-input"> : {{ $user->provinsi }}</div>
+                                        <label for="kota" class="form-label">Kota/Kabupaten</label>
+                                        @if($user->kota_kabupaten)
+                                        <div class="form-input"> : {{ $user->kota_kabupaten->kode_kota_kabupaten }} - {{ $user->kota_kabupaten->nama_kota_kabupaten }} </div>
+                                        @else
+                                        <div class="form-input"> :</div>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">
@@ -317,22 +325,20 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="kota" class="form-label">Kota/Kabupaten</label>
-                        <select class="form-select @error('kota') is-invalid @enderror" name="kota" >
-                            <option value="Kota Bogor" @if($user->kota == 'Kota Bogor' || old('kota')=='Kota Bogor' ) selected @endif>Kota Bogor</option>
-                            <option value="Kab Kabupaten" @if($user->kota == 'Kab Kabupaten' || old('kota')=='Kab Kabupaten' ) selected @endif>Kab Kabupaten</option>
+                        <label for="kode_provinsi" class="form-label">Provinsi</label>
+                        <select class="form-select" name="kode_provinsi" id="kode_provinsi" >
+                            @foreach ($provinsis as $provinsi)
+                                <option value="{{ $provinsi->kode_provinsi }}" @if($user->kode_provinsi === $provinsi->kode_provinsi) selected @endif >{{ $provinsi->kode_provinsi }} - {{ $provinsi->nama_provinsi }}</option>
+                            @endforeach
                         </select>
-                        @error('alamat')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="provinsi" class="form-label">Provinsi</label>
-                        <select class="form-select" name="provinsi" >
-                            <option value="Jawa Barat" @if($user->provinsi == 'Jawa Barat' || old('provinsi')=='Jawa Barat' ) selected @endif>Jawa Barat</option>
-                            <option value="DKI Jakarta" @if($user->provinsi == 'DKI Jakarta' || old('provinsi')=='DKI Jakarta' ) selected @endif>DKI Jakarta</option>
+                    <div class="mb-3" id="kota_kabupaten_container">
+                        <label for="kode_kota_kabupaten">Pilih Kota/Kabupaten:</label>
+                        <small class="form-text text-muted">Kota/Kabupaten yang ditampilakan adalah Kota/Kabupaten yang telah dipilih berdasarkan provinsi</small>
+                        <select id="kode_kota_kabupaten" name="kode_kota_kabupaten" class="form-select">
+                            @foreach ($kota_kabupatens as $kota_kabupaten)
+                                <option value="{{ $kota_kabupaten->kode_kota_kabupaten }}" @if($user->kode_kota_kabupaten === $kota_kabupaten->kode_kota_kabupaten) selected @endif >{{ $kota_kabupaten->kode_kota_kabupaten }} - {{ $kota_kabupaten->nama_kota_kabupaten }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
@@ -456,10 +462,37 @@
 
 </script>
 <script>
-    function pilih(id, nama_pegawai) {
-        // Mengisi nilai input dengan data yang dipilih dari tabel
-        document.getElementById('selected_id_users').value = id;
-        document.getElementById('pegawai').value = nama_pegawai;
+    const url = '{{ url('/') }}';
+    const provinsiSelect = document.getElementById('kode_provinsi');
+    const kotaKabupatenContainer = document.getElementById('kota_kabupaten_container');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const provinsiSelectId = provinsiSelect.value;
+        fetchKabupatenKota(provinsiSelectId);
+    });
+
+    provinsiSelect.addEventListener('change', function() {
+        const provinsiSelectId = this.value;
+        fetchKabupatenKota(provinsiSelectId);
+    });
+
+    function fetchKabupatenKota(provinsiId) {
+        fetch( url + `/peserta/kota-kabupaten/get-kota-kabupaten/${provinsiId}`)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                // Perbarui tampilan dengan daftar user
+                kotaKabupatenContainer.innerHTML =  `
+                    <label for="kode_kota_kabupaten">Pilih Kota/Kabupaten:</label>
+                    <small class="form-text text-muted">Kota/Kabupaten yang ditampilakan adalah Kota/Kabupaten yang telah dipilih berdasarkan provinsi</small>
+                    <select id="kode_kota_kabupaten" name="kode_kota_kabupaten" class="form-select">
+                        ${data.kota_kabupatens.map(kota_kabupaten => {
+                            return `<option value="${kota_kabupaten.kode_kota_kabupaten}">${kota_kabupaten.kode_kota_kabupaten} | ${kota_kabupaten.nama_kota_kabupaten}</option>`;
+                        })}
+                    </select>
+                `;
+            });
     }
 
 </script>

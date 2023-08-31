@@ -75,4 +75,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(StatusPeserta::class, 'id_users', 'id_users');
     }
+
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class, 'kode_provinsi', 'kode_provinsi');
+    }
+
+    public function kota_kabupaten()
+    {
+        return $this->belongsTo(KotaKabupaten::class, 'kode_kota_kabupaten', 'kode_kota_kabupaten');
+    }
 }

@@ -13,6 +13,8 @@ use App\Models\Skema;
 use App\Models\StatusPeserta;
 use App\Models\User;
 use App\Models\Tuk;
+use App\Models\Provinsi;
+use App\Models\KotaKabupaten;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -32,6 +34,8 @@ class PesertaController extends Controller
             'satkers' => Satker::all(),
             'pangkats' => Pangkat::all(),
             'pendidikan_kepolisians' => PendidikanKepolisian::all(),
+            'provinsis' => Provinsi::all(),
+            'kota_kabupatens' => KotaKabupaten::all(),
         ]);
     }
 
@@ -48,8 +52,8 @@ class PesertaController extends Controller
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required|string',
-            'kota' => 'required|string',
-            'provinsi' => 'required|string',
+            'kode_kota_kabupaten' => 'required',
+            'kode_provinsi' => 'required',
             'pendidikan_terakhir' => 'required|string',
             'dikbangspes' => 'required|string',
             'pelatihan_diikuti' => 'required|string',
@@ -290,9 +294,9 @@ class PesertaController extends Controller
             return false;
         } elseif (! $user->alamat) {
             return false;
-        } elseif (! $user->kota) {
+        } elseif (! $user->kode_kota_kabupaten) {
             return false;
-        } elseif (! $user->provinsi) {
+        } elseif (! $user->kode_provinsi) {
             return false;
         } elseif (! $user->pendidikan_terakhir) {
             return false;
@@ -367,5 +371,12 @@ class PesertaController extends Controller
         return view('peserta.sertifikat', [
             'status_pesertas' => $status_pesertas,
         ]);
+    }
+
+    public function getKotaKabupaten($kode_provinsi)
+    {
+        $kotaKabupaten = KotaKabupaten::where('kode_provinsi', $kode_provinsi)->get();
+
+        return response()->json(['kota_kabupatens' => $kotaKabupaten]);
     }
 }

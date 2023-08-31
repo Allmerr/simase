@@ -27,8 +27,12 @@ return new class extends Migration
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('kota')->nullable();
-            $table->string('provinsi')->nullable();
+
+            $table->unsignedInteger('kode_provinsi')->nullable();
+            $table->foreign('kode_provinsi')->references('kode_provinsi')->on('provinsi');
+            $table->unsignedInteger('kode_kota_kabupaten')->nullable();
+            $table->foreign('kode_kota_kabupaten')->references('kode_kota_kabupaten')->on('kota_kabupaten');
+
             $table->string('pendidikan_terakhir')->nullable();
 
             $table->text('dikbangspes')->nullable();
