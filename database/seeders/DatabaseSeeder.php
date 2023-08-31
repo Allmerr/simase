@@ -10,6 +10,7 @@ use App\Models\Skema;
 use App\Models\User;
 use App\Models\Tuk;
 use App\Models\Provinsi;
+use App\Models\KotaKabupaten;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
         Satker::factory(10)->create();
         Pangkat::factory(10)->create();
         Provinsi::factory(20)->create();
+        KotaKabupaten::factory(40)->create();
         PendidikanKepolisian::factory(5)->create();
 
         User::create([

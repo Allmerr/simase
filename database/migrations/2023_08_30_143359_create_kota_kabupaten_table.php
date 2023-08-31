@@ -12,9 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kota_kabupaten', function (Blueprint $table) {
-            $table->increments('id_provinsi');
-            $table->string('kode');
-            $table->string('nama');
+            $table->increments('id_kota_kabupaten');
+
+            $table->unsignedInteger('kode_provinsi')->nullable();
+            $table->foreign('kode_provinsi')->references('kode_provinsi')->on('provinsi');
+
+            $table->string('kode_kota_kabupaten');
+            $table->string('nama_kota_kabupaten');
+            
             $table->timestamps();
         });
     }
