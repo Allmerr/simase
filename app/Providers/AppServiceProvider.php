@@ -3,8 +3,11 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\EmailConfiguration;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+
+use Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +24,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $mailsetting = EmailConfiguration::first();
+        if($mailsetting){
+            
+            config(['mail.mailers.smtp.host' => $mailsetting->host]);
+            config(['mail.mailers.smtp.port' => $mailsetting->port]);
+            config(['mail.mailers.smtp.encryption' => $mailsetting->tls]);
+            config(['mail.mailers.smtp.username' => $mailsetting->username]);
+            config(['mail.mailers.smtp.password' => $mailsetting->password]);
+            config(['mail.mailers.form.address' => $mailsetting->email]);
+            config(['mail.mailers.form.name' => 'simase']);
+
+        }
+
         Gate::define('isAdmin', function (User $user) {
             return $user->role === 'admin';
         });
