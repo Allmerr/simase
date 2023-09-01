@@ -13,6 +13,7 @@ use App\Models\Provinsi;
 use App\Models\KotaKabupaten;
 use App\Models\Pendidikan;
 use App\Models\Pekerjaan;
+use App\Models\EmailConfiguration;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -55,6 +56,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'kevinalmer4@gmail.com',
             'no_telpon' => '089611330331',
             'password' => '12345678',
+        ]);
+
+        EmailConfiguration::create([
+            'protocol' => 'smtp', // 'smtp', 'sendmail', 'mail', 'qmail
+            'host' => 'smtp.gmail.com',
+            'port' => '465',
+            'timeout' => '30',
+            'username' => 'kevinalmer.bisnis@gmail.com',
+            'email' => 'kevinalmer.bisnis@gmail.com',
+            'password' => 'szjnbcpcbkpvggte',
         ]);
 
     }

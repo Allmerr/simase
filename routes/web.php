@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'create'])->name('peserta.survey.create');
     Route::post('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'store'])->name('peserta.survey.store');
     Route::get('/peserta/kota-kabupaten/get-kota-kabupaten/{kode_provinsi}', [PesertaController::class, 'getKotaKabupaten'])->name('peserta.getKotaKabupaten');
+    // Route::get('/peserta/sendEmail')
     
     // admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
@@ -106,4 +107,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/admin/kota-kabupaten', KotaKabupatenController::class);
     Route::resource('/admin/pendidikan', PendidikanController::class);
     Route::resource('/admin/pekerjaan', PekerjaanController::class);
+    Route::get('/admin/email-configuration', [AdminController::class, 'emailConfigurationShow'])->name('admin.emailConfigurationShow');
+    Route::post('/admin/email-configuration', [AdminController::class, 'emailConfigurationUpdate'])->name('admin.emailConfigurationUpdate');
 });

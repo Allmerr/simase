@@ -391,6 +391,12 @@ return [
             'icon' => 'fas fa-poll-h',
             'can' => 'isAdmin',
         ],
+        [
+            'text' => 'Configuration Email',
+            'route' => 'admin.emailConfigurationUpdate',
+            'icon' => 'fas fa-envelope',
+            'can' => 'isAdmin',
+        ],
     ],
 
     /*

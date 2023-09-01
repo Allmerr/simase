@@ -14,6 +14,7 @@ use App\Models\Provinsi;
 use App\Models\KotaKabupaten;
 use App\Models\Pendidikan;
 use App\Models\Pekerjaan;
+use App\Models\EmailConfiguration;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -278,6 +279,31 @@ class AdminController extends Controller
         return view('admin.peserta.lulus-belum-bersertifikat', [
             'status_pesertas' => StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->get(),
         ]);
+    }
+
+    public function emailConfigurationShow(){
+        return view('admin.email_configuration.show', [
+            'email_configuration' => EmailConfiguration::all()[0],
+        ]);
+    }
+
+    public function emailConfigurationUpdate(Request $request){
+        $rules = [
+            'protocol' => 'required|string',
+            'host' => 'required|string',
+            'port' => 'required|string',
+            'timeout' => 'required|string',
+            'username' => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        EmailConfiguration::where('id_email_configuration', 1)->update($validatedData);
+
+        return redirect()->route('admin.emailConfigurationShow')->with('success', 'A Email Configuration Has Been Updated Successful!');
+
     }
 
 }
