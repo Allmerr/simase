@@ -361,6 +361,10 @@ return [
                     'text' => 'Operator',
                     'route' => 'admin.operator.index',
                 ],
+                [
+                    'text' => 'Lapor Sertifikat BNSP',
+                    'route' => 'admin.peserta.lulusBelumBersertifikat',
+                ],
             ],
         ],
         [

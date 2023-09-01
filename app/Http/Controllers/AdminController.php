@@ -274,4 +274,10 @@ class AdminController extends Controller
         ]);
     }
 
+    public function lulusBelumBersertifikat(){
+        return view('admin.peserta.lulus-belum-bersertifikat', [
+            'status_pesertas' => StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->get(),
+        ]);
+    }
+
 }

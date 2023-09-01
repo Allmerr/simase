@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/peserta', [AdminController::class, 'indexPeserta'])->name('admin.peserta.index');
     Route::get('/admin/peserta/create', [AdminController::class, 'createPeserta'])->name('admin.peserta.create');
     Route::post('/admin/peserta', [AdminController::class, 'storePeserta'])->name('admin.peserta.store');
+    Route::get('/admin/peserta/lulus-belum-bersertifikat', [AdminController::class, 'lulusBelumBersertifikat'])->name('admin.peserta.lulusBelumBersertifikat');
     Route::get('/admin/peserta/{id_user}', [AdminController::class, 'showPeserta'])->name('admin.peserta.show');
     Route::get('/admin/peserta/{id_user}/edit', [AdminController::class, 'editPeserta'])->name('admin.peserta.edit');
     Route::put('/admin/peserta/{id_user}/edit', [AdminController::class, 'updatePeserta'])->name('admin.peserta.update');
