@@ -17,14 +17,38 @@ return new class extends Migration
             $table->enum('is_disetujui', ['disetujui', 'tidak_disetujui', 'pending', 'revisi', 'pending_revisi'])->default('pending');
             $table->text('catatan')->nullable();
 
-            $table->string('file_syarat_ktp')->nullable();
-            $table->enum('status_file_syarat_ktp', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            $table->string('file_syarat_ijazah_terakhir')->nullable();
+            $table->enum('status_file_syarat_ijazah_terakhir', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
-            $table->string('file_syarat_kk')->nullable();
-            $table->enum('status_file_syarat_kk', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            $table->string('file_syarat_sertifikat_pelatihan')->nullable();
+            $table->enum('status_file_syarat_sertifikat_pelatihan', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
-            $table->string('file_syarat_npwp')->nullable();
-            $table->enum('status_file_syarat_npwp', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            $table->string('file_syarat_sk_penempatan')->nullable();
+            $table->enum('status_file_syarat_sk_penempatan', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+
+            $table->string('file_syarat_sk_bebas_narkoba')->nullable();
+            $table->enum('status_file_syarat_sk_bebas_narkoba', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+
+            $table->string('file_syarat_sk_sehat')->nullable();
+            $table->enum('status_file_syarat_sk_sehat', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+
+            $table->string('file_syarat_surat_rekomendasi_satker')->nullable();
+            $table->enum('status_file_syarat_surat_rekomendasi_satker', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            
+            $table->string('file_syarat_nilai_e_rohani')->nullable();
+            $table->enum('status_file_syarat_nilai_e_rohani', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            
+            $table->string('file_syarat_smk_skp_terakhir')->nullable();
+            $table->enum('status_file_syarat_smk_skp_terakhir', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            
+            $table->string('file_syarat_cv')->nullable();
+            $table->enum('status_file_syarat_cv', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            
+            $table->string('file_syarat_photo_3x4')->nullable();
+            $table->enum('status_file_syarat_photo_3x4', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            
+            $table->string('file_syarat_photo_4x6')->nullable();
+            $table->enum('status_file_syarat_photo_4x6', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
             $table->string('file_syarat_logbook')->nullable();
             $table->enum('status_file_syarat_logbook', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();

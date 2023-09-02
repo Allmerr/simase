@@ -17,7 +17,20 @@ class SkemaFactory extends Factory
      */
     public function definition(): array
     {
-        $possibleValues = ['file_syarat_ktp', 'file_syarat_kk', 'file_syarat_npwp'];
+        $possibleValues = [
+            'file_syarat_ijazah_terakhir',
+            'file_syarat_sertifikat_pelatihan',
+            'file_syarat_sk_penempatan',
+            'file_syarat_sk_bebas_narkoba',
+            'file_syarat_sk_sehat',
+            'file_syarat_surat_rekomendasi_satker',
+            'file_syarat_nilai_e_rohani',
+            'file_syarat_smk_skp_terakhir',
+            'file_syarat_cv',
+            'file_syarat_photo_3x4',
+            'file_syarat_photo_4x6',
+        ];
+        
         $combinationLength = fake()->numberBetween(1, count($possibleValues));
 
         $randomCombination = fake()->randomElements($possibleValues, $combinationLength);

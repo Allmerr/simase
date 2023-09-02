@@ -81,15 +81,41 @@ class PengajuanController extends Controller
             'is_disetujui' => $request->is_disetujui,
         ];
 
-        if (isset($request->file_syarat_ktp)) {
-            $revisi['status_file_syarat_ktp'] = $request->file_syarat_ktp;
+        if (isset($request->file_syarat_ijazah_terakhir)) {
+            $revisi['status_file_syarat_ijazah_terakhir'] = $request->file_syarat_ijazah_terakhir;
         }
-        if (isset($request->file_syarat_kk)) {
-            $revisi['status_file_syarat_kk'] = $request->file_syarat_kk;
+        if (isset($request->file_syarat_sertifikat_pelatihan)) {
+            $revisi['status_file_syarat_sertifikat_pelatihan'] = $request->file_syarat_sertifikat_pelatihan;
         }
-        if (isset($request->file_syarat_npwp)) {
-            $revisi['status_file_syarat_npwp'] = $request->file_syarat_npwp;
+        if (isset($request->file_syarat_sk_penempatan)) {
+            $revisi['status_file_syarat_sk_penempatan'] = $request->file_syarat_sk_penempatan;
         }
+        if (isset($request->file_syarat_sk_bebas_narkoba)) {
+            $revisi['status_file_syarat_sk_bebas_narkoba'] = $request->file_syarat_sk_bebas_narkoba;
+        }
+        if (isset($request->file_syarat_sk_sehat)) {
+            $revisi['status_file_syarat_sk_sehat'] = $request->file_syarat_sk_sehat;
+        }
+        if (isset($request->file_syarat_surat_rekomendasi_satker)) {
+            $revisi['status_file_syarat_surat_rekomendasi_satker'] = $request->file_syarat_surat_rekomendasi_satker;
+        }
+        if (isset($request->file_syarat_nilai_e_rohani)) {
+            $revisi['status_file_syarat_nilai_e_rohani'] = $request->file_syarat_nilai_e_rohani;
+        }
+        if (isset($request->file_syarat_smk_skp_terakhir)) {
+            $revisi['status_file_syarat_smk_skp_terakhir'] = $request->file_syarat_smk_skp_terakhir;
+        }
+        if (isset($request->file_syarat_smk_skp_terakhir)) {
+            $revisi['status_file_syarat_smk_skp_terakhir'] = $request->file_syarat_smk_skp_terakhir;
+        }
+        if (isset($request->file_syarat_photo_3x4)) {
+            $revisi['status_file_syarat_photo_3x4'] = $request->file_syarat_photo_3x4;
+        }
+        if (isset($request->file_syarat_photo_4x6)) {
+            $revisi['status_file_syarat_photo_4x6'] = $request->file_syarat_photo_4x6;
+        }
+        
+
         if (isset($request->file_syarat_logbook)) {
             $revisi['status_file_syarat_logbook'] = $request->file_syarat_logbook;
         }

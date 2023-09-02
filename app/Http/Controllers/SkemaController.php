@@ -45,14 +45,38 @@ class SkemaController extends Controller
 
         $fileSyarat = '';
 
-        if (isset($request->file_syarat_ktp)) {
-            $fileSyarat .= ',file_syarat_ktp';
+        if (isset($request->file_syarat_ijazah_terakhir)) {
+            $fileSyarat .= ',file_syarat_ijazah_terakhir';
         }
-        if (isset($request->file_syarat_kk)) {
-            $fileSyarat .= ',file_syarat_kk';
+        if (isset($request->file_syarat_sertifikat_pelatihan)) {
+            $fileSyarat .= ',file_syarat_sertifikat_pelatihan';
         }
-        if (isset($request->file_syarat_npwp)) {
-            $fileSyarat .= ',file_syarat_npwp';
+        if (isset($request->file_syarat_sk_penempatan)) {
+            $fileSyarat .= ',file_syarat_sk_penempatan';
+        }
+        if (isset($request->file_syarat_sk_bebas_narkoba)) {
+            $fileSyarat .= ',file_syarat_sk_bebas_narkoba';
+        }
+        if (isset($request->file_syarat_sk_sehat)) {
+            $fileSyarat .= ',file_syarat_sk_sehat';
+        }
+        if (isset($request->file_syarat_surat_rekomendasi_satker)) {
+            $fileSyarat .= ',file_syarat_surat_rekomendasi_satker';
+        }
+        if (isset($request->file_syarat_nilai_e_rohani)) {
+            $fileSyarat .= ',file_syarat_nilai_e_rohani';
+        }
+        if (isset($request->file_syarat_smk_skp_terakhir)) {
+            $fileSyarat .= ',file_syarat_smk_skp_terakhir';
+        }
+        if (isset($request->file_syarat_cv)) {
+            $fileSyarat .= ',file_syarat_cv';
+        }
+        if (isset($request->file_syarat_photo_3x4)) {
+            $fileSyarat .= ',file_syarat_photo_3x4';
+        }
+        if (isset($request->file_syarat_photo_4x6)) {
+            $fileSyarat .= ',file_syarat_photo_4x6';
         }
 
         if ($fileSyarat !== '') {
@@ -125,14 +149,38 @@ class SkemaController extends Controller
 
         $fileSyarat = '';
 
-        if (isset($request->file_syarat_ktp)) {
-            $fileSyarat .= ',file_syarat_ktp';
+        if (isset($request->file_syarat_ijazah_terakhir)) {
+            $fileSyarat .= ',file_syarat_ijazah_terakhir';
         }
-        if (isset($request->file_syarat_kk)) {
-            $fileSyarat .= ',file_syarat_kk';
+        if (isset($request->file_syarat_sertifikat_pelatihan)) {
+            $fileSyarat .= ',file_syarat_sertifikat_pelatihan';
         }
-        if (isset($request->file_syarat_npwp)) {
-            $fileSyarat .= ',file_syarat_npwp';
+        if (isset($request->file_syarat_sk_penempatan)) {
+            $fileSyarat .= ',file_syarat_sk_penempatan';
+        }
+        if (isset($request->file_syarat_sk_bebas_narkoba)) {
+            $fileSyarat .= ',file_syarat_sk_bebas_narkoba';
+        }
+        if (isset($request->file_syarat_sk_sehat)) {
+            $fileSyarat .= ',file_syarat_sk_sehat';
+        }
+        if (isset($request->file_syarat_surat_rekomendasi_satker)) {
+            $fileSyarat .= ',file_syarat_surat_rekomendasi_satker';
+        }
+        if (isset($request->file_syarat_nilai_e_rohani)) {
+            $fileSyarat .= ',file_syarat_nilai_e_rohani';
+        }
+        if (isset($request->file_syarat_smk_skp_terakhir)) {
+            $fileSyarat .= ',file_syarat_smk_skp_terakhir';
+        }
+        if (isset($request->file_syarat_cv)) {
+            $fileSyarat .= ',file_syarat_cv';
+        }
+        if (isset($request->file_syarat_photo_3x4)) {
+            $fileSyarat .= ',file_syarat_photo_3x4';
+        }
+        if (isset($request->file_syarat_photo_4x6)) {
+            $fileSyarat .= ',file_syarat_photo_4x6';
         }
 
         if ($fileSyarat !== '') {

@@ -159,18 +159,41 @@ class PesertaController extends Controller
         $validatedData['id_skema'] = $skema->id_skema;
         $validatedData['id_tuk'] = $request->id_tuk;
 
-        if ($request->file('file_syarat_ktp')) {
-            $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
+        if ($request->file('file_syarat_ijazah_terakhir')) {
+            $pengajuan->file_syarat_ijazah_terakhir = $validatedData['file_syarat_ijazah_terakhir'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ijazah_terakhir')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sertifikat_pelatihan')) {
+            $pengajuan->file_syarat_sertifikat_pelatihan = $validatedData['file_syarat_sertifikat_pelatihan'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sertifikat_pelatihan')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sk_penempatan')) {
+            $pengajuan->file_syarat_sk_penempatan = $validatedData['file_syarat_sk_penempatan'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sk_penempatan')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sk_bebas_narkoba')) {
+            $pengajuan->file_syarat_sk_bebas_narkoba = $validatedData['file_syarat_sk_bebas_narkoba'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sk_bebas_narkoba')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sk_sehat')) {
+            $pengajuan->file_syarat_sk_sehat = $validatedData['file_syarat_sk_sehat'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sk_sehat')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_surat_rekomendasi_satker')) {
+            $pengajuan->file_syarat_surat_rekomendasi_satker = $validatedData['file_syarat_surat_rekomendasi_satker'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_surat_rekomendasi_satker')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_nilai_e_rohani')) {
+            $pengajuan->file_syarat_nilai_e_rohani = $validatedData['file_syarat_nilai_e_rohani'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_nilai_e_rohani')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_smk_skp_terakhir')) {
+            $pengajuan->file_syarat_smk_skp_terakhir = $validatedData['file_syarat_smk_skp_terakhir'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_smk_skp_terakhir')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_cv')) {
+            $pengajuan->file_syarat_cv = $validatedData['file_syarat_cv'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_cv')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_photo_3x4')) {
+            $pengajuan->file_syarat_photo_3x4 = $validatedData['file_syarat_photo_3x4'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_3x4')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_photo_4x6')) {
+            $pengajuan->file_syarat_photo_4x6 = $validatedData['file_syarat_photo_4x6'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_4x6')->store('public/file_syarat'));
         }
 
-        if ($request->file('file_syarat_kk')) {
-            $pengajuan->file_syarat_kk = $validatedData['file_syarat_kk'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_kk')->store('public/file_syarat'));
-        }
-
-        if ($request->file('file_syarat_npwp')) {
-            $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
-        }
-
+        
         if ($request->file('file_syarat_logbook')) {
             $pengajuan->file_syarat_logbook = $validatedData['file_syarat_logbook'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_logbook')->store('public/file_syarat'));
         }
@@ -199,9 +222,17 @@ class PesertaController extends Controller
         $hasBeenLulus = StatusPeserta::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->get();
 
         $rules = [
-            'file_syarat_ktp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
-            'file_syarat_kk' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
-            'file_syarat_npwp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_ijazah_terakhir' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_sertifikat_pelatihan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_sk_penempatan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_sk_bebas_narkoba' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_sk_sehat' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_surat_rekomendasi_satker' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_nilai_e_rohani' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_smk_skp_terakhir' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_cv' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_photo_3x4' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_photo_4x6' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'id_tuk' => 'required'
         ];
 
@@ -228,16 +259,38 @@ class PesertaController extends Controller
 
         $pengajuan = new Pengajuan();
 
-        if ($request->file('file_syarat_ktp')) {
-            $pengajuan->file_syarat_ktp = $validatedData['file_syarat_ktp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ktp')->store('public/file_syarat'));
+        if ($request->file('file_syarat_ijazah_terakhir')) {
+            $pengajuan->file_syarat_ijazah_terakhir = $validatedData['file_syarat_ijazah_terakhir'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_ijazah_terakhir')->store('public/file_syarat'));
         }
-
-        if ($request->file('file_syarat_kk')) {
-            $pengajuan->file_syarat_kk = $validatedData['file_syarat_kk'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_kk')->store('public/file_syarat'));
+        if ($request->file('file_syarat_sertifikat_pelatihan')) {
+            $pengajuan->file_syarat_sertifikat_pelatihan = $validatedData['file_syarat_sertifikat_pelatihan'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sertifikat_pelatihan')->store('public/file_syarat'));
         }
-
-        if ($request->file('file_syarat_npwp')) {
-            $pengajuan->file_syarat_npwp = $validatedData['file_syarat_npwp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_npwp')->store('public/file_syarat'));
+        if ($request->file('file_syarat_sk_penempatan')) {
+            $pengajuan->file_syarat_sk_penempatan = $validatedData['file_syarat_sk_penempatan'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sk_penempatan')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sk_bebas_narkoba')) {
+            $pengajuan->file_syarat_sk_bebas_narkoba = $validatedData['file_syarat_sk_bebas_narkoba'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sk_bebas_narkoba')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sk_sehat')) {
+            $pengajuan->file_syarat_sk_sehat = $validatedData['file_syarat_sk_sehat'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sk_sehat')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_surat_rekomendasi_satker')) {
+            $pengajuan->file_syarat_surat_rekomendasi_satker = $validatedData['file_syarat_surat_rekomendasi_satker'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_surat_rekomendasi_satker')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_nilai_e_rohani')) {
+            $pengajuan->file_syarat_nilai_e_rohani = $validatedData['file_syarat_nilai_e_rohani'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_nilai_e_rohani')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_smk_skp_terakhir')) {
+            $pengajuan->file_syarat_smk_skp_terakhir = $validatedData['file_syarat_smk_skp_terakhir'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_smk_skp_terakhir')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_cv')) {
+            $pengajuan->file_syarat_cv = $validatedData['file_syarat_cv'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_cv')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_photo_3x4')) {
+            $pengajuan->file_syarat_photo_3x4 = $validatedData['file_syarat_photo_3x4'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_3x4')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_photo_4x6')) {
+            $pengajuan->file_syarat_photo_4x6 = $validatedData['file_syarat_photo_4x6'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_4x6')->store('public/file_syarat'));
         }
 
         if ($request->file('file_syarat_logbook')) {
