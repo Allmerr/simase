@@ -29,24 +29,24 @@ return new class extends Migration
             $table->string('alamat')->nullable();
 
             $table->unsignedInteger('kode_provinsi')->nullable();
-            $table->foreign('kode_provinsi')->references('kode_provinsi')->on('provinsi');
+            $table->foreign('kode_provinsi')->references('kode_provinsi')->on('provinsi')->onDelete('cascade');
             $table->unsignedInteger('kode_kota_kabupaten')->nullable();
-            $table->foreign('kode_kota_kabupaten')->references('kode_kota_kabupaten')->on('kota_kabupaten');
+            $table->foreign('kode_kota_kabupaten')->references('kode_kota_kabupaten')->on('kota_kabupaten')->onDelete('cascade');
             $table->unsignedInteger('kode_pendidikan')->nullable();
-            $table->foreign('kode_pendidikan')->references('kode_pendidikan')->on('pendidikan');
+            $table->foreign('kode_pendidikan')->references('kode_pendidikan')->on('pendidikan')->onDelete('cascade');
             $table->unsignedInteger('kode_pekerjaan')->nullable();
-            $table->foreign('kode_pekerjaan')->references('kode_pekerjaan')->on('pekerjaan');
+            $table->foreign('kode_pekerjaan')->references('kode_pekerjaan')->on('pekerjaan')->onDelete('cascade');
 
             $table->text('dikbangspes')->nullable();
             $table->text('pelatihan_diikuti')->nullable();
             $table->text('keterampilan_khusus')->nullable();
 
             $table->unsignedInteger('id_satker')->nullable();
-            $table->foreign('id_satker')->references('id_satker')->on('satker');
+            $table->foreign('id_satker')->references('id_satker')->on('satker')->onDelete('cascade');
             $table->unsignedInteger('id_pangkat')->nullable();
-            $table->foreign('id_pangkat')->references('id_pangkat')->on('pangkat');
+            $table->foreign('id_pangkat')->references('id_pangkat')->on('pangkat')->onDelete('cascade');
             $table->unsignedInteger('id_pendidikan_kepolisian')->nullable();
-            $table->foreign('id_pendidikan_kepolisian')->references('id_pendidikan_kepolisian')->on('pendidikan_kepolisian');
+            $table->foreign('id_pendidikan_kepolisian')->references('id_pendidikan_kepolisian')->on('pendidikan_kepolisian')->onDelete('cascade');
 
             $table->string('photo')->default('nopp.png');
 
