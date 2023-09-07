@@ -7,8 +7,6 @@
 @stop
 
 @section('content')
-
-{{-- @dd($skemas) --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -46,22 +44,10 @@
 @stop
 
 @push('js')
-<form action="" id="delete-form" method="post">
-    @method('delete')
-    @csrf
-</form>
 <script>
 $('#example2').DataTable({
     "responsive": true,
 });
-
-@if(session()->has('success'))
-    Swal.fire({
-        title: 'Berhasil Mendaftar!',
-        text: '{{  session('success') }}',
-        icon: 'success'
-    });
-@endif
 </script>
 @endpush
 

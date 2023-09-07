@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Peserta')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Pengajuan</h1>
+    <h1 class="m-0 text-dark">Peserta</h1>
 @stop
 
 @section('content')
@@ -13,13 +13,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('admin.peserta.create') }}" class="btn btn-primary mb-2">Tambah</a>
+                    <a href="{{ route('admin.peserta.create') }}" class="btn btn-primary mb-2">Create</a>
                     @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                         {{ session('success') }}
                     </div>
                     @endif
-                    {{-- <a href="{{ route('pengajuan.create') }}" class="btn btn-primary mb-2">Tambah</a> --}}
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-stripped" id="example2">
                             <thead>

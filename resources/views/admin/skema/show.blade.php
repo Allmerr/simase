@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'Detail Skema')
 
 @section('content_header')
     <style>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Skema photo</label>
-            
+
                         @if ($skema->photo === 'noskema.png')
                         <img class="img-preview img-fluid mb-3 d-block" src="{{ asset('images/' . $skema->photo) }}">
                         @elseif($skema->photo)
@@ -57,7 +57,7 @@
                         @else
                         <img class="img-preview img-fluid mb-3">
                         @endif
-            
+
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}

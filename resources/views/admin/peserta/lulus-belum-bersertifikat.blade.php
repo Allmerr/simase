@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Lapor Pengajuan BNSP')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Pengajuan</h1>
+    <h1 class="m-0 text-dark">Lapor Pengajuan BNSP</h1>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 @stop
@@ -14,7 +14,6 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    {{-- <a href="{{ route('admin.peserta.create') }}" class="btn btn-primary mb-2">Tambah</a> --}}
                     @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                         {{ session('success') }}

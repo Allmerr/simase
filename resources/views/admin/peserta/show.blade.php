@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Detail User')
+@section('title', 'SIMASE | Detail User')
 
 @section('content_header')
 <style>
@@ -53,7 +53,7 @@
 
 </style>
 
-<h1 class="m-0 text-dark">Detail Profile</h1>
+<h1 class="m-0 text-dark">Detail User</h1>
 
 @stop
 
@@ -75,7 +75,7 @@
                             @endif
 
                             <h3 class="profile-username text-center">{{ $user->nama_lengkap }}</h3>
-                            <p class="text-muted text-center">      
+                            <p class="text-muted text-center">
                             @if(isset($user->satker->nama))
                                 {{ $user->satker->nama }}
                             @else
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header p-2">
@@ -102,17 +102,17 @@
                                         <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                                         <div class="form-input"> : {{ $user->nama_lengkap }}</div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="email" class="form-label">Email</label>
                                         <div class="form-input"> : {{ $user->email }}</div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="no_telpon" class="form-label">No Telephone</label>
                                         <div class="form-input"> : {{ $user->no_telpon }}</div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                                         <div class="form-input"> : {{ $user->jenis_kelamin }}</div>

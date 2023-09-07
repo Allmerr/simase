@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Daftar Peserta Lulus')
 
 @section('content_header')
    <h1 class="m-0 text-dark">Peserta : {{ $skema->nama }}</h1>

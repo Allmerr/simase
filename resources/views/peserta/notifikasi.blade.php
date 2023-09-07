@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Pengajuan</h1>
+    <h1 class="m-0 text-dark">Notifikasi</h1>
 
     <style>
 
@@ -56,27 +56,27 @@
             margin-bottom: 0;
             margin-top: 8px
         }
-        
+
         .inbox .action_bar .btn,
         .inbox .action_bar .search {
             margin: 0
         }
-        
+
         .inbox .mail_list .list-group-item {
             border: 0;
             padding: 15px;
             margin-bottom: 1px
         }
-        
+
         .inbox .mail_list .list-group-item:hover {
             background: #eceeef
         }
-        
+
         .inbox .mail_list .list-group-item .media {
             margin: 0;
             width: 100%
         }
-        
+
         .inbox .mail_list .list-group-item .controls {
             display: inline-block;
             margin-right: 10px;
@@ -84,76 +84,76 @@
             text-align: center;
             margin-top: 11px
         }
-        
+
         .inbox .mail_list .list-group-item .controls .checkbox {
             display: inline-block
         }
-        
+
         .inbox .mail_list .list-group-item .controls .checkbox label {
             margin: 0;
             padding: 10px
         }
-        
+
         .inbox .mail_list .list-group-item .controls .favourite {
             margin-left: 10px
         }
-        
+
         .inbox .mail_list .list-group-item .thumb {
             display: inline-block
         }
-        
+
         .inbox .mail_list .list-group-item .thumb img {
             width: 40px
         }
-        
+
         .inbox .mail_list .list-group-item .media-heading a {
             color: #555;
             font-weight: normal
         }
-        
+
         .inbox .mail_list .list-group-item .media-heading a:hover,
         .inbox .mail_list .list-group-item .media-heading a:focus {
             text-decoration: none
         }
-        
+
         .inbox .mail_list .list-group-item .media-heading time {
             font-size: 13px;
             margin-right: 10px
         }
-        
+
         .inbox .mail_list .list-group-item .media-heading .badge {
             margin-bottom: 0;
             border-radius: 50px;
             font-weight: normal
         }
-        
+
         .inbox .mail_list .list-group-item .msg {
             margin-bottom: 0px
         }
-        
+
         .inbox .mail_list .unread {
             border-left: 2px solid
         }
-        
+
         .inbox .mail_list .unread .media-heading a {
             color: #333;
             font-weight: 700
         }
-        
+
         .inbox .btn-group {
             box-shadow: none
         }
-        
+
         .inbox .bg-gray {
             background: #e6e6e6
         }
-        
+
         @media only screen and (max-width: 767px) {
             .inbox .mail_list .list-group-item .controls {
                 margin-top: 3px
             }
         }
-        
+
     </style>
 @stop
 
@@ -173,7 +173,7 @@
                                         @foreach ($notifikasis as $notifikasi)
                                         <li class="list-group-item @if($notifikasi->is_dibaca === 'tidak_dibaca') unread @endif">
                                             <div class="media">
-                                                <div class="pull-left">                                
+                                                <div class="pull-left">
                                                     <div class="controls">
                                                         <div class="checkbox">
                                                             <input type="checkbox" id="basic_checkbox_1">
@@ -200,7 +200,7 @@
                             </div>
                         </div>
                     </section>
-                </div> 
+                </div>
             </div>
         </div>
     </div>

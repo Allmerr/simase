@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Form Terima Pengajuan')
 
 @section('content_header')
     <h4 class="m-0 text-dark">Form Terima Pengajuan '{{ $pengajuan->user->nama_lengkap }}' pada Skema '{{ $pengajuan->skema->nama }}'</h4>
@@ -48,7 +48,7 @@
                             <tbody>
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_ijazah_terakhir'))
                                 <tr>
-                                    <td>Ijazah Terakhir</td>                                     
+                                    <td>Ijazah Terakhir</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_ijazah_terakhir) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_ijazah_terakhir" name="file_syarat_ijazah_terakhir"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_ijazah_terakhir" name="file_syarat_ijazah_terakhir"></td>
@@ -58,7 +58,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_sertifikat_pelatihan'))
                                 <tr>
-                                    <td>Sertifikat Pelatihan</td>                                     
+                                    <td>Sertifikat Pelatihan</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sertifikat_pelatihan) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_sertifikat_pelatihan" name="file_syarat_sertifikat_pelatihan"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_sertifikat_pelatihan" name="file_syarat_sertifikat_pelatihan"></td>
@@ -68,7 +68,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_sk_penempatan'))
                                 <tr>
-                                    <td>SK Penempatan</td>                                     
+                                    <td>SK Penempatan</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sk_penempatan) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_sk_penempatan" name="file_syarat_sk_penempatan"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_sk_penempatan" name="file_syarat_sk_penempatan"></td>
@@ -78,7 +78,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_sk_bebas_narkoba'))
                                 <tr>
-                                    <td>SK Bebas Narkoba</td>                                     
+                                    <td>SK Bebas Narkoba</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sk_bebas_narkoba) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_sk_bebas_narkoba" name="file_syarat_sk_bebas_narkoba"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_sk_bebas_narkoba" name="file_syarat_sk_bebas_narkoba"></td>
@@ -88,7 +88,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_sk_sehat'))
                                 <tr>
-                                    <td>SK Sehat</td>                                     
+                                    <td>SK Sehat</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sk_sehat) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_sk_sehat" name="file_syarat_sk_sehat"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_sk_sehat" name="file_syarat_sk_sehat"></td>
@@ -98,7 +98,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_surat_rekomendasi_satker'))
                                 <tr>
-                                    <td>Surat Rekomendasi Satker</td>                                     
+                                    <td>Surat Rekomendasi Satker</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_surat_rekomendasi_satker) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_surat_rekomendasi_satker" name="file_syarat_surat_rekomendasi_satker"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_surat_rekomendasi_satker" name="file_syarat_surat_rekomendasi_satker"></td>
@@ -108,7 +108,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_nilai_e_rohani'))
                                 <tr>
-                                    <td>Nilai E Rohani</td>                                     
+                                    <td>Nilai E Rohani</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_nilai_e_rohani) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_nilai_e_rohani" name="file_syarat_nilai_e_rohani"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_nilai_e_rohani" name="file_syarat_nilai_e_rohani"></td>
@@ -118,7 +118,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_smk_skp_terakhir'))
                                 <tr>
-                                    <td>SMK SKP Terakhir</td>                                     
+                                    <td>SMK SKP Terakhir</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_smk_skp_terakhir) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_smk_skp_terakhir" name="file_syarat_smk_skp_terakhir"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_smk_skp_terakhir" name="file_syarat_smk_skp_terakhir"></td>
@@ -128,7 +128,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_cv'))
                                 <tr>
-                                    <td>CV</td>                                     
+                                    <td>CV</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_cv) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_cv" name="file_syarat_cv"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_cv" name="file_syarat_cv"></td>
@@ -138,7 +138,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_photo_3x4'))
                                 <tr>
-                                    <td>Photo 3x4</td>                                     
+                                    <td>Photo 3x4</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_photo_3x4) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_photo_3x4" name="file_syarat_photo_3x4"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_photo_3x4" name="file_syarat_photo_3x4"></td>
@@ -148,7 +148,7 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_photo_4x6'))
                                 <tr>
-                                    <td>Photo 4x6</td>                                     
+                                    <td>Photo 4x6</td>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_photo_4x6) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_photo_4x6" name="file_syarat_photo_4x6"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_photo_4x6" name="file_syarat_photo_4x6"></td>
@@ -159,7 +159,7 @@
                                 @if($pengajuan->status_peserta()->exists())
                                 @if($pengajuan->status_peserta->where('id_skema', $pengajuan->id_skema)->exists())
                                     <tr>
-                                        <td>Logbook</td>                                     
+                                        <td>Logbook</td>
                                         <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_logbook) }}">Lihat File</a></td>
                                         <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_logbook" name="file_syarat_logbook"></td>
                                         <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_logbook" name="file_syarat_logbook"></td>
@@ -176,7 +176,7 @@
                             <textarea class="form-control" placeholder="Berikan Catatan disini..." id="catatan" style="height: 100px" name="catatan" required>{{ old('catatan', $pengajuan->catatan) }}</textarea>
                             <label for="floatingTextarea2">Catatan</label>
                         </div>
-                          
+
                     </div>
                     <div class="mb-3">
                         <label for="is_disetujui" class="form-label">Status Persetujuan Pengajuan</label>
@@ -205,7 +205,7 @@
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-warning"><b>Ubah</b></button>
+                    <button type="submit" class="btn btn-warning"><b>Save</b></button>
                 </form>
             </div>
         </div>

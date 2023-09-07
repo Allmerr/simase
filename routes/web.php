@@ -37,7 +37,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
-
     // home
     Route::get('/home', function () {
         if (auth()->user()->role === 'admin') {
@@ -49,14 +48,20 @@ Route::group(['middleware' => ['auth']], function () {
         return redirect('/');
     });
 
+    Route::get('admin/sertifikat/get-users/{id_skema}', [SertifikatController::class, 'getUsersByScheme']);
+    Route::get('/peserta/kota-kabupaten/get-kota-kabupaten/{kode_provinsi}', [PesertaController::class, 'getKotaKabupaten'])->name('peserta.getKotaKabupaten');
+
+});
+
+Route::group(['middleware' => ['auth', 'isPeserta']], function () {
     // peserta
-    Route::get('/peserta', [PesertaController::class, 'index'])->name('peserta.index')->middleware('isPeserta');
-    Route::get('/peserta/skema', [PesertaController::class, 'showSkema'])->name('peserta.showSkema')->middleware('isPeserta');
-    Route::get('/peserta/skema/{id_skema}', [PesertaController::class, 'detailSkema'])->name('peserta.detailSkema')->middleware('isPeserta');
-    Route::get('/peserta/skema/{id_skema}/daftar', [PesertaController::class, 'daftarSkema'])->name('peserta.daftarSkema')->middleware('isPeserta');
-    Route::post('/peserta/skema/{id_skema}/daftar', [PesertaController::class, 'saveDaftarSkema'])->name('peserta.saveDaftarSkema')->middleware('isPeserta');
-    Route::get('/peserta/skema/{id_skema}/revisi', [PesertaController::class, 'revisiSkema'])->name('peserta.revisiSkema')->middleware('isPeserta');
-    Route::post('/peserta/skema/{id_skema}/revisi', [PesertaController::class, 'saveRevisiSkema'])->name('peserta.saveRevisiSkema')->middleware('isPeserta');
+    Route::get('/peserta', [PesertaController::class, 'index'])->name('peserta.index');
+    Route::get('/peserta/skema', [PesertaController::class, 'showSkema'])->name('peserta.showSkema');
+    Route::get('/peserta/skema/{id_skema}', [PesertaController::class, 'detailSkema'])->name('peserta.detailSkema');
+    Route::get('/peserta/skema/{id_skema}/daftar', [PesertaController::class, 'daftarSkema'])->name('peserta.daftarSkema');
+    Route::post('/peserta/skema/{id_skema}/daftar', [PesertaController::class, 'saveDaftarSkema'])->name('peserta.saveDaftarSkema');
+    Route::get('/peserta/skema/{id_skema}/revisi', [PesertaController::class, 'revisiSkema'])->name('peserta.revisiSkema');
+    Route::post('/peserta/skema/{id_skema}/revisi', [PesertaController::class, 'saveRevisiSkema'])->name('peserta.saveRevisiSkema');
     Route::get('/peserta/profile', [PesertaController::class, 'profile'])->name('peserta.profile');
     Route::post('/peserta/profile', [PesertaController::class, 'updateProfile'])->name('peserta.updateProfile');
     Route::get('/peserta/change-password', [PesertaController::class, 'changePassword'])->name('peserta.changePassword');
@@ -68,16 +73,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/peserta/survey', [SurveyController::class, 'index'])->name('peserta.survey.index');
     Route::get('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'create'])->name('peserta.survey.create');
     Route::post('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'store'])->name('peserta.survey.store');
-    Route::get('/peserta/kota-kabupaten/get-kota-kabupaten/{kode_provinsi}', [PesertaController::class, 'getKotaKabupaten'])->name('peserta.getKotaKabupaten');
-    // Route::get('/peserta/sendEmail')
+});
 
+Route::group(['middleware' => ['auth', 'isAdmin']], function (){
     // admin
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');
-    Route::get('/admin/skema/{id_skema}/peserta', [SkemaController::class, 'pesertaSkema'])->name('skema.pesertaSkema')->middleware('isAdmin');
-    Route::get('/admin/skema/{id_skema}/sertifikat', [SkemaController::class, 'sertifikatSkema'])->name('skema.sertifikatSkema')->middleware('isAdmin');
-    Route::get('/admin/skema/{id_skema}/peserta/{id_users}/lulus', [SkemaController::class, 'pesertaSkemaLulus'])->name('skema.pesertaSkemaLulus')->middleware('isAdmin');
-    Route::post('/admin/skema/{id_skema}/peserta/{id_users}/sertifikat-lulus', [SkemaController::class, 'sertifikatLulus'])->name('skema.sertifikatLulus')->middleware('isAdmin');
+    Route::get('/admin/skema/{id_skema}/peserta', [SkemaController::class, 'pesertaSkema'])->name('skema.pesertaSkema');
+    Route::get('/admin/skema/{id_skema}/sertifikat', [SkemaController::class, 'sertifikatSkema'])->name('skema.sertifikatSkema');
+    Route::get('/admin/skema/{id_skema}/peserta/{id_users}/lulus', [SkemaController::class, 'pesertaSkemaLulus'])->name('skema.pesertaSkemaLulus');
+    Route::post('/admin/skema/{id_skema}/peserta/{id_users}/sertifikat-lulus', [SkemaController::class, 'sertifikatLulus'])->name('skema.sertifikatLulus');
     Route::resource('/admin/skema', SkemaController::class);
     Route::resource('/admin/satker', SatkerController::class);
     Route::resource('/admin/pangkat', PangkatController::class);
@@ -87,7 +92,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/pengajuan/{id_pengajuan}/revisi', [PengajuanController::class, 'revisi'])->name('pengajuan.revisi');
     Route::post('/admin/pengajuan/{id_pengajuan}/revisi', [PengajuanController::class, 'saveRevisi'])->name('pengajuan.saveRevisi');
     Route::resource('/admin/pengajuan', PengajuanController::class);
-    Route::get('admin/sertifikat/get-users/{id_skema}', [SertifikatController::class, 'getUsersByScheme']);
     Route::resource('/admin/sertifikat', SertifikatController::class);
     Route::get('/admin/peserta', [AdminController::class, 'indexPeserta'])->name('admin.peserta.index');
     Route::get('/admin/peserta/create', [AdminController::class, 'createPeserta'])->name('admin.peserta.create');

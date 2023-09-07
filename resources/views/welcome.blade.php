@@ -7,10 +7,6 @@
 @stop
 
 @section('content')
-<div class="nav position-absolute top-0 end-0 pt-2 pr-3">
-    <a href="{{ route('register') }}" class="fs-4 pr-3">Register</a>
-    <a href="{{ route('login') }}" class="fs-4">Login</a>
-</div>
 <style>
     .content-wrapper{
         margin-left: auto !important;
@@ -32,6 +28,10 @@
         }
     }
 </style>
+<div class="nav position-absolute top-0 end-0 pt-2 pr-3">
+    <a href="{{ route('register') }}" class="fs-5 pr-3">Register</a>
+    <a href="{{ route('login') }}" class="fs-5">Login</a>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">

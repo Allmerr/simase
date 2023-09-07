@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Pekerjaan')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Pekerjaan</h1>
@@ -8,12 +8,11 @@
 
 @section('content')
 
-{{-- @dd($skemas) --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('pekerjaan.create') }}" class="btn btn-primary mb-2">Tambah</a>
+                    <a href="{{ route('pekerjaan.create') }}" class="btn btn-primary mb-2">Create</a>
                     <div class="table-responsive">
                         @if (session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">

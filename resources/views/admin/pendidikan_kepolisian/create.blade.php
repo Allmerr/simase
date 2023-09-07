@@ -1,17 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Create Pendidikan Kepolisian')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Create Pendidikan Kepolisian</h1>
 @stop
 
 @section('content')
-<style>
-    form img{
-        width: 200px;
-    }
-</style>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -21,12 +16,12 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Pendidikan Kepolisian</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama') }}" name="nama">
+                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama') }}" name="nama" required>
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Ubah</button>
+                            <button type="submit" class="btn btn-primary w-100">Edit</button>
                         </div>
                     </div>
                 </form>

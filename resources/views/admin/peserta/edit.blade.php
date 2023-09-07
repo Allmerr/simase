@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Edit Peserta')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Edit Peserta</h1>
@@ -221,7 +221,7 @@
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Ubah</button>
+                            <button type="submit" class="btn btn-primary w-100">Edit</button>
                         </div>
                     </div>
                 </form>

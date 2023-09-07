@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Pengajuan')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Pengajuan</h1>
@@ -8,7 +8,6 @@
 
 @section('content')
 
-{{-- @dd($skemas) --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -18,7 +17,6 @@
                         {{ session('success') }}
                     </div>
                     @endif
-                    {{-- <a href="{{ route('pengajuan.create') }}" class="btn btn-primary mb-2">Tambah</a> --}}
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-stripped" id="example2">
                             <thead>

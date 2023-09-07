@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Sertifikat')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Skema</h1>
+    <h1 class="m-0 text-dark">Sertifikat</h1>
 @stop
 
 @section('content')
@@ -12,7 +12,13 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <a href="{{ route('sertifikat.create') }}" class="btn btn-primary mb-2">Tambah</a>
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    <a href="{{ route('sertifikat.create') }}" class="btn btn-primary mb-2">Create</a>
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
                             <tr>
@@ -42,7 +48,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('sertifikat.edit', $status_peserta->id_status_peserta) }}" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>
-                                    <a href="{{ route('sertifikat.destroy', $status_peserta->id_status_peserta) }}" onclick="notificationBeforeDelete(event, this, <?php echo $key+1; ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a> 
+                                    <a href="{{ route('sertifikat.destroy', $status_peserta->id_status_peserta) }}" onclick="notificationBeforeDelete(event, this, <?php echo $key+1; ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
 

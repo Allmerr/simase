@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Edit Skema')
 
 @section('content_header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -23,27 +23,27 @@
                     @csrf
                     <div class="mb-3">
                         <label for="kode" class="form-label">Kode Skema</label>
-                        <input type="name" class="form-control" id="kode" aria-describedby="kode" value="{{ old('kode', $skema->kode) }}" name="kode">
+                        <input type="name" class="form-control" id="kode" aria-describedby="kode" value="{{ old('kode', $skema->kode) }}" name="kode" required>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $skema->nama) }}" name="nama">
+                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $skema->nama) }}" name="nama" required>
                     </div>
                     <div class="mb-3">
                         <label for="dokumen_persyaratan" class="form-label">Dokumen Persyaratan</label>
                         <br>
                         <a href="{{ asset('storage/skema/' . $skema->dokumen_persyaratan) }}">Lihat File Sebelumnya</a>
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
-                        <input class="form-control @error('dokuemen_persyaratn') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" type="file" id="dokumen_persyaratan" name="dokumen_persyaratan">
+                        <input class="form-control @error('dokuemen_persyaratn') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" type="file" id="dokumen_persyaratan" name="dokumen_persyaratan" required>
                     </div>
                     <div class="mb-3">
                         <label for="persyaratan" class="form-label">Persyaratan</label>
-                        <input id="x" type="hidden" name="persyaratan" value="{{ $skema->persyaratan }}" />
+                        <input id="x" type="hidden" name="persyaratan" value="{{ $skema->persyaratan }}" required/>
                         <trix-editor input="x" class="trix-content"></trix-editor>
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Skema photo</label>
-            
+
                         @if ($skema->photo === 'noskema.png')
                         <img class="img-preview img-fluid mb-3 d-block" src="{{ asset('images/' . $skema->photo) }}">
                         @elseif($skema->photo)
@@ -52,7 +52,7 @@
                         <img class="img-preview img-fluid mb-3">
                         @endif
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png </small>
-                        <input class="form-control @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png," type="file"  id="photo" name="photo" onchange="previewphoto()">
+                        <input class="form-control @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png," type="file"  id="photo" name="photo" onchange="previewphoto()" required>
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -146,7 +146,7 @@
                         <div class="col-md-10"></div>
                         <div class="col-md-2 d-flex">
                             <a href="{{ route('skema.index') }}" class="btn btn-danger mr-2">Kembali</a>
-                            <button type="submit" class="btn btn-primary w-100">Ubah</button>
+                            <button type="submit" class="btn btn-primary w-100">Edit</button>
                         </div>
                     </div>
                 </form>
@@ -172,6 +172,6 @@ function previewphoto(){
     oFReader.onload = function (oFREvent) {
         imgPreview.src = oFREvent.target.result;
     }
-}  
-</script> 
+}
+</script>
 @endpush
