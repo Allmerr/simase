@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Edit Sertifikat')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Ubah Sertifikat</h1>
+    <h1 class="m-0 text-dark">Edit Sertifikat</h1>
 @stop
 
 @section('content')
@@ -48,12 +48,12 @@
                         <label for="file_sertifikat" class="form-label">File Sertifikat</label>
                         <br>
                         <a href="{{ asset('storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}">Lihat File Sebelumnya</a>
-                        <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" value="{{ old('file_sertifikat') }}" >
+                        <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" value="{{ old('file_sertifikat') }}" required>
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Tambah</button>
+                            <button type="submit" class="btn btn-primary w-100">Edit</button>
                         </div>
                     </div>
                 </form>
@@ -93,4 +93,4 @@
     }
 </script>
 
-@endpush 
+@endpush
