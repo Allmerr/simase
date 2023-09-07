@@ -14,6 +14,7 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\PekerjaanController;
+use App\Models\StatusPeserta;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'status_pesertas' => StatusPeserta::where('status', 'lulus')->get(),
+    ]);
 });
 
 Auth::routes();
@@ -67,7 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'store'])->name('peserta.survey.store');
     Route::get('/peserta/kota-kabupaten/get-kota-kabupaten/{kode_provinsi}', [PesertaController::class, 'getKotaKabupaten'])->name('peserta.getKotaKabupaten');
     // Route::get('/peserta/sendEmail')
-    
+
     // admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('isAdmin');
     Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');

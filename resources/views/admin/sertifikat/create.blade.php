@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('adminlte::welcome')
 
 @section('title', 'AdminLTE')
 
