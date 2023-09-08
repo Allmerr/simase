@@ -23,7 +23,10 @@
                         <input type="name" class="form-control" id="nama_pendidikan" aria-describedby="nama_pendidikan" value="{{ old('nama_pendidikan') }}" name="nama_pendidikan" required>
                     </div>
                     <div class="row">
-                        <div class="col-md-10"></div>
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2">
+                            <a href="{{ route('pendidikan.index') }}" class="btn btn-warning w-100">Kembali</a>
+                        </div>
                         <div class="col-md-2">
                             <button type="submit" class="btn btn-primary w-100">Simpan</button>
                         </div>

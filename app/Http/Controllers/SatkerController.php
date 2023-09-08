@@ -13,7 +13,7 @@ class SatkerController extends Controller
     public function index()
     {
         return view('admin.satker.index', [
-            'satkers' => Satker::all(),
+            'satkers' => Satker::orderBy('id_satker', 'desc')->get(),
         ]);
     }
 
@@ -42,7 +42,7 @@ class SatkerController extends Controller
 
         $satker->save();
 
-        return redirect()->route('satker.index')->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('satker.index')->with('success', 'Data Satuan Kerja Has bBeen Added Successful!');
     }
 
     /**
@@ -76,7 +76,7 @@ class SatkerController extends Controller
 
         Satker::where('id_satker', $satker->id_satker)->update($validatedData);
 
-        return redirect()->route('satker.index', $satker->id_satker)->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('satker.index', $satker->id_satker)->with('success', 'Data Satuan Kerja Has bBeen Updated Successful!');
     }
 
     /**
@@ -86,6 +86,6 @@ class SatkerController extends Controller
     {
         Satker::destroy($satker->id_satker);
 
-        return redirect()->route('satker.index')->with('success_message', 'Data telah terhapus');
+        return redirect()->route('satker.index')->with('success', 'Data Satuan Kerja Has bBeen Deleted Successful!');
     }
 }

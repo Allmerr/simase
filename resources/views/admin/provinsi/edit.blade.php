@@ -39,7 +39,7 @@
                             <a href="{{ route('provinsi.index') }}" class="btn btn-warning w-100">Kembali</a>
                         </div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                            <button type="submit" class="btn btn-primary w-100">Ubah</button>
                         </div>
                     </div>
                 </form>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pendidikan', function (Blueprint $table) {
             $table->increments('id_pendidikan');
-            $table->unsignedInteger('kode_pendidikan')->index();
+            $table->unsignedInteger('kode_pendidikan')->index()->unique();
             $table->string('nama_pendidikan');
             $table->timestamps();
         });

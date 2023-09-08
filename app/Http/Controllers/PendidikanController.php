@@ -13,7 +13,7 @@ class PendidikanController extends Controller
     public function index()
     {
         return view('admin.pendidikan.index', [
-            'pendidikans' => Pendidikan::all(),
+            'pendidikans' => Pendidikan::orderBy('id_pendidikan', 'DESC')->get(),
         ]);
     }
 
@@ -44,7 +44,7 @@ class PendidikanController extends Controller
 
         $pendidikan->save();
 
-        return redirect()->route('pendidikan.index')->with('success', 'A pendidikan Has been added Successful!');
+        return redirect()->route('pendidikan.index')->with('success', 'Data pendidikan Has bBeen Added Successful!');
     }
 
     /**
@@ -79,7 +79,7 @@ class PendidikanController extends Controller
 
         Pendidikan::where('id_pendidikan', $pendidikan->id_pendidikan)->update($validatedData);
 
-        return redirect()->route('pendidikan.index', $pendidikan->id_pendidikan)->with('success', 'A pendidikan Has Been Updated Successful!');
+        return redirect()->route('pendidikan.index', $pendidikan->id_pendidikan)->with('success', 'Data pendidikan Has Been Updated Successful!');
     }
 
     /**
@@ -89,6 +89,6 @@ class PendidikanController extends Controller
     {
         Pendidikan::destroy($pendidikan->id_pendidikan);
 
-        return redirect()->route('pendidikan.index')->with('success_message', 'Data telah terhapus');
+        return redirect()->route('pendidikan.index')->with('success', 'Data pendidikan Has Been Deleted Successful!');
     }
 }
