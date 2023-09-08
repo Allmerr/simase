@@ -49,7 +49,7 @@ class AdminController extends Controller
         }else{
             $sertifikat = 'Belum pernah lulus dari skema apapun';
         }
-        
+
         return view('admin.peserta.show', [
             'user' => User::where('role', 'peserta')->where('id_users', $id_users)->get()[0],
             'skema_diempuh' => $sertifikat,
@@ -73,38 +73,77 @@ class AdminController extends Controller
         $user = User::where('id_users', $id_users)->get()[0];
 
         $rules = [
-            'no_telpon' => 'numeric',
-            'jenis_kelamin' => 'in:Laki-Laki,Perempuan',
-            'nip' => 'string',
-            'nik' => 'string',
-            'jabatan' => 'string',
-            'tempat_lahir' => 'string',
-            'tanggal_lahir' => 'date',
-            'alamat' => 'string',
-            'kode_kota_kabupaten' => '',
-            'kode_provinsi' => '',
-            'kode_pendidikan' => '',
-            'kode_pekerjaan' => '',
-            'dikbangspes' => 'string',
-            'pelatihan_diikuti' => 'string',
-            'keterampilan_khusus' => 'string',
-            'id_satker' => 'required',
-            'id_pangkat' => 'required',
-            'id_pendidikan_kepolisian' => 'required',
+            'nama_lengkap' => 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
+            'no_telpon' => 'required|numeric',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
+
         $validatedData = $request->validate($rules);
-        
+
         if ($request->file('photo')) {
             if ($user->photo !== 'nopp.jpg') {
                 Storage::delete($user->photo);
             }
-            
+
             $validatedData['photo'] = str_replace('public/profile/', '', $request->file('photo')->store('public/profile'));
         }
-        
+
+        if(isset($request->jenis_kelamin)){
+            $validatedData['jenis_kelamin'] = $request->jenis_kelamin;
+        }
+        if(isset($request->nip)){
+            $validatedData['nip'] = $request->nip;
+        }
+        if(isset($request->nik)){
+            $validatedData['nik'] = $request->nik;
+        }
+        if(isset($request->jabatan)){
+            $validatedData['jabatan'] = $request->jabatan;
+        }
+        if(isset($request->tempat_lahir)){
+            $validatedData['tempat_lahir'] = $request->tempat_lahir;
+        }
+        if(isset($request->tanggal_lahir)){
+            $validatedData['tanggal_lahir'] = $request->tanggal_lahir;
+        }
+        if(isset($request->alamat)){
+            $validatedData['alamat'] = $request->alamat;
+        }
+        if(isset($request->kode_kota_kabupaten)){
+            $validatedData['kode_kota_kabupaten'] = $request->kode_kota_kabupaten;
+        }
+        if(isset($request->kode_provinsi)){
+            $validatedData['kode_provinsi'] = $request->kode_provinsi;
+        }
+        if(isset($request->kode_pendidikan)){
+            $validatedData['kode_pendidikan'] = $request->kode_pendidikan;
+        }
+        if(isset($request->kode_pekerjaan)){
+            $validatedData['kode_pekerjaan'] = $request->kode_pekerjaan;
+        }
+        if(isset($request->dikbangspes)){
+            $validatedData['dikbangspes'] = $request->dikbangspes;
+        }
+        if(isset($request->pelatihan_diikuti)){
+            $validatedData['pelatihan_diikuti'] = $request->pelatihan_diikuti;
+        }
+        if(isset($request->keterampilan_khusus)){
+            $validatedData['keterampilan_khusus'] = $request->keterampilan_khusus;
+        }
+        if(isset($request->id_satker)){
+            $validatedData['id_satker'] = $request->id_satker;
+        }
+        if(isset($request->id_pangkat)){
+            $validatedData['id_pangkat'] = $request->id_pangkat;
+        }
+        if(isset($request->id_pendidikan_kepolisian)){
+            $validatedData['id_pendidikan_kepolisian'] = $request->id_pendidikan_kepolisian;
+        }
+
+
         User::where('id_users', $user->id_users)->update($validatedData);
-        
+
         // dd($request, $rules);
         return redirect()->route('admin.peserta.index')->with('success', 'A Profile Has Been Updated Successful!');
     }
@@ -112,7 +151,7 @@ class AdminController extends Controller
     public function destroyPeserta(Request $request, $id_users){
         User::destroy($id_users);
 
-        return redirect()->route('admin.peserta.index')->with('success', 'Data telah terhapus');   
+        return redirect()->route('admin.peserta.index')->with('success', 'Data telah terhapus');
     }
 
     public function createPeserta(){
@@ -133,51 +172,76 @@ class AdminController extends Controller
             'nama_lengkap' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'no_telpon' => 'numeric',
-            'jenis_kelamin' => 'in:Laki-Laki,Perempuan',
-            'nip' => 'string',
-            'nik' => 'string',
-            'jabatan' => 'string',
-            'tempat_lahir' => 'string',
-            'tanggal_lahir' => 'date',
-            'alamat' => 'string',
-            'kode_kota_kabupaten' => 'string',
-            'kode_provinsi' => 'string',
-            'kode_pendidikan' => 'string',
-            'kode_pekerjaan' => 'string',
-            'dikbangspes' => 'string',
-            'pelatihan_diikuti' => 'string',
-            'keterampilan_khusus' => 'string',
-            'id_satker' => 'required',
-            'id_pangkat' => 'required',
-            'id_pendidikan_kepolisian' => 'required',
+            'no_telpon' => 'required|numeric',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
         $validatedData = $request->validate($rules);
-                
+
         // Simpan data pengguna (users)
         $user = new User();
+
+        if($request->file('photo')){
+            $validatedData['photo'] = str_replace('public/profile/', '', $request->file('photo')->store('public/profile'));
+        }else{
+            $validatedData['photo'] = 'nopp.jpg';
+        }
+
         $user->nama_lengkap = $validatedData['nama_lengkap'];
         $user->email = $validatedData['email'];
         $user->password = Hash::make($validatedData['password']);
         $user->no_telpon = $validatedData['no_telpon'];
-        $user->jenis_kelamin = $validatedData['jenis_kelamin'];
-        $user->nip = $validatedData['nip'];
-        $user->nik = $validatedData['nik'];
-        $user->jabatan = $validatedData['jabatan'];
-        $user->tempat_lahir = $validatedData['tempat_lahir'];
-        $user->tanggal_lahir = $validatedData['tanggal_lahir'];
-        $user->alamat = $validatedData['alamat'];
-        $user->kode_kota_kabupaten = $validatedData['kode_kota_kabupaten'];
-        $user->kode_provinsi = $validatedData['kode_provinsi'];
-        $user->kode_pendidikan = $validatedData['kode_pendidikan'];
-        $user->kode_pekerjaan = $validatedData['kode_pekerjaan'];
-        $user->dikbangspes = $validatedData['dikbangspes'];
-        $user->pelatihan_diikuti = $validatedData['pelatihan_diikuti'];
-        $user->keterampilan_khusus = $validatedData['keterampilan_khusus'];
-        $user->id_satker = $validatedData['id_satker'];
-        $user->id_pangkat = $validatedData['id_pangkat'];
-        $user->id_pendidikan_kepolisian = $validatedData['id_pendidikan_kepolisian'];
+
+        if(isset($request->jenis_kelamin)){
+            $user->jenis_kelamin = $request->jenis_kelamin;
+        }
+        if(isset($request->nip)){
+            $user->nip = $request->nip;
+        }
+        if(isset($request->nik)){
+            $user->nik = $request->nik;
+        }
+        if(isset($request->jabatan)){
+            $user->jabatan = $request->jabatan;
+        }
+        if(isset($request->tempat_lahir)){
+            $user->tempat_lahir = $request->tempat_lahir;
+        }
+        if(isset($request->tanggal_lahir)){
+            $user->tanggal_lahir = $request->tanggal_lahir;
+        }
+        if(isset($request->alamat)){
+            $user->alamat = $request->alamat;
+        }
+        if(isset($request->kode_kota_kabupaten)){
+            $user->kode_kota_kabupaten = $request->kode_kota_kabupaten;
+        }
+        if(isset($request->kode_provinsi)){
+            $user->kode_provinsi = $request->kode_provinsi;
+        }
+        if(isset($request->kode_pendidikan)){
+            $user->kode_pendidikan = $request->kode_pendidikan;
+        }
+        if(isset($request->kode_pekerjaan)){
+            $user->kode_pekerjaan = $request->kode_pekerjaan;
+        }
+        if(isset($request->dikbangspes)){
+            $user->dikbangspes = $request->dikbangspes;
+        }
+        if(isset($request->pelatihan_diikuti)){
+            $user->pelatihan_diikuti = $request->pelatihan_diikuti;
+        }
+        if(isset($request->keterampilan_khusus)){
+            $user->keterampilan_khusus = $request->keterampilan_khusus;
+        }
+        if(isset($request->id_satker)){
+            $user->id_satker = $request->id_satker;
+        }
+        if(isset($request->id_pangkat)){
+            $user->id_pangkat = $request->id_pangkat;
+        }
+        if(isset($request->id_pendidikan_kepolisian)){
+            $user->id_pendidikan_kepolisian = $request->id_pendidikan_kepolisian;
+        }
 
         $user->save();
 
@@ -239,9 +303,9 @@ class AdminController extends Controller
         if($request->email != $user->email){
             $rules['email'] = 'required|string|email|max:255|unique:users';
         }
-        
+
         $validatedData = $request->validate($rules);
-        
+
         if($request->email != $user->email){
             User::where('id_users', $id_users)->update([
                 'nama_lengkap' => $validatedData['nama_lengkap'],
@@ -251,7 +315,7 @@ class AdminController extends Controller
             ]);
 
         }else{
-            
+
             User::where('id_users', $id_users)->update([
                 'nama_lengkap' => $validatedData['nama_lengkap'],
                 'password' => Hash::make($validatedData['password']),
@@ -266,7 +330,7 @@ class AdminController extends Controller
     public function destroyOperator(Request $request, $id_users){
         User::destroy($id_users);
 
-        return redirect()->route('admin.operator.index')->with('success', 'Data telah terhapus');              
+        return redirect()->route('admin.operator.index')->with('success', 'Data telah terhapus');
     }
 
     public function indexSurvey(){

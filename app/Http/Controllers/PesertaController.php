@@ -193,7 +193,7 @@ class PesertaController extends Controller
             $pengajuan->file_syarat_photo_4x6 = $validatedData['file_syarat_photo_4x6'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_4x6')->store('public/file_syarat'));
         }
 
-        
+
         if ($request->file('file_syarat_logbook')) {
             $pengajuan->file_syarat_logbook = $validatedData['file_syarat_logbook'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_logbook')->store('public/file_syarat'));
         }
@@ -366,6 +366,8 @@ class PesertaController extends Controller
             return false;
         }elseif(! $user->kode_pekerjaan){
             return false;
+        }elseif($user->photo == 'nopp.png'){
+            return false;
         }
 
         return true;
@@ -427,7 +429,7 @@ class PesertaController extends Controller
     public function sertifikat()
     {
         $status_pesertas = StatusPeserta::where('id_users', auth()->user()->id_users)->where('status', 'lulus')->where('file_sertifikat', '!=', '')->get();
-        
+
         return view('peserta.sertifikat', [
             'status_pesertas' => $status_pesertas,
         ]);

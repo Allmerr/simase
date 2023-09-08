@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Skema')
+@section('title', 'SIMASE | Data Skema')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Skema</h1>
+    <h1 class="m-0 text-dark">Data Skema</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('skema.create') }}" class="btn btn-primary mb-2">Create</a>
+                    <a href="{{ route('skema.create') }}" class="btn btn-primary mb-2">Tambah</a>
                     <div class="table-responsive">
                         @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">

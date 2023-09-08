@@ -18,7 +18,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                    <a href="{{ route('sertifikat.create') }}" class="btn btn-primary mb-2">Create</a>
+                    <a href="{{ route('sertifikat.create') }}" class="btn btn-primary mb-2">Tambah</a>
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
                             <tr>

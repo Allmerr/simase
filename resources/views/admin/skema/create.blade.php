@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Create Skema')
+@section('title', 'SIMASE | Tambah Skema')
 
 @section('content_header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('/css/trix.css') }}">
-    <h1 class="m-0 text-dark">Create Skema</h1>
+    <h1 class="m-0 text-dark">Tambah Skema</h1>
 @stop
 
 @section('content')
@@ -123,7 +123,7 @@
                         <div class="col-md-10"></div>
                         <div class="col-md-2 d-flex">
                             <a href="{{ route('skema.index') }}" class="btn btn-danger mr-2">Kembali</a>
-                            <button type="submit" class="btn btn-primary w-100">Create</button>
+                            <button type="submit" class="btn btn-primary w-100">Tambah</button>
                         </div>
                     </div>
                 </form>

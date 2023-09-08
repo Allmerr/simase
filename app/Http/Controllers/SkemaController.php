@@ -15,7 +15,7 @@ class SkemaController extends Controller
      */
     public function index()
     {
-        $skemas = Skema::all();
+        $skemas = Skema::orderBy('id_skema', 'desc')->get();
 
         return view('admin.skema.index', [
             'skemas' => $skemas,

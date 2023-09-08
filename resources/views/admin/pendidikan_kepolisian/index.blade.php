@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('pendidikan-kepolisian.create') }}" class="btn btn-primary mb-2">Create</a>
+                    <a href="{{ route('pendidikan-kepolisian.create') }}" class="btn btn-primary mb-2">Tambah</a>
                     <div class="table-responsive">
                         @if (session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
