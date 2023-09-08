@@ -13,7 +13,7 @@ class PendidikanKepolisianController extends Controller
     public function index()
     {
         return view('admin.pendidikan_kepolisian.index', [
-            'pendidikan_kepolisians' => PendidikanKepolisian::all(),
+            'pendidikan_kepolisians' => PendidikanKepolisian::orderBy('id_pendidikan_kepolisian', 'desc')->get(),
         ]);
     }
 
@@ -42,7 +42,7 @@ class PendidikanKepolisianController extends Controller
 
         $pendidikan_kepolisian->save();
 
-        return redirect()->route('pendidikan-kepolisian.index')->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('pendidikan-kepolisian.index')->with('success', 'Data Pendidikan Kepolisian Has Been Added Successful!');
     }
 
     /**
@@ -76,7 +76,7 @@ class PendidikanKepolisianController extends Controller
 
         PendidikanKepolisian::where('id_pendidikan_kepolisian', $pendidikan_kepolisian->id_pendidikan_kepolisian)->update($validatedData);
 
-        return redirect()->route('pendidikan-kepolisian.index', $pendidikan_kepolisian->id_pendidikan_kepolisian)->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('pendidikan-kepolisian.index', $pendidikan_kepolisian->id_pendidikan_kepolisian)->with('success', 'Data Pendidikan Kepolisian Has Been Updated Successful!');
     }
 
     /**
@@ -86,6 +86,6 @@ class PendidikanKepolisianController extends Controller
     {
         PendidikanKepolisian::destroy($pendidikan_kepolisian->id_pendidikan_kepolisian);
 
-        return redirect()->route('pendidikan-kepolisian.index')->with('success_message', 'Data telah terhapus');
+        return redirect()->route('pendidikan-kepolisian.index')->with('success_message', 'Data Pendidikan Kepolisian Has Been Deleted Successful!');
     }
 }

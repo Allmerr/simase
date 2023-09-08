@@ -13,7 +13,7 @@ class PekerjaanController extends Controller
     public function index()
     {
         return view('admin.pekerjaan.index', [
-            'pekerjaans' => Pekerjaan::all(),
+            'pekerjaans' => Pekerjaan::orderBy('kode_pekerjaan', 'asc')->get(),
         ]);
     }
 
@@ -31,7 +31,7 @@ class PekerjaanController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'kode_pekerjaan' => 'required',
+            'kode_pekerjaan' => 'required|unique:pekerjaan,kode_pekerjaan',
             'nama_pekerjaan' => 'required',
         ];
 
@@ -44,7 +44,7 @@ class PekerjaanController extends Controller
 
         $pekerjaan->save();
 
-        return redirect()->route('pekerjaan.index')->with('success', 'A pekerjaan Has been added Successful!');
+        return redirect()->route('pekerjaan.index')->with('success', 'Data pekerjaan Has been added Successful!');
     }
 
     /**
@@ -79,7 +79,7 @@ class PekerjaanController extends Controller
 
         Pekerjaan::where('id_pekerjaan', $pekerjaan->id_pekerjaan)->update($validatedData);
 
-        return redirect()->route('pekerjaan.index', $pekerjaan->id_pekerjaan)->with('success', 'A pekerjaan Has Been Updated Successful!');
+        return redirect()->route('pekerjaan.index', $pekerjaan->id_pekerjaan)->with('success', 'Data pekerjaan Has Been Updated Successful!');
     }
 
     /**
@@ -89,6 +89,6 @@ class PekerjaanController extends Controller
     {
         Pekerjaan::destroy($pekerjaan->id_pekerjaan);
 
-        return redirect()->route('pekerjaan.index')->with('success_message', 'Data telah terhapus');
+        return redirect()->route('pekerjaan.index')->with('success', 'Data pekerjaan Has Been Deleted Successful!');
     }
 }

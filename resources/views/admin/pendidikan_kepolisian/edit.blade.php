@@ -16,7 +16,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Satuan Kerja</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $pendidikan_kepolisian->nama) }}" name="nama">
+                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $pendidikan_kepolisian->nama) }}" name="nama" required>
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>

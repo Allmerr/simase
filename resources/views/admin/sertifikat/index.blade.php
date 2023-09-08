@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Sertifikat')
+@section('title', 'SIMASE | Data Sertifikat')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Sertifikat</h1>
+    <h1 class="m-0 text-dark">Data Sertifikat</h1>
 @stop
 
 @section('content')

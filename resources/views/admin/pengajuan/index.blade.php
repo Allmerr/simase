@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Pengajuan')
+@section('title', 'SIMASE | Data Pengajuan')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Pengajuan</h1>
+    <h1 class="m-0 text-dark">Data Pengajuan</h1>
 @stop
 
 @section('content')

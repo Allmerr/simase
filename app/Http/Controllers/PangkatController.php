@@ -13,7 +13,7 @@ class PangkatController extends Controller
     public function index()
     {
         return view('admin.pangkat.index', [
-            'pangkats' => Pangkat::all(),
+            'pangkats' => Pangkat::orderBy('id_pangkat', 'desc')->get(),
         ]);
     }
 
@@ -42,7 +42,7 @@ class PangkatController extends Controller
 
         $pangkat->save();
 
-        return redirect()->route('pangkat.index')->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('pangkat.index')->with('success', 'Data Pangkat Has Been Added Successful!');
     }
 
     /**
@@ -76,7 +76,7 @@ class PangkatController extends Controller
 
         Pangkat::where('id_pangkat', $pangkat->id_pangkat)->update($validatedData);
 
-        return redirect()->route('pangkat.index', $pangkat->id_pangkat)->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('pangkat.index', $pangkat->id_pangkat)->with('success', 'Data Kota/Pangkat Has Been Updated Successful!');
     }
 
     /**
@@ -86,6 +86,6 @@ class PangkatController extends Controller
     {
         Pangkat::destroy($pangkat->id_pangkat);
 
-        return redirect()->route('pangkat.index')->with('success_message', 'Data telah terhapus');
+        return redirect()->route('pangkat.index')->with('success_', 'Data Pangkat Has Been Deleted Successful!');
     }
 }

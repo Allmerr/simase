@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Pangkat')
+@section('title', 'SIMASE | Data Pangkat')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Pangkat</h1>
+    <h1 class="m-0 text-dark">Data Pangkat</h1>
 @stop
 
 @section('content')
@@ -24,7 +24,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Pangkat</th>
-                                    <th>Opsi</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
