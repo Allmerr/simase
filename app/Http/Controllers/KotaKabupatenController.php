@@ -13,8 +13,14 @@ class KotaKabupatenController extends Controller
      */
     public function index()
     {
+        $kotaKabupatens = KotaKabupaten::select('kota_kabupaten.*')
+                            ->join('provinsi', 'provinsi.kode_provinsi', '=', 'kota_kabupaten.kode_provinsi')
+                            ->orderBy('provinsi.nama_provinsi', 'asc')
+                            ->orderBy('kota_kabupaten.kode_kota_kabupaten', 'asc')
+                            ->get();
+
         return view('admin.kota_kabupaten.index', [
-            'kota_kabupatens' => KotaKabupaten::all(),
+            'kota_kabupatens' => $kotaKabupatens,
         ]);
     }
 
@@ -24,7 +30,7 @@ class KotaKabupatenController extends Controller
     public function create()
     {
         return view('admin.kota_kabupaten.create', [
-            'provinsis' => Provinsi::all(),
+            'provinsis' => Provinsi::orderBy('kode_provinsi', 'asc')->get(),
         ]);
     }
 
@@ -36,7 +42,7 @@ class KotaKabupatenController extends Controller
         $rules = [
             'kode_provinsi' => 'required',
             'nama_kota_kabupaten' => 'required',
-            'kode_kota_kabupaten' => 'required',
+            'kode_kota_kabupaten' => 'required|unique:kota_kabupaten,kode_kota_kabupaten',
         ];
 
         $validatedData = $request->validate($rules);
@@ -49,7 +55,7 @@ class KotaKabupatenController extends Controller
 
         $kotaKabupaten->save();
 
-        return redirect()->route('kota-kabupaten.index')->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('kota-kabupaten.index')->with('success', 'Data Kota/Kab Has Been Added Successful!');
     }
 
     /**
@@ -67,7 +73,7 @@ class KotaKabupatenController extends Controller
     {
         return view('admin.kota_kabupaten.edit', [
             'kota_kabupaten' => $kotaKabupaten,
-            'provinsis' => Provinsi::all(),
+            'provinsis' => Provinsi::orderBy('kode_provinsi', 'asc')->get(),
         ]);
     }
 
@@ -86,7 +92,7 @@ class KotaKabupatenController extends Controller
 
         KotaKabupaten::where('id_kota_kabupaten', $kotaKabupaten->id_kota_kabupaten)->update($validatedData);
 
-        return redirect()->route('kota-kabupaten.index', $kotaKabupaten->id_kota_kabupaten)->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('kota-kabupaten.index', $kotaKabupaten->id_kota_kabupaten)->with('success', 'Data Kota/Kab Has Been Updated Successful!');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provinsi;
+use App\Models\KotaKabupaten;
 use Illuminate\Http\Request;
 
 class ProvinsiController extends Controller
@@ -13,7 +14,7 @@ class ProvinsiController extends Controller
     public function index()
     {
         return view('admin.provinsi.index', [
-            'provinsis' => Provinsi::all(),
+            'provinsis' => Provinsi::orderBy('kode_provinsi', 'ASC')->get(),
         ]);
     }
 
@@ -31,7 +32,7 @@ class ProvinsiController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'kode_provinsi' => 'required|string',
+            'kode_provinsi' => 'required|string|unique:provinsi,kode_provinsi',
             'nama_provinsi' => 'required|string',
         ];
 
@@ -39,8 +40,8 @@ class ProvinsiController extends Controller
 
         $provinsi = new Provinsi();
 
-        $provinsi->kode = $validatedData['kode_provinsi'];
-        $provinsi->nama = $validatedData['nama_provinsi'];
+        $provinsi->kode_provinsi = $validatedData['kode_provinsi'];
+        $provinsi->nama_provinsi = $validatedData['nama_provinsi'];
 
         $provinsi->save();
 
@@ -87,8 +88,14 @@ class ProvinsiController extends Controller
      */
     public function destroy(Provinsi $provinsi)
     {
+        $isHasChild = KotaKabupaten::where('kode_provinsi', $provinsi->kode_provinsi)->exists();
+
+        if($isHasChild){
+            return redirect()->route('provinsi.index')->with('error', 'Provinsi Memiliki Kota/Kabupaten! Silahkan Hapus Kota/Kabupaten Terlebih Dahulu');
+        }
+
         Provinsi::destroy($provinsi->id_provinsi);
 
-        return redirect()->route('provinsi.index')->with('success_message', 'Data telah terhapus');
+        return redirect()->route('provinsi.index')->with('success', 'Data telah terhapus');
     }
 }

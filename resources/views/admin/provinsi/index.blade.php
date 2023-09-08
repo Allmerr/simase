@@ -20,6 +20,12 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
                         <table class="table table-hover table-bordered table-stripped" id="example2">
                             <thead>
                                 <tr>

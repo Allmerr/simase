@@ -12,4 +12,9 @@ class KotaKabupaten extends Model
     protected $guarded = 'id_kota_kabupaten';
     protected $table = 'kota_kabupaten';
     protected $primaryKey = 'id_kota_kabupaten';
+
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class, 'kode_provinsi', 'kode_provinsi');
+    }
 }

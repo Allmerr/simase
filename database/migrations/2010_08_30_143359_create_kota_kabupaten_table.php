@@ -17,9 +17,9 @@ return new class extends Migration
             $table->unsignedInteger('kode_provinsi')->nullable();
             $table->foreign('kode_provinsi')->references('kode_provinsi')->on('provinsi');
 
-            $table->unsignedInteger('kode_kota_kabupaten')->index();
+            $table->unsignedInteger('kode_kota_kabupaten')->index()->unique();
             $table->string('nama_kota_kabupaten');
-            
+
             $table->timestamps();
         });
     }

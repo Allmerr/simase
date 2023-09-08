@@ -24,7 +24,7 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Provinsi</th>
+                                    <th>Nama Provinsi</th>
                                     <th>Nama Kota/Kabupaten</th>
                                     <th>Kode Kota/Kabupaten</th>
                                     <th>Aksi</th>
@@ -34,7 +34,7 @@
                                 @foreach($kota_kabupatens as $key => $kota_kabupaten)
                                 <tr>
                                     <td>{{$key+1}}</td>
-                                    <td>{{$kota_kabupaten->kode_provinsi}}</td>
+                                    <td>{{$kota_kabupaten->provinsi->nama_provinsi}}</td>
                                     <td>{{$kota_kabupaten->nama_kota_kabupaten}}</td>
                                     <td>{{ $kota_kabupaten->kode_kota_kabupaten }}</td>
                                     <td>
