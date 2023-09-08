@@ -13,7 +13,7 @@ class TukController extends Controller
     public function index()
     {
         return view('admin.tuk.index', [
-            'tuks' => Tuk::all(),
+            'tuks' => Tuk::orderBy('id_tuk', 'DESC')->get(),
         ]);
     }
 
@@ -44,7 +44,7 @@ class TukController extends Controller
 
         $tuk->save();
 
-        return redirect()->route('tuk.index')->with('success', 'A Tuk Has been added Successful!');
+        return redirect()->route('tuk.index')->with('success', 'Data TUK Has been added Successful!');
     }
 
     /**
@@ -79,7 +79,7 @@ class TukController extends Controller
 
         Tuk::where('id_tuk', $tuk->id_tuk)->update($validatedData);
 
-        return redirect()->route('tuk.index', $tuk->id_tuk)->with('success', 'A TUK Has Been Updated Successful!');
+        return redirect()->route('tuk.index', $tuk->id_tuk)->with('success', 'Data TUK Has Been Updated Successful!');
     }
 
     /**
@@ -89,6 +89,6 @@ class TukController extends Controller
     {
         Tuk::destroy($tuk->id_tuk);
 
-        return redirect()->route('tuk.index')->with('success_message', 'Data telah terhapus');
+        return redirect()->route('tuk.index')->with('success_message', 'Data TUK Has Been Deleted Successful!');
     }
 }
