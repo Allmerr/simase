@@ -13,7 +13,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('admin.peserta.create') }}" class="btn btn-primary mb-2">Simpan</a>
+                    <a href="{{ route('admin.peserta.create') }}" class="btn btn-primary mb-2">Tambah</a>
                     @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                         {{ session('success') }}

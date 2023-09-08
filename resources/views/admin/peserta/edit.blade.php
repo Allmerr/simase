@@ -209,7 +209,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" aria-describedby="password" value="{{ old('password') }}" name="password" required>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" aria-describedby="password" value="{{ old('password') }}" name="password">
                         @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -218,7 +218,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" aria-describedby="password_confirmation" value="{{ old('password_confirmation') }}" name="password_confirmation" required>
+                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" aria-describedby="password_confirmation" value="{{ old('password_confirmation') }}" name="password_confirmation">
                         @error('password_confirmation')
                         <div class="invalid-feedback">
                             {{ $message }}

@@ -60,9 +60,12 @@
                         @enderror
                     </div>
                     <div class="row">
-                        <div class="col-md-10"></div>
+                        <div class="col-md-8"></div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Edit</button>
+                        <a href="{{ route('admin.operator.index') }}" class="btn btn-warning w-100">Kembali</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Simpan</button>
                         </div>
                     </div>
                 </form>

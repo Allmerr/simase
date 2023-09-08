@@ -25,6 +25,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Nama Operator</th>
+                                    <th>Email</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -33,6 +34,7 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$user->nama_lengkap}}</td>
+                                    <td>{{ $user->email }}</td>
                                     <td>
                                         <a href="{{ route('admin.operator.edit', $user->id_users) }}" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('admin.operator.destroy', $user->id_users) }}" onclick="notificationBeforeDelete(event, this, <?php echo $key+1; ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>

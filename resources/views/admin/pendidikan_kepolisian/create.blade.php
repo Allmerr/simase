@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Create Pendidikan Kepolisian')
+@section('title', 'SIMASE | Tambah Pendidikan Kepolisian')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Create Pendidikan Kepolisian</h1>
+    <h1 class="m-0 text-dark">Tambah Pendidikan Kepolisian</h1>
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Edit</button>
+                            <button type="submit" class="btn btn-primary w-100">Simpan</button>
                         </div>
                     </div>
                 </form>

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Create Operator')
+@section('title', 'SIMASE | Tambah Operator')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Create Operator</h1>
+    <h1 class="m-0 text-dark">Tambah Operator</h1>
 @stop
 
 @section('content')
@@ -24,7 +24,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" aria-describedby="password" value="{{ old('password') }}" name="password" required>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" aria-describedby="password" value="{{ old('password') }}" name="password" >
                         @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -33,7 +33,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" aria-describedby="password_confirmation" value="{{ old('password_confirmation') }}" name="password_confirmation" required>
+                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" aria-describedby="password_confirmation" value="{{ old('password_confirmation') }}" name="password_confirmation" >
                         @error('password_confirmation')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -59,9 +59,12 @@
                         @enderror
                     </div>
                     <div class="row">
-                        <div class="col-md-10"></div>
+                        <div class="col-md-8"></div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Cerate</button>
+                        <a href="{{ route('admin.operator.index') }}" class="btn btn-warning w-100">Kembali</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Simpan</button>
                         </div>
                     </div>
                 </form>

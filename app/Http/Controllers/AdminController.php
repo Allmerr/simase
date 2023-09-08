@@ -74,10 +74,13 @@ class AdminController extends Controller
 
         $rules = [
             'nama_lengkap' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed',
             'no_telpon' => 'required|numeric',
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
+
+        if(isset($request->password)){
+            $rules['password'] = 'required|string|min:8|confirmed';
+        }
 
         $validatedData = $request->validate($rules);
 
@@ -88,7 +91,9 @@ class AdminController extends Controller
 
             $validatedData['photo'] = str_replace('public/profile/', '', $request->file('photo')->store('public/profile'));
         }
-
+        if(isset($request->password)){
+            $validatedData['password'] = $request->password;
+        }
         if(isset($request->jenis_kelamin)){
             $validatedData['jenis_kelamin'] = $request->jenis_kelamin;
         }
@@ -145,13 +150,13 @@ class AdminController extends Controller
         User::where('id_users', $user->id_users)->update($validatedData);
 
         // dd($request, $rules);
-        return redirect()->route('admin.peserta.index')->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('admin.peserta.index')->with('success', 'Data Peserta Has Been Updated Successful!');
     }
 
     public function destroyPeserta(Request $request, $id_users){
         User::destroy($id_users);
 
-        return redirect()->route('admin.peserta.index')->with('success', 'Data telah terhapus');
+        return redirect()->route('admin.peserta.index')->with('success', 'Data Peserta Has Been Deleted Successful!');
     }
 
     public function createPeserta(){
@@ -245,7 +250,7 @@ class AdminController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.peserta.index')->with('success', 'A Profile Has Been Updated Successful!');
+        return redirect()->route('admin.peserta.index')->with('success', 'A Peserta Has Been Created Successful!');
     }
 
     public function indexOperator(){
@@ -282,7 +287,7 @@ class AdminController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.operator.index')->with('success', 'A Operator Has Been Added Successful!');
+        return redirect()->route('admin.operator.index')->with('success', 'Data Operator Has Been Added Successful!');
     }
 
     public function editOperator(Request $request, $id_users){
@@ -296,9 +301,12 @@ class AdminController extends Controller
 
         $rules = [
             'nama_lengkap' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed',
             'no_telpon' => 'numeric',
         ];
+
+        if(isset($request->password)){
+            $rules['password'] = 'string|min:8|confirmed';
+        }
 
         if($request->email != $user->email){
             $rules['email'] = 'required|string|email|max:255|unique:users';
@@ -307,30 +315,43 @@ class AdminController extends Controller
         $validatedData = $request->validate($rules);
 
         if($request->email != $user->email){
-            User::where('id_users', $id_users)->update([
-                'nama_lengkap' => $validatedData['nama_lengkap'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-                'no_telpon' => $validatedData['no_telpon'],
-            ]);
-
+            if(isset($request->password)){
+                User::where('id_users', $id_users)->update([
+                    'nama_lengkap' => $validatedData['nama_lengkap'],
+                    'email' => $validatedData['email'],
+                    'password' => Hash::make($validatedData['password']),
+                    'no_telpon' => $validatedData['no_telpon'],
+                ]);
+            }else{
+                User::where('id_users', $id_users)->update([
+                    'nama_lengkap' => $validatedData['nama_lengkap'],
+                    'email' => $validatedData['email'],
+                    'no_telpon' => $validatedData['no_telpon'],
+                ]);
+            }
         }else{
-
-            User::where('id_users', $id_users)->update([
-                'nama_lengkap' => $validatedData['nama_lengkap'],
-                'password' => Hash::make($validatedData['password']),
-                'no_telpon' => $validatedData['no_telpon'],
-            ]);
+            if(isset($request->password)){
+                User::where('id_users', $id_users)->update([
+                    'nama_lengkap' => $validatedData['nama_lengkap'],
+                    'password' => Hash::make($validatedData['password']),
+                    'no_telpon' => $validatedData['no_telpon'],
+                ]);
+            }else{
+                User::where('id_users', $id_users)->update([
+                    'nama_lengkap' => $validatedData['nama_lengkap'],
+                    'no_telpon' => $validatedData['no_telpon'],
+                ]);
+            }
 
         }
 
-        return redirect()->route('admin.operator.index')->with('success', 'A Operator Has Been Edited Successful!');
+        return redirect()->route('admin.operator.index')->with('success', 'Data Operator Has Been Edited Successful!');
     }
 
     public function destroyOperator(Request $request, $id_users){
         User::destroy($id_users);
 
-        return redirect()->route('admin.operator.index')->with('success', 'Data telah terhapus');
+        return redirect()->route('admin.operator.index')->with('success', 'Data Operator Has Been Deleted Successful!');
     }
 
     public function indexSurvey(){
