@@ -1,4 +1,4 @@
-@extends('adminlte::welcome')
+@extends('adminlte::page')
 
 @section('title', 'SIMASE | Tambah Sertifikat')
 
@@ -42,7 +42,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="file_sertifikat" class="form-label">File Sertifikat</label>
-                        <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" required>
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" name="file_sertifikat" required>
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>

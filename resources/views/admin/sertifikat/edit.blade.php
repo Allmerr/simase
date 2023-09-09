@@ -20,9 +20,7 @@
                     <div class="mb-3">
                         <label for="skema">Pilih Skema:</label>
                         <select id="skema" name="id_skema" class="form-select" required disabled>
-                            @foreach ($skemas as $skema)
-                                <option value="{{ $skema->id_skema }}">{{ $skema->nama }}</option>
-                            @endforeach
+                            <option value="{{ $status_peserta->id_skema }}" selected>{{ $status_peserta->skema->nama }}</option>
                         </select>
                     </div>
                     <div class="mb-3" id="usersContainer">
@@ -48,7 +46,8 @@
                         <label for="file_sertifikat" class="form-label">File Sertifikat</label>
                         <br>
                         <a href="{{ asset('storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}">Lihat File Sebelumnya</a>
-                        <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" value="{{ old('file_sertifikat') }}" required>
+                        <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" value="{{ old('file_sertifikat') }}" >
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>

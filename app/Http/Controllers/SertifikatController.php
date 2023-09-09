@@ -36,14 +36,13 @@ class SertifikatController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'id_skema' => 'required',
             'id_user' => 'required',
             'tanggal_penetapan' => 'required|date',
             'nomor_blanko' => 'required|string',
             'nomor_registrasi' => 'required|string',
-            'file_sertifikat' => 'required|mimes:png,jpg,jpegpdf,doc,docx',
+            'file_sertifikat' => 'required|mimes:png,jpg,jpeg,pdf,doc,docx',
         ]);
 
         StatusPeserta::where('id_skema', $request->id_skema)->where('id_users', $request->id_user)->update([
@@ -60,7 +59,7 @@ class SertifikatController extends Controller
 
         Mail::send(new NotifikasiSertifikatMail([
             'email' => $status_peserta->user->email,
-            'subject_' => 'Selamat, Anda telah lulus pada skema ' . $status_peserta->skema->nama, 
+            'subject_' => 'Selamat, Anda telah lulus pada skema ' . $status_peserta->skema->nama,
             'message_' => 'Selamat, Anda telah lulus pada skema ' . $status_peserta->skema->nama . '. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
             'skema' => $status_peserta->skema->nama,
         ]));

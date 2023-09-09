@@ -17,10 +17,11 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Nama Peserta</th>
-                                    <th>Nomor Blanko</th>
+                                    <th>Tanggal Survey</th>
                                     <th>Skema</th>
+                                    <th>Pekerjaan</th>
                                     <th>Instansi Peserta</th>
-                                    <th>Sertifikat Sesuai Dengan Skema</th>
+                                    <th>Hasil Survey</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,8 +29,9 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>{{$survey->user->nama_lengkap}}</td>
-                                    <td>{{$survey->nomor_blanko}}</td>
+                                    <td>{{ \Carbon\Carbon::parse($survey->created_at)->format('d M Y') }}</td>
                                     <td>{{$survey->skema->nama}}</td>
+                                    <td>{{$survey->pekerjaan}}</td>
                                     <td>{{$survey->instansi}}</td>
                                     <td>{{$survey->keterangan}}</td>
                                 </tr>

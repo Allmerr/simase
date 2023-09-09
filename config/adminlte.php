@@ -313,7 +313,7 @@ return [
             'text' => 'Survey',
             'route' => 'peserta.survey.index',
             'icon' => 'fas fa-poll-h',
-            'can' => 'isPeserta',
+            'can' => 'isHasSurvey',
         ],
         // admin
         [

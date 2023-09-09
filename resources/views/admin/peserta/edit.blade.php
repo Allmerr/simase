@@ -25,7 +25,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="email" value="{{ old('email', $user->email) }}" name="email" required>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="email" value="{{ old('email', $user->email) }}" name="email" readonly>
                         @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}

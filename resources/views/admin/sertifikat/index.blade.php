@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Data Sertifikat')
+@section('title', 'SIMASE | Daftar Sertifikat')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Data Sertifikat</h1>
+    <h1 class="m-0 text-dark">Daftar Sertifikat</h1>
 @stop
 
 @section('content')
@@ -26,7 +26,7 @@
                                 <th>Nama Peserta</th>
                                 <th>Nomor Blanko</th>
                                 <th>Nama Skema</th>
-                                <th>Berlaku Sampai Dengan</th>
+                                <th>Tanggal Penetapan</th>
                                 <th>File Sertifikat</th>
                                 <th>Aksi</th>
                             </tr>
@@ -42,7 +42,7 @@
                                 <td>{{ $status_peserta->user->nama_lengkap }}</td>
                                 <td>{{ $status_peserta->nomor_blanko }}</td>
                                 <td>{{ $status_peserta->skema->nama }}</td>
-                                <td>{{ $status_peserta->tanggal_expired }}</td>
+                                <td>{{ $status_peserta->tanggal_penetapan }}</td>
                                 <td>
                                     <a href="{{ asset('/storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}" class="btn btn-primary btn-xs" target="_blank"><i class="fas fa-download"></i></a>
                                 </td>

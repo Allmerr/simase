@@ -92,7 +92,7 @@ class AdminController extends Controller
             $validatedData['photo'] = str_replace('public/profile/', '', $request->file('photo')->store('public/profile'));
         }
         if(isset($request->password)){
-            $validatedData['password'] = $request->password;
+            $validatedData['password'] = Hash::make($validatedData['password']);
         }
         if(isset($request->jenis_kelamin)){
             $validatedData['jenis_kelamin'] = $request->jenis_kelamin;
