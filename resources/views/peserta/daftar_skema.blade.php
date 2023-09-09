@@ -16,11 +16,11 @@
                     {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                @elseif(session()->has('failed')) 
+                @elseif(session()->has('failed'))
                 <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
                     <a href="{{ route('peserta.profile') }}">{{ session('failed') }}</a>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>   
+                </div>
                 @endif
                 <form action="{{ route('peserta.saveDaftarSkema', $skema->id_skema) }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -145,7 +145,7 @@
 
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_photo_3x4'))
                     <div class="mb-3">
-                        <label for="file_syarat_photo_3x4" class="form-label">Dokumen Persyaratan CV</label>
+                        <label for="file_syarat_photo_3x4" class="form-label">Dokumen Persyaratan Photo 3x4</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_photo_3x4') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_photo_3x4" value="{{ old('file_syarat_photo_3x4') }}" name="file_syarat_photo_3x4" required>
                         @error('file_syarat_photo_3x4')
@@ -158,7 +158,7 @@
 
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_photo_4x6'))
                     <div class="mb-3">
-                        <label for="file_syarat_photo_4x6" class="form-label">Dokumen Persyaratan CV</label>
+                        <label for="file_syarat_photo_4x6" class="form-label">Dokumen Persyaratan Photo 4x6</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_photo_4x6') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_photo_4x6" value="{{ old('file_syarat_photo_4x6') }}" name="file_syarat_photo_4x6" required>
                         @error('file_syarat_photo_4x6')
@@ -168,7 +168,7 @@
                         @enderror
                     </div>
                     @endif
-                    
+
                     @if($skema->status_peserta->where('id_users', Auth::user()->id_users)->first() !== null)
                         @if($skema->status_peserta->where('id_users', Auth::user()->id_users)->first()->status == 'lulus')
                         <div class="mb-3">
@@ -180,7 +180,7 @@
                                 {{ $message }}
                             </div>
                             @enderror
-                        </div>  
+                        </div>
                         @endif
                     @endif
 
@@ -226,5 +226,5 @@
             }
         });
     }
-</script>   
+</script>
 @endpush

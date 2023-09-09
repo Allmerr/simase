@@ -263,7 +263,7 @@ class SkemaController extends Controller
             'status' => 'lulus',
         ]);
 
-        return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Data telah terhapus');
+        return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Peserta telah diluluskan');
     }
 
     public function sertifikatLulus(Request $request, $id_skema, $id_peserta)

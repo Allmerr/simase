@@ -42,7 +42,7 @@ class Skema extends Model
 
     public function hasPendingRevisionApplication()
     {
-        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'pending_revisi')->exists();
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'pending')->exists();
     }
 
     public function hasRevisionApplication()

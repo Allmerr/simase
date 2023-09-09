@@ -37,6 +37,22 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
+                    <form action="{{ route('welcome') }}" method="GET">
+                        <label for="year">Select a Year</label>
+                        <div class="form-group d-flex">
+                            <select name="year" id="year" class="form-control">
+                                @php
+                                $currentYear = date('Y');
+                                $startYear = 2010;
+                                @endphp
+                                @for ($year = $currentYear; $year >= $startYear; $year--)
+                                    <option value="{{ $year }}">{{ $year }}</option>
+                                @endfor
+                            </select>
+                            <button type="submit" class="btn btn-primary ml-2">Cari</button>
+                        </div>
+                    </form>
+
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
                             <tr>

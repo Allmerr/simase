@@ -38,7 +38,7 @@
                                         <td>{{ $pengajuan->status }}</td>
                                         <td>
                                             @if($pengajuan->status !== 'lulus')
-                                            <a href="{{ route('skema.pesertaSkemaLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" class="btn btn-success btn-xs">Lulus</a>
+                                            <a href="{{ route('skema.pesertaSkemaLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" class="btn btn-success btn-xs">Luluskan</a>
                                             @endif
                                         </td>
                                     </tr>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->increments('id_pengajuan');
 
-            $table->enum('is_disetujui', ['disetujui', 'tidak_disetujui', 'pending', 'revisi', 'pending_revisi'])->default('pending');
+            $table->enum('is_disetujui', ['disetujui', 'tidak_disetujui', 'pending', 'revisi', 'menunggu_pending'])->default('pending');
             $table->text('catatan')->nullable();
 
             $table->string('file_syarat_ijazah_terakhir')->nullable();
@@ -34,19 +34,19 @@ return new class extends Migration
 
             $table->string('file_syarat_surat_rekomendasi_satker')->nullable();
             $table->enum('status_file_syarat_surat_rekomendasi_satker', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
-            
+
             $table->string('file_syarat_nilai_e_rohani')->nullable();
             $table->enum('status_file_syarat_nilai_e_rohani', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
-            
+
             $table->string('file_syarat_smk_skp_terakhir')->nullable();
             $table->enum('status_file_syarat_smk_skp_terakhir', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
-            
+
             $table->string('file_syarat_cv')->nullable();
             $table->enum('status_file_syarat_cv', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
-            
+
             $table->string('file_syarat_photo_3x4')->nullable();
             $table->enum('status_file_syarat_photo_3x4', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
-            
+
             $table->string('file_syarat_photo_4x6')->nullable();
             $table->enum('status_file_syarat_photo_4x6', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 

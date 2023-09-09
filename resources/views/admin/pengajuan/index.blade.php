@@ -38,7 +38,18 @@
                                     <td>{{$pengajuan->skema->nama }}</td>
                                     <td>{{ \Carbon\Carbon::parse($pengajuan->created_at)->format('d M Y') }}</td>
                                     <td>{{ $pengajuan->jenis_pengajuan }}</td>
-                                    <td>{{$pengajuan->is_disetujui}}</td>
+                                    @if($pengajuan->is_disetujui == 'menunggu_pending' )
+                                    <td><b> Menunggu Diprosses </b></td>
+                                    @elseif($pengajuan->is_disetujui == 'pending')
+                                    <td><b> Prosses Pengecekan </b></td>
+                                    @elseif($pengajuan->is_disetujui == 'revisi' )
+                                    <td><b> Revisi </b></td>
+                                    @elseif($pengajuan->is_disetujui == 'disetujui')
+                                    <td><b> Disetujui </b></td>
+                                    @elseif($pengajuan->is_disetujui == 'tidak_disetujui' )
+                                    <td><b> Ditolak </b></td>
+                                    @endif
+
                                     <td>
                                         <a href="{{ route('pengajuan.show', $pengajuan->id_pengajuan) }}" class="badge btn-primary"><i class="far fa-file-alt"></i> Check dan Berikan Persetujuan</a>
                                     </td>

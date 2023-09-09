@@ -65,7 +65,7 @@
                                             </thead>
                                             <tbody>
                                                 @foreach($pengajuans as $key => $pengajuan)
-                                                @if($pengajuan->is_disetujui === 'pending' || $pengajuan->is_disetujui === 'revisi' || $pengajuan->is_disetujui === 'pending_revisi' )
+                                                @if($pengajuan->is_disetujui === 'pending' || $pengajuan->is_disetujui === 'revisi'  )
                                                 <tr>
                                                     <td>{{$key+1}}</td>
                                                     <td>{{$pengajuan->user->nama_lengkap}}</td>

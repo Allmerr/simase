@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
         if (\Schema::hasTable('email_configuration')) {
             $mailsetting = EmailConfiguration::first();
             if($mailsetting){
-                
+
+                config(['mail.default' => $mailsetting->protocol]);
                 config(['mail.mailers.smtp.host' => $mailsetting->host]);
                 config(['mail.mailers.smtp.port' => $mailsetting->port]);
                 config(['mail.mailers.smtp.encryption' => $mailsetting->tls]);
@@ -35,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
                 config(['mail.mailers.smtp.password' => $mailsetting->password]);
                 config(['mail.mailers.form.address' => $mailsetting->email]);
                 config(['mail.mailers.form.name' => 'simase']);
-                
+
             }
         }
 
@@ -74,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
             }else{
 
                 return false;
-                
+
             }
 
         });

@@ -75,7 +75,7 @@
                             @endif
 
                             <h3 class="profile-username text-center">{{ $user->nama_lengkap }}</h3>
-                            <p class="text-muted text-center">      
+                            <p class="text-muted text-center">
                             @if(isset($user->satker->nama))
                                 {{ $user->satker->nama }}
                             @else
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header p-2">
@@ -96,7 +96,7 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
-                            
+
                             @if (session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                                 {{ session('success') }}
@@ -117,17 +117,17 @@
                                         <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                                         <div class="form-input"> : {{ $user->nama_lengkap }}</div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="email" class="form-label">Email</label>
                                         <div class="form-input"> : {{ $user->email }}</div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="no_telpon" class="form-label">No Telephone</label>
                                         <div class="form-input"> : {{ $user->no_telpon }}</div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                                         <div class="form-input"> : {{ $user->jenis_kelamin }}</div>
@@ -448,8 +448,8 @@
                                 href="{{ asset('/storage/profile/' . $user->photo) }}"
                                 target="_blank">{{ $user->photo }}</a></p>
                         @endif
-
-                        <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" aria-describedby="photo" value="{{ old('nama_lengkap', $user->photo) }}" name="photo">
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png</small>
+                        <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" aria-describedby="photo" value="{{ old('nama_lengkap', $user->photo) }}" name="photo" accept=".jpeg, .jpg, .png">
 
                         @error('photo')
                         <div class="invalid-feedback">

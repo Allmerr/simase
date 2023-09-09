@@ -15,6 +15,7 @@ use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\PekerjaanController;
 use App\Models\StatusPeserta;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,11 +29,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    $selectedYear = $request->input('year');
+
+    if ($selectedYear) {
+        $statusPesertas = StatusPeserta::where('status', 'lulus')->whereYear('tanggal_penetapan', $selectedYear)->get();
+    } else {
+        $statusPesertas = StatusPeserta::where('status', 'lulus')->get();
+    }
+
     return view('welcome', [
-        'status_pesertas' => StatusPeserta::where('status', 'lulus')->get(),
+        'status_pesertas' => $statusPesertas,
     ]);
-});
+})->name('welcome');
 
 Auth::routes();
 

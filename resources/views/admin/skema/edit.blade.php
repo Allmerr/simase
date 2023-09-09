@@ -34,7 +34,7 @@
                         <br>
                         <a href="{{ asset('storage/skema/' . $skema->dokumen_persyaratan) }}">Lihat File Sebelumnya</a>
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
-                        <input class="form-control @error('dokuemen_persyaratn') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" type="file" id="dokumen_persyaratan" name="dokumen_persyaratan" required>
+                        <input class="form-control @error('dokuemen_persyaratn') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" type="file" id="dokumen_persyaratan" name="dokumen_persyaratan">
                     </div>
                     <div class="mb-3">
                         <label for="persyaratan" class="form-label">Persyaratan</label>
@@ -52,7 +52,7 @@
                         <img class="img-preview img-fluid mb-3">
                         @endif
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png </small>
-                        <input class="form-control @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png," type="file"  id="photo" name="photo" onchange="previewphoto()" required>
+                        <input class="form-control @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png," type="file"  id="photo" name="photo" onchange="previewphoto()" >
                         @error('photo')
                         <div class="invalid-feedback">
                             {{ $message }}

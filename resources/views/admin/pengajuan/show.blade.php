@@ -156,8 +156,7 @@
                                 </tr>
                                 @endif
 
-                                @if($pengajuan->status_peserta()->exists())
-                                @if($pengajuan->status_peserta->where('id_skema', $pengajuan->id_skema)->exists())
+                                @if(isset($pengajuan->file_syarat_logbook))
                                     <tr>
                                         <td>Logbook</td>
                                         <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_logbook) }}">Lihat File</a></td>
@@ -165,7 +164,6 @@
                                         <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_logbook" name="file_syarat_logbook"></td>
                                         <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_logbook" name="file_syarat_logbook" checked></td>
                                     </tr>
-                                @endif
                                 @endif
                             </tbody>
                         </table>
@@ -183,29 +181,52 @@
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="disetujui" id="is_disetujui_disetujui" name="is_disetujui" @if($pengajuan->is_disetujui === 'disetujui') checked @endif required>
                             <label class="form-check-label" for="is_disetujui_disetujui">
-                              Disetujui
+                            Disetujui
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="tidak_disetujui" id="is_disetujui_tidak_disetujui" name="is_disetujui" @if($pengajuan->is_disetujui === 'tidak_disetujui') checked @endif required>
                             <label class="form-check-label" for="is_disetujui_tidak_disetujui">
-                              Tidak Disetujui
+                            Ditolak
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="revisi" id="is_disetujui_revisi" name="is_disetujui" @if($pengajuan->is_disetujui === 'revisi') checked @endif required>
                             <label class="form-check-label" for="is_disetujui_revisi">
-                              Revisi
+                            Revisi
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="pending" id="is_disetujui_pending" name="is_disetujui" @if($pengajuan->is_disetujui === 'pending') checked @endif required>
                             <label class="form-check-label" for="is_disetujui_pending">
-                              Pending
+                            Proses Pengecekan
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="menunggu_pending" id="is_disetujui_menunggu_pending" name="is_disetujui" @if($pengajuan->is_disetujui === 'menunggu_pending') checked @endif required>
+                            <label class="form-check-label" for="is_disetujui_menunggu_pending">
+                            Menunggu diproses
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-warning"><b>Save</b></button>
+                    @if($pengajuan->is_disetujui == 'disetujui' || $pengajuan->is_disetujui == 'tidak_disetujui')
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2">
+                            <a href="{{ route('pengajuan.index') }}" class="btn btn-warning w-100">Kembali</a>
+                        </div>
+                    </div>
+                    @else
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2">
+                            <a href="{{ route('pengajuan.index') }}" class="btn btn-warning w-100">Kembali</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                        </div>
+                    </div>
+                    @endif
                 </form>
             </div>
         </div>
