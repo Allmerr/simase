@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pendidikan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PendidikanController extends Controller
@@ -87,6 +88,12 @@ class PendidikanController extends Controller
      */
     public function destroy(Pendidikan $pendidikan)
     {
+        $isHasChild = User::where('kode_pendidikan', $pendidikan->kode_pendidikan)->exists();
+
+        if($isHasChild){
+            return redirect()->route('pendidikan.index')->with('error', 'Pendidikan Memiliki User! Silahkan Hapus User Terlebih Dahulu');
+        }
+
         Pendidikan::destroy($pendidikan->id_pendidikan);
 
         return redirect()->route('pendidikan.index')->with('success', 'Data pendidikan Has Been Deleted Successful!');

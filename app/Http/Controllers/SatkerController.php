@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Satker;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SatkerController extends Controller
@@ -84,6 +85,12 @@ class SatkerController extends Controller
      */
     public function destroy(Satker $satker)
     {
+        $isHasChild = User::where('id_satker', $satker->id_satker)->exists();
+
+        if($isHasChild){
+            return redirect()->route('satker.index')->with('error', 'Satker Memiliki User! Silahkan Hapus User Terlebih Dahulu');
+        }
+
         Satker::destroy($satker->id_satker);
 
         return redirect()->route('satker.index')->with('success', 'Data Satuan Kerja Has bBeen Deleted Successful!');

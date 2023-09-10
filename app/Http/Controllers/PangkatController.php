@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pangkat;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PangkatController extends Controller
@@ -13,7 +14,7 @@ class PangkatController extends Controller
     public function index()
     {
         return view('admin.pangkat.index', [
-            'pangkats' => Pangkat::orderBy('id_pangkat', 'desc')->get(),
+            'pangkats' => Pangkat::orderBy('id_pangkat', 'DESC')->get(),
         ]);
     }
 
@@ -84,8 +85,14 @@ class PangkatController extends Controller
      */
     public function destroy(Pangkat $pangkat)
     {
+        $isHasChild = User::where('id_pangkat', $pangkat->id_pangkat)->exists();
+
+        if($isHasChild){
+            return redirect()->route('pangkat.index')->with('error', 'Pangkat Memiliki User! Silahkan Hapus User Terlebih Dahulu');
+        }
+
         Pangkat::destroy($pangkat->id_pangkat);
 
-        return redirect()->route('pangkat.index')->with('success_', 'Data Pangkat Has Been Deleted Successful!');
+        return redirect()->route('pangkat.index')->with('success', 'Data Pangkat Has Been Deleted Successful!');
     }
 }
