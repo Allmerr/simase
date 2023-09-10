@@ -9,6 +9,8 @@ use App\Models\Notifikasi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\NotifikasiSertifikatMail;
+use Illuminate\Support\Facades\Mail;
 
 class SkemaController extends Controller
 {
@@ -282,6 +284,13 @@ class SkemaController extends Controller
 
         $skema = Skema::find($id_skema);
         $user = User::find($id_peserta);
+
+        Mail::send(new NotifikasiSertifikatMail([
+            'email' => $user->email,
+            'subject_' => 'Selamat, Anda telah lulus pada skema ' . $skema->nama,
+            'message_' => 'Selamat, Anda telah lulus pada skema ' . $skema->nama . '. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
+            'skema' => $skema->nama,
+        ]));
 
         $notifikasi = new Notifikasi();
 
