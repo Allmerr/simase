@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Data Sertifikat')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Skema</h1>
+    <h1 class="m-0 text-dark">Data Sertifikat</h1>
 @stop
 
 @section('content')
@@ -30,7 +30,7 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{ $status_peserta->nomor_blanko }}</td>
                                 <td>{{ $status_peserta->skema->nama }}</td>
-                                <td>{{ $status_peserta->tanggal_expired }}</td>
+                                <td>{{ \Carbon\Carbon::parse($status_peserta->tanggal_expired)->format('d M Y') }}</td>
                                 <td>
                                     <a href="{{ asset('/storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}" class="btn btn-primary btn-xs" target="_blank"><i class="fas fa-download"></i></a>
                                 </td>

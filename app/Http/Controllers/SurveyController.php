@@ -12,9 +12,9 @@ use App\Models\StatusPeserta;
 class SurveyController extends Controller
 {
     public function index(){
-        if(auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->where('sudah_servey', 'belum')->get()->count() > 0){
+        if(auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->get()->count() > 0){
             $berapaJumlahSurveyYangBelumDiIsi = 0;
-            $belumSurvey = auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->where('sudah_servey', 'belum')->get();
+            $belumSurvey = auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->get();
             foreach ($belumSurvey as $key => $value) {
                 if($value->hasSurveyPassed()){
                     $berapaJumlahSurveyYangBelumDiIsi += 1;
@@ -24,16 +24,18 @@ class SurveyController extends Controller
             }
         }
 
+        // dd($belumSurvey);
+
         return view('peserta.survey.index', [
             'skemas' => Skema::all(),
             'surveys' => isset($belumSurvey) ? $belumSurvey : [], // apa makna baris ini?
-        ]);        
+        ]);
     }
 
     public function create(Request $request, $id_status_peserta){
         return view('peserta.survey.create', [
             'survey' => StatusPeserta::where('id_status_peserta', $id_status_peserta)->get()[0], // apa makna baris ini?
-        ]);        
+        ]);
     }
 
     public function store(Request $request, $id_status_peserta)
@@ -48,12 +50,13 @@ class SurveyController extends Controller
             'keterangan' => 'required',
         ];
 
-        
+
         $validatedData = $request->validate($rules);
-        
+
         $validatedData['id_users'] = $status_peserta->id_users;
         $validatedData['id_skema'] = $status_peserta->id_skema;
-        
+        $validatedData['id_status_peserta'] = $status_peserta->id_status_peserta;
+
         // dd($request,$rules);
         $survey = new Survey();
 
@@ -63,6 +66,7 @@ class SurveyController extends Controller
         $survey->keterangan = $validatedData['keterangan'];
         $survey->id_users = $validatedData['id_users'];
         $survey->id_skema = $validatedData['id_skema'];
+        $survey->id_status_peserta = $validatedData['id_status_peserta'];
 
         $survey->save();
 

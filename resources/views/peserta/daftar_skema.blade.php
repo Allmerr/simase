@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Daftar Skema')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Skema</h1>
+    <h1 class="m-0 text-dark">Daftar Skema</h1>
 @stop
 
 @section('content')
@@ -197,8 +197,15 @@
                         </div>
                         @enderror
                     </div>
-
-                    <button type="submit" class="btn btn-outline-secondary" onclick="notificationBeforeSubmit(event, this)">Daftar</button>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2">
+                            <a href="{{ route('peserta.showSkema') }}" class="btn btn-warning w-100">Kembali</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100" onclick="notificationBeforeSubmit(event, this)">Daftar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -222,6 +229,23 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Jika pengguna mengonfirmasi penyimpanan, submit form
+                // check all input is filled
+                let isFilled = true;
+                el.closest('form').querySelectorAll('input').forEach(input => {
+                    if (input.value == "") {
+                        isFilled = false;
+                    }
+                });
+
+                if (!isFilled) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Semua data harus diisi!',
+                    })
+                    return;
+                }
+
                 el.closest('form').submit(); // Menggunakan el.closest() untuk mencari formulir terdekat
             }
         });

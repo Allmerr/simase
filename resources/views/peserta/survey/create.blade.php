@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Isi Survey')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Isi Survey</h1>
@@ -63,12 +63,14 @@
                         @enderror
                     </div>
                     <div class="row">
-                        <div class="col-md-10"></div>
+                        <div class="col-md-8"></div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Ubah</button>
+                            <a href="{{ route('peserta.survey.index') }}" class="btn btn-warning w-100">Kembali</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Simpan</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>

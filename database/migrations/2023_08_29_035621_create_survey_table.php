@@ -18,11 +18,13 @@ return new class extends Migration
             $table->string('pekerjaan');
             $table->string('instansi');
 
+            $table->unsignedInteger('id_status_peserta');
+            $table->foreign('id_status_peserta')->references('id_status_peserta')->on('status_peserta')->onDelete('cascade');
             $table->unsignedInteger('id_skema');
             $table->foreign('id_skema')->references('id_skema')->on('skema')->onDelete('cascade');
             $table->unsignedInteger('id_users')->nullable();
             $table->foreign('id_users')->references('id_users')->on('users')->onDelete('cascade');
-            
+
             $table->enum('keterangan', ['sesuai', 'tidak sesuai']);
 
             $table->timestamps();

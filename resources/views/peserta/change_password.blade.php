@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Change Password')
 
 @section('content_header')
-
+    <h1 class="m-0 text-dark">Change Password</h1>
     <style>
 
         .main-profile{
@@ -29,12 +29,12 @@
                     <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>    
+                    </div>
                     @endif
                     <h2 class="text-center">Change Password</h2>
                     <hr>
 
-                    <form action="{{ route('peserta.changePassword') }}" method="post"> 
+                    <form action="{{ route('peserta.changePassword') }}" method="post">
                         @csrf
                         <div class="mb-3">
                             <label for="old_password" class="form-label">Old Password</label>
@@ -72,10 +72,9 @@
                     </form>
 
                 </div>
-    
+
             </div>
         </div>
     </div>
 </div>
 @stop
-        

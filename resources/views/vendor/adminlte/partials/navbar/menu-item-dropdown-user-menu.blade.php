@@ -18,7 +18,7 @@
     {{-- User menu toggler --}}
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
         @if (auth()->user()->photo === 'nopp.png')
-            <img src="{{ asset('images/' . auth()->user()->photo) }}" alt="" class="user-image img-circle elevation-2">            
+            <img src="{{ asset('images/' . auth()->user()->photo) }}" alt="" class="user-image img-circle elevation-2">
         @else
             <img src="{{ asset('storage/profile/' .auth()->user()->photo) }}" alt="" class="user-image img-circle elevation-2">
         @endif
@@ -31,16 +31,10 @@
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
         @if(auth()->user()->role === 'peserta')
-            @if (auth()->user()->notifikasi()->where('is_dibaca', 'tidak_dibaca')->count() > 0)
-            <li class="user-footer border"><a class="dropdown-item" href="{{ route('peserta.notifikasi') }}">Notifikasi <span class="badge rounded-pill badge-notification bg-secondary">{{ auth()->user()->notifikasi()->where('is_dibaca', 'tidak_dibaca')->count() }}</span></a></li>
-            @else
-            <li class="user-footer border"><a class="dropdown-item" href="{{ route('peserta.notifikasi') }}">Notifikasi</a></li>
-            @endif 
-            
             <li class="user-footer border"><a class="dropdown-item" href="{{ route('peserta.profile') }}">Profile</a></li>
             <li class="user-footer border"><a class="dropdown-item" href="{{ route('peserta.changePassword') }}">Change Password</a></li>
         @endcan
-        
+
         {{-- User menu header --}}
         @if(!View::hasSection('usermenu_header') && config('adminlte.usermenu_header'))
             <li class="user-header {{ config('adminlte.usermenu_header_class', 'bg-primary') }}

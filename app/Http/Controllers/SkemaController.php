@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Skema;
 use App\Models\StatusPeserta;
+use App\Models\User;
+use App\Models\Notifikasi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -277,6 +279,19 @@ class SkemaController extends Controller
             'tanggal_expired' => Carbon::createFromFormat('Y-m-d', $request->tanggal_penetapan)->addYears(3),
             'file_sertifikat' => str_replace('public/file_sertifikat/', '', $request->file('file_sertifikat')->store('public/file_sertifikat')),
         ]);
+
+        $skema = Skema::find($id_skema);
+        $user = User::find($id_peserta);
+
+        $notifikasi = new Notifikasi();
+
+        $notifikasi->judul = 'Selamat, Anda telah lulus pada skema ' . $skema->nama;
+        $notifikasi->pesan = 'Selamat, Anda telah lulus pada skema ' . $skema->nama . '. Silahkan login ke akun Anda untuk melihat sertifikat Anda.';
+        $notifikasi->is_dibaca = 'tidak_dibaca';
+        $notifikasi->id_users = $user->id_users;
+
+        $notifikasi->save();
+
 
         return redirect()->route('skema.sertifikatSkema', $id_skema)->with('success_message', 'Data telah terhapus');
     }

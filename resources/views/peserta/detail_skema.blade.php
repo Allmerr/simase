@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Detail Skema')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Skema</h1>
+    <h1 class="m-0 text-dark">Detail Skema</h1>
     <style>
         .blog-content {
             margin: 0 0;
@@ -58,9 +58,17 @@
                         <br>
 
                         <br>
-                        <a href="{{ route('peserta.daftarSkema', $skema->id_skema) }}" class="btn btn-primary">Daftar Skema</a>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-2">
+                                <a href="{{ route('peserta.showSkema') }}" class="btn btn-warning w-100">Kembali</a>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{ route('peserta.daftarSkema', $skema->id_skema) }}" class="btn btn-primary w-100">Daftar Skema</a>
+                            </div>
+                        </div>
                         <br>
-                        
+
                     </div>
                 </div>
             </div>

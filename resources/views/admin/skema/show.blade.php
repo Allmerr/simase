@@ -4,7 +4,7 @@
 
 @section('content_header')
     <style>
-        img{
+        .row img{
             height: 30%;
             width: 30%;
             object-fit: contain;

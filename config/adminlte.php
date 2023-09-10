@@ -292,6 +292,12 @@ return [
     'menu' => [
         // peserta
         [
+            'text' => 'Profile',
+            'route' => 'peserta.profile',
+            'icon' => 'fas fa-user',
+            'can' => 'isPeserta',
+        ],
+        [
             'text' => 'Skema',
             'route' => 'peserta.showSkema',
             'icon' => 'fas fa-file',
@@ -313,7 +319,14 @@ return [
             'text' => 'Survey',
             'route' => 'peserta.survey.index',
             'icon' => 'fas fa-poll-h',
-            'can' => 'isHasSurvey',
+            'can' => 'isPeserta',
+        ],
+        [
+            'text' => 'Notifikasi',
+            'route' => 'peserta.notifikasi',
+            'icon' => 'fas fa-bell',
+            'can' => 'isPeserta',
+            'topnav_right' => true,
         ],
         // admin
         [

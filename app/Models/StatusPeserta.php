@@ -29,4 +29,8 @@ class StatusPeserta extends Model
     {
         return $this->tanggal_surveilan <= now();
     }
+
+    public function survey(){
+        return $this->belongsTo(Survey::class, 'id_status_peserta', 'id_status_peserta');
+    }
 }

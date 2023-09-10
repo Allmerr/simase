@@ -1,8 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'SIMASE | Notifikasi Detail')
 
 @section('content_header')
+    <h1 class="m-0 text-dark">Notifikasi Detail</h1>
 
     <style>
 
@@ -24,12 +25,21 @@
                     {!! $notifikasi->pesan !!}
                     <br>
                     <br>
+                    @if(str_contains($notifikasi->pesan, 'sertifikat'))
+                    <div class="row">
+                        <div class="col-md-9"></div>
+                        <div class="col-md-3">
+                            <a href="{{ route('peserta.sertifikat') }}" class="btn btn-primary w-100">Lihat Sertifikat</a>
+                        </div>
+                    </div>
+                    @else
                     <div class="row">
                         <div class="col-md-9"></div>
                         <div class="col-md-3">
                             <a href="{{ route('peserta.statusPengajuan') }}" class="btn btn-primary w-100">Lihat Status Pengajuan</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
