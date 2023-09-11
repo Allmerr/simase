@@ -80,7 +80,7 @@
 
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sk_sehat'))
                     <div class="mb-3">
-                        <label for="file_syarat_sk_sehat" class="form-label">Dokumen Persyaratan SK Sehat Penempatan</label>
+                        <label for="file_syarat_sk_sehat" class="form-label">Dokumen Persyaratan SK Sehat</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_sk_sehat') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_sk_sehat" value="{{ old('file_syarat_sk_sehat') }}" name="file_syarat_sk_sehat" required>
                         @error('file_syarat_sk_sehat')
