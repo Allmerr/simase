@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Change Password')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Change Password</h1>
+    <h1 class="m-0">Change Password</h1>
     <style>
 
         .main-profile{

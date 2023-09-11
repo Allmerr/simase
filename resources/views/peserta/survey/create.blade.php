@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Isi Survey')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Isi Survey</h1>
+    <h1 class="m-0">Isi Survey</h1>
 @stop
 
 @section('content')

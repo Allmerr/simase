@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Dashboard')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Selamat datang {{ auth()->user()->nama_lengkap }}</h1>
+    <h1 class="m-0">Selamat datang {{ auth()->user()->nama_lengkap }}</h1>
 @stop
 
 @section('content')

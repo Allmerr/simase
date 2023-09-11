@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Tambah Operator')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Tambah Operator</h1>
+    <h1 class="m-0">Tambah Operator</h1>
 @stop
 
 @section('content')

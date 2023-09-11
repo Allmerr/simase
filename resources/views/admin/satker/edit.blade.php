@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Edit Satuan Kerja')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Edit Satuan Kerja</h1>
+    <h1 class="m-0">Edit Satuan Kerja</h1>
 @stop
 
 @section('content')

@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Lapor Pengajuan BNSP')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Lapor Pengajuan BNSP</h1>
+    <h1 class="m-0">Lapor Pengajuan BNSP</h1>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 @stop

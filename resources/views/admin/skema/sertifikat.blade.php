@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Daftar Peserta Lulus')
 
 @section('content_header')
-   <h1 class="m-0 text-dark">Peserta : {{ $skema->nama }}</h1>
+   <h1 class="m-0">Peserta : {{ $skema->nama }}</h1>
 @stop
 
 @section('content')

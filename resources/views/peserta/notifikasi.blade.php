@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Notifikasi')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Notifikasi</h1>
+    <h1 class="m-0">Notifikasi</h1>
 
     <style>
 

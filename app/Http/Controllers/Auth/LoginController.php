@@ -52,4 +52,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('https://lsppolri.id/'); // Replace with the URL of the website you want to redirect to
+    }
 }

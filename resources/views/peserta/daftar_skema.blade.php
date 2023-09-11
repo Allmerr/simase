@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Daftar Skema')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Daftar Skema</h1>
+    <h1 class="m-0">Daftar Skema</h1>
 @stop
 
 @section('content')

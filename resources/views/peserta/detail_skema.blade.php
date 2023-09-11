@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Detail Skema')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Detail Skema</h1>
+    <h1 class="m-0">Detail Skema</h1>
     <style>
         .blog-content {
             margin: 0 0;
@@ -50,7 +50,7 @@
                         </div>
 
                         <br>
-                        @if ($skema->photo == 'noskema.png')
+                        @if ($skema->dokumen_persyaratan == 'noskema.png')
                         <a href="{{ asset('/images/' . $skema->dokumen_persyaratan) }}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i> Lihat File Persyaratan</a>
                         @else
                         <a href="{{ asset('/storage/skema/' . $skema->dokumen_persyaratan) }}" class="btn btn-outline-primary" target="_blank"><i class="fas fa-download"></i> Lihat File Persyaratan</a>

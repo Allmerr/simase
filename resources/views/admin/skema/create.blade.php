@@ -5,7 +5,7 @@
 @section('content_header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('/css/trix.css') }}">
-    <h1 class="m-0 text-dark">Tambah Skema</h1>
+    <h1 class="m-0">Tambah Skema</h1>
 @stop
 
 @section('content')

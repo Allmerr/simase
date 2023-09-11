@@ -40,7 +40,7 @@ class SkemaController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'kode' => 'required|string|max:6',
+            'kode' => 'required|string',
             'nama' => 'required|string',
             'persyaratan' => 'required|string',
             'dokumen_persyaratan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
@@ -143,7 +143,7 @@ class SkemaController extends Controller
     public function update(Request $request, Skema $skema)
     {
         $rules = [
-            'kode' => 'required|string|max:6',
+            'kode' => 'required|string',
             'nama' => 'required|string',
             'persyaratan' => 'required|string',
             'dokumen_persyaratan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',

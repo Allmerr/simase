@@ -53,7 +53,7 @@
 
 </style>
 
-<h1 class="m-0 text-dark">Detail Profile</h1>
+<h1 class="m-0">Detail Profile</h1>
 
 @stop
 

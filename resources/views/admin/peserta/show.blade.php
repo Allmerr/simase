@@ -53,7 +53,7 @@
 
 </style>
 
-<h1 class="m-0 text-dark">Detail User</h1>
+<h1 class="m-0">Detail User</h1>
 
 @stop
 

@@ -10,7 +10,7 @@
             object-fit: contain;
         }
     </style>
-    <h1 class="m-0 text-dark">{{ $skema->nama }}</h1>
+    <h1 class="m-0">{{ $skema->nama }}</h1>
 @stop
 
 @section('content')

@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Revisi Skema')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Revisi Skema</h1>
+    <h1 class="m-0">Revisi Skema</h1>
     <style>
         p{
             padding: 0;

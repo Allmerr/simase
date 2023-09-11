@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Email Cofiguration')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Email Configuration</h1>
+    <h1 class="m-0">Email Configuration</h1>
 @stop
 
 @section('content')
