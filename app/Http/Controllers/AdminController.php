@@ -15,6 +15,7 @@ use App\Models\KotaKabupaten;
 use App\Models\Pendidikan;
 use App\Models\Pekerjaan;
 use App\Models\EmailConfiguration;
+use App\Models\Skema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -360,9 +361,33 @@ class AdminController extends Controller
         ]);
     }
 
-    public function lulusBelumBersertifikat(){
+    public function lulusBelumBersertifikat(Request $request){
+        $status_peserta = StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->get();
+        if($request->input('id_skema')){
+            if($request->input('id_skema') === 'all'){
+                $status_peserta = StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->get();
+            }else{
+                $status_peserta = StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->where('id_skema', $request->input('id_skema'))->get();
+            }
+        }
         return view('admin.peserta.lulus-belum-bersertifikat', [
-            'status_pesertas' => StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->get(),
+            'status_pesertas' => $status_peserta,
+            'skemas' => Skema::all(),
+        ]);
+    }
+
+    public function diterimaBelumLulus(Request $request){
+        $status_peserta = StatusPeserta::where('status', 'diterima')->where('file_sertifikat', null)->get();
+        if($request->input('id_skema')){
+            if($request->input('id_skema') === 'all'){
+                $status_peserta = StatusPeserta::where('status', 'diterima')->where('file_sertifikat', null)->get();
+            }else{
+                $status_peserta = StatusPeserta::where('status', 'diterima')->where('file_sertifikat', null)->where('id_skema', $request->input('id_skema'))->get();
+            }
+        }
+        return view('admin.peserta.diterima-belum-lulus', [
+            'status_pesertas' => $status_peserta,
+            'skemas' => Skema::all(),
         ]);
     }
 

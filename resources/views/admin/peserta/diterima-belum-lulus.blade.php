@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Lapor Pengajuan BNSP')
+@section('title', 'SIMASE | Lapor Peserta Aktif BNSP')
 
 @section('content_header')
-    <h1 class="m-0">Lapor Pengajuan BNSP</h1>
+    <h1 class="m-0">Lapor Peserta Aktif BNSP</h1>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 @stop
@@ -36,36 +36,38 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
+                                    <th>Satker</th>
                                     <th>Nama Asesi</th>
-                                    <th>NIK</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>NRP/NIP</th>
+                                    <th>Jabatan</th>
                                     <th>Tempat Lahir</th>
                                     <th>Tanggal Lahir</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Tempat Tinggal</th>
-                                    <th>Kode Kota</th>
+                                    <th>NIK</th>
+                                    <th>Alamat</th>
                                     <th>Kode Provinsi</th>
-                                    <th>Nomor Telepon</th>
+                                    <th>Kode Kota/Kabupaten</th>
+                                    <th>No Telpon</th>
                                     <th>Email</th>
-                                    <th>Kode Pendidikan</th>
-                                    <th>Kode Pekerjaan</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($status_pesertas as $key => $status_peserta)
                                 <tr>
                                     <td>{{$key+1}}</td>
+                                    <td>{{ $status_peserta->user->satker->nama }}</td>
                                     <td>{{ $status_peserta->user->nama_lengkap }}</td>
-                                    <td>{{ $status_peserta->user->nik }}</td>
+                                    <td>{{ $status_peserta->user->jenis_kelamin }}</td>
+                                    <td>{{ $status_peserta->user->nip }}</td>
+                                    <td>{{ $status_peserta->user->jabatan }}</td>
                                     <td>{{ $status_peserta->user->tempat_lahir }}</td>
                                     <td>{{ $status_peserta->user->tanggal_lahir }}</td>
-                                    <td>{{ $status_peserta->user->jenis_kelamin }}</td>
+                                    <td>{{ $status_peserta->user->nik }}</td>
                                     <td>{{ $status_peserta->user->alamat }}</td>
-                                    <td>{{ $status_peserta->user->kode_kota_kabupaten }}</td>
                                     <td>{{ $status_peserta->user->kode_provinsi }}</td>
-                                    <td>{{ $status_peserta->user->no_telpon }}</td>
-                                    <td>{{ $status_peserta->user->email }}</td>
-                                    <th>{{ $status_peserta->user->kode_pekerjaan }}</th>
-                                    <th>{{ $status_peserta->user->kode_pendidikan }}</th>
+                                    <td>{{ $status_peserta->user->kode_kota_kabupaten }}</td>
+                                    <th>{{ $status_peserta->user->no_telpon }}</th>
+                                    <th>{{ $status_peserta->user->email }}</th>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -102,11 +104,11 @@ $(document).ready(function() {
         "buttons": [
             {
                 extend: 'excel',
-                title: 'Daftar Asesi Lulus Belum Bersertifikat',
+                title: 'Daftar Asesi Diterima Belum Lulus',
             },
             {
                 extend: 'print',
-                title: 'Daftar Asesi Lulus Belum Bersertifikat',
+                title: 'Daftar Asesi Diterima Belum Lulus',
             },
         ]
 

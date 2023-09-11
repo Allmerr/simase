@@ -378,6 +378,10 @@ return [
                     'text' => 'Lapor Sertifikat BNSP',
                     'route' => 'admin.peserta.lulusBelumBersertifikat',
                 ],
+                [
+                    'text' => 'Lapor Peserta Aktif BNSP',
+                    'route' => 'admin.peserta.diterimaBelumLulus',
+                ],
             ],
         ],
         [
