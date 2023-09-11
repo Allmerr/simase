@@ -186,11 +186,11 @@ class PesertaController extends Controller
         if ($request->file('file_syarat_cv')) {
             $pengajuan->file_syarat_cv = $validatedData['file_syarat_cv'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_cv')->store('public/file_syarat'));
         }
-        if ($request->file('file_syarat_photo_3x4')) {
-            $pengajuan->file_syarat_photo_3x4 = $validatedData['file_syarat_photo_3x4'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_3x4')->store('public/file_syarat'));
+        if ($request->file('file_syarat_pas_photo')) {
+            $pengajuan->file_syarat_pas_photo = $validatedData['file_syarat_pas_photo'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_pas_photo')->store('public/file_syarat'));
         }
-        if ($request->file('file_syarat_photo_4x6')) {
-            $pengajuan->file_syarat_photo_4x6 = $validatedData['file_syarat_photo_4x6'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_4x6')->store('public/file_syarat'));
+        if ($request->file('file_syarat_sertifikat_keahlian_khusus')) {
+            $pengajuan->file_syarat_sertifikat_keahlian_khusus = $validatedData['file_syarat_sertifikat_keahlian_khusus'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sertifikat_keahlian_khusus')->store('public/file_syarat'));
         }
 
 
@@ -231,8 +231,8 @@ class PesertaController extends Controller
             'file_syarat_nilai_e_rohani' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_smk_skp_terakhir' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_cv' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
-            'file_syarat_photo_3x4' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
-            'file_syarat_photo_4x6' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_pas_photo' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_sertifikat_keahlian_khusus' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'id_tuk' => 'required'
         ];
 
@@ -286,11 +286,11 @@ class PesertaController extends Controller
         if ($request->file('file_syarat_cv')) {
             $pengajuan->file_syarat_cv = $validatedData['file_syarat_cv'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_cv')->store('public/file_syarat'));
         }
-        if ($request->file('file_syarat_photo_3x4')) {
-            $pengajuan->file_syarat_photo_3x4 = $validatedData['file_syarat_photo_3x4'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_3x4')->store('public/file_syarat'));
+        if ($request->file('file_syarat_pas_photo')) {
+            $pengajuan->file_syarat_pas_photo = $validatedData['file_syarat_pas_photo'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_pas_photo')->store('public/file_syarat'));
         }
-        if ($request->file('file_syarat_photo_4x6')) {
-            $pengajuan->file_syarat_photo_4x6 = $validatedData['file_syarat_photo_4x6'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_photo_4x6')->store('public/file_syarat'));
+        if ($request->file('file_syarat_sertifikat_keahlian_khusus')) {
+            $pengajuan->file_syarat_sertifikat_keahlian_khusus = $validatedData['file_syarat_sertifikat_keahlian_khusus'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sertifikat_keahlian_khusus')->store('public/file_syarat'));
         }
 
         if ($request->file('file_syarat_logbook')) {

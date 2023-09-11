@@ -118,7 +118,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="file_syarat_photo_4x6" id="file_syarat_nilai_e_rohani" name="file_syarat_nilai_e_rohani" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_nilai_e_rohani')) checked @endif>
+                            <input class="form-check-input" type="checkbox" value="file_syarat_nilai_e_rohani" id="file_syarat_nilai_e_rohani" name="file_syarat_nilai_e_rohani" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_nilai_e_rohani')) checked @endif>
                             <label class="form-check-label" for="file_syarat_nilai_e_rohani">
                                 Nilai E Rohani
                             </label>
@@ -130,15 +130,15 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="file_syarat_photo_3x4" id="file_syarat_photo_3x4" name="file_syarat_photo_3x4" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_photo_3x4')) checked @endif>
-                            <label class="form-check-label" for="file_syarat_photo_3x4">
-                                Photo 3x4
+                            <input class="form-check-input" type="checkbox" value="file_syarat_pas_photo" id="file_syarat_pas_photo" name="file_syarat_pas_photo" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_pas_photo')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_pas_photo">
+                                Pas Photo
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="file_syarat_photo_4x6" id="file_syarat_photo_4x6" name="file_syarat_photo_4x6" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_photo_4x6')) checked @endif>
-                            <label class="form-check-label" for="file_syarat_photo_4x6">
-                                Photo 4x6
+                            <input class="form-check-input" type="checkbox" value="file_syarat_sertifikat_keahlian_khusus" id="file_syarat_sertifikat_keahlian_khusus" name="file_syarat_sertifikat_keahlian_khusus" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sertifikat_keahlian_khusus')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_sertifikat_keahlian_khusus">
+                                Sertifikat Keahlian Khusus
                             </label>
                         </div>
                         @error('file_syarat')

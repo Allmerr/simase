@@ -27,10 +27,10 @@ class SkemaFactory extends Factory
             'file_syarat_nilai_e_rohani',
             'file_syarat_smk_skp_terakhir',
             'file_syarat_cv',
-            'file_syarat_photo_3x4',
-            'file_syarat_photo_4x6',
+            'file_syarat_pas_photo',
+            'file_syarat_sertifikat_keahlian_khusus',
         ];
-        
+
         $combinationLength = fake()->numberBetween(1, count($possibleValues));
 
         $randomCombination = fake()->randomElements($possibleValues, $combinationLength);

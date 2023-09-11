@@ -108,11 +108,11 @@ class PengajuanController extends Controller
         if (isset($request->file_syarat_cv)) {
             $revisi['status_file_syarat_cv'] = $request->file_syarat_cv;
         }
-        if (isset($request->file_syarat_photo_3x4)) {
-            $revisi['status_file_syarat_photo_3x4'] = $request->file_syarat_photo_3x4;
+        if (isset($request->file_syarat_pas_photo)) {
+            $revisi['status_file_syarat_pas_photo'] = $request->file_syarat_pas_photo;
         }
-        if (isset($request->file_syarat_photo_4x6)) {
-            $revisi['status_file_syarat_photo_4x6'] = $request->file_syarat_photo_4x6;
+        if (isset($request->file_syarat_sertifikat_keahlian_khusus)) {
+            $revisi['status_file_syarat_sertifikat_keahlian_khusus'] = $request->file_syarat_sertifikat_keahlian_khusus;
         }
 
 

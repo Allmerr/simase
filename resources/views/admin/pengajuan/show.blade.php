@@ -3,7 +3,7 @@
 @section('title', 'SIMASE | Form Terima Pengajuan')
 
 @section('content_header')
-    <h4 class="m-0 text-dark">Form Terima Pengajuan '{{ $pengajuan->user->nama_lengkap }}' pada Skema '{{ $pengajuan->skema->nama }}'</h4>
+    <h4 class="m-0">Form Terima Pengajuan '{{ $pengajuan->user->nama_lengkap }}' pada Skema '{{ $pengajuan->skema->nama }}'</h4>
     <style>
         a input{
             cursor: pointer;
@@ -145,27 +145,31 @@
                                 </tr>
                                 @endif
 
-                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_photo_3x4'))
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_pas_photo'))
                                 <tr>
-                                    <td>Photo 3x4</td>
-                                    <p>Status Photo 3x4 Sebelumnya: <b>{{ $pengajuan->status_file_syarat_photo_3x4 }}</b></p>
-                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_photo_3x4) }}">Lihat File</a></td>
-                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_photo_3x4" name="file_syarat_photo_3x4"></td>
-                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_photo_3x4" name="file_syarat_photo_3x4"></td>
-                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_photo_3x4" name="file_syarat_photo_3x4" checked></td>
+                                    <td>Pas Photo</td>
+                                    <p>Status Pas Photo Sebelumnya: <b>{{ $pengajuan->status_file_syarat_pas_photo }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_pas_photo) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_pas_photo" name="file_syarat_pas_photo"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_pas_photo" name="file_syarat_pas_photo"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_pas_photo" name="file_syarat_pas_photo" checked></td>
                                 </tr>
                                 @endif
 
-                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_photo_4x6'))
+
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_sertifikat_keahlian_khusus'))
+                                @if($pengajuan->file_syarat_sertifikat_keahlian_khusus != null)
                                 <tr>
-                                    <td>Photo 4x6</td>
-                                    <p>Status Photo 3x4 Sebelumnya: <b>{{ $pengajuan->status_file_syarat_photo_4x6 }}</b></p>
-                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_photo_4x6) }}">Lihat File</a></td>
-                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_photo_4x6" name="file_syarat_photo_4x6"></td>
-                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_photo_4x6" name="file_syarat_photo_4x6"></td>
-                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_photo_4x6" name="file_syarat_photo_4x6" checked></td>
+                                    <td>Sertifikat Keahlian Khusus</td>
+                                    <p>Status Sertifikat Keahlian Khusus Sebelumnya: <b>{{ $pengajuan->status_file_syarat_sertifikat_keahlian_khusus }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sertifikat_keahlian_khusus) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_sertifikat_keahlian_khusus" name="file_syarat_sertifikat_keahlian_khusus"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_sertifikat_keahlian_khusus" name="file_syarat_sertifikat_keahlian_khusus"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_sertifikat_keahlian_khusus" name="file_syarat_sertifikat_keahlian_khusus" checked></td>
                                 </tr>
                                 @endif
+                                @endif
+
 
                                 @if(isset($pengajuan->file_syarat_logbook))
                                     <tr>

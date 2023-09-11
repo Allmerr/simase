@@ -143,12 +143,12 @@
                     </div>
                     @endif
 
-                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_photo_3x4'))
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_pas_photo'))
                     <div class="mb-3">
-                        <label for="file_syarat_photo_3x4" class="form-label">Dokumen Persyaratan Photo 3x4</label>
+                        <label for="file_syarat_pas_photo" class="form-label">Dokumen Persyaratan Pas Photo</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control @error('file_syarat_photo_3x4') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_photo_3x4" value="{{ old('file_syarat_photo_3x4') }}" name="file_syarat_photo_3x4" required>
-                        @error('file_syarat_photo_3x4')
+                        <input type="file" class="form-control @error('file_syarat_pas_photo') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_pas_photo" value="{{ old('file_syarat_pas_photo') }}" name="file_syarat_pas_photo" required>
+                        @error('file_syarat_pas_photo')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -156,12 +156,12 @@
                     </div>
                     @endif
 
-                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_photo_4x6'))
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sertifikat_keahlian_khusus'))
                     <div class="mb-3">
-                        <label for="file_syarat_photo_4x6" class="form-label">Dokumen Persyaratan Photo 4x6</label>
+                        <label for="file_syarat_sertifikat_keahlian_khusus" class="form-label">Dokumen Sertifikat Keahlian Khusus</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control @error('file_syarat_photo_4x6') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_photo_4x6" value="{{ old('file_syarat_photo_4x6') }}" name="file_syarat_photo_4x6" required>
-                        @error('file_syarat_photo_4x6')
+                        <input type="file" class="form-control @error('file_syarat_sertifikat_keahlian_khusus') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_sertifikat_keahlian_khusus" value="{{ old('file_syarat_sertifikat_keahlian_khusus') }}" name="file_syarat_sertifikat_keahlian_khusus">
+                        @error('file_syarat_sertifikat_keahlian_khusus')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -229,9 +229,15 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Jika pengguna mengonfirmasi penyimpanan, submit form
-                // check all input is filled
+                // check all input is filled except file input dengan name file_syarat_keahlian_khusus
+
+
                 let isFilled = true;
                 el.closest('form').querySelectorAll('input').forEach(input => {
+                    // except name file_syarat_keahlian_khusus
+                    if (input.name == "file_syarat_sertifikat_keahlian_khusus") {
+                        return;
+                    }
                     if (input.value == "") {
                         isFilled = false;
                     }

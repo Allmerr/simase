@@ -76,11 +76,11 @@ class SkemaController extends Controller
         if (isset($request->file_syarat_cv)) {
             $fileSyarat .= ',file_syarat_cv';
         }
-        if (isset($request->file_syarat_photo_3x4)) {
-            $fileSyarat .= ',file_syarat_photo_3x4';
+        if (isset($request->file_syarat_pas_photo)) {
+            $fileSyarat .= ',file_syarat_pas_photo';
         }
-        if (isset($request->file_syarat_photo_4x6)) {
-            $fileSyarat .= ',file_syarat_photo_4x6';
+        if (isset($request->file_syarat_sertifikat_keahlian_khusus)) {
+            $fileSyarat .= ',file_syarat_sertifikat_keahlian_khusus';
         }
 
         if ($fileSyarat !== '') {
@@ -180,11 +180,11 @@ class SkemaController extends Controller
         if (isset($request->file_syarat_cv)) {
             $fileSyarat .= ',file_syarat_cv';
         }
-        if (isset($request->file_syarat_photo_3x4)) {
-            $fileSyarat .= ',file_syarat_photo_3x4';
+        if (isset($request->file_syarat_pas_photo)) {
+            $fileSyarat .= ',file_syarat_pas_photo';
         }
-        if (isset($request->file_syarat_photo_4x6)) {
-            $fileSyarat .= ',file_syarat_photo_4x6';
+        if (isset($request->file_syarat_sertifikat_keahlian_khusus)) {
+            $fileSyarat .= ',file_syarat_sertifikat_keahlian_khusus';
         }
 
         if ($fileSyarat !== '') {

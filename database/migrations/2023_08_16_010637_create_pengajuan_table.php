@@ -44,11 +44,11 @@ return new class extends Migration
             $table->string('file_syarat_cv')->nullable();
             $table->enum('status_file_syarat_cv', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
-            $table->string('file_syarat_photo_3x4')->nullable();
-            $table->enum('status_file_syarat_photo_3x4', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            $table->string('file_syarat_pas_photo')->nullable();
+            $table->enum('status_file_syarat_pas_photo', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
-            $table->string('file_syarat_photo_4x6')->nullable();
-            $table->enum('status_file_syarat_photo_4x6', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+            $table->string('file_syarat_sertifikat_keahlian_khusus')->nullable();
+            $table->enum('status_file_syarat_sertifikat_keahlian_khusus', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
             $table->string('file_syarat_logbook')->nullable();
             $table->enum('status_file_syarat_logbook', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
