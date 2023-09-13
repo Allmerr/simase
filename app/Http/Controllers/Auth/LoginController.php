@@ -55,13 +55,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        if (Auth::user()->role === 'peserta'){
-            Auth::logout();
-            return redirect('https://lsppolri.id/');
-        }else{
-            Auth::logout();
-            return redirect()->route('welcome');
-        }
-
+        Auth::logout();
+        return redirect('https://lsppolri.id/');
     }
 }

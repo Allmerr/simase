@@ -387,7 +387,7 @@ class AdminController extends Controller
         }
         return view('admin.peserta.diterima-belum-lulus', [
             'status_pesertas' => $status_peserta,
-            'skemas' => Skema::all(),
+            'skemas' => Skema::orderBy('nama', 'ASC')->get(),
         ]);
     }
 

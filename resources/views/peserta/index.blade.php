@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <h3>Welcome back!!</h3>
+        <h3>Welcome Peserta Sertifikasi LSP Polri</h3>
     </div>
 </div>
 @stop

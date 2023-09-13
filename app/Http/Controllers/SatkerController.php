@@ -77,7 +77,7 @@ class SatkerController extends Controller
 
         Satker::where('id_satker', $satker->id_satker)->update($validatedData);
 
-        return redirect()->route('satker.index', $satker->id_satker)->with('success', 'Data Satuan Kerja Has bBeen Updated Successful!');
+        return redirect()->route('satker.index', $satker->id_satker)->with('success', 'Data Satuan Kerja Has Been Updated Successful!');
     }
 
     /**
@@ -88,7 +88,7 @@ class SatkerController extends Controller
         $isHasChild = User::where('id_satker', $satker->id_satker)->exists();
 
         if($isHasChild){
-            return redirect()->route('satker.index')->with('error', 'Satker Memiliki User! Silahkan Hapus User Terlebih Dahulu');
+            return redirect()->route('satker.index')->with('error', 'Satker Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 
         Satker::destroy($satker->id_satker);

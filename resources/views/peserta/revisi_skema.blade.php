@@ -42,7 +42,7 @@
                         <label for="id_tuk" class="form-label">Tempat Uji Kompetensi (TUK)</label>
                         <select class="form-select @error('id_tuk') is-invalid @enderror" name="id_tuk" >
                             @foreach ($tuks as $tuk)
-                                <option value="{{ $tuk->id_tuk }}" @if($tuk->id_tuk === old('tuk')) selected @endif>{{ $tuk->nama }} - {{ $tuk->alamat }}</option>
+                                <option value="{{ $tuk->id_tuk }}" @if($pengajuan->id_tuk === $tuk->id_tuk || $tuk->id_tuk  === old('tuk')) selected @endif>{{ $tuk->nama }} - {{ $tuk->alamat }}</option>
                             @endforeach
                         </select>
                         @error('id_tuk')
@@ -209,7 +209,7 @@
                         <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sertifikat_keahlian_khusus) }}" target="_blank">{{ $pengajuan->file_syarat_sertifikat_keahlian_khusus }}</a></p>
                         <p>Status : <b>{{ $pengajuan->status_file_syarat_sertifikat_keahlian_khusus }}</b></p>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control @error('file_syarat_sertifikat_keahlian_khusus') is-invalid @enderror" id="file_syarat_sertifikat_keahlian_khusus" value="{{ old('file_syarat_sertifikat_keahlian_khusus') }}" name="file_syarat_sertifikat_keahlian_khusus" @if($pengajuan->status_file_syarat_sertifikat_keahlian_khusus === 'ada disetujui')  disabled @endif @if($pengajuan->status_file_syarat_sertifikat_keahlian_khusus != 'ada disetujui') required @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
+                        <input type="file" class="form-control @error('file_syarat_sertifikat_keahlian_khusus') is-invalid @enderror" id="file_syarat_sertifikat_keahlian_khusus" value="{{ old('file_syarat_sertifikat_keahlian_khusus') }}" name="file_syarat_sertifikat_keahlian_khusus" @if($pengajuan->status_file_syarat_sertifikat_keahlian_khusus === 'ada disetujui')  disabled @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
                         @error('file_syarat_sertifikat_keahlian_khusus')
                         <div class="invalid-feedback">
                             {{ $message }}

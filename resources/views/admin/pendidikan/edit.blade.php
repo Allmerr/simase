@@ -17,7 +17,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="kode_pendidikan" class="form-label">Kode pendidikan</label>
-                        <input type="name" class="form-control @error('kode_pendidikan') is-invalid @enderror" id="kode_pendidikan" aria-describedby="kode_pendidikan" value="{{ old('kode_pendidikan', $pendidikan->kode_pendidikan) }}" name="kode_pendidikan" required>
+                        <input type="name" class="form-control @error('kode_pendidikan') is-invalid @enderror" id="kode_pendidikan" aria-describedby="kode_pendidikan" value="{{ old('kode_pendidikan', $pendidikan->kode_pendidikan) }}" name="kode_pendidikan" disabled>
                         @error('kode_pendidikan')
                         <div class="invalid-feedback">
                             {{ $message }}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KotaKabupaten;
+use App\Models\User;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
@@ -85,7 +86,7 @@ class KotaKabupatenController extends Controller
         $rules = [
             'kode_provinsi' => 'required',
             'nama_kota_kabupaten' => 'required',
-            'kode_kota_kabupaten' => 'required',
+            'kode_kota_kabupaten' => 'required|unique:kota_kabupaten,kode_kota_kabupaten,' . $kotaKabupaten->id_kota_kabupaten . ',id_kota_kabupaten',
         ];
 
         $validatedData = $request->validate($rules);
@@ -100,6 +101,12 @@ class KotaKabupatenController extends Controller
      */
     public function destroy(KotaKabupaten $kotaKabupaten)
     {
+        $isHasChild = User::where('kode_kota_kabupaten', $kotaKabupaten->kode_kota_kabupaten)->exists();
+
+        if($isHasChild){
+            return redirect()->route('kota-kabupaten.index')->with('error', 'Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
+        }
+
         KotaKabupaten::destroy($kotaKabupaten->id_kota_kabupaten);
 
         return redirect()->route('kota-kabupaten.index')->with('success', 'Data telah terhapus');

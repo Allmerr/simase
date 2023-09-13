@@ -91,7 +91,7 @@ class PendidikanController extends Controller
         $isHasChild = User::where('kode_pendidikan', $pendidikan->kode_pendidikan)->exists();
 
         if($isHasChild){
-            return redirect()->route('pendidikan.index')->with('error', 'Pendidikan Memiliki User! Silahkan Hapus User Terlebih Dahulu');
+            return redirect()->route('pendidikan.index')->with('error', 'Pendidikan Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 
         Pendidikan::destroy($pendidikan->id_pendidikan);

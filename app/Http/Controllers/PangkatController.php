@@ -77,7 +77,7 @@ class PangkatController extends Controller
 
         Pangkat::where('id_pangkat', $pangkat->id_pangkat)->update($validatedData);
 
-        return redirect()->route('pangkat.index', $pangkat->id_pangkat)->with('success', 'Data Kota/Pangkat Has Been Updated Successful!');
+        return redirect()->route('pangkat.index', $pangkat->id_pangkat)->with('success', 'Data Pangkat Has Been Updated Successful!');
     }
 
     /**
@@ -88,7 +88,7 @@ class PangkatController extends Controller
         $isHasChild = User::where('id_pangkat', $pangkat->id_pangkat)->exists();
 
         if($isHasChild){
-            return redirect()->route('pangkat.index')->with('error', 'Pangkat Memiliki User! Silahkan Hapus User Terlebih Dahulu');
+            return redirect()->route('pangkat.index')->with('error', 'Pangkat Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 
         Pangkat::destroy($pangkat->id_pangkat);

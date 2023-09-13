@@ -91,7 +91,7 @@ class ProvinsiController extends Controller
         $isHasChild = KotaKabupaten::where('kode_provinsi', $provinsi->kode_provinsi)->exists();
 
         if($isHasChild){
-            return redirect()->route('provinsi.index')->with('error', 'Provinsi Memiliki Kota/Kabupaten! Silahkan Hapus Kota/Kabupaten Terlebih Dahulu');
+            return redirect()->route('provinsi.index')->with('error', 'Provinsi Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 
         Provinsi::destroy($provinsi->id_provinsi);

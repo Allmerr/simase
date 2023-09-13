@@ -10,7 +10,7 @@
         body{
             background:#FDFDFF
         }
-        .badge {
+        body.badge {
             border-radius: 8px;
             padding: 4px 8px;
             text-transform: uppercase;
