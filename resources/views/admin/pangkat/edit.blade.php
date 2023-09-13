@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Edit Pangkat')
+@section('title', 'SI-MASE | Edit Pangkat')
 
 @section('content_header')
     <h1 class="m-0">Edit Pangkat</h1>

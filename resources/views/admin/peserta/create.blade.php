@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Simpan Peserta')
+@section('title', 'SI-MASE | Simpan Peserta')
 
 @section('content_header')
     <h1 class="m-0">Simpan Peserta</h1>

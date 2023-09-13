@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Edit TUK')
+@section('title', 'SI-MASE | Edit TUK')
 
 @section('content_header')
     <h1 class="m-0">Edit Tempat Uji Kompetensi</h1>

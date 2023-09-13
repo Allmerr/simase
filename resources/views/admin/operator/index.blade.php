@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Data Operator')
+@section('title', 'SI-MASE | Data Operator')
 
 @section('content_header')
     <h1 class="m-0">Data Operator</h1>

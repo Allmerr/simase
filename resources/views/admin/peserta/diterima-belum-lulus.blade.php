@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Lapor Peserta Aktif BNSP')
+@section('title', 'SI-MASE | Lapor Peserta Aktif BNSP')
 
 @section('content_header')
     <h1 class="m-0">Lapor Peserta Aktif BNSP</h1>

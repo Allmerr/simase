@@ -11,7 +11,7 @@
             header{
                 background: #f6f6fe;
             }
-    
+
             header h4{
                 margin-bottom: -0.23px;
             }
@@ -22,17 +22,17 @@
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="/" class="d-flex align-items-center mb-lg-0 link-body-emphasis text-decoration-none">
-                        <h4>SIMASE</h3>
+                        <h4>SI-MASE</h3>
                     </a>
-    
+
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ms-auto">
                         <li><a href="{{ route('peserta.showSkema') }}" class="nav-link px-2 link-secondary">Skema</a></li>
                     </ul>
-    
+
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             @if (auth()->user()->photo === 'nopp.png')
-                                <img src="{{ asset('images/' . auth()->user()->photo) }}" alt="mdo" width="32" height="32" class="rounded-circle">            
+                                <img src="{{ asset('images/' . auth()->user()->photo) }}" alt="mdo" width="32" height="32" class="rounded-circle">
                             @else
                                 <img src="{{ asset('storage/profile/' . auth()->user()->photo) }}" alt="mdo" width="32" height="32" class="rounded-circle">
                             @endif

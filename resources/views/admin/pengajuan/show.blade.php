@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Form Terima Pengajuan')
+@section('title', 'SI-MASE | Form Terima Pengajuan')
 
 @section('content_header')
     <h4 class="m-0">Form Terima Pengajuan '{{ $pengajuan->user->nama_lengkap }}' pada Skema '{{ $pengajuan->skema->nama }}'</h4>

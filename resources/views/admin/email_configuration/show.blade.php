@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Email Cofiguration')
+@section('title', 'SI-MASE | Email Cofiguration')
 
 @section('content_header')
     <h1 class="m-0">Email Configuration</h1>

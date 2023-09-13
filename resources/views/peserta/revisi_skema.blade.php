@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Revisi Skema')
+@section('title', 'SI-MASE | Revisi Skema')
 
 @section('content_header')
     <h1 class="m-0">Revisi Skema</h1>

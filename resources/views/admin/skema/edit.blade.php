@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Edit Skema')
+@section('title', 'SI-MASE | Edit Skema')
 
 @section('content_header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -88,6 +88,12 @@
                             </label>
                         </div>
                         <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_sertifikat_keahlian_khusus" id="file_syarat_sertifikat_keahlian_khusus" name="file_syarat_sertifikat_keahlian_khusus" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sertifikat_keahlian_khusus')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_sertifikat_keahlian_khusus">
+                                Sertifikat Keahlian Khusus
+                            </label>
+                        </div>
+                        <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="file_syarat_sertifikat_pelatihan" id="file_syarat_sertifikat_pelatihan" name="file_syarat_sertifikat_pelatihan" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sertifikat_pelatihan')) checked @endif>
                             <label class="form-check-label" for="file_syarat_sertifikat_pelatihan">
                                 Sertifikat Pelatihan
@@ -133,12 +139,6 @@
                             <input class="form-check-input" type="checkbox" value="file_syarat_pas_photo" id="file_syarat_pas_photo" name="file_syarat_pas_photo" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_pas_photo')) checked @endif>
                             <label class="form-check-label" for="file_syarat_pas_photo">
                                 Pas Photo
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="file_syarat_sertifikat_keahlian_khusus" id="file_syarat_sertifikat_keahlian_khusus" name="file_syarat_sertifikat_keahlian_khusus" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sertifikat_keahlian_khusus')) checked @endif>
-                            <label class="form-check-label" for="file_syarat_sertifikat_keahlian_khusus">
-                                Sertifikat Keahlian Khusus
                             </label>
                         </div>
                         @error('file_syarat')

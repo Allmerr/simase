@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Dashboard')
+@section('title', 'SI-MASE | Dashboard')
 
 @section('content_header')
     <h1 class="m-0">Dashboard</h1>
@@ -65,13 +65,23 @@
                                             </thead>
                                             <tbody>
                                                 @foreach($pengajuans as $key => $pengajuan)
-                                                @if($pengajuan->is_disetujui === 'pending' || $pengajuan->is_disetujui === 'revisi'  )
+                                                @if($pengajuan->is_disetujui === 'pending' || $pengajuan->is_disetujui === 'revisi'  || $pengajuan->is_disetujui === 'menunggu_pending' )
                                                 <tr>
                                                     <td>{{$key+1}}</td>
                                                     <td>{{$pengajuan->user->nama_lengkap}}</td>
                                                     <td>{{$pengajuan->user->satker->nama}}</td>
                                                     <td>{{$pengajuan->skema->nama }}</td>
-                                                    <td>{{$pengajuan->is_disetujui}}</td>
+                                                    @if($pengajuan->is_disetujui == 'menunggu_pending' )
+                                                    <td><b> Menunggu Diprosses </b></td>
+                                                    @elseif($pengajuan->is_disetujui == 'pending')
+                                                    <td><b> Prosses Pengecekan </b></td>
+                                                    @elseif($pengajuan->is_disetujui == 'revisi' )
+                                                    <td><b> Revisi </b></td>
+                                                    @elseif($pengajuan->is_disetujui == 'disetujui')
+                                                    <td><b> Disetujui </b></td>
+                                                    @elseif($pengajuan->is_disetujui == 'tidak_disetujui' )
+                                                    <td><b> Ditolak </b></td>
+                                                    @endif
                                                 </tr>
                                                 @endif
                                                 @endforeach

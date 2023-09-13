@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function (Request $request) {
     $selectedYear = $request->input('year');
 
-    if ($selectedYear) {
+    if ($selectedYear != 'all years') {
         $statusPesertas = StatusPeserta::where('status', 'lulus')->whereYear('tanggal_penetapan', $selectedYear)->get();
     } else {
         $statusPesertas = StatusPeserta::where('status', 'lulus')->get();

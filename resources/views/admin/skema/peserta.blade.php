@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Daftar Aktif')
+@section('title', 'SI-MASE | Daftar Aktif')
 
 @section('content_header')
    <h1 class="m-0">Peserta : {{ $skema->nama }}</h1>

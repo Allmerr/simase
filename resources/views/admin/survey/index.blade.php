@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Data Survey')
+@section('title', 'SI-MASE | Data Survey')
 
 @section('content_header')
     <h1 class="m-0">Data Survey</h1>

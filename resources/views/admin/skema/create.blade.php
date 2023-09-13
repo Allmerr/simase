@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Tambah Skema')
+@section('title', 'SI-MASE | Tambah Skema')
 
 @section('content_header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,7 +34,7 @@
                         <trix-editor input="x" class="trix-content"></trix-editor>
                     </div>
                     <div class="mb-3">
-                        <label for="dokumen_persyaratan" class="form-label">Dokumen Persyaratan</label>
+                        <label for="dokumen_persyaratan" class="form-label">Dokumen SK Skema</label>
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
                         <input class="form-control @error('dokuemen_persyaratn') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" type="file" id="dokumen_persyaratan" name="dokumen_persyaratan" required>
                     </div>
@@ -59,6 +59,12 @@
                             </label>
                         </div>
                         <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_sertifikat_keahlian_khusus" id="file_syarat_sertifikat_keahlian_khusus" name="file_syarat_sertifikat_keahlian_khusus">
+                            <label class="form-check-label" for="file_syarat_sertifikat_keahlian_khusus">
+                                Sertifikat Keahlian Khusus
+                            </label>
+                        </div>
+                        <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="file_syarat_sertifikat_pelatihan" id="file_syarat_sertifikat_pelatihan" name="file_syarat_sertifikat_pelatihan">
                             <label class="form-check-label" for="file_syarat_sertifikat_pelatihan">
                                 Sertifikat Pelatihan
@@ -67,19 +73,19 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="file_syarat_sk_penempatan" id="file_syarat_sk_penempatan" name="file_syarat_sk_penempatan">
                             <label class="form-check-label" for="file_syarat_sk_penempatan">
-                                Sk Penempatan
+                                SK Penempatan
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="file_syarat_sk_bebas_narkoba" id="file_syarat_sk_bebas_narkoba" name="file_syarat_sk_bebas_narkoba">
                             <label class="form-check-label" for="file_syarat_sk_bebas_narkoba">
-                                Sk Bebas Narkoba
+                                SK Bebas Narkoba
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="file_syarat_sk_sehat" id="file_syarat_sk_sehat" name="file_syarat_sk_sehat">
                             <label class="form-check-label" for="file_syarat_sk_sehat">
-                                Sk Sehat
+                                SK Sehat
                             </label>
                         </div>
                         <div class="form-check">
@@ -104,12 +110,6 @@
                             <input class="form-check-input" type="checkbox" value="file_syarat_pas_photo" id="file_syarat_pas_photo" name="file_syarat_pas_photo">
                             <label class="form-check-label" for="file_syarat_pas_photo">
                                 Pas Photo
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="file_syarat_sertifikat_keahlian_khusus" id="file_syarat_sertifikat_keahlian_khusus" name="file_syarat_sertifikat_keahlian_khusus">
-                            <label class="form-check-label" for="file_syarat_sertifikat_keahlian_khusus">
-                                Sertifikat Keahlian Khusus
                             </label>
                         </div>
 

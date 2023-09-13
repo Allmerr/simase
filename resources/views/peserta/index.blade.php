@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Dashboard')
+@section('title', 'SI-MASE | Dashboard')
 
 @section('content_header')
     <h1 class="m-0">Selamat datang {{ auth()->user()->nama_lengkap }}</h1>

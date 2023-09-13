@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Data Provinsi')
+@section('title', 'SI-MASE | Data Provinsi')
 
 @section('content_header')
     <h1 class="m-0">Data Provinsi</h1>

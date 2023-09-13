@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Change Password')
+@section('title', 'SI-MASE | Change Password')
 
 @section('content_header')
     <h1 class="m-0">Change Password</h1>

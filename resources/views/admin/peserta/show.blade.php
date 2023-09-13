@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SIMASE | Detail User')
+@section('title', 'SI-MASE | Detail User')
 
 @section('content_header')
 <style>
