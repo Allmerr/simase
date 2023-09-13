@@ -1,3 +1,6 @@
+== smylink
+/home/lsppolri/public_html/simase/laravel/storage/app/public/uploads /home/lsppolri/public_html/simase/storage
+
 == Perintah Cron Job 
 
 /usr/local/bin/php /home/lsppolri/public_html/simase/laravel/artisan schedule:run >> /home/lsppolri/public_html/simase/laravel/storage/logs/laravel.log 2>&1
