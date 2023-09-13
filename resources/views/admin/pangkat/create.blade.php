@@ -16,7 +16,12 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Pangkat</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama') }}" name="nama" required>
+                        <input type="name" class="form-control @error('nama') is-invalid @enderror" id="nama" aria-describedby="nama" value="{{ old('nama') }}" name="nama" required>
+                        @error('nama')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-8"></div>

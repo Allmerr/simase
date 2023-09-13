@@ -32,7 +32,7 @@ class PendidikanController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'kode_pendidikan' => 'required|string',
+            'kode_pendidikan' => 'required|string|unique:pendidikan,kode_pendidikan',
             'nama_pendidikan' => 'required|string',
         ];
 
@@ -72,7 +72,7 @@ class PendidikanController extends Controller
     public function update(Request $request, Pendidikan $pendidikan)
     {
         $rules = [
-            'kode_pendidikan' => 'required',
+            'kode_pendidikan' => 'required|unique:pendidikan,kode_pendidikan,' . $pendidikan->id_pendidikan . ',id_pendidikan',
             'nama_pendidikan' => 'required',
         ];
 

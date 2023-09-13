@@ -209,7 +209,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" aria-describedby="password" value="{{ old('password') }}" name="password">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" aria-describedby="password" name="password">
                         @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}

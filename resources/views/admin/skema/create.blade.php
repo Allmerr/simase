@@ -22,11 +22,21 @@
                     @csrf
                     <div class="mb-3">
                         <label for="kode" class="form-label">Kode Skema</label>
-                        <input type="name" class="form-control" id="kode" aria-describedby="kode" value="{{ old('kode') }}" name="kode" required>
+                        <input type="name" class="form-control @error('kode') is-invalid @enderror" id="kode" aria-describedby="kode" value="{{ old('kode') }}" name="kode" required>
+                        @error('kode')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama') }}" name="nama" required>
+                        <input type="name" class="form-control @error('nama') is-invalid @enderror" id="nama" aria-describedby="nama" value="{{ old('nama') }}" name="nama" required>
+                        @error('nama')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="persyaratan" class="form-label">Persyaratan</label>
@@ -37,6 +47,11 @@
                         <label for="dokumen_persyaratan" class="form-label">Dokumen SK Skema</label>
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
                         <input class="form-control @error('dokuemen_persyaratn') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" type="file" id="dokumen_persyaratan" name="dokumen_persyaratan" required>
+                        @error('dokumen_persyaratan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Skema photo</label>

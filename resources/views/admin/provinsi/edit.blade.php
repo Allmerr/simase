@@ -17,7 +17,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="kode_provinsi" class="form-label">Kode Provinsi</label>
-                        <input type="name" class="form-control @error('kode_provinsi')" id="kode_provinsi" aria-describedby="kode_provinsi" value="{{ old('kode_provinsi', $provinsi->kode_provinsi) }}" name="kode_provinsi" readonly>
+                        <input type="name" class="form-control @error('kode_provinsi') is-invalid @enderror" id="kode_provinsi" aria-describedby="kode_provinsi" value="{{ old('kode_provinsi', $provinsi->kode_provinsi) }}" name="kode_provinsi" readonly>
                         @error('kode_provinsi')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -26,7 +26,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="nama_provinsi" class="form-label">Nama Provinsi</label>
-                        <input type="name" class="form-control @error('nama_provinsi')" id="nama_provinsi" aria-describedby="nama_provinsi" value="{{ old('nama_provinsi', $provinsi->nama_provinsi) }}" name="nama_provinsi" required>
+                        <input type="name" class="form-control @error('nama_provinsi') is-invalid @enderror" id="nama_provinsi" aria-describedby="nama_provinsi" value="{{ old('nama_provinsi', $provinsi->nama_provinsi) }}" name="nama_provinsi" required>
                         @error('nama_provinsi')
                         <div class="invalid-feedback">
                             {{ $message }}

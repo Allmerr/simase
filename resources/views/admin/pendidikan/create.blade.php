@@ -16,11 +16,21 @@
                     @csrf
                     <div class="mb-3">
                         <label for="kode_pendidikan" class="form-label">Kode pendidikan</label>
-                        <input type="name" class="form-control" id="kode_pendidikan" aria-describedby="kode_pendidikan" value="{{ old('kode_pendidikan') }}" name="kode_pendidikan" required>
+                        <input type="name" class="form-control @error('kode_pendidikan') is-invalid @enderror" id="kode_pendidikan" aria-describedby="kode_pendidikan" value="{{ old('kode_pendidikan') }}" name="kode_pendidikan" required>
+                        @error('kode_pendidikan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nama_pendidikan" class="form-label">Nama pendidikan</label>
-                        <input type="name" class="form-control" id="nama_pendidikan" aria-describedby="nama_pendidikan" value="{{ old('nama_pendidikan') }}" name="nama_pendidikan" required>
+                        <input type="name" class="form-control @error('nama_pendidikan') is-invalid @enderror" id="nama_pendidikan" aria-describedby="nama_pendidikan" value="{{ old('nama_pendidikan') }}" name="nama_pendidikan" required>
+                        @error('nama_pendidikan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-8"></div>

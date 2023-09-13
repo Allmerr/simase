@@ -21,29 +21,59 @@
                                 <option value="{{ $skema->id_skema }}">{{ $skema->nama }}</option>
                             @endforeach
                         </select>
+                        @error('id_skema')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3" id="usersContainer">
                         <label for="user">Pilih Peserta:</label>
                         <small class="form-text text-muted">Peserta yang ditampilakan adalah peserta yang telah lulus dari skema yang dipilih</small>
                         <select id="user" name="id_user" class="form-select" required>
                         </select>
+                        @error('id_user')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nomor_blanko" class="form-label">Nomor Blanko</label>
-                        <input type="text" class="form-control" id="nomor_blanko" aria-describedby="nomor_blanko" name="nomor_blanko" required>
+                        <input type="text" class="form-control @error('nomor_blanko') is-invalid @enderror" id="nomor_blanko" aria-describedby="nomor_blanko" name="nomor_blanko" required>
+                        @error('nomor_blanko')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nomor_registrasi" class="form-label">Nomor Registrasi</label>
-                        <input type="text" class="form-control" id="nomor_registrasi" aria-describedby="nomor_registrasi" name="nomor_registrasi" required>
+                        <input type="text" class="form-control @error('nomor_registrasi') is-invalid @enderror" id="nomor_registrasi" aria-describedby="nomor_registrasi" name="nomor_registrasi" required>
+                        @error('nomor_registrasi')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="tanggal_penetapan" class="form-label">Tanggal Penetapan</label>
-                        <input type="date" class="form-control" id="tanggal_penetapan" aria-describedby="tanggal_penetapan" name="tanggal_penetapan" required>
+                        <input type="date" class="form-control @error('tanggal_penetapan') is-invalid @enderror" id="tanggal_penetapan" aria-describedby="tanggal_penetapan" name="tanggal_penetapan" required>
+                        @error('tanggal_penetapan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="file_sertifikat" class="form-label">File Sertifikat</label>
                         <small class="form-text text-muted">Allow file extensions : .jpeg .jpg .png .pdf .docx</small>
-                        <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" name="file_sertifikat" required>
+                        <input type="file" class="form-control @error('file_sertifikat') is-invalid @enderror" id="file_sertifikat" aria-describedby="file_sertifikat" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" name="file_sertifikat" required>
+                        @error('file_sertifikat')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>
@@ -88,6 +118,11 @@
                             return `<option value="${user.user.id_users}">${user.user.nama_lengkap}</option>`;
                         })}
                     </select>
+                    @error('id_user')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 `;
             });
     }

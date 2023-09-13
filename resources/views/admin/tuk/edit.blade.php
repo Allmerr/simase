@@ -17,11 +17,21 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Tempat Uji Kompotensi (TUK)</label>
-                        <input type="name" class="form-control" id="nama" aria-describedby="nama" value="{{ old('nama', $tuk->nama) }}" name="nama" required>
+                        <input type="name" class="form-control @error('nama') is-invalid @enderror " id="nama" aria-describedby="nama" value="{{ old('nama', $tuk->nama) }}" name="nama" required>
+                        @error('alamat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat Tempat Uji Kompotensi (TUK)</label>
-                        <input type="name" class="form-control" id="alamat" aria-describedby="alamat" value="{{ old('alamat', $tuk->alamat) }}" name="alamat" required>
+                        <input type="name" class="form-control @error('alamat') is-invalid @enderror " id="alamat" aria-describedby="alamat" value="{{ old('alamat', $tuk->alamat) }}" name="alamat" required>
+                        @error('alamat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-10"></div>

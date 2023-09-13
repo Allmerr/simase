@@ -29,11 +29,21 @@
                     </div>
                     <div class="mb-3">
                         <label for="kode_kota_kabupaten" class="form-label">Kode Kota/Kabupaten</label>
-                        <input type="name" class="form-control" id="kode_kota_kabupaten" aria-describedby="kode_kota_kabupaten" value="{{ old('kode_kota_kabupaten') }}" name="kode_kota_kabupaten" required>
+                        <input type="name" class="form-control @error('kode_kota_kabupaten') is-invalid @enderror" id="kode_kota_kabupaten" aria-describedby="kode_kota_kabupaten" value="{{ old('kode_kota_kabupaten') }}" name="kode_kota_kabupaten" required>
+                        @error('kode_kota_kabupaten')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nama_kota_kabupaten" class="form-label">Nama Kota/Kabupaten</label>
-                        <input type="name" class="form-control" id="nama_kota_kabupaten" aria-describedby="nama_kota_kabupaten" value="{{ old('nama_kota_kabupaten') }}" name="nama_kota_kabupaten" required>
+                        <input type="name" class="form-control @error('nama_kota_kabupaten') is-invalid @enderror" id="nama_kota_kabupaten" aria-describedby="nama_kota_kabupaten" value="{{ old('nama_kota_kabupaten') }}" name="nama_kota_kabupaten" required>
+                        @error('nama_kota_kabupaten')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-8"></div>

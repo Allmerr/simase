@@ -59,14 +59,14 @@ class AdminController extends Controller
 
     public function editPeserta(Request $request, $id_users){
         return view('admin.peserta.edit', [
-            'satkers' => Satker::all(),
-            'pangkats' => Pangkat::all(),
-            'pendidikan_kepolisians' => PendidikanKepolisian::all(),
             'user' => User::where('role', 'peserta')->where('id_users', $id_users)->get()[0],
-            'provinsis' => Provinsi::all(),
-            'kota_kabupatens' => KotaKabupaten::all(),
-            'pendidikans' => Pendidikan::all(),
-            'pekerjaans' => Pekerjaan::all(),
+            'satkers' => Satker::orderBy('nama', 'ASC')->get(),
+            'pangkats' => Pangkat::orderBy('nama', 'ASC')->get(),
+            'pendidikan_kepolisians' => PendidikanKepolisian::orderBy('nama', 'ASC')->get(),
+            'provinsis' => Provinsi::orderBy('nama_provinsi', 'ASC')->get(),
+            'kota_kabupatens' => KotaKabupaten::orderBy('nama_kota_kabupaten', 'ASC')->get(),
+            'pendidikans' => Pendidikan::orderBy('nama_pendidikan', 'ASC')->get(),
+            'pekerjaans' => Pekerjaan::orderBy('nama_pekerjaan', 'ASC')->get(),
         ]);
     }
 
@@ -162,13 +162,13 @@ class AdminController extends Controller
 
     public function createPeserta(){
         return view('admin.peserta.create', [
-            'satkers' => Satker::all(),
-            'pangkats' => Pangkat::all(),
-            'pendidikan_kepolisians' => PendidikanKepolisian::all(),
-            'provinsis' => Provinsi::all(),
-            'kota_kabupatens' => KotaKabupaten::all(),
-            'pendidikans' => Pendidikan::all(),
-            'pekerjaans' => Pekerjaan::all(),
+            'satkers' => Satker::orderBy('nama', 'ASC')->get(),
+            'pangkats' => Pangkat::orderBy('nama', 'ASC')->get(),
+            'pendidikan_kepolisians' => PendidikanKepolisian::orderBy('nama', 'ASC')->get(),
+            'provinsis' => Provinsi::orderBy('nama_provinsi', 'ASC')->get(),
+            'kota_kabupatens' => KotaKabupaten::orderBy('nama_kota_kabupaten', 'ASC')->get(),
+            'pendidikans' => Pendidikan::orderBy('nama_pendidikan', 'ASC')->get(),
+            'pekerjaans' => Pekerjaan::orderBy('nama_pekerjaan', 'ASC')->get(),
         ]);
     }
 

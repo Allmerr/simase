@@ -204,7 +204,6 @@
 
 
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sertifikat_keahlian_khusus'))
-                    @if($pengajuan->file_syarat_sertifikat_keahlian_khusus != null)
                     <div class="my-4">
                         <label for="file_syarat_sertifikat_keahlian_khusus" class="form-label">Dokumen Sertifikat Keahlian Khusus</label>
                         <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sertifikat_keahlian_khusus) }}" target="_blank">{{ $pengajuan->file_syarat_sertifikat_keahlian_khusus }}</a></p>
@@ -217,7 +216,6 @@
                         </div>
                         @enderror
                     </div>
-                    @endif
                     @endif
 
                     @if($pengajuan->file_syarat_logbook)

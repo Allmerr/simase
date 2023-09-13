@@ -42,7 +42,7 @@
                                 <td>{{ $status_peserta->user->nama_lengkap }}</td>
                                 <td>{{ $status_peserta->nomor_blanko }}</td>
                                 <td>{{ $status_peserta->skema->nama }}</td>
-                                <td>{{ $status_peserta->tanggal_penetapan }}</td>
+                                <td>{{ \Carbon\Carbon::parse($status_peserta->tanggal_penetapan)->format('d M Y') }}</td>
                                 <td>
                                     <a href="{{ asset('/storage/file_sertifikat/' . $status_peserta->file_sertifikat) }}" class="btn btn-primary btn-xs" target="_blank"><i class="fas fa-download"></i></a>
                                 </td>

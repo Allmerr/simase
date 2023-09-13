@@ -19,7 +19,8 @@ class PengajuanController extends Controller
     public function index()
     {
         return view('admin.pengajuan.index', [
-            'pengajuans' => Pengajuan::all(),
+            // make order by date
+            'pengajuans' => Pengajuan::orderBy('created_at', 'desc')->get(),
         ]);
     }
 
