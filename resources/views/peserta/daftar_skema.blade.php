@@ -169,6 +169,58 @@
                     </div>
                     @endif
 
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_nilai_smk'))
+                    <div class="mb-3">
+                        <label for="file_syarat_nilai_smk" class="form-label">Dokumen Nilai SMK/SKP</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_nilai_smk') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_nilai_smk" value="{{ old('file_syarat_nilai_smk') }}" name="file_syarat_nilai_smk" required>
+                        @error('file_syarat_nilai_smk')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_keputusan_penyidik'))
+                    <div class="mb-3">
+                        <label for="file_syarat_keputusan_penyidik" class="form-label">Dokumen Keputusan Penyidik</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_keputusan_penyidik') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_keputusan_penyidik" value="{{ old('file_syarat_keputusan_penyidik') }}" name="file_syarat_keputusan_penyidik" required>
+                        @error('file_syarat_keputusan_penyidik')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_skhp'))
+                    <div class="mb-3">
+                        <label for="file_syarat_skhp" class="form-label">Dokumen SKHP</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_skhp') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_skhp" value="{{ old('file_syarat_skhp') }}" name="file_syarat_skhp" required>
+                        @error('file_syarat_skhp')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_dokumen_lainnya'))
+                    <div class="mb-3">
+                        <label for="file_syarat_dokumen_lainnya" class="form-label">Dokumen Lainnya</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_dokumen_lainnya') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_dokumen_lainnya" value="{{ old('file_syarat_dokumen_lainnya') }}" name="file_syarat_dokumen_lainnya">
+                        @error('file_syarat_dokumen_lainnya')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
                     @if($skema->status_peserta->where('id_users', Auth::user()->id_users)->first() !== null)
                         @if($skema->status_peserta->where('id_users', Auth::user()->id_users)->first()->status == 'lulus')
                         <div class="mb-3">
@@ -236,6 +288,9 @@
                 el.closest('form').querySelectorAll('input').forEach(input => {
                     // except name file_syarat_keahlian_khusus
                     if (input.name == "file_syarat_sertifikat_keahlian_khusus") {
+                        return;
+                    }
+                    if (input.name == "file_syarat_dokumen_lainnya") {
                         return;
                     }
                     if (input.value == "") {

@@ -29,6 +29,10 @@ class SkemaFactory extends Factory
             'file_syarat_cv',
             'file_syarat_pas_photo',
             'file_syarat_sertifikat_keahlian_khusus',
+            'file_syarat_nilai_smk',
+            'file_syarat_keputusan_penyidik',
+            'file_syarat_skhp',
+            'file_syarat_dokumen_lainnya',
         ];
 
         $combinationLength = fake()->numberBetween(1, count($possibleValues));

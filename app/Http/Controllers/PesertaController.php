@@ -192,6 +192,18 @@ class PesertaController extends Controller
         if ($request->file('file_syarat_sertifikat_keahlian_khusus')) {
             $pengajuan->file_syarat_sertifikat_keahlian_khusus = $validatedData['file_syarat_sertifikat_keahlian_khusus'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sertifikat_keahlian_khusus')->store('public/file_syarat'));
         }
+        if ($request->file('file_syarat_nilai_smk')) {
+            $pengajuan->file_syarat_nilai_smk = $validatedData['file_syarat_nilai_smk'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_nilai_smk')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_keputusan_penyidik')) {
+            $pengajuan->file_syarat_keputusan_penyidik = $validatedData['file_syarat_keputusan_penyidik'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_keputusan_penyidik')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_skhp')) {
+            $pengajuan->file_syarat_skhp = $validatedData['file_syarat_skhp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_skhp')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_dokumen_lainnya')) {
+            $pengajuan->file_syarat_dokumen_lainnya = $validatedData['file_syarat_dokumen_lainnya'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dokumen_lainnya')->store('public/file_syarat'));
+        }
 
 
         if ($request->file('file_syarat_logbook')) {
@@ -233,6 +245,10 @@ class PesertaController extends Controller
             'file_syarat_cv' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_pas_photo' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_sertifikat_keahlian_khusus' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_nilai_smk' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_keputusan_penyidik' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_skhp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_dokumen_lainnya' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'id_tuk' => 'required'
         ];
 
@@ -291,6 +307,18 @@ class PesertaController extends Controller
         }
         if ($request->file('file_syarat_sertifikat_keahlian_khusus')) {
             $pengajuan->file_syarat_sertifikat_keahlian_khusus = $validatedData['file_syarat_sertifikat_keahlian_khusus'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sertifikat_keahlian_khusus')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_nilai_smk')) {
+            $pengajuan->file_syarat_nilai_smk = $validatedData['file_syarat_nilai_smk'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_nilai_smk')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_keputusan_penyidik')) {
+            $pengajuan->file_syarat_keputusan_penyidik = $validatedData['file_syarat_keputusan_penyidik'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_keputusan_penyidik')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_skhp')) {
+            $pengajuan->file_syarat_skhp = $validatedData['file_syarat_skhp'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_skhp')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_dokumen_lainnya')) {
+            $pengajuan->file_syarat_dokumen_lainnya = $validatedData['file_syarat_dokumen_lainnya'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dokumen_lainnya')->store('public/file_syarat'));
         }
 
         if ($request->file('file_syarat_logbook')) {

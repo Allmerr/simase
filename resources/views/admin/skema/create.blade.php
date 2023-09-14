@@ -127,6 +127,30 @@
                                 Pas Photo
                             </label>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_nilai_smk" id="file_syarat_nilai_smk" name="file_syarat_nilai_smk">
+                            <label class="form-check-label" for="file_syarat_nilai_smk">
+                                Nilai SMK/SKP
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_keputusan_penyidik" id="file_syarat_keputusan_penyidik" name="file_syarat_keputusan_penyidik">
+                            <label class="form-check-label" for="file_syarat_keputusan_penyidik">
+                                Keputusan Penyidik
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_skhp" id="file_syarat_skhp" name="file_syarat_skhp">
+                            <label class="form-check-label" for="file_syarat_skhp">
+                                SKHP
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_dokumen_lainnya" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya">
+                            <label class="form-check-label" for="file_syarat_dokumen_lainnya">
+                                Dokumen Lainnya
+                            </label>
+                        </div>
 
                         @error('file_syarat')
                         <div class="invalid-feedback">

@@ -82,6 +82,18 @@ class SkemaController extends Controller
         if (isset($request->file_syarat_sertifikat_keahlian_khusus)) {
             $fileSyarat .= ',file_syarat_sertifikat_keahlian_khusus';
         }
+        if (isset($request->file_syarat_nilai_smk)) {
+            $fileSyarat .= ',file_syarat_nilai_smk';
+        }
+        if (isset($request->file_syarat_keputusan_penyidik)) {
+            $fileSyarat .= ',file_syarat_keputusan_penyidik';
+        }
+        if (isset($request->file_syarat_skhp)) {
+            $fileSyarat .= ',file_syarat_skhp';
+        }
+        if (isset($request->file_syarat_dokumen_lainnya)) {
+            $fileSyarat .= ',file_syarat_dokumen_lainnya';
+        }
 
         if ($fileSyarat !== '') {
             $fileSyarat = substr($fileSyarat, 1);
@@ -185,6 +197,18 @@ class SkemaController extends Controller
         }
         if (isset($request->file_syarat_sertifikat_keahlian_khusus)) {
             $fileSyarat .= ',file_syarat_sertifikat_keahlian_khusus';
+        }
+        if (isset($request->file_syarat_nilai_smk)) {
+            $fileSyarat .= ',file_syarat_nilai_smk';
+        }
+        if (isset($request->file_syarat_keputusan_penyidik)) {
+            $fileSyarat .= ',file_syarat_keputusan_penyidik';
+        }
+        if (isset($request->file_syarat_skhp)) {
+            $fileSyarat .= ',file_syarat_skhp';
+        }
+        if (isset($request->file_syarat_dokumen_lainnya)) {
+            $fileSyarat .= ',file_syarat_dokumen_lainnya';
         }
 
         if ($fileSyarat !== '') {

@@ -141,6 +141,30 @@
                                 Pas Photo
                             </label>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_nilai_smk" id="file_syarat_nilai_smk" name="file_syarat_nilai_smk" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_nilai_smk')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_nilai_smk">
+                                Nilai SMK/SKP
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_keputusan_penyidik" id="file_syarat_keputusan_penyidik" name="file_syarat_keputusan_penyidik" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_keputusan_penyidik')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_keputusan_penyidik">
+                                Keputusan Penyidik
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_skhp" id="file_syarat_skhp" name="file_syarat_skhp" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_skhp')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_skhp">
+                                SKHP
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_dokumen_lainnya" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_dokumen_lainnya')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_dokumen_lainnya">
+                                Dokumen Lainnya
+                            </label>
+                        </div>
                         @error('file_syarat')
                         <div class="invalid-feedback">
                             {{ $message }}

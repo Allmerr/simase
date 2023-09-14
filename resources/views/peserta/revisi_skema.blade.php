@@ -202,7 +202,6 @@
                     </div>
                     @endif
 
-
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sertifikat_keahlian_khusus'))
                     <div class="my-4">
                         <label for="file_syarat_sertifikat_keahlian_khusus" class="form-label">Dokumen Sertifikat Keahlian Khusus</label>
@@ -210,6 +209,66 @@
                         <p>Status : <b>{{ $pengajuan->status_file_syarat_sertifikat_keahlian_khusus }}</b></p>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_sertifikat_keahlian_khusus') is-invalid @enderror" id="file_syarat_sertifikat_keahlian_khusus" value="{{ old('file_syarat_sertifikat_keahlian_khusus') }}" name="file_syarat_sertifikat_keahlian_khusus" @if($pengajuan->status_file_syarat_sertifikat_keahlian_khusus === 'ada disetujui')  disabled @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
+                        @error('file_syarat_sertifikat_keahlian_khusus')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_nilai_smk'))
+                    <div class="my-4">
+                        <label for="file_syarat_nilai_smk" class="form-label">Dokumen Sertifikat Keahlian Khusus</label>
+                        <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_nilai_smk) }}" target="_blank">{{ $pengajuan->file_syarat_nilai_smk }}</a></p>
+                        <p>Status : <b>{{ $pengajuan->status_file_syarat_nilai_smk }}</b></p>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_nilai_smk') is-invalid @enderror" id="file_syarat_nilai_smk" value="{{ old('file_syarat_nilai_smk') }}" name="file_syarat_nilai_smk" @if($pengajuan->status_file_syarat_nilai_smk === 'ada disetujui')  disabled @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
+                        @error('file_syarat_sertifikat_keahlian_khusus')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_keputusan_penyidik'))
+                    <div class="my-4">
+                        <label for="file_syarat_keputusan_penyidik" class="form-label">Dokumen Keputusan Penyidik </label>
+                        <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_keputusan_penyidik) }}" target="_blank">{{ $pengajuan->file_syarat_keputusan_penyidik }}</a></p>
+                        <p>Status : <b>{{ $pengajuan->status_file_syarat_keputusan_penyidik }}</b></p>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_keputusan_penyidik') is-invalid @enderror" id="file_syarat_keputusan_penyidik" value="{{ old('file_syarat_keputusan_penyidik') }}" name="file_syarat_keputusan_penyidik" @if($pengajuan->status_file_syarat_keputusan_penyidik === 'ada disetujui')  disabled @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
+                        @error('file_syarat_sertifikat_keahlian_khusus')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_skhp'))
+                    <div class="my-4">
+                        <label for="file_syarat_skhp" class="form-label">Dokumen SKHP</label>
+                        <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_skhp) }}" target="_blank">{{ $pengajuan->file_syarat_skhp }}</a></p>
+                        <p>Status : <b>{{ $pengajuan->status_file_syarat_skhp }}</b></p>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_skhp') is-invalid @enderror" id="file_syarat_skhp" value="{{ old('file_syarat_skhp') }}" name="file_syarat_skhp" @if($pengajuan->status_file_syarat_skhp === 'ada disetujui')  disabled @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
+                        @error('file_syarat_sertifikat_keahlian_khusus')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_dokumen_lainnya'))
+                    <div class="my-4">
+                        <label for="file_syarat_dokumen_lainnya" class="form-label">Dokumen Lainnya</label>
+                        <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_dokumen_lainnya) }}" target="_blank">{{ $pengajuan->file_syarat_dokumen_lainnya }}</a></p>
+                        <p>Status : <b>{{ $pengajuan->status_file_syarat_dokumen_lainnya }}</b></p>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_dokumen_lainnya') is-invalid @enderror" id="file_syarat_dokumen_lainnya" value="{{ old('file_syarat_dokumen_lainnya') }}" name="file_syarat_dokumen_lainnya" @if($pengajuan->status_file_syarat_dokumen_lainnya === 'ada disetujui')  disabled @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
                         @error('file_syarat_sertifikat_keahlian_khusus')
                         <div class="invalid-feedback">
                             {{ $message }}

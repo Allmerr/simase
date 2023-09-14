@@ -170,6 +170,51 @@
                                 @endif
                                 @endif
 
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_nilai_smk'))
+                                <tr>
+                                    <td>Nilai SMK/SKP</td>
+                                    <p>Status Nilai SMK/SKP Sebelumnya: <b>{{ $pengajuan->status_file_syarat_nilai_smk }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_nilai_smk) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_nilai_smk" name="file_syarat_nilai_smk"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_nilai_smk" name="file_syarat_nilai_smk"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_nilai_smk" name="file_syarat_nilai_smk" checked></td>
+                                </tr>
+                                @endif
+
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_keputusan_penyidik'))
+                                <tr>
+                                    <td>Keputusan Penyidik</td>
+                                    <p>Status Keputusan Penyidik Sebelumnya: <b>{{ $pengajuan->status_file_syarat_keputusan_penyidik }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_keputusan_penyidik) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_keputusan_penyidik" name="file_syarat_keputusan_penyidik"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_keputusan_penyidik" name="file_syarat_keputusan_penyidik"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_keputusan_penyidik" name="file_syarat_keputusan_penyidik" checked></td>
+                                </tr>
+                                @endif
+
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_skhp'))
+                                <tr>
+                                    <td>SKHP</td>
+                                    <p>Status SKHP Sebelumnya: <b>{{ $pengajuan->status_file_syarat_skhp }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_skhp) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_skhp" name="file_syarat_skhp"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_skhp" name="file_syarat_skhp"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_skhp" name="file_syarat_skhp" checked></td>
+                                </tr>
+                                @endif
+
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_dokumen_lainnya'))
+                                @if($pengajuan->file_syarat_dokumen_lainnya != null)
+                                <tr>
+                                    <td>Dokumen Sebelumnya</td>
+                                    <p>Status Dokumen Sebelumnya Sebelumnya: <b>{{ $pengajuan->status_file_syarat_dokumen_lainnya }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_dokumen_lainnya) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya" checked></td>
+                                </tr>
+                                @endif
+                                @endif
 
                                 @if(isset($pengajuan->file_syarat_logbook))
                                     <tr>

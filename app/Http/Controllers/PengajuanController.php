@@ -115,6 +115,18 @@ class PengajuanController extends Controller
         if (isset($request->file_syarat_sertifikat_keahlian_khusus)) {
             $revisi['status_file_syarat_sertifikat_keahlian_khusus'] = $request->file_syarat_sertifikat_keahlian_khusus;
         }
+        if (isset($request->file_syarat_nilai_smk)) {
+            $revisi['status_file_syarat_nilai_smk'] = $request->file_syarat_nilai_smk;
+        }
+        if (isset($request->file_syarat_keputusan_penyidik)) {
+            $revisi['status_file_syarat_keputusan_penyidik'] = $request->file_syarat_keputusan_penyidik;
+        }
+        if (isset($request->file_syarat_skhp)) {
+            $revisi['status_file_syarat_skhp'] = $request->file_syarat_skhp;
+        }
+        if (isset($request->file_syarat_dokumen_lainnya)) {
+            $revisi['status_file_syarat_dokumen_lainnya'] = $request->file_syarat_dokumen_lainnya;
+        }
 
 
         if (isset($request->file_syarat_logbook)) {
