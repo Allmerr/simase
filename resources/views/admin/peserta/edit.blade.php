@@ -166,7 +166,7 @@
                         <label for="kode_provinsi" class="form-label">Provinsi</label>
                         <select class="form-select" name="kode_provinsi" id="kode_provinsi" >
                             @foreach ($provinsis as $provinsi)
-                                <option value="{{ $provinsi->kode_provinsi }}" {{ (old("kode_provinsi", $user->kode_provinsi) == $provinsi->kode_provinsi ? "selected":"") }}> {{ $provinsi->kode_provinsi }} - {{ $provinsi->nama_provinsi }}</option>
+                                <option value="{{ $provinsi->kode_provinsi }}" {{ (old("kode_provinsi", $user->kode_provinsi) == $provinsi->kode_provinsi ? "selected":"") }}> {{ $provinsi->nama_provinsi }} - {{ $provinsi->kode_provinsi }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -175,7 +175,7 @@
                         <small class="form-text text-muted">Kota/Kabupaten yang ditampilakan adalah Kota/Kabupaten yang telah dipilih berdasarkan provinsi</small>
                         <select id="kode_kota_kabupaten" name="kode_kota_kabupaten" class="form-select">
                             @foreach ($kota_kabupatens as $kota_kabupaten)
-                                <option value="{{ $kota_kabupaten->kode_kota_kabupaten }}" {{ (old("kode_kota_kabupaten", $user->kode_kota_kabupaten) == $kota_kabupaten->kode_kota_kabupaten ? "selected":"") }} >{{ $kota_kabupaten->kode_kota_kabupaten }} - {{ $kota_kabupaten->nama_kota_kabupaten }}</option>
+                                <option value="{{ $kota_kabupaten->kode_kota_kabupaten }}" {{ (old("kode_kota_kabupaten", $user->kode_kota_kabupaten) == $kota_kabupaten->kode_kota_kabupaten ? "selected":"") }} >{{ $kota_kabupaten->nama_kota_kabupaten }} - {{ $kota_kabupaten->kode_kota_kabupaten }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -290,7 +290,7 @@
                     <small class="form-text text-muted">Kota/Kabupaten yang ditampilakan adalah Kota/Kabupaten yang telah dipilih berdasarkan provinsi</small>
                     <select id="kode_kota_kabupaten" name="kode_kota_kabupaten" class="form-select">
                         ${data.kota_kabupatens.map(kota_kabupaten => {
-                            return `<option value="${kota_kabupaten.kode_kota_kabupaten}">${kota_kabupaten.kode_kota_kabupaten} | ${kota_kabupaten.nama_kota_kabupaten}</option>`;
+                            return `<option value="${kota_kabupaten.kode_kota_kabupaten}">${kota_kabupaten.nama_kota_kabupaten} | ${kota_kabupaten.kode_kota_kabupaten}</option>`;
                         })}
                     </select>
                 `;

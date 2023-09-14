@@ -302,7 +302,7 @@ class SkemaController extends Controller
         $notifikasi->save();
 
 
-        return redirect()->route('skema.sertifikatSkema', $id_skema)->with('success_message', 'Data telah terhapus');
+        return redirect()->route('skema.sertifikatSkema', $id_skema)->with('success_message', 'Data telah tersimpan');
     }
 
     public function sertifikatSkema(Request $request, $id_skema)

@@ -384,12 +384,12 @@ return [
                     'text' => 'Operator',
                     'route' => 'admin.operator.index',
                 ],
-                [
+                /* [
                     'text' => 'Lapor Sertifikat BNSP',
                     'route' => 'admin.peserta.lulusBelumBersertifikat',
-                ],
+                ], */
                 [
-                    'text' => 'Lapor Peserta Aktif BNSP',
+                    'text' => 'Lapor Pengajuan Peserta',
                     'route' => 'admin.peserta.diterimaBelumLulus',
                 ],
             ],

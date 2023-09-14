@@ -377,12 +377,12 @@ class AdminController extends Controller
     }
 
     public function diterimaBelumLulus(Request $request){
-        $status_peserta = StatusPeserta::where('status', 'diterima')->where('file_sertifikat', null)->get();
+        $status_peserta = Pengajuan::where('is_disetujui', 'menunggu_pending')->orwhere('is_disetujui', 'pending')->orwhere('is_disetujui', 'revisi')->get();
         if($request->input('id_skema')){
             if($request->input('id_skema') === 'all'){
-                $status_peserta = StatusPeserta::where('status', 'diterima')->where('file_sertifikat', null)->get();
+                $status_peserta = Pengajuan::where('is_disetujui', 'menunggu_pending')->orwhere('is_disetujui', 'pending')->orwhere('is_disetujui', 'revisi')->get();
             }else{
-                $status_peserta = StatusPeserta::where('status', 'diterima')->where('file_sertifikat', null)->where('id_skema', $request->input('id_skema'))->get();
+                $status_peserta = Pengajuan::where('is_disetujui', 'menunggu_pending')->orwhere('is_disetujui', 'pending')->orwhere('is_disetujui', 'revisi')->where('id_skema', $request->input('id_skema'))->get();
             }
         }
         return view('admin.peserta.diterima-belum-lulus', [
