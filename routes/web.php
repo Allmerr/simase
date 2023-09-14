@@ -1,19 +1,19 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\PangkatController;
+use App\Http\Controllers\PekerjaanController;
+use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\PendidikanKepolisianController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\SkemaController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TukController;
-use App\Http\Controllers\ProvinsiController;
-use App\Http\Controllers\KotaKabupatenController;
-use App\Http\Controllers\PendidikanController;
-use App\Http\Controllers\PekerjaanController;
 use App\Models\StatusPeserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -85,7 +85,7 @@ Route::group(['middleware' => ['auth', 'isPeserta']], function () {
     Route::post('/peserta/survey/{id_status_peserta}', [SurveyController::class, 'store'])->name('peserta.survey.store');
 });
 
-Route::group(['middleware' => ['auth', 'isAdmin']], function (){
+Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     // admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');

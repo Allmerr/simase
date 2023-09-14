@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Pengajuan;
-use App\Models\StatusPeserta;
-use App\Models\User;
-use App\Models\Satker;
-use App\Models\Pangkat;
-use App\Models\PendidikanKepolisian;
-use App\Models\Survey;
-use App\Models\Provinsi;
-use App\Models\KotaKabupaten;
-use App\Models\Pendidikan;
-use App\Models\Pekerjaan;
 use App\Models\EmailConfiguration;
+use App\Models\KotaKabupaten;
+use App\Models\Pangkat;
+use App\Models\Pekerjaan;
+use App\Models\Pendidikan;
+use App\Models\PendidikanKepolisian;
+use App\Models\Pengajuan;
+use App\Models\Provinsi;
+use App\Models\Satker;
 use App\Models\Skema;
-use Illuminate\Support\Facades\Storage;
+use App\Models\StatusPeserta;
+use App\Models\Survey;
+use App\Models\Tuk;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -32,22 +32,24 @@ class AdminController extends Controller
         ]);
     }
 
-    public function indexPeserta(){
+    public function indexPeserta()
+    {
         return view('admin.peserta.index', [
             'users' => User::where('role', 'peserta')->get(),
         ]);
     }
 
-    public function showPeserta(Request $request, $id_users){
+    public function showPeserta(Request $request, $id_users)
+    {
         $sertifikat_pesertas = StatusPeserta::where('id_users', $id_users)->where('status', 'lulus')->get();
 
         $sertifikat = '';
         if (count($sertifikat_pesertas) > 0) {
             foreach ($sertifikat_pesertas as $key => $value) {
-                $sertifikat .= $value->skema->nama . ',';
+                $sertifikat .= $value->skema->nama.',';
             }
-            substr_replace($sertifikat, "", -1);
-        }else{
+            substr_replace($sertifikat, '', -1);
+        } else {
             $sertifikat = 'Belum pernah lulus dari skema apapun';
         }
 
@@ -57,7 +59,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function editPeserta(Request $request, $id_users){
+    public function editPeserta(Request $request, $id_users)
+    {
         return view('admin.peserta.edit', [
             'user' => User::where('role', 'peserta')->where('id_users', $id_users)->get()[0],
             'satkers' => Satker::orderBy('nama', 'ASC')->get(),
@@ -70,7 +73,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function updatePeserta(Request $request, $id_users){
+    public function updatePeserta(Request $request, $id_users)
+    {
         $user = User::where('id_users', $id_users)->get()[0];
 
         $rules = [
@@ -79,7 +83,7 @@ class AdminController extends Controller
             'photo' => 'image|mimes:jpeg,png,jpg',
         ];
 
-        if(isset($request->password)){
+        if (isset($request->password)) {
             $rules['password'] = 'required|string|min:8|confirmed';
         }
 
@@ -92,61 +96,60 @@ class AdminController extends Controller
 
             $validatedData['photo'] = str_replace('public/profile/', '', $request->file('photo')->store('public/profile'));
         }
-        if(isset($request->password)){
+        if (isset($request->password)) {
             $validatedData['password'] = Hash::make($validatedData['password']);
         }
-        if(isset($request->jenis_kelamin)){
+        if (isset($request->jenis_kelamin)) {
             $validatedData['jenis_kelamin'] = $request->jenis_kelamin;
         }
-        if(isset($request->nip)){
+        if (isset($request->nip)) {
             $validatedData['nip'] = $request->nip;
         }
-        if(isset($request->nik)){
+        if (isset($request->nik)) {
             $validatedData['nik'] = $request->nik;
         }
-        if(isset($request->jabatan)){
+        if (isset($request->jabatan)) {
             $validatedData['jabatan'] = $request->jabatan;
         }
-        if(isset($request->tempat_lahir)){
+        if (isset($request->tempat_lahir)) {
             $validatedData['tempat_lahir'] = $request->tempat_lahir;
         }
-        if(isset($request->tanggal_lahir)){
+        if (isset($request->tanggal_lahir)) {
             $validatedData['tanggal_lahir'] = $request->tanggal_lahir;
         }
-        if(isset($request->alamat)){
+        if (isset($request->alamat)) {
             $validatedData['alamat'] = $request->alamat;
         }
-        if(isset($request->kode_kota_kabupaten)){
+        if (isset($request->kode_kota_kabupaten)) {
             $validatedData['kode_kota_kabupaten'] = $request->kode_kota_kabupaten;
         }
-        if(isset($request->kode_provinsi)){
+        if (isset($request->kode_provinsi)) {
             $validatedData['kode_provinsi'] = $request->kode_provinsi;
         }
-        if(isset($request->kode_pendidikan)){
+        if (isset($request->kode_pendidikan)) {
             $validatedData['kode_pendidikan'] = $request->kode_pendidikan;
         }
-        if(isset($request->kode_pekerjaan)){
+        if (isset($request->kode_pekerjaan)) {
             $validatedData['kode_pekerjaan'] = $request->kode_pekerjaan;
         }
-        if(isset($request->dikbangspes)){
+        if (isset($request->dikbangspes)) {
             $validatedData['dikbangspes'] = $request->dikbangspes;
         }
-        if(isset($request->pelatihan_diikuti)){
+        if (isset($request->pelatihan_diikuti)) {
             $validatedData['pelatihan_diikuti'] = $request->pelatihan_diikuti;
         }
-        if(isset($request->keterampilan_khusus)){
+        if (isset($request->keterampilan_khusus)) {
             $validatedData['keterampilan_khusus'] = $request->keterampilan_khusus;
         }
-        if(isset($request->id_satker)){
+        if (isset($request->id_satker)) {
             $validatedData['id_satker'] = $request->id_satker;
         }
-        if(isset($request->id_pangkat)){
+        if (isset($request->id_pangkat)) {
             $validatedData['id_pangkat'] = $request->id_pangkat;
         }
-        if(isset($request->id_pendidikan_kepolisian)){
+        if (isset($request->id_pendidikan_kepolisian)) {
             $validatedData['id_pendidikan_kepolisian'] = $request->id_pendidikan_kepolisian;
         }
-
 
         User::where('id_users', $user->id_users)->update($validatedData);
 
@@ -154,13 +157,15 @@ class AdminController extends Controller
         return redirect()->route('admin.peserta.index')->with('success', 'Data Peserta Has Been Updated Successful!');
     }
 
-    public function destroyPeserta(Request $request, $id_users){
+    public function destroyPeserta(Request $request, $id_users)
+    {
         User::destroy($id_users);
 
         return redirect()->route('admin.peserta.index')->with('success', 'Data Peserta Has Been Deleted Successful!');
     }
 
-    public function createPeserta(){
+    public function createPeserta()
+    {
         return view('admin.peserta.create', [
             'satkers' => Satker::orderBy('nama', 'ASC')->get(),
             'pangkats' => Pangkat::orderBy('nama', 'ASC')->get(),
@@ -172,7 +177,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function storePeserta(Request $request){
+    public function storePeserta(Request $request)
+    {
 
         $rules = [
             'nama_lengkap' => 'required|string|max:255',
@@ -186,9 +192,9 @@ class AdminController extends Controller
         // Simpan data pengguna (users)
         $user = new User();
 
-        if($request->file('photo')){
+        if ($request->file('photo')) {
             $validatedData['photo'] = str_replace('public/profile/', '', $request->file('photo')->store('public/profile'));
-        }else{
+        } else {
             $validatedData['photo'] = 'nopp.jpg';
         }
 
@@ -197,55 +203,55 @@ class AdminController extends Controller
         $user->password = Hash::make($validatedData['password']);
         $user->no_telpon = $validatedData['no_telpon'];
 
-        if(isset($request->jenis_kelamin)){
+        if (isset($request->jenis_kelamin)) {
             $user->jenis_kelamin = $request->jenis_kelamin;
         }
-        if(isset($request->nip)){
+        if (isset($request->nip)) {
             $user->nip = $request->nip;
         }
-        if(isset($request->nik)){
+        if (isset($request->nik)) {
             $user->nik = $request->nik;
         }
-        if(isset($request->jabatan)){
+        if (isset($request->jabatan)) {
             $user->jabatan = $request->jabatan;
         }
-        if(isset($request->tempat_lahir)){
+        if (isset($request->tempat_lahir)) {
             $user->tempat_lahir = $request->tempat_lahir;
         }
-        if(isset($request->tanggal_lahir)){
+        if (isset($request->tanggal_lahir)) {
             $user->tanggal_lahir = $request->tanggal_lahir;
         }
-        if(isset($request->alamat)){
+        if (isset($request->alamat)) {
             $user->alamat = $request->alamat;
         }
-        if(isset($request->kode_kota_kabupaten)){
+        if (isset($request->kode_kota_kabupaten)) {
             $user->kode_kota_kabupaten = $request->kode_kota_kabupaten;
         }
-        if(isset($request->kode_provinsi)){
+        if (isset($request->kode_provinsi)) {
             $user->kode_provinsi = $request->kode_provinsi;
         }
-        if(isset($request->kode_pendidikan)){
+        if (isset($request->kode_pendidikan)) {
             $user->kode_pendidikan = $request->kode_pendidikan;
         }
-        if(isset($request->kode_pekerjaan)){
+        if (isset($request->kode_pekerjaan)) {
             $user->kode_pekerjaan = $request->kode_pekerjaan;
         }
-        if(isset($request->dikbangspes)){
+        if (isset($request->dikbangspes)) {
             $user->dikbangspes = $request->dikbangspes;
         }
-        if(isset($request->pelatihan_diikuti)){
+        if (isset($request->pelatihan_diikuti)) {
             $user->pelatihan_diikuti = $request->pelatihan_diikuti;
         }
-        if(isset($request->keterampilan_khusus)){
+        if (isset($request->keterampilan_khusus)) {
             $user->keterampilan_khusus = $request->keterampilan_khusus;
         }
-        if(isset($request->id_satker)){
+        if (isset($request->id_satker)) {
             $user->id_satker = $request->id_satker;
         }
-        if(isset($request->id_pangkat)){
+        if (isset($request->id_pangkat)) {
             $user->id_pangkat = $request->id_pangkat;
         }
-        if(isset($request->id_pendidikan_kepolisian)){
+        if (isset($request->id_pendidikan_kepolisian)) {
             $user->id_pendidikan_kepolisian = $request->id_pendidikan_kepolisian;
         }
 
@@ -254,21 +260,25 @@ class AdminController extends Controller
         return redirect()->route('admin.peserta.index')->with('success', 'A Peserta Has Been Created Successful!');
     }
 
-    public function indexOperator(){
+    public function indexOperator()
+    {
         return view('admin.operator.index', [
             'users' => User::where('role', 'admin')->get(),
         ]);
     }
 
-    public function showOperator(){
+    public function showOperator()
+    {
         //
     }
 
-    public function createOperator(){
+    public function createOperator()
+    {
         return view('admin.operator.create');
     }
 
-    public function storeOperator(Request $request){
+    public function storeOperator(Request $request)
+    {
         $rules = [
             'nama_lengkap' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -291,13 +301,15 @@ class AdminController extends Controller
         return redirect()->route('admin.operator.index')->with('success', 'Data Operator Has Been Added Successful!');
     }
 
-    public function editOperator(Request $request, $id_users){
+    public function editOperator(Request $request, $id_users)
+    {
         return view('admin.operator.edit', [
             'user' => User::where('role', 'admin')->where('id_users', $id_users)->get()[0],
         ]);
     }
 
-    public function updateOperator(Request $request, $id_users){
+    public function updateOperator(Request $request, $id_users)
+    {
         $user = User::where('role', 'admin')->where('id_users', $id_users)->get()[0];
 
         $rules = [
@@ -305,39 +317,39 @@ class AdminController extends Controller
             'no_telpon' => 'numeric',
         ];
 
-        if(isset($request->password)){
+        if (isset($request->password)) {
             $rules['password'] = 'string|min:8|confirmed';
         }
 
-        if($request->email != $user->email){
+        if ($request->email != $user->email) {
             $rules['email'] = 'required|string|email|max:255|unique:users';
         }
 
         $validatedData = $request->validate($rules);
 
-        if($request->email != $user->email){
-            if(isset($request->password)){
+        if ($request->email != $user->email) {
+            if (isset($request->password)) {
                 User::where('id_users', $id_users)->update([
                     'nama_lengkap' => $validatedData['nama_lengkap'],
                     'email' => $validatedData['email'],
                     'password' => Hash::make($validatedData['password']),
                     'no_telpon' => $validatedData['no_telpon'],
                 ]);
-            }else{
+            } else {
                 User::where('id_users', $id_users)->update([
                     'nama_lengkap' => $validatedData['nama_lengkap'],
                     'email' => $validatedData['email'],
                     'no_telpon' => $validatedData['no_telpon'],
                 ]);
             }
-        }else{
-            if(isset($request->password)){
+        } else {
+            if (isset($request->password)) {
                 User::where('id_users', $id_users)->update([
                     'nama_lengkap' => $validatedData['nama_lengkap'],
                     'password' => Hash::make($validatedData['password']),
                     'no_telpon' => $validatedData['no_telpon'],
                 ]);
-            }else{
+            } else {
                 User::where('id_users', $id_users)->update([
                     'nama_lengkap' => $validatedData['nama_lengkap'],
                     'no_telpon' => $validatedData['no_telpon'],
@@ -349,55 +361,68 @@ class AdminController extends Controller
         return redirect()->route('admin.operator.index')->with('success', 'Data Operator Has Been Edited Successful!');
     }
 
-    public function destroyOperator(Request $request, $id_users){
+    public function destroyOperator(Request $request, $id_users)
+    {
         User::destroy($id_users);
 
         return redirect()->route('admin.operator.index')->with('success', 'Data Operator Has Been Deleted Successful!');
     }
 
-    public function indexSurvey(){
+    public function indexSurvey()
+    {
         return view('admin.survey.index', [
             'surveys' => Survey::all(),
         ]);
     }
 
-    public function lulusBelumBersertifikat(Request $request){
+    public function lulusBelumBersertifikat(Request $request)
+    {
         $status_peserta = StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->get();
-        if($request->input('id_skema')){
-            if($request->input('id_skema') === 'all'){
+        if ($request->input('id_skema')) {
+            if ($request->input('id_skema') === 'all') {
                 $status_peserta = StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->get();
-            }else{
+            } else {
                 $status_peserta = StatusPeserta::where('status', 'lulus')->where('file_sertifikat', null)->where('id_skema', $request->input('id_skema'))->get();
             }
         }
+
         return view('admin.peserta.lulus-belum-bersertifikat', [
             'status_pesertas' => $status_peserta,
             'skemas' => Skema::all(),
         ]);
     }
 
-    public function diterimaBelumLulus(Request $request){
-        $status_peserta = Pengajuan::where('is_disetujui', 'menunggu_pending')->orwhere('is_disetujui', 'pending')->orwhere('is_disetujui', 'revisi')->get();
-        if($request->input('id_skema')){
-            if($request->input('id_skema') === 'all'){
-                $status_peserta = Pengajuan::where('is_disetujui', 'menunggu_pending')->orwhere('is_disetujui', 'pending')->orwhere('is_disetujui', 'revisi')->get();
-            }else{
-                $status_peserta = Pengajuan::where('is_disetujui', 'menunggu_pending')->orwhere('is_disetujui', 'pending')->orwhere('is_disetujui', 'revisi')->where('id_skema', $request->input('id_skema'))->get();
-            }
+    public function diterimaBelumLulus(Request $request)
+    {
+
+        $status_peserta = Pengajuan::whereIn('is_disetujui', ['menunggu_pending', 'pending', 'revisi', 'disetujui']);
+
+        if ($request->input('id_skema') && $request->input('id_skema') !== 'all') {
+            $status_peserta->where('id_skema', $request->input('id_skema'));
         }
+
+        if ($request->input('id_tuk') && $request->input('id_tuk') !== 'all') {
+            $status_peserta->where('id_tuk', $request->input('id_tuk'));
+        }
+
+        $result = $status_peserta->get();
+
         return view('admin.peserta.diterima-belum-lulus', [
-            'status_pesertas' => $status_peserta,
+            'status_pesertas' => $result,
             'skemas' => Skema::orderBy('nama', 'ASC')->get(),
+            'tuks' => Tuk::orderBy('nama', 'ASC')->get(),
         ]);
     }
 
-    public function emailConfigurationShow(){
+    public function emailConfigurationShow()
+    {
         return view('admin.email_configuration.show', [
             'email_configuration' => EmailConfiguration::all()[0],
         ]);
     }
 
-    public function emailConfigurationUpdate(Request $request){
+    public function emailConfigurationUpdate(Request $request)
+    {
         $rules = [
             'protocol' => 'required|string',
             'host' => 'required|string',
@@ -415,5 +440,4 @@ class AdminController extends Controller
         return redirect()->route('admin.emailConfigurationShow')->with('success', 'A Email Configuration Has Been Updated Successful!');
 
     }
-
 }

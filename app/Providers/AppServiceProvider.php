@@ -2,12 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use App\Models\EmailConfiguration;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-
-use Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if (\Schema::hasTable('email_configuration')) {
             $mailsetting = EmailConfiguration::first();
-            if($mailsetting){
+            if ($mailsetting) {
 
                 config(['mail.default' => $mailsetting->protocol]);
                 config(['mail.mailers.smtp.host' => $mailsetting->host]);
@@ -48,31 +46,30 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'peserta';
         });
 
-
         Gate::define('isHasSurvey', function (User $user) {
 
-            if($user->role !== 'peserta'){
+            if ($user->role !== 'peserta') {
                 return false;
             }
 
-            if(auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->where('sudah_servey', 'belum')->get()->count() > 0){
+            if (auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->where('sudah_servey', 'belum')->get()->count() > 0) {
 
                 $berapaJumlahSurveyYangBelumDiIsi = 0;
                 $belumSurvey = auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->where('sudah_servey', 'belum')->get();
 
                 foreach ($belumSurvey as $key => $value) {
-                    if($value->hasSurveyPassed()){
+                    if ($value->hasSurveyPassed()) {
                         $berapaJumlahSurveyYangBelumDiIsi += 1;
                     }
                 }
 
-                if($berapaJumlahSurveyYangBelumDiIsi > 0){
+                if ($berapaJumlahSurveyYangBelumDiIsi > 0) {
                     return true;
                 }
 
                 return false;
 
-            }else{
+            } else {
 
                 return false;
 

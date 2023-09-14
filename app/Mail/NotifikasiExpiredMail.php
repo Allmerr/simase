@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -14,9 +13,13 @@ class NotifikasiExpiredMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $mailData;
+
     protected $subject_;
+
     protected $message_;
+
     protected $email;
+
     protected $skema;
 
     /**

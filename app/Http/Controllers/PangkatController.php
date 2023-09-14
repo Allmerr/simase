@@ -87,7 +87,7 @@ class PangkatController extends Controller
     {
         $isHasChild = User::where('id_pangkat', $pangkat->id_pangkat)->exists();
 
-        if($isHasChild){
+        if ($isHasChild) {
             return redirect()->route('pangkat.index')->with('error', 'Pangkat Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 

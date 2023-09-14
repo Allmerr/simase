@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SI-MASE | Lapor Peserta Aktif BNSP')
+@section('title', 'SI-MASE | Lapor Peserta Aktif LSP')
 
 @section('content_header')
-    <h1 class="m-0">Lapor Peserta Aktif BNSP</h1>
+    <h1 class="m-0">Lapor Peserta Aktif LSP</h1>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 @stop
@@ -23,9 +23,15 @@
                         <label for="id_skema">Select a skema</label>
                         <div class="form-group d-flex">
                             <select name="id_skema" id="id_skema" class="form-select">
-                                <option value="all">All Skema</option>
+                                <option value="all">Semua Skema</option>
                                 @foreach ($skemas as $skema)
                                     <option value="{{ $skema->id_skema }}" @if(request()->id_skema == $skema->id_skema) selected @endif>{{ $skema->nama }}</option>
+                                @endforeach
+                            </select>
+                            <select name="id_tuk" id="id_tuk" class="form-select ml-2">
+                                <option value="all">Semua tuk</option>
+                                @foreach ($tuks as $tuk)
+                                    <option value="{{ $tuk->id_tuk }}" @if(request()->id_tuk == $tuk->id_tuk) selected @endif>{{ $tuk->nama }}</option>
                                 @endforeach
                             </select>
                             <button type="submit" class="btn btn-primary ml-2">Cari</button>

@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Mail\NotifikasiPesertaAccPengajuanMail;
 use App\Mail\NotifikasiPesertaMail;
+use App\Models\KotaKabupaten;
 use App\Models\Notifikasi;
 use App\Models\Pangkat;
+use App\Models\Pekerjaan;
+use App\Models\Pendidikan;
 use App\Models\PendidikanKepolisian;
 use App\Models\Pengajuan;
+use App\Models\Provinsi;
 use App\Models\Satker;
 use App\Models\Skema;
 use App\Models\StatusPeserta;
-use App\Models\User;
 use App\Models\Tuk;
-use App\Models\Provinsi;
-use App\Models\KotaKabupaten;
-use App\Models\Pendidikan;
-use App\Models\Pekerjaan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -205,7 +205,6 @@ class PesertaController extends Controller
             $pengajuan->file_syarat_dokumen_lainnya = $validatedData['file_syarat_dokumen_lainnya'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dokumen_lainnya')->store('public/file_syarat'));
         }
 
-
         if ($request->file('file_syarat_logbook')) {
             $pengajuan->file_syarat_logbook = $validatedData['file_syarat_logbook'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_logbook')->store('public/file_syarat'));
         }
@@ -249,7 +248,7 @@ class PesertaController extends Controller
             'file_syarat_keputusan_penyidik' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_skhp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_dokumen_lainnya' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
-            'id_tuk' => 'required'
+            'id_tuk' => 'required',
         ];
 
         // sudah pernah pernah daftar
@@ -330,7 +329,7 @@ class PesertaController extends Controller
         $pengajuan->id_tuk = $validatedData['id_tuk'];
         $pengajuan->is_disetujui = 'menunggu_pending';
 
-        if(isset($validatedData['file_syarat_logbook'])){
+        if (isset($validatedData['file_syarat_logbook'])) {
             $pengajuan->jenis_pengajuan = 'perpanjang';
         }
 
@@ -392,9 +391,9 @@ class PesertaController extends Controller
             return false;
         } elseif (! $user->id_pendidikan_kepolisian) {
             return false;
-        }elseif(! $user->kode_pekerjaan){
+        } elseif (! $user->kode_pekerjaan) {
             return false;
-        }elseif($user->photo == 'nopp.png'){
+        } elseif ($user->photo == 'nopp.png') {
             return false;
         }
 
@@ -470,7 +469,8 @@ class PesertaController extends Controller
         return response()->json(['kota_kabupatens' => $kotaKabupaten]);
     }
 
-    public function notifications(){
+    public function notifications()
+    {
         // For the sake of simplicity, assume we have a variable called
         // $notifications with the unread notifications. Each notification
         // have the next properties:
@@ -513,10 +513,10 @@ class PesertaController extends Controller
         // Return the new notification data.
 
         return [
-            'label'       => count($notifications),
+            'label' => count($notifications),
             'label_color' => 'danger',
-            'icon_color'  => 'dark',
-            'dropdown'    => $dropdownHtml,
+            'icon_color' => 'dark',
+            'dropdown' => $dropdownHtml,
         ];
 
     }

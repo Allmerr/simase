@@ -10,6 +10,8 @@ class Pekerjaan extends Model
     use HasFactory;
 
     protected $guarded = 'id_pekerjaan';
+
     protected $table = 'pekerjaan';
+
     protected $primaryKey = 'id_pekerjaan';
 }

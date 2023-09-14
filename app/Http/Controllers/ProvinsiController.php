@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Provinsi;
 use App\Models\KotaKabupaten;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
 class ProvinsiController extends Controller
@@ -90,7 +90,7 @@ class ProvinsiController extends Controller
     {
         $isHasChild = KotaKabupaten::where('kode_provinsi', $provinsi->kode_provinsi)->exists();
 
-        if($isHasChild){
+        if ($isHasChild) {
             return redirect()->route('provinsi.index')->with('error', 'Provinsi Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 

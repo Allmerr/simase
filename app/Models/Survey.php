@@ -10,7 +10,9 @@ class Survey extends Model
     use HasFactory;
 
     protected $guarded = 'id_survey';
+
     protected $table = 'survey';
+
     protected $primaryKey = 'id_survey';
 
     public function user()

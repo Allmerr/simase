@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\StatusPengajuan;
 use App\Models\Skema;
-use App\Models\Survey;
 use App\Models\StatusPeserta;
-
+use App\Models\Survey;
+use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
-    public function index(){
-        if(auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->get()->count() > 0){
+    public function index()
+    {
+        if (auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->get()->count() > 0) {
             $berapaJumlahSurveyYangBelumDiIsi = 0;
             $belumSurvey = auth()->user()->status_peserta()->where('tanggal_surveilan', '!=', null)->get();
             foreach ($belumSurvey as $key => $value) {
-                if($value->hasSurveyPassed()){
+                if ($value->hasSurveyPassed()) {
                     $berapaJumlahSurveyYangBelumDiIsi += 1;
                 }
             }
-            if($berapaJumlahSurveyYangBelumDiIsi > 0){
+            if ($berapaJumlahSurveyYangBelumDiIsi > 0) {
             }
         }
 
@@ -32,7 +31,8 @@ class SurveyController extends Controller
         ]);
     }
 
-    public function create(Request $request, $id_status_peserta){
+    public function create(Request $request, $id_status_peserta)
+    {
         return view('peserta.survey.create', [
             'survey' => StatusPeserta::where('id_status_peserta', $id_status_peserta)->get()[0], // apa makna baris ini?
         ]);
@@ -49,7 +49,6 @@ class SurveyController extends Controller
             'instansi' => 'required',
             'keterangan' => 'required',
         ];
-
 
         $validatedData = $request->validate($rules);
 

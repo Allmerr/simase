@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\KotaKabupaten;
-use App\Models\User;
 use App\Models\Provinsi;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KotaKabupatenController extends Controller
@@ -15,10 +15,10 @@ class KotaKabupatenController extends Controller
     public function index()
     {
         $kotaKabupatens = KotaKabupaten::select('kota_kabupaten.*')
-                            ->join('provinsi', 'provinsi.kode_provinsi', '=', 'kota_kabupaten.kode_provinsi')
-                            ->orderBy('provinsi.nama_provinsi', 'asc')
-                            ->orderBy('kota_kabupaten.kode_kota_kabupaten', 'asc')
-                            ->get();
+            ->join('provinsi', 'provinsi.kode_provinsi', '=', 'kota_kabupaten.kode_provinsi')
+            ->orderBy('provinsi.nama_provinsi', 'asc')
+            ->orderBy('kota_kabupaten.kode_kota_kabupaten', 'asc')
+            ->get();
 
         return view('admin.kota_kabupaten.index', [
             'kota_kabupatens' => $kotaKabupatens,
@@ -86,7 +86,7 @@ class KotaKabupatenController extends Controller
         $rules = [
             'kode_provinsi' => 'required',
             'nama_kota_kabupaten' => 'required',
-            'kode_kota_kabupaten' => 'required|unique:kota_kabupaten,kode_kota_kabupaten,' . $kotaKabupaten->id_kota_kabupaten . ',id_kota_kabupaten',
+            'kode_kota_kabupaten' => 'required|unique:kota_kabupaten,kode_kota_kabupaten,'.$kotaKabupaten->id_kota_kabupaten.',id_kota_kabupaten',
         ];
 
         $validatedData = $request->validate($rules);
@@ -103,7 +103,7 @@ class KotaKabupatenController extends Controller
     {
         $isHasChild = User::where('kode_kota_kabupaten', $kotaKabupaten->kode_kota_kabupaten)->exists();
 
-        if($isHasChild){
+        if ($isHasChild) {
             return redirect()->route('kota-kabupaten.index')->with('error', 'Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 

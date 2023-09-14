@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotifikasiSertifikatMail;
+use App\Models\Notifikasi;
 use App\Models\Skema;
 use App\Models\StatusPeserta;
-use App\Models\Notifikasi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Mail\NotifikasiSertifikatMail;
 use Illuminate\Support\Facades\Mail;
-
-
 
 class SertifikatController extends Controller
 {
@@ -59,15 +57,15 @@ class SertifikatController extends Controller
 
         Mail::send(new NotifikasiSertifikatMail([
             'email' => $status_peserta->user->email,
-            'subject_' => 'Selamat, Anda telah lulus pada skema ' . $status_peserta->skema->nama,
-            'message_' => 'Selamat, Anda telah lulus pada skema ' . $status_peserta->skema->nama . '. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
+            'subject_' => 'Selamat, Anda telah lulus pada skema '.$status_peserta->skema->nama,
+            'message_' => 'Selamat, Anda telah lulus pada skema '.$status_peserta->skema->nama.'. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
             'skema' => $status_peserta->skema->nama,
         ]));
 
         $notifikasi = new Notifikasi();
 
-        $notifikasi->judul = 'Selamat, Anda telah lulus pada skema ' . $status_peserta->skema->nama;
-        $notifikasi->pesan = 'Selamat, Anda telah lulus pada skema ' . $status_peserta->skema->nama . '. Silahkan login ke akun Anda untuk melihat sertifikat Anda.';
+        $notifikasi->judul = 'Selamat, Anda telah lulus pada skema '.$status_peserta->skema->nama;
+        $notifikasi->pesan = 'Selamat, Anda telah lulus pada skema '.$status_peserta->skema->nama.'. Silahkan login ke akun Anda untuk melihat sertifikat Anda.';
         $notifikasi->is_dibaca = 'tidak_dibaca';
         $notifikasi->id_users = $status_peserta->user->id_users;
 

@@ -71,7 +71,7 @@ class PekerjaanController extends Controller
     public function update(Request $request, Pekerjaan $pekerjaan)
     {
         $rules = [
-            'kode_pekerjaan' => 'required|unique:pekerjaan,kode_pekerjaan,' . $pekerjaan->id_pekerjaan . ',id_pekerjaan',
+            'kode_pekerjaan' => 'required|unique:pekerjaan,kode_pekerjaan,'.$pekerjaan->id_pekerjaan.',id_pekerjaan',
             'nama_pekerjaan' => 'required',
         ];
 

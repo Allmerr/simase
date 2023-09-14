@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotifikasiSertifikatMail;
+use App\Models\Notifikasi;
 use App\Models\Skema;
 use App\Models\StatusPeserta;
 use App\Models\User;
-use App\Models\Notifikasi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Mail\NotifikasiSertifikatMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class SkemaController extends Controller
 {
@@ -279,6 +279,7 @@ class SkemaController extends Controller
     {
         $skema = Skema::find($id_skema);
         $pengajuans_diterima = Skema::find($id_skema)->status_peserta()->where('status', 'diterima')->get();
+
         return view('admin.skema.peserta', [
             'skema' => $skema,
             'pengajuans' => $pengajuans_diterima,
@@ -311,20 +312,19 @@ class SkemaController extends Controller
 
         Mail::send(new NotifikasiSertifikatMail([
             'email' => $user->email,
-            'subject_' => 'Selamat, Anda telah lulus pada skema ' . $skema->nama,
-            'message_' => 'Selamat, Anda telah lulus pada skema ' . $skema->nama . '. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
+            'subject_' => 'Selamat, Anda telah lulus pada skema '.$skema->nama,
+            'message_' => 'Selamat, Anda telah lulus pada skema '.$skema->nama.'. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
             'skema' => $skema->nama,
         ]));
 
         $notifikasi = new Notifikasi();
 
-        $notifikasi->judul = 'Selamat, Anda telah lulus pada skema ' . $skema->nama;
-        $notifikasi->pesan = 'Selamat, Anda telah lulus pada skema ' . $skema->nama . '. Silahkan login ke akun Anda untuk melihat sertifikat Anda.';
+        $notifikasi->judul = 'Selamat, Anda telah lulus pada skema '.$skema->nama;
+        $notifikasi->pesan = 'Selamat, Anda telah lulus pada skema '.$skema->nama.'. Silahkan login ke akun Anda untuk melihat sertifikat Anda.';
         $notifikasi->is_dibaca = 'tidak_dibaca';
         $notifikasi->id_users = $user->id_users;
 
         $notifikasi->save();
-
 
         return redirect()->route('skema.sertifikatSkema', $id_skema)->with('success_message', 'Data telah tersimpan');
     }

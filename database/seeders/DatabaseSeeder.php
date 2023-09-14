@@ -3,17 +3,17 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\EmailConfiguration;
+use App\Models\KotaKabupaten;
 use App\Models\Pangkat;
+use App\Models\Pekerjaan;
+use App\Models\Pendidikan;
 use App\Models\PendidikanKepolisian;
+use App\Models\Provinsi;
 use App\Models\Satker;
 use App\Models\Skema;
-use App\Models\User;
 use App\Models\Tuk;
-use App\Models\Provinsi;
-use App\Models\KotaKabupaten;
-use App\Models\Pendidikan;
-use App\Models\Pekerjaan;
-use App\Models\EmailConfiguration;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

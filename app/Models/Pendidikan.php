@@ -10,6 +10,8 @@ class Pendidikan extends Model
     use HasFactory;
 
     protected $guarded = 'id_pendidikan';
+
     protected $table = 'pendidikan';
+
     protected $primaryKey = 'id_pendidikan';
 }

@@ -72,7 +72,7 @@ class PendidikanController extends Controller
     public function update(Request $request, Pendidikan $pendidikan)
     {
         $rules = [
-            'kode_pendidikan' => 'required|unique:pendidikan,kode_pendidikan,' . $pendidikan->id_pendidikan . ',id_pendidikan',
+            'kode_pendidikan' => 'required|unique:pendidikan,kode_pendidikan,'.$pendidikan->id_pendidikan.',id_pendidikan',
             'nama_pendidikan' => 'required',
         ];
 
@@ -90,7 +90,7 @@ class PendidikanController extends Controller
     {
         $isHasChild = User::where('kode_pendidikan', $pendidikan->kode_pendidikan)->exists();
 
-        if($isHasChild){
+        if ($isHasChild) {
             return redirect()->route('pendidikan.index')->with('error', 'Pendidikan Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 

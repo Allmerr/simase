@@ -87,7 +87,7 @@ class SatkerController extends Controller
     {
         $isHasChild = User::where('id_satker', $satker->id_satker)->exists();
 
-        if($isHasChild){
+        if ($isHasChild) {
             return redirect()->route('satker.index')->with('error', 'Satker Kode/kabupaten Memiliki Relasi! Silahkan Hapus Data Di Tabel Relasi Terlebih Dahulu');
         }
 

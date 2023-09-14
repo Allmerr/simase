@@ -74,7 +74,6 @@ class PengajuanController extends Controller
         //
     }
 
-
     public function saveRevisi(Request $request, $id_pengajuan)
     {
         $revisi = [
@@ -128,7 +127,6 @@ class PengajuanController extends Controller
             $revisi['status_file_syarat_dokumen_lainnya'] = $request->file_syarat_dokumen_lainnya;
         }
 
-
         if (isset($request->file_syarat_logbook)) {
             $revisi['status_file_syarat_logbook'] = $request->file_syarat_logbook;
         }
@@ -137,7 +135,7 @@ class PengajuanController extends Controller
 
         $pengajuan = Pengajuan::find($id_pengajuan);
 
-        if($revisi['is_disetujui'] == 'disetujui'){
+        if ($revisi['is_disetujui'] == 'disetujui') {
 
             $status_peserta = new StatusPeserta();
 

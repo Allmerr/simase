@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Console\Commands;
-use App\Models\StatusPeserta;
+
 use App\Mail\NotifikasiExpiredMail;
-use Illuminate\Support\Facades\Mail;
-
-
+use App\Models\StatusPeserta;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class DemoCron extends Command
 {
@@ -34,13 +33,15 @@ class DemoCron extends Command
         $statusPeserta = StatusPeserta::where('tanggal_notif_expired', date('Y-m-d'))->get();
 
         foreach ($statusPeserta as $key => $value) {
-            if($statusPeserta[$key]->sudah_kirim_notif == 'sudah') continue;
+            if ($statusPeserta[$key]->sudah_kirim_notif == 'sudah') {
+                continue;
+            }
             // kirim email
 
             Mail::send(new NotifikasiExpiredMail([
                 'email' => $statusPeserta[$key]->user->email,
-                'subject_' => 'Notifikasi expired sertifikat Anda pada skema ' . $statusPeserta[$key]->skema->nama,
-                'message_' => 'Masa berlaku sertifikat Anda pada skema ' . $statusPeserta[$key]->skema->nama . ' tersisa tiga bulan. login ke akun Anda untuk memperpanjang masa berlaku sertifikat Anda.',
+                'subject_' => 'Notifikasi expired sertifikat Anda pada skema '.$statusPeserta[$key]->skema->nama,
+                'message_' => 'Masa berlaku sertifikat Anda pada skema '.$statusPeserta[$key]->skema->nama.' tersisa tiga bulan. login ke akun Anda untuk memperpanjang masa berlaku sertifikat Anda.',
                 'skema' => $statusPeserta[$key]->skema->nama,
             ]));
 
@@ -52,7 +53,9 @@ class DemoCron extends Command
         $statusPeserta = StatusPeserta::where('tanggal_expired', date('Y-m-d'))->get();
 
         foreach ($statusPeserta as $key => $value) {
-            if($statusPeserta[$key]->status == 'expired') continue;
+            if ($statusPeserta[$key]->status == 'expired') {
+                continue;
+            }
             // ubah status
 
             $statusPeserta[$key]->status = 'expired';
