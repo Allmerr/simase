@@ -33,13 +33,13 @@ class PesertaController extends Controller
     {
         return view('peserta.profile', [
             'user' => auth()->user(),
-            'satkers' => Satker::all(),
-            'pangkats' => Pangkat::all(),
-            'pendidikan_kepolisians' => PendidikanKepolisian::all(),
-            'provinsis' => Provinsi::all(),
-            'kota_kabupatens' => KotaKabupaten::all(),
-            'pendidikans' => Pendidikan::all(),
-            'pekerjaans' => Pekerjaan::all(),
+            'satkers' => Satker::orderBy('nama', 'ASC')->get(),
+            'pangkats' => Pangkat::orderBy('nama', 'ASC')->get(),
+            'pendidikan_kepolisians' => PendidikanKepolisian::orderBy('nama', 'ASC')->get(),
+            'provinsis' => Provinsi::orderBy('nama_provinsi', 'ASC')->get(),
+            'kota_kabupatens' => KotaKabupaten::orderBy('nama_kota_kabupaten', 'ASC')->get(),
+            'pendidikans' => Pendidikan::orderBy('nama_pendidikan', 'ASC')->get(),
+            'pekerjaans' => Pekerjaan::orderBy('nama_pekerjaan', 'ASC')->get(),
         ]);
     }
 
