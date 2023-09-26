@@ -67,6 +67,6 @@ class NotifikasiPesertaMail extends Mailable
         // return $this->view('layouts.mail');
         return $this->to($this->userEmail)
             ->subject($this->skemaName)
-            ->view('layouts.mail');
+            ->markdown('layouts.mail');
     }
 }
