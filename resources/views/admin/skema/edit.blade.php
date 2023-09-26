@@ -132,7 +132,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="file_syarat_cv" id="file_syarat_cv" name="file_syarat_cv" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_cv')) checked @endif>
                             <label class="form-check-label" for="file_syarat_cv">
-                                CV
+                                DRH (Daftar Riwayat Hidup)
                             </label>
                         </div>
                         <div class="form-check">
@@ -163,6 +163,24 @@
                             <input class="form-check-input" type="checkbox" value="file_syarat_dokumen_lainnya" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_dokumen_lainnya')) checked @endif>
                             <label class="form-check-label" for="file_syarat_dokumen_lainnya">
                                 Dokumen Lainnya
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_sk_pangkat" id="file_syarat_sk_pangkat" name="file_syarat_sk_pangkat" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sk_pangkat')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_sk_pangkat">
+                                SK Pangkat
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_identitas" id="file_syarat_identitas" name="file_syarat_identitas" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_identitas')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_identitas">
+                                Identitas (SIM/KTP/KTA)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_dikbangpes" id="file_syarat_dikbangpes" name="file_syarat_dikbangpes" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_dikbangpes')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_dikbangpes">
+                                Sertifikat DIKBANGPES
                             </label>
                         </div>
                         @error('file_syarat')

@@ -118,7 +118,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="file_syarat_cv" id="file_syarat_cv" name="file_syarat_cv">
                             <label class="form-check-label" for="file_syarat_cv">
-                                CV
+                                DRH (Daftar Riwayat Hidup)
                             </label>
                         </div>
                         <div class="form-check">
@@ -149,6 +149,24 @@
                             <input class="form-check-input" type="checkbox" value="file_syarat_dokumen_lainnya" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya">
                             <label class="form-check-label" for="file_syarat_dokumen_lainnya">
                                 Dokumen Lainnya
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_sk_pangkat" id="file_syarat_sk_pangkat" name="file_syarat_sk_pangkat">
+                            <label class="form-check-label" for="file_syarat_sk_pangkat">
+                                SK Pangkat
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_identitas" id="file_syarat_identitas" name="file_syarat_identitas">
+                            <label class="form-check-label" for="file_syarat_identitas">
+                                Identitas (SIM/KTP/KTA)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_dikbangpes" id="file_syarat_dikbangpes" name="file_syarat_dikbangpes">
+                            <label class="form-check-label" for="file_syarat_dikbangpes">
+                                Sertifikat DIKBANGSPES
                             </label>
                         </div>
 

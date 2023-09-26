@@ -136,8 +136,8 @@
 
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_cv'))
                                 <tr>
-                                    <td>CV</td>
-                                    <p>Status CV Sebelumnya: <b>{{ $pengajuan->status_file_syarat_cv }}</b></p>
+                                    <td>DRH (Daftar Riwayat Hidup)</td>
+                                    <p>Status DRH (Daftar Riwayat Hidup) Sebelumnya: <b>{{ $pengajuan->status_file_syarat_cv }}</b></p>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_cv) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_cv" name="file_syarat_cv"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_cv" name="file_syarat_cv"></td>
@@ -206,12 +206,51 @@
                                 @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_dokumen_lainnya'))
                                 @if($pengajuan->file_syarat_dokumen_lainnya != null)
                                 <tr>
-                                    <td>Dokumen Sebelumnya</td>
-                                    <p>Status Dokumen Sebelumnya Sebelumnya: <b>{{ $pengajuan->status_file_syarat_dokumen_lainnya }}</b></p>
+                                    <td>Dokumen Lainnya</td>
+                                    <p>Status Dokumen Lainnya Sebelumnya: <b>{{ $pengajuan->status_file_syarat_dokumen_lainnya }}</b></p>
                                     <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_dokumen_lainnya) }}">Lihat File</a></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya"></td>
                                     <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_dokumen_lainnya" name="file_syarat_dokumen_lainnya" checked></td>
+                                </tr>
+                                @endif
+                                @endif
+
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_sk_pangkat'))
+                                @if($pengajuan->file_syarat_sk_pangkat != null)
+                                <tr>
+                                    <td>SK Pangkat</td>
+                                    <p>Status SK Pangkat Sebelumnya: <b>{{ $pengajuan->status_file_syarat_sk_pangkat }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sk_pangkat) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_sk_pangkat" name="file_syarat_sk_pangkat"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_sk_pangkat" name="file_syarat_sk_pangkat"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_sk_pangkat" name="file_syarat_sk_pangkat" checked></td>
+                                </tr>
+                                @endif
+                                @endif
+
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_identitas'))
+                                @if($pengajuan->file_syarat_identitas != null)
+                                <tr>
+                                    <td>Identitas (SIM/KTP/KTA)</td>
+                                    <p>Status Identitas (SIM/KTP/KTA) Sebelumnya: <b>{{ $pengajuan->status_file_syarat_identitas }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_identitas) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_identitas" name="file_syarat_identitas"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_identitas" name="file_syarat_identitas"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_identitas" name="file_syarat_identitas" checked></td>
+                                </tr>
+                                @endif
+                                @endif
+
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_dikbangpes'))
+                                @if($pengajuan->file_syarat_dikbangpes != null)
+                                <tr>
+                                    <td>Sertifikat DIKBANGSPES</td>
+                                    <p>Status Sertifikat DIKBANGSPES Sebelumnya: <b>{{ $pengajuan->status_file_syarat_dikbangpes }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_dikbangpes) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_dikbangpes" name="file_syarat_dikbangpes"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_dikbangpes" name="file_syarat_dikbangpes"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_dikbangpes" name="file_syarat_dikbangpes" checked></td>
                                 </tr>
                                 @endif
                                 @endif

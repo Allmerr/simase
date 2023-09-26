@@ -204,6 +204,16 @@ class PesertaController extends Controller
         if ($request->file('file_syarat_dokumen_lainnya')) {
             $pengajuan->file_syarat_dokumen_lainnya = $validatedData['file_syarat_dokumen_lainnya'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dokumen_lainnya')->store('public/file_syarat'));
         }
+        if ($request->file('file_syarat_sk_pangkat')) {
+            $pengajuan->file_syarat_sk_pangkat = $validatedData['file_syarat_sk_pangkat'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sk_pangkat')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_identitas')) {
+            $pengajuan->file_syarat_identitas = $validatedData['file_syarat_identitas'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_identitas')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_dikbangpes')) {
+            $pengajuan->file_syarat_dikbangpes = $validatedData['file_syarat_dikbangpes'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dikbangpes')->store('public/file_syarat'));
+        }
+
 
         if ($request->file('file_syarat_logbook')) {
             $pengajuan->file_syarat_logbook = $validatedData['file_syarat_logbook'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_logbook')->store('public/file_syarat'));
@@ -248,6 +258,9 @@ class PesertaController extends Controller
             'file_syarat_keputusan_penyidik' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_skhp' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_dokumen_lainnya' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_sk_pangkat' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_identitas' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_dikbangpes' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'id_tuk' => 'required',
         ];
 
@@ -318,6 +331,15 @@ class PesertaController extends Controller
         }
         if ($request->file('file_syarat_dokumen_lainnya')) {
             $pengajuan->file_syarat_dokumen_lainnya = $validatedData['file_syarat_dokumen_lainnya'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dokumen_lainnya')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sk_pangkat')) {
+            $pengajuan->file_syarat_sk_pangkat = $validatedData['file_syarat_sk_pangkat'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sk_pangkat')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_identitas')) {
+            $pengajuan->file_syarat_identitas = $validatedData['file_syarat_identitas'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_identitas')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_dikbangpes')) {
+            $pengajuan->file_syarat_dikbangpes = $validatedData['file_syarat_dikbangpes'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dikbangpes')->store('public/file_syarat'));
         }
 
         if ($request->file('file_syarat_logbook')) {

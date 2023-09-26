@@ -33,6 +33,9 @@ class SkemaFactory extends Factory
             'file_syarat_keputusan_penyidik',
             'file_syarat_skhp',
             'file_syarat_dokumen_lainnya',
+            'file_syarat_sk_pangkat',
+            'file_syarat_identitas',
+            'file_syarat_dikbangpes',
         ];
 
         $combinationLength = fake()->numberBetween(1, count($possibleValues));

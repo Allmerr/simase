@@ -132,7 +132,7 @@
 
                     @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_cv'))
                     <div class="mb-3">
-                        <label for="file_syarat_cv" class="form-label">Dokumen Persyaratan CV</label>
+                        <label for="file_syarat_cv" class="form-label">Dokumen Persyaratan DRH (Daftar Riwayat Hidup)</label>
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_cv') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_cv" value="{{ old('file_syarat_cv') }}" name="file_syarat_cv" required>
                         @error('file_syarat_cv')
@@ -214,6 +214,45 @@
                         <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
                         <input type="file" class="form-control @error('file_syarat_dokumen_lainnya') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_dokumen_lainnya" value="{{ old('file_syarat_dokumen_lainnya') }}" name="file_syarat_dokumen_lainnya">
                         @error('file_syarat_dokumen_lainnya')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sk_pangkat'))
+                    <div class="mb-3">
+                        <label for="file_syarat_sk_pangkat" class="form-label">SK Pangkat</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_sk_pangkat') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_sk_pangkat" value="{{ old('file_syarat_sk_pangkat') }}" name="file_syarat_sk_pangkat" required>
+                        @error('file_syarat_sk_pangkat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_identitas'))
+                    <div class="mb-3">
+                        <label for="file_syarat_identitas" class="form-label">Identitas (SIM/KTP/KTA)</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_identitas') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_identitas" value="{{ old('file_syarat_identitas') }}" name="file_syarat_identitas" required>
+                        @error('file_syarat_identitas')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_dikbangpes'))
+                    <div class="mb-3">
+                        <label for="file_syarat_dikbangpes" class="form-label">Sertifikat DIKBANGPES</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_dikbangpes') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_dikbangpes" value="{{ old('file_syarat_dikbangpes') }}" name="file_syarat_dikbangpes" required>
+                        @error('file_syarat_dikbangpes')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

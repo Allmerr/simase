@@ -94,6 +94,15 @@ class SkemaController extends Controller
         if (isset($request->file_syarat_dokumen_lainnya)) {
             $fileSyarat .= ',file_syarat_dokumen_lainnya';
         }
+        if (isset($request->file_syarat_sk_pangkat)) {
+            $fileSyarat .= ',file_syarat_sk_pangkat';
+        }
+        if (isset($request->file_syarat_identitas)) {
+            $fileSyarat .= ',file_syarat_identitas';
+        }
+        if (isset($request->file_syarat_dikbangpes)) {
+            $fileSyarat .= ',file_syarat_dikbangpes';
+        }
 
         if ($fileSyarat !== '') {
             $fileSyarat = substr($fileSyarat, 1);
@@ -209,6 +218,15 @@ class SkemaController extends Controller
         }
         if (isset($request->file_syarat_dokumen_lainnya)) {
             $fileSyarat .= ',file_syarat_dokumen_lainnya';
+        }
+        if (isset($request->file_syarat_sk_pangkat)) {
+            $fileSyarat .= ',file_syarat_sk_pangkat';
+        }
+        if (isset($request->file_syarat_identitas)) {
+            $fileSyarat .= ',file_syarat_identitas';
+        }
+        if (isset($request->file_syarat_dikbangpes)) {
+            $fileSyarat .= ',file_syarat_dikbangpes';
         }
 
         if ($fileSyarat !== '') {
