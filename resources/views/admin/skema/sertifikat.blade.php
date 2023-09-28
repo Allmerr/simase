@@ -79,7 +79,7 @@
                                                         <div class="mb-3">
                                                             <label for="file_sertifikat" class="form-label">File Sertifikat</label>
                                                             <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
-                                                            <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" accept=".jpeg, .jpg, .png, .doc, .docx" required>
+                                                            <input type="file" class="form-control" id="file_sertifikat" aria-describedby="file_sertifikat" name="file_sertifikat" accept=".jpeg, .jpg, .png, .pdf, .doc, .docx" required>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

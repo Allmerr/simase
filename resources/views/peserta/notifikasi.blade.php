@@ -173,14 +173,6 @@
                                         @foreach ($notifikasis as $notifikasi)
                                         <li class="list-group-item @if($notifikasi->is_dibaca === 'tidak_dibaca') unread @endif">
                                             <div class="media">
-                                                <div class="pull-left">
-                                                    <div class="controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="basic_checkbox_1">
-                                                            <label for="basic_checkbox_1"></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="media-body">
                                                     <div class="media-heading">
                                                         <a href="{{ route('peserta.notifikasiDetail', $notifikasi->id_notifikasi) }}" class="m-r-10">{{ $notifikasi->judul }}</a>

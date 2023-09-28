@@ -17,10 +17,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @elseif(session()->has('failed'))
-                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-                    <a href="{{ route('peserta.profile') }}">{{ session('failed') }}</a>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                    @if(str_contains(session('failed'), 'survey'))
+                    <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                        <a href="{{ route('peserta.survey.index') }}">{{ session('failed') }}</a>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @else
+                    <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                        <a href="{{ route('peserta.profile') }}">{{ session('failed') }}</a>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
                 @endif
                 <form action="{{ route('peserta.saveDaftarSkema', $skema->id_skema) }}" method="POST" enctype="multipart/form-data">
                     @csrf

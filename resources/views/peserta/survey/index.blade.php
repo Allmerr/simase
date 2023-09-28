@@ -44,7 +44,9 @@
                                         <a href="{{ route('peserta.survey.create', $survey->id_status_peserta) }}" class="btn btn-primary btn-xs edit-button"><i class="fa fa-edit"> Isi Survey</i></a>
                                     </td>
                                     @else
-                                    <td></td>
+                                    <td>
+                                        <a href="{{ route('peserta.daftarSkema', $survey->id_skema) }}" class="btn btn-warning btn-xs edit-button"> Perpanjang</i></a>
+                                    </td>
                                     @endif
 
                                 </tr>

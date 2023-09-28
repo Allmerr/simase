@@ -39,17 +39,20 @@
                                     <a href="{{ route('peserta.detailSkema' , $skema->id_skema) }}" class="badge bg-primary">Detail</a>
                                     @if($skema->status == 'aktif')
 
-                                        @if($skema->hasApprovedAndPassed() && ($skema->getLastApplicationStatus() === 'menunggu_pending' || $skema->getLastApplicationStatus() === 'pending' || $skema->getLastApplicationStatus() === 'revisi' || $skema->hasApprovedAndNotPassedYet())) {{-- disetujui dan lulus dan sedang mendafar  --}}
+                                        {{-- (sudah disetujui dan pass) dan pendaftaran terakhir masih menunggu pending atau pending atau revisi atatu disetujui belum bersertifikat --}}
+                                        @if($skema->hasApprovedAndPassed() && ($skema->getLastApplicationStatus() === 'menunggu_pending' || $skema->getLastApplicationStatus() === 'pending' || $skema->getLastApplicationStatus() === 'revisi' || $skema->hasApprovedAndNotPassedYet()))
 
                                             <a href="{{ route('peserta.statusPengajuan') }}" class="badge bg-warning">Status Pengajuan</a>
 
-                                        @elseif($skema->hasApprovedAndPassed() && $skema->getLastApplicationStatus() === 'tidak_disetujui' ) {{-- disetujui dan lulus dan sedang mendafar  --}}
+                                        {{-- (sudah disetujui dan pass) dan pendaftaran terakhir tidak disetujui --}}
+                                        @elseif($skema->hasApprovedAndPassed() && $skema->getLastApplicationStatus() === 'tidak_disetujui' )
 
-                                            <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar Kembali</a>
+                                            <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Perpanjangan</a>
 
-                                        @elseif($skema->hasApprovedAndPassed() && !($skema->getLastApplicationStatus() === 'menunggu_pending' || $skema->getLastApplicationStatus() === 'pending' || $skema->getLastApplicationStatus() === 'revisi' || $skema->hasApprovedAndNotPassedYet())) {{-- disetujui dan lulus dan sedang mendafar  --}}
+                                        {{-- (sudah disetujui dan pass) dan pendaftaran terakhir tidak disetujui --}}
+                                        @elseif($skema->hasApprovedAndPassed() && !($skema->getLastApplicationStatus() === 'menunggu_pending' || $skema->getLastApplicationStatus() === 'pending' || $skema->getLastApplicationStatus() === 'revisi' || $skema->hasApprovedAndNotPassedYet()))
 
-                                            <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Daftar Kembali</a>
+                                            <a href="{{ route('peserta.daftarSkema' , $skema->id_skema) }}" class="badge bg-success">Perpanjanan</a>
 
                                         @elseif($skema->getLastApplicationStatus() === 'menunggu_pending' || $skema->getLastApplicationStatus() === 'pending' || $skema->getLastApplicationStatus() === 'revisi' || $skema->hasApprovedAndNotPassedYet())
 

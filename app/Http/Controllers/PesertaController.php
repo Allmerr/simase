@@ -17,6 +17,7 @@ use App\Models\Skema;
 use App\Models\StatusPeserta;
 use App\Models\Tuk;
 use App\Models\User;
+use App\Models\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -239,6 +240,13 @@ class PesertaController extends Controller
             return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Data Diri Anda Belum Lengkapi. Lengkapi data diri, photo profile anda!');
         }
 
+        $notFillSurvey = isset(StatusPeserta::where('id_skema', $skema->id_skema)->where('id_users', auth()->user()->id_users)->whereDate('tanggal_surveilan', '<=', today())->where('sudah_servey', 'belum')->get()[0]);
+
+        if($notFillSurvey){
+            return redirect()->route('peserta.daftarSkema', $skema->id_skema)->with('failed', 'Mohon isi survey telebih dahulu!');
+        }
+
+
         $hasPreviousSubmission = Pengajuan::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->get();
         $hasBeenLulus = StatusPeserta::where('id_users', auth()->user()->id_users)->where('id_skema', $skema->id_skema)->get();
 
@@ -453,7 +461,7 @@ class PesertaController extends Controller
     {
         $notifikasi = Notifikasi::find($id_notifikasi);
 
-        if ($notifikasi->id_users !== auth()->user()->id_users) {
+        if ($notifikasi->id_users != auth()->user()->id_users) {
             return abort(403);
         }
 

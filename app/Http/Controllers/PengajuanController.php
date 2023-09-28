@@ -158,7 +158,7 @@ class PengajuanController extends Controller
         $this->sendEmail($pengajuan->id_users, $pengajuan->id_skema, $pengajuan->is_disetujui);
         $this->sendNotifikasi($pengajuan);
 
-        return redirect()->route('pengajuan.index')->with('success', 'Berhasil mendaftar skema, silahkan tunggu konfirmasi dari admin melalui email anda!');
+        return redirect()->route('pengajuan.index')->with('success', 'Berhasil menyetujui pengajuan!');
     }
 
     public function sendEmail($id_users, $id_skema, $status_acc)
