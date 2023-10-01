@@ -71,6 +71,12 @@ return new class extends Migration
             $table->string('file_syarat_dikbangpes')->nullable();
             $table->enum('status_file_syarat_dikbangpes', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 
+            $table->string('file_syarat_kep_jabatan')->nullable();
+            $table->enum('status_file_syarat_kep_jabatan', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+
+            $table->string('file_syarat_sprin_pelaksanaan_tugas')->nullable();
+            $table->enum('status_file_syarat_sprin_pelaksanaan_tugas', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
+
             $table->string('file_syarat_logbook')->nullable();
             $table->enum('status_file_syarat_logbook', ['ada disetujui', 'ada tidak disetujui', 'tidak ada'])->nullable();
 

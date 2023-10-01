@@ -214,6 +214,12 @@ class PesertaController extends Controller
         if ($request->file('file_syarat_dikbangpes')) {
             $pengajuan->file_syarat_dikbangpes = $validatedData['file_syarat_dikbangpes'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dikbangpes')->store('public/file_syarat'));
         }
+        if ($request->file('file_syarat_kep_jabatan')) {
+            $pengajuan->file_syarat_kep_jabatan = $validatedData['file_syarat_kep_jabatan'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_kep_jabatan')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sprin_pelaksanaan_tugas')) {
+            $pengajuan->file_syarat_sprin_pelaksanaan_tugas = $validatedData['file_syarat_sprin_pelaksanaan_tugas'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sprin_pelaksanaan_tugas')->store('public/file_syarat'));
+        }
 
 
         if ($request->file('file_syarat_logbook')) {
@@ -269,6 +275,8 @@ class PesertaController extends Controller
             'file_syarat_sk_pangkat' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_identitas' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'file_syarat_dikbangpes' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_kep_jabatan' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
+            'file_syarat_sprin_pelaksanaan_tugas' => 'mimes:jpeg,png,jpg,pdf,doc,docx',
             'id_tuk' => 'required',
         ];
 
@@ -348,6 +356,12 @@ class PesertaController extends Controller
         }
         if ($request->file('file_syarat_dikbangpes')) {
             $pengajuan->file_syarat_dikbangpes = $validatedData['file_syarat_dikbangpes'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_dikbangpes')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_kep_jabatan')) {
+            $pengajuan->file_syarat_kep_jabatan = $validatedData['file_syarat_kep_jabatan'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_kep_jabatan')->store('public/file_syarat'));
+        }
+        if ($request->file('file_syarat_sprin_pelaksanaan_tugas')) {
+            $pengajuan->file_syarat_sprin_pelaksanaan_tugas = $validatedData['file_syarat_sprin_pelaksanaan_tugas'] = str_replace('public/file_syarat/', '', $request->file('file_syarat_sprin_pelaksanaan_tugas')->store('public/file_syarat'));
         }
 
         if ($request->file('file_syarat_logbook')) {

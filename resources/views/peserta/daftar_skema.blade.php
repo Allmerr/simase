@@ -267,6 +267,32 @@
                     </div>
                     @endif
 
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_kep_jabatan'))
+                    <div class="mb-3">
+                        <label for="file_syarat_kep_jabatan" class="form-label">Kep Jabatan</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_kep_jabatan') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_kep_jabatan" value="{{ old('file_syarat_kep_jabatan') }}" name="file_syarat_kep_jabatan" required>
+                        @error('file_syarat_kep_jabatan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sprin_pelaksanaan_tugas'))
+                    <div class="mb-3">
+                        <label for="file_syarat_sprin_pelaksanaan_tugas" class="form-label">Sprin Pelaksanaan Tugas</label>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_sprin_pelaksanaan_tugas') is-invalid @enderror" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"  id="file_syarat_sprin_pelaksanaan_tugas" value="{{ old('file_syarat_sprin_pelaksanaan_tugas') }}" name="file_syarat_sprin_pelaksanaan_tugas" required>
+                        @error('file_syarat_sprin_pelaksanaan_tugas')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
                     @if($skema->status_peserta->where('id_users', Auth::user()->id_users)->first() !== null)
                         @if($skema->status_peserta->where('id_users', Auth::user()->id_users)->first()->status == 'lulus')
                         <div class="mb-3">

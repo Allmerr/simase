@@ -103,6 +103,12 @@ class SkemaController extends Controller
         if (isset($request->file_syarat_dikbangpes)) {
             $fileSyarat .= ',file_syarat_dikbangpes';
         }
+        if (isset($request->file_syarat_kep_jabatan)) {
+            $fileSyarat .= ',file_syarat_kep_jabatan';
+        }
+        if (isset($request->file_syarat_sprin_pelaksanaan_tugas)) {
+            $fileSyarat .= ',file_syarat_sprin_pelaksanaan_tugas';
+        }
 
         if ($fileSyarat !== '') {
             $fileSyarat = substr($fileSyarat, 1);
@@ -227,6 +233,12 @@ class SkemaController extends Controller
         }
         if (isset($request->file_syarat_dikbangpes)) {
             $fileSyarat .= ',file_syarat_dikbangpes';
+        }
+        if (isset($request->file_syarat_kep_jabatan)) {
+            $fileSyarat .= ',file_syarat_kep_jabatan';
+        }
+        if (isset($request->file_syarat_sprin_pelaksanaan_tugas)) {
+            $fileSyarat .= ',file_syarat_sprin_pelaksanaan_tugas';
         }
 
         if ($fileSyarat !== '') {

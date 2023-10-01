@@ -135,6 +135,12 @@ class PengajuanController extends Controller
         if (isset($request->file_syarat_dikbangpes)) {
             $revisi['status_file_syarat_dikbangpes'] = $request->file_syarat_dikbangpes;
         }
+        if (isset($request->file_syarat_kep_jabatan)) {
+            $revisi['status_file_syarat_kep_jabatan'] = $request->file_syarat_kep_jabatan;
+        }
+        if (isset($request->file_syarat_sprin_pelaksanaan_tugas)) {
+            $revisi['status_file_syarat_sprin_pelaksanaan_tugas'] = $request->file_syarat_sprin_pelaksanaan_tugas;
+        }
 
         if (isset($request->file_syarat_logbook)) {
             $revisi['status_file_syarat_logbook'] = $request->file_syarat_logbook;

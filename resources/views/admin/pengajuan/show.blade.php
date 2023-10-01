@@ -255,6 +255,32 @@
                                 @endif
                                 @endif
 
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_kep_jabatan'))
+                                @if($pengajuan->file_syarat_kep_jabatan != null)
+                                <tr>
+                                    <td>Sertifikat Kep Jabatan</td>
+                                    <p>Status Sertifikat Kep Jabatan Sebelumnya: <b>{{ $pengajuan->status_file_syarat_kep_jabatan }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_kep_jabatan) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_kep_jabatan" name="file_syarat_kep_jabatan"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_kep_jabatan" name="file_syarat_kep_jabatan"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_kep_jabatan" name="file_syarat_kep_jabatan" checked></td>
+                                </tr>
+                                @endif
+                                @endif
+
+                                @if(str_contains(str_replace(',',' ',$pengajuan->skema->file_syarat), 'file_syarat_sprin_pelaksanaan_tugas'))
+                                @if($pengajuan->file_syarat_sprin_pelaksanaan_tugas != null)
+                                <tr>
+                                    <td>Sertifikat Sprin Pelaksanaan Tugas</td>
+                                    <p>Status Sertifikat Sprin Pelaksanaan Tugas Sebelumnya: <b>{{ $pengajuan->status_file_syarat_sprin_pelaksanaan_tugas }}</b></p>
+                                    <td><a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sprin_pelaksanaan_tugas) }}">Lihat File</a></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada disetujui" id="file_syarat_sprin_pelaksanaan_tugas" name="file_syarat_sprin_pelaksanaan_tugas"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="ada tidak disetujui" id="file_syarat_sprin_pelaksanaan_tugas" name="file_syarat_sprin_pelaksanaan_tugas"></td>
+                                    <td><input class="form-check-input ml-1" type="radio" value="tidak ada" id="file_syarat_sprin_pelaksanaan_tugas" name="file_syarat_sprin_pelaksanaan_tugas" checked></td>
+                                </tr>
+                                @endif
+                                @endif
+
                                 @if(isset($pengajuan->file_syarat_logbook))
                                     <tr>
                                         <td>Logbook</td>

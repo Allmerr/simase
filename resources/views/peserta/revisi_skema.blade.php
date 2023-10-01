@@ -322,6 +322,36 @@
                     </div>
                     @endif
 
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_kep_jabatan'))
+                    <div class="my-4">
+                        <label for="file_syarat_kep_jabatan" class="form-label">Kep Jabatan</label>
+                        <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_kep_jabatan) }}" target="_blank">{{ $pengajuan->file_syarat_kep_jabatan }}</a></p>
+                        <p>Status : <b>{{ $pengajuan->status_file_syarat_kep_jabatan }}</b></p>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_kep_jabatan') is-invalid @enderror" id="file_syarat_kep_jabatan" value="{{ old('file_syarat_kep_jabatan') }}" name="file_syarat_kep_jabatan" @if($pengajuan->status_file_syarat_kep_jabatan === 'ada disetujui')  disabled @endif @if($pengajuan->file_syarat_kep_jabatan != 'ada disetujui') required @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
+                        @error('file_syarat_kep_jabatan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
+                    @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sprin_pelaksanaan_tugas'))
+                    <div class="my-4">
+                        <label for="file_syarat_sprin_pelaksanaan_tugas" class="form-label">Sprin Pelaksanaan Tugas</label>
+                        <p>Previous File: <a href="{{ asset('/storage/file_syarat/' . $pengajuan->file_syarat_sprin_pelaksanaan_tugas) }}" target="_blank">{{ $pengajuan->file_syarat_sprin_pelaksanaan_tugas }}</a></p>
+                        <p>Status : <b>{{ $pengajuan->status_file_syarat_sprin_pelaksanaan_tugas }}</b></p>
+                        <small class="form-text text-muted">dokumen extensions yang diijinkan : .jpeg .jpg .png .pdf .docx</small>
+                        <input type="file" class="form-control @error('file_syarat_sprin_pelaksanaan_tugas') is-invalid @enderror" id="file_syarat_sprin_pelaksanaan_tugas" value="{{ old('file_syarat_sprin_pelaksanaan_tugas') }}" name="file_syarat_sprin_pelaksanaan_tugas" @if($pengajuan->status_file_syarat_sprin_pelaksanaan_tugas === 'ada disetujui')  disabled @endif @if($pengajuan->file_syarat_sprin_pelaksanaan_tugas != 'ada disetujui') required @endif accept=".jpeg, .jpg, .png, .pdf, .docx">
+                        @error('file_syarat_sprin_pelaksanaan_tugas')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endif
+
                     @if($pengajuan->file_syarat_logbook)
                     <div class="my-4">
                         <label for="file_syarat_logbook" class="form-label">Dokumen Persyaratan Logbook</label>
@@ -336,8 +366,15 @@
                         @enderror
                     </div>
                     @endif
-
-                    <button type="submit" class="btn btn-outline-secondary">Ajukan Revisi</button>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2">
+                            <a href="{{ route('peserta.statusPengajuan') }}" class="btn btn-warning w-100">Kembali</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Ajukan Revisi</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

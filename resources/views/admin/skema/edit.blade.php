@@ -183,6 +183,18 @@
                                 Sertifikat DIKBANGPES
                             </label>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_kep_jabatan" id="file_syarat_kep_jabatan" name="file_syarat_kep_jabatan" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_kep_jabatan')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_kep_jabatan">
+                                Kep Jabatan
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="file_syarat_sprin_pelaksanaan_tugas" id="file_syarat_sprin_pelaksanaan_tugas" name="file_syarat_sprin_pelaksanaan_tugas" @if(str_contains(str_replace(',',' ',$skema->file_syarat), 'file_syarat_sprin_pelaksanaan_tugas')) checked @endif>
+                            <label class="form-check-label" for="file_syarat_sprin_pelaksanaan_tugas">
+                                Sprin Pelaksanaan Tugas
+                            </label>
+                        </div>
                         @error('file_syarat')
                         <div class="invalid-feedback">
                             {{ $message }}
