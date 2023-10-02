@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         Tuk::factory(10)->create();
-        Skema::factory(20)->create();
+        Skema::factory(3)->create();
         Satker::factory(10)->create();
         Pangkat::factory(10)->create();
         Provinsi::factory(20)->create();

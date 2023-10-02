@@ -52,12 +52,12 @@ class Skema extends Model
 
     public function hasApprovedAndPassed()
     {
-        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'lulus')->exists();
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'lulus')->where('id_users', auth()->user()->id_users)->exists();
     }
 
     public function hasApprovedAndNotPassedYet()
     {
-        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'diterima')->exists();
+        return auth()->user()->pengajuan()->where('id_skema', $this->id_skema)->where('is_disetujui', 'disetujui')->exists() && $this->status_peserta()->where('id_skema', $this->id_skema)->where('status', 'diterima')->where('id_users', auth()->user()->id_users)->exists();
     }
 
     public function getLastApplicationStatus()
