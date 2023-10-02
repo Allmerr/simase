@@ -525,8 +525,8 @@ class PesertaController extends Controller
         // but you can assume this data comes from a database query.
 
         $notifications = [];
-
-        foreach (auth()->user()->notifikasi as $key => $notifikasi) {
+        $notifikasis = Notifikasi::where('id_users', auth()->user()->id_users)->where('is_dibaca', 'tidak_dibaca')->get();
+        foreach ( $notifikasis as $key => $notifikasi) {
             $notifications[] = [
                 'icon' => 'fas fa-fw fa-envelope',
                 'text' => 'Pesan Belum Dibaca',
