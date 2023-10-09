@@ -45,10 +45,17 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <form action="{{ route('welcome') }}" method="GET">
-                        <label for="year">Select a Year</label>
                         <div class="form-group d-flex">
+
+                            <select name="id_skema" id="id_skema" class="form-select col-md-3">
+                                <option value="all">All Skema</option>
+                                @foreach ($skemas as $skema)
+                                    <option value="{{ $skema->id_skema }}" @if(request()->id_skema == $skema->id_skema) selected @endif>{{ $skema->nama }}</option>
+                                @endforeach
+                            </select>
+
                             <select name="year" id="year" class="form-select col-md-3">
-                                <option value="all years">All Years</option>
+                                <option value="all">All Years</option>
 
                                 @php
                                 $currentYear = date('Y');

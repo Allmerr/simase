@@ -15,6 +15,7 @@ use App\Http\Controllers\SkemaController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TukController;
 use App\Models\StatusPeserta;
+use App\Models\Skema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,16 +31,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (Request $request) {
-    $selectedYear = $request->input('year');
+    $statusPesertas = StatusPeserta::where('status', 'lulus');
 
-    if ($selectedYear != 'all years') {
-        $statusPesertas = StatusPeserta::where('status', 'lulus')->whereYear('tanggal_penetapan', $selectedYear)->get();
-    } else {
-        $statusPesertas = StatusPeserta::where('status', 'lulus')->get();
+    if ($request->input('year') && $request->input('year') !== 'all') {
+        $statusPesertas->whereYear('tanggal_penetapan', $request->input('year'));
+    }
+
+    if ($request->input('id_skema') && $request->input('id_skema') !== 'all') {
+        $statusPesertas->where('id_skema', $request->input('id_skema'));
     }
 
     return view('welcome', [
-        'status_pesertas' => $statusPesertas,
+        'skemas' => Skema::all(),
+        'status_pesertas' => $statusPesertas->get(),
     ]);
 })->name('welcome');
 

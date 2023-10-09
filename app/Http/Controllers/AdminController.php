@@ -390,7 +390,6 @@ class AdminController extends Controller
 
     public function diterimaBelumLulus(Request $request)
     {
-
         $status_peserta = Pengajuan::whereIn('is_disetujui', ['menunggu_pending', 'pending', 'revisi', 'disetujui'])
             ->where(function ($query) use ($request) {
                 $query->whereIn('jenis_pengajuan', ['perpanjang'])
@@ -418,15 +417,29 @@ class AdminController extends Controller
             $status_peserta->where('jenis_pengajuan', $request->input('status'));
         }
 
-        $result = $status_peserta->distinct(['id_users', 'id_skema'])
-            ->get(['id_users', 'id_skema', 'jenis_pengajuan']);
+        $status_peserta = $status_peserta->distinct(['id_users', 'id_skema'])
+            ->get(['id_users', 'id_skema', 'jenis_pengajuan', 'is_disetujui']);
+
+        $result = [];
+
+        foreach ($status_peserta as $st) {
+            if($st->is_disetujui === 'disetujui'){
+                $pengajuans_diterima = Skema::find($st->id_skema)->status_peserta()->where('status', 'diterima')->where('id_users', $st->id_users)->get();
+
+                if(count($pengajuans_diterima) > 0){
+                    $result[] = $pengajuans_diterima[0];
+                }
+            }
+            else{
+                $result[] = $st;
+            }
+        }
 
         return view('admin.peserta.diterima-belum-lulus', [
             'status_pesertas' => $result,
             'skemas' => Skema::orderBy('nama', 'ASC')->get(),
             'tuks' => Tuk::orderBy('nama', 'ASC')->get(),
         ]);
-
     }
 
     public function emailConfigurationShow()
