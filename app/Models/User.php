@@ -95,4 +95,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Pekerjaan::class, 'kode_pekerjaan', 'kode_pekerjaan');
     }
+
+    public function statusPengajuan($id_skema, $id_users){
+        return Pengajuan::where('id_skema',  $id_skema)->where('id_users', $id_users)->orderBy('id_pengajuan', 'desc')->first()->jenis_pengajuan;
+    }
 }

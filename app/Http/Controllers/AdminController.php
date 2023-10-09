@@ -16,6 +16,7 @@ use App\Models\StatusPeserta;
 use App\Models\Survey;
 use App\Models\Tuk;
 use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -267,11 +268,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function showOperator()
-    {
-        //
-    }
-
     public function createOperator()
     {
         return view('admin.operator.create');
@@ -395,7 +391,20 @@ class AdminController extends Controller
     public function diterimaBelumLulus(Request $request)
     {
 
-        $status_peserta = Pengajuan::whereIn('is_disetujui', ['menunggu_pending', 'pending', 'revisi', 'disetujui']);
+        $status_peserta = Pengajuan::whereIn('is_disetujui', ['menunggu_pending', 'pending', 'revisi', 'disetujui'])
+            ->where(function ($query) use ($request) {
+                $query->whereIn('jenis_pengajuan', ['perpanjang'])
+                    ->orWhere(function ($subquery) use ($request) {
+                        $subquery->where('jenis_pengajuan', 'baru')
+                                ->whereNotExists(function ($notExists) use ($request) {
+                                    $notExists->select(DB::raw(1))
+                                                ->from('pengajuan as p2')
+                                                ->whereRaw('pengajuan.id_users = p2.id_users')
+                                                ->whereRaw('pengajuan.id_skema = p2.id_skema')
+                                                ->where('jenis_pengajuan', 'perpanjang');
+                                });
+                    });
+            });
 
         if ($request->input('id_skema') && $request->input('id_skema') !== 'all') {
             $status_peserta->where('id_skema', $request->input('id_skema'));
@@ -405,13 +414,19 @@ class AdminController extends Controller
             $status_peserta->where('id_tuk', $request->input('id_tuk'));
         }
 
-        $result = $status_peserta->get();
+        if ($request->input('status') && $request->input('status') !== 'all') {
+            $status_peserta->where('jenis_pengajuan', $request->input('status'));
+        }
+
+        $result = $status_peserta->distinct(['id_users', 'id_skema'])
+            ->get(['id_users', 'id_skema', 'jenis_pengajuan']);
 
         return view('admin.peserta.diterima-belum-lulus', [
             'status_pesertas' => $result,
             'skemas' => Skema::orderBy('nama', 'ASC')->get(),
             'tuks' => Tuk::orderBy('nama', 'ASC')->get(),
         ]);
+
     }
 
     public function emailConfigurationShow()

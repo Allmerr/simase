@@ -26,6 +26,7 @@
                                     <th>No.</th>
                                     <th>Nama Lengkap</th>
                                     <th>Status</th>
+                                    <th>Pengajuan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -36,6 +37,9 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $pengajuan->user->nama_lengkap }}</td>
                                         <td>{{ $pengajuan->status }}</td>
+                                        <td>
+                                        {{ $pengajuan->user->statusPengajuan($pengajuan->id_skema, $pengajuan->id_users) }}
+                                        </td>
                                         <td>
                                             @if($pengajuan->status !== 'lulus')
                                             <a href="{{ route('skema.pesertaSkemaLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" class="btn btn-success btn-xs">Luluskan (Kompeten)</a>

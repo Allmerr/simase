@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'SI-MASE | Lapor Peserta Aktif LSP')
+@section('title', 'SI-MASE | Daftar Calon Peserta')
 
 @section('content_header')
-    <h1 class="m-0">Lapor Peserta Aktif LSP</h1>
+    <h1 class="m-0">Daftar Calon Peserta</h1>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 @stop
@@ -33,6 +33,11 @@
                                 @foreach ($tuks as $tuk)
                                     <option value="{{ $tuk->id_tuk }}" @if(request()->id_tuk == $tuk->id_tuk) selected @endif>{{ $tuk->nama }}</option>
                                 @endforeach
+                            </select>
+                            <select name="status" id="status" class="form-select ml-2">
+                                <option value="all" @if(request()->status == 'all') selected @endif>Semua Status</option>
+                                <option value="perpanjang" @if(request()->status == 'perpanjang') selected @endif>Perpanjang</option>
+                                <option value="baru" @if(request()->status == 'baru') selected @endif>Baru</option>
                             </select>
                             <button type="submit" class="btn btn-primary ml-2">Cari</button>
                         </div>
