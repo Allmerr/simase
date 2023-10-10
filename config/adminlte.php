@@ -317,7 +317,7 @@ return [
             'can' => 'isPeserta',
         ],
         [
-            'text' => 'Survey',
+            'text' => 'Survey & Perpanjang',
             'route' => 'peserta.survey.index',
             'icon' => 'fas fa-poll-h',
             'can' => 'isPeserta',
@@ -393,6 +393,10 @@ return [
                     'text' => 'Lapor Pengajuan Peserta',
                     'route' => 'admin.peserta.diterimaBelumLulus',
                 ],
+                [
+                    'text' => 'Log Email',
+                    'route' => 'admin.logEmail.index',
+                ],
             ],
         ],
         [
@@ -414,7 +418,7 @@ return [
             'can' => 'isAdmin',
         ],
         [
-            'text' => 'Survey',
+            'text' => 'Survey & Perpanjangan',
             'route' => 'admin.survey.index',
             'icon' => 'fas fa-poll-h',
             'can' => 'isAdmin',

@@ -14,6 +14,7 @@ use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\SkemaController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TukController;
+use App\Http\Controllers\LogEmailController;
 use App\Models\StatusPeserta;
 use App\Models\Skema;
 use Illuminate\Http\Request;
@@ -131,4 +132,5 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::resource('/admin/pekerjaan', PekerjaanController::class);
     Route::get('/admin/email-configuration', [AdminController::class, 'emailConfigurationShow'])->name('admin.emailConfigurationShow');
     Route::post('/admin/email-configuration', [AdminController::class, 'emailConfigurationUpdate'])->name('admin.emailConfigurationUpdate');
+    Route::get('admin/log-email', [LogEmailController::class, 'index'])->name('admin.logEmail.index');
 });
