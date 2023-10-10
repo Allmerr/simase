@@ -18,6 +18,7 @@ use App\Models\StatusPeserta;
 use App\Models\Tuk;
 use App\Models\User;
 use App\Models\Survey;
+use App\Models\LogEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -449,7 +450,24 @@ class PesertaController extends Controller
         $user = User::find($id_users);
         $skema = Skema::find($id_skema);
 
-        Mail::send(new NotifikasiPesertaMail(['user_email' => $user->email, 'skema_name' => $skema->nama]));
+        try {
+            $mail = Mail::send(new NotifikasiPesertaMail(['user_email' => $user->email, 'skema_name' => $skema->nama]));
+
+            if ($mail) {
+                LogEmail::create([
+                    'hal' => 'notifikasi pengajuan peserta',
+                    'email' => $user->email,
+                    'status' => 'berhasil',
+                ]);
+            }
+        } catch (\Throwable $th) {
+            LogEmail::create([
+                'hal' => 'notifikasi pengajuan peserta',
+                'email' => $user->email,
+                'status' => 'gagal',
+            ]);
+        }
+
 
         return 'berhasil';
     }
@@ -459,7 +477,25 @@ class PesertaController extends Controller
         $user = User::find($id_users);
         $skema = Skema::find($id_skema);
 
-        Mail::send(new NotifikasiPesertaAccPengajuanMail(['user_email' => $user->email, 'skema_name' => $skema->nama, 'status_acc' => 'pending']));
+        try {
+
+            $mail = Mail::send(new NotifikasiPesertaAccPengajuanMail(['user_email' => $user->email, 'skema_name' => $skema->nama, 'status_acc' => 'pending']));
+
+            if ($mail) {
+                LogEmail::create([
+                    'hal' => 'notifikasi pengajuan revisi peserta',
+                    'email' => $user->email,
+                    'status' => 'berhasil',
+                ]);
+            }
+        } catch (\Throwable $th) {
+            LogEmail::create([
+                'hal' => 'notifikasi pengajuan revisi peserta',
+                'email' => $user->email,
+                'status' => 'gagal',
+            ]);
+        }
+
 
         return 'berhasil';
     }

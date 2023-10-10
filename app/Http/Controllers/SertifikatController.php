@@ -6,6 +6,7 @@ use App\Mail\NotifikasiSertifikatMail;
 use App\Models\Notifikasi;
 use App\Models\Skema;
 use App\Models\StatusPeserta;
+use App\Models\LogEmail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -55,12 +56,29 @@ class SertifikatController extends Controller
 
         $status_peserta = StatusPeserta::where('id_skema', $request->id_skema)->where('id_users', $request->id_user)->get()[0];
 
-        Mail::send(new NotifikasiSertifikatMail([
-            'email' => $status_peserta->user->email,
-            'subject_' => 'Selamat, Anda telah lulus pada skema '.$status_peserta->skema->nama,
-            'message_' => 'Selamat, Anda telah lulus pada skema '.$status_peserta->skema->nama.'. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
-            'skema' => $status_peserta->skema->nama,
-        ]));
+        try {
+            $mail = Mail::send(new NotifikasiSertifikatMail([
+                'email' => $status_peserta->user->email,
+                'subject_' => 'Selamat, Anda telah lulus pada skema '.$status_peserta->skema->nama,
+                'message_' => 'Selamat, Anda telah lulus pada skema '.$status_peserta->skema->nama.'. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
+                'skema' => $status_peserta->skema->nama,
+            ]));
+
+            if ($mail) {
+                LogEmail::create([
+                    'hal' => 'notifikasi informasi sertifikat peserta email',
+                    'email' => $status_peserta->user->email,
+                    'status' => 'berhasil',
+                ]);
+            }
+        } catch (\Throwable $th) {
+            LogEmail::create([
+                'hal' => 'notifikasi informasi sertifikat peserta email',
+                'email' => $status_peserta->user->email,
+                'status' => 'gagal',
+            ]);
+        }
+
 
         $notifikasi = new Notifikasi();
 

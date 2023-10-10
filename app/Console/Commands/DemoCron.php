@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Mail\NotifikasiExpiredMail;
 use App\Models\StatusPeserta;
+use App\Models\LogEmail;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
@@ -38,12 +39,28 @@ class DemoCron extends Command
             }
             // kirim email
 
-            Mail::send(new NotifikasiExpiredMail([
-                'email' => $statusPeserta[$key]->user->email,
-                'subject_' => 'Notifikasi expired sertifikat Anda pada skema '.$statusPeserta[$key]->skema->nama,
-                'message_' => 'Masa berlaku sertifikat Anda pada skema '.$statusPeserta[$key]->skema->nama.' tersisa tiga bulan. login ke akun Anda untuk memperpanjang masa berlaku sertifikat Anda.',
-                'skema' => $statusPeserta[$key]->skema->nama,
-            ]));
+            try {
+                $mail = Mail::send(new NotifikasiExpiredMail([
+                    'email' => $statusPeserta[$key]->user->email,
+                    'subject_' => 'Notifikasi expired sertifikat Anda pada skema '.$statusPeserta[$key]->skema->nama,
+                    'message_' => 'Masa berlaku sertifikat Anda pada skema '.$statusPeserta[$key]->skema->nama.' tersisa tiga bulan. login ke akun Anda untuk memperpanjang masa berlaku sertifikat Anda.',
+                    'skema' => $statusPeserta[$key]->skema->nama,
+                ]));
+
+                if ($mail) {
+                    LogEmail::create([
+                        'hal' => 'Notifikasi expired sertifikat peserta email',
+                        'email' => $user->email,
+                        'status' => 'berhasil',
+                    ]);
+                }
+            } catch (\Throwable $th) {
+                LogEmail::create([
+                    'hal' => 'Notifikasi expired sertifikat peserta email',
+                    'email' => $user->email,
+                    'status' => 'gagal',
+                ]);
+            }
 
             $statusPeserta[$key]->sudah_kirim_notif = 'sudah';
             $statusPeserta[$key]->save();

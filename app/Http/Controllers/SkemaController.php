@@ -7,6 +7,7 @@ use App\Models\Notifikasi;
 use App\Models\Skema;
 use App\Models\StatusPeserta;
 use App\Models\User;
+use App\Models\LogEmail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -340,12 +341,29 @@ class SkemaController extends Controller
         $skema = Skema::find($id_skema);
         $user = User::find($id_peserta);
 
-        Mail::send(new NotifikasiSertifikatMail([
-            'email' => $user->email,
-            'subject_' => 'Selamat, Anda telah lulus pada skema '.$skema->nama,
-            'message_' => 'Selamat, Anda telah lulus pada skema '.$skema->nama.'. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
-            'skema' => $skema->nama,
-        ]));
+        try {
+            $mail = Mail::send(new NotifikasiSertifikatMail([
+                'email' => $user->email,
+                'subject_' => 'Selamat, Anda telah lulus pada skema '.$skema->nama,
+                'message_' => 'Selamat, Anda telah lulus pada skema '.$skema->nama.'. Silahkan login ke akun Anda untuk melihat sertifikat Anda.',
+                'skema' => $skema->nama,
+            ]));
+
+            if ($mail) {
+                LogEmail::create([
+                    'hal' => 'notifikasi informasi sertifikat peserta email',
+                    'email' => $user->email,
+                    'status' => 'berhasil',
+                ]);
+            }
+        } catch (\Throwable $th) {
+            LogEmail::create([
+                'hal' => 'notifikasi informasi sertifikat peserta email',
+                'email' => $user->email,
+                'status' => 'gagal',
+            ]);
+        }
+
 
         $notifikasi = new Notifikasi();
 

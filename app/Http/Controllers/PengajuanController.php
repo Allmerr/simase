@@ -8,6 +8,7 @@ use App\Models\Pengajuan;
 use App\Models\Skema;
 use App\Models\StatusPeserta;
 use App\Models\User;
+use App\Models\LogEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -173,7 +174,24 @@ class PengajuanController extends Controller
         $user = User::find($id_users);
         $skema = Skema::find($id_skema);
 
-        Mail::send(new NotifikasiPesertaAccPengajuanMail(['user_email' => $user->email, 'skema_name' => $skema->nama, 'status_acc' => $status_acc]));
+        try {
+            $mail = Mail::send(new NotifikasiPesertaAccPengajuanMail(['user_email' => $user->email, 'skema_name' => $skema->nama, 'status_acc' => $status_acc]));
+
+            if ($mail) {
+                LogEmail::create([
+                    'hal' => 'notifikasi persetujuan pengajuan peserta',
+                    'email' => $user->email,
+                    'status' => 'berhasil',
+                ]);
+            }
+
+        } catch (\Throwable $th) {
+            LogEmail::create([
+                'hal' => 'notifikasi persetujuan pengajuan peserta',
+                'email' => $user->email,
+                'status' => 'gagal',
+            ]);
+        }
 
         return 'berhasil';
     }
