@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\NotifikasiSertifikatMail;
+use App\Mail\NotifikasiKelulusanPeserta;
 use App\Models\Notifikasi;
 use App\Models\Skema;
 use App\Models\StatusPeserta;
@@ -319,11 +320,70 @@ class SkemaController extends Controller
 
     public function pesertaSkemaLulus(Request $request, $id_skema, $id_peserta)
     {
-        StatusPeserta::where('id_skema', $id_skema)->where('id_users', $id_peserta)->update([
-            'status' => 'lulus',
-        ]);
+        $status = StatusPeserta::where('id_skema', $id_skema)
+        ->where('id_users', $id_peserta)
+        ->orderBy('id_status_peserta', 'DESC') // This orders the results by created_at in descending order
+        ->first();
+
+        $status->status = 'lulus';
+
+        $status->save();
+
+        $this->notifikasiSkemaLulus(User::where('id_users',$id_peserta)->get()[0], Skema::where('id_skema', $id_skema)->get()[0]->nama, 'lulus');
 
         return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Peserta telah diluluskan');
+    }
+
+    public function pesertaSkemaTidakLulus(Request $request, $id_skema, $id_peserta)
+    {
+        $status = StatusPeserta::where('id_skema', $id_skema)
+        ->where('id_users', $id_peserta)
+        ->orderBy('id_status_peserta', 'DESC') // This orders the results by created_at in descending order
+        ->first();
+
+        $status->status = 'tidak-lulus';
+
+        $status->save();
+
+        $this->notifikasiSkemaLulus(User::where('id_users',$id_peserta)->get()[0], Skema::where('id_skema', $id_skema)->get()[0]->nama, 'tidak lulus');
+
+        return redirect()->route('skema.pesertaSkema', $id_skema)->with('success_message', 'Peserta telah tidak diluluskan');
+    }
+
+    protected function notifikasiSkemaLulus($user, $skema, $status){
+        try {
+            $mail = Mail::send(new NotifikasiKelulusanPeserta([
+                'email' => $user->email,
+                'subject_' => 'Notifikasi Kelulusan Peserta pada Skema '. $skema,
+                'message_' => 'Anda dinyatakan ' .  $status  . ' pada skema ' . $skema,
+                'skema' => $skema,
+            ]));
+
+            if ($mail) {
+                LogEmail::create([
+                    'hal' => 'Notifikasi Kelulusan Peserta',
+                    'email' => $user->email,
+                    'status' => 'berhasil',
+                ]);
+            }
+        } catch (\Throwable $th) {
+            LogEmail::create([
+                'hal' => 'Notifikasi Kelulusan Peserta',
+                'email' => $user->email,
+                'status' => 'gagal',
+            ]);
+        }
+
+
+        $notifikasi = new Notifikasi();
+
+        $notifikasi->judul = 'Notifikasi Kelulusan Peserta pada Skema '. $skema;
+        $notifikasi->pesan = 'Anda dinyatakan ' .  $status  . ' pada skema ' . $skema;
+        $notifikasi->is_dibaca = 'tidak_dibaca';
+        $notifikasi->id_users = $user->id_users;
+
+        $notifikasi->save();
+
     }
 
     public function sertifikatLulus(Request $request, $id_skema, $id_peserta)

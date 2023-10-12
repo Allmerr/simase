@@ -9,6 +9,6 @@
         <h3>{{ $message_ }}</h3>
         <a href="{{ url('/') . '/peserta/sertifikat/' }}"><b>Lihat Detail Sertifikat</b></a>
         <br>
-        <small>-- Admin <a href="http://127.0.0.1:8000/">SI-MASE</a></small>
+        <small>-- Admin <a href="url('/')">SI-MASE</a></small>
     </body>
 </html>

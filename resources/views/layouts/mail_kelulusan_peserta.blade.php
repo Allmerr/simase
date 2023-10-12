@@ -6,8 +6,7 @@
         <title>SI-MASE</title>
     </head>
     <body>
-        <h3>{{ $message_ }}</h3>
-        <a href="{{ url('/') . '/peserta/sertifikat/' }}"><b>Lihat Sertifikat</b></a>
+        <h3>Anda dinyatakan {{ $statusKelulusan }} pada skema {{ $skemaName }}.</h3>
         <br>
         <small>-- Admin <a href="url('/')">SI-MASE</a></small>
     </body>

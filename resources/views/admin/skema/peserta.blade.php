@@ -41,8 +41,9 @@
                                         {{ $pengajuan->user->statusPengajuan($pengajuan->id_skema, $pengajuan->id_users) }}
                                         </td>
                                         <td>
-                                            @if($pengajuan->status !== 'lulus')
-                                            <a href="{{ route('skema.pesertaSkemaLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" class="btn btn-success btn-xs">Luluskan (Kompeten)</a>
+                                            @if($pengajuan->status === 'diterima')
+                                            <a href="{{ route('skema.pesertaSkemaLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" class="btn btn-success btn-xs"><b>Luluskan (Kompeten)</b></a>
+                                            <a href="{{ route('skema.pesertaSkemaTidakLulus', ['id_skema' => $pengajuan->id_skema, 'id_users' => $pengajuan->id_users]) }}" class="btn btn-danger btn-xs"><b>Tidak Lulus (Belum Kompeten)</b></a>
                                             @endif
                                         </td>
                                     </tr>

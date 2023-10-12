@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('status_peserta', function (Blueprint $table) {
             $table->increments('id_status_peserta');
 
-            $table->enum('status', ['diterima', 'lulus', 'expired'])->default('diterima');
+            $table->enum('status', ['diterima', 'lulus', 'expired', 'tidak-lulus'])->default('diterima');
             $table->string('file_sertifikat')->nullable();
 
             $table->string('nomor_blanko')->nullable();
