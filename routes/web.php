@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::post('/admin/skema/upload', [SkemaController::class, 'upload'])->name('skema.upload');
     Route::get('/admin/skema/{id_skema}/peserta', [SkemaController::class, 'pesertaSkema'])->name('skema.pesertaSkema');
     Route::get('/admin/skema/{id_skema}/sertifikat', [SkemaController::class, 'sertifikatSkema'])->name('skema.sertifikatSkema');
+    Route::get('/admin/skema/{id_skema}/diterima-tidak-lulus', [SkemaController::class, 'diterimaTidakLulus'])->name('skema.diterimaTidakLulus');
     Route::get('/admin/skema/{id_skema}/peserta/{id_users}/lulus', [SkemaController::class, 'pesertaSkemaLulus'])->name('skema.pesertaSkemaLulus');
     Route::get('/admin/skema/{id_skema}/peserta/{id_users}/tidak-lulus', [SkemaController::class, 'pesertaSkemaTidakLulus'])->name('skema.pesertaSkemaTidakLulus');
     Route::post('/admin/skema/{id_skema}/peserta/{id_users}/sertifikat-lulus', [SkemaController::class, 'sertifikatLulus'])->name('skema.sertifikatLulus');

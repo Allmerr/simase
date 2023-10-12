@@ -447,4 +447,15 @@ class SkemaController extends Controller
             'pengajuans' => $pengajuans_diterima,
         ]);
     }
+
+    public function diterimaTidakLulus(Request $request, $id_skema){
+        $skema = Skema::find($id_skema);
+        $status_peserta = StatusPeserta::where('id_skema', $id_skema)->where('status', 'tidak-lulus')->get();
+
+        return view('admin.skema.peserta-tidak-lulus', [
+            'skema' => $skema,
+            'status_pesertas' => $status_peserta,
+        ]);
+    }
+
 }
